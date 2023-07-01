@@ -1,0 +1,4 @@
+name: clean_monorepo_skeleton
+
+packages:
+  - '*'
