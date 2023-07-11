@@ -2,3 +2,16 @@ name: clean_monorepo_skeleton
 
 packages:
   - '*'
+
+scripts:
+  ## Data
+  build-data:
+    run: melos exec --fail-fast --scope="*data*" --flutter -- flutter packages pub run build_runner build --delete-conflicting-outputs
+    description: Build data.
+  ## End data
+  
+  ## Domain
+  build-domain:
+    run: melos exec --fail-fast --scope="*domain*" --flutter -- flutter packages pub run build_runner build --delete-conflicting-outputs
+    description: Build domain.
+  ## End domain
