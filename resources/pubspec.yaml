@@ -29,6 +29,21 @@ dev_dependencies:
       url: https://github.com/lux-studio-66/flutter_launcher_icons.git
       ref: master
 
+flutter_gen:
+  output: lib/src/generated/assets
+
+  # Optional
+  integrations:
+    flutter_svg: true
+
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: true
+
+  fonts:
+    enabled: true
+
 flutter_intl:
   enabled: true
   class_name: Strings

@@ -30,6 +30,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  domain:
+    path: ../domain
+  data:
+    path: ../data
+  resources:
+    path: ../resources
 
   get: ^4.6.5
   flutter_form_builder: ^9.0.0

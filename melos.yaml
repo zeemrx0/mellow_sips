@@ -17,6 +17,10 @@ scripts:
   ## End domain
 
   ## Resources
+  build-resources:
+    run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter packages pub run build_runner build --delete-conflicting-outputs
+    description: Build resources.
+
   gen-strings:
     run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter pub run intl_utils:generate
     description: Generate strings resource.
