@@ -15,3 +15,13 @@ scripts:
     run: melos exec --fail-fast --scope="*domain*" --flutter -- flutter packages pub run build_runner build --delete-conflicting-outputs
     description: Build domain.
   ## End domain
+
+  ## Resources
+  gen-strings:
+    run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter pub run intl_utils:generate
+    description: Generate strings resource.
+
+  gen-splash:
+    run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter pub run flutter_native_splash:create --flavor $1
+    description: Generate splash screen.
+  ## End resources
