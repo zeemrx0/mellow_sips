@@ -30,3 +30,4 @@ migrate_working_dir/
 build/
 lib/src/generated
 *.iml
+pubspec_overrides.yaml
