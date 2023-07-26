@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "966217723844",
+    "project_id": "mellow-sips-dev",
+    "storage_bucket": "mellow-sips-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966217723844:android:460027134fce40eab7fe91",
+        "android_client_info": {
+          "package_name": "com.mellowsips.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966217723844-60ea074bni374rq2554va00db7p3ucav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANRCnOyXCeKVUKW9k2_vZN4S4kt_IBfGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966217723844-60ea074bni374rq2554va00db7p3ucav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

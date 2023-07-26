@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "398444472316",
+    "project_id": "mellow-sips-staging",
+    "storage_bucket": "mellow-sips-staging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398444472316:android:9fd92884097318c618f479",
+        "android_client_info": {
+          "package_name": "com.mellowsips.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398444472316-dlugr4b8i9ipc8j1o55knmu08mjhmmm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvj78sPuEYX0eEyb4X8gBY4aW4EzBh84k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398444472316-dlugr4b8i9ipc8j1o55knmu08mjhmmm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
