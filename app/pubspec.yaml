@@ -32,10 +32,12 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  domain:
-    path: ../domain
+  configs:
+    path: ../configs
   data:
     path: ../data
+  domain:
+    path: ../domain
   resources:
     path: ../resources
 

@@ -17,6 +17,7 @@ class HomePage extends GetView<HomeController> {
   }
 
   Widget _body(BuildContext context) {
+    print(BuildConfig.apiDomain);
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: AppThemeExt.of.majorPaddingScale(4)),
