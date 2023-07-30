@@ -10,14 +10,14 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return AppMainPageWidget()
-        .setAppBar(
-            AppBarWidget().setHeaderPage(R.strings.hello).build(context))
+        .setAppBar(AppBarWidget().setHeaderPage(R.strings.hello).build(context))
         .setBody(_body(context))
         .build(context);
   }
 
   Widget _body(BuildContext context) {
     print(BuildConfig.apiDomain);
+    controller.getTest();
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: AppThemeExt.of.majorPaddingScale(4)),

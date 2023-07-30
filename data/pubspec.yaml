@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   domain:
     path: ../domain
+  configs:
+    path: ../configs
 
   get: ^4.6.5
 

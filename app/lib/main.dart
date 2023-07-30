@@ -1,4 +1,6 @@
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
+import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,8 @@ import 'src/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  DataProvider.inject();
+  DomainProvider.inject();
   runApp(const MyApp());
 }
 
