@@ -105,7 +105,7 @@ class AppTextButtonWidget extends AppButtonBaseBuilder {
                   decorationColor: AppColors.of.grayColor[5]);
             }
             return textStyle?.copyWith(
-                decorationColor: AppColors.of.errorColor);
+                decorationColor: AppColors.of.redColor);
           },
         ),
       );
