@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:resources/resources.dart';
 
 part 'exts/app_theme_ext.dart';
 part 'exts/app_text_style_ext.dart';
@@ -21,6 +22,8 @@ class AppThemeData {
     return ThemeData(
       // Use Material Design version 3
       useMaterial3: true,
+      fontFamily: R.fontFamily.comfortaa,
+      package: 'resources',
       textTheme: _AppTextStyle.textTheme(appColor),
       filledButtonTheme:
           FilledButtonThemeData(style: AppButtonStyle.filledButtonStyle),
