@@ -40,6 +40,8 @@ dependencies:
     path: ../domain
   resources:
     path: ../resources
+  utilities:
+    path: ../utilities
 
   get: ^4.6.5
 

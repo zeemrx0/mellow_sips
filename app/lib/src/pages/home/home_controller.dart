@@ -7,6 +7,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
+import 'package:utilities/utilities.dart';
 
 part 'home_binding.dart';
 
