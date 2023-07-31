@@ -27,28 +27,4 @@ class AppTextStyleExt {
     fontWeight: _AppTextStyle.regular,
     fontStyle: FontStyle.italic,
   );
-
-  TextStyle? textSubTitle1s = Get.textTheme.labelLarge?.copyWith(
-    fontWeight: _AppTextStyle.semiBold,
-  );
-
-  TextStyle? textSubTitle1m = Get.textTheme.labelLarge?.copyWith(
-    fontWeight: _AppTextStyle.medium,
-  );
-
-  TextStyle? textSubTitle1r = Get.textTheme.labelLarge?.copyWith(
-    fontWeight: _AppTextStyle.regular,
-  );
-
-  TextStyle? textSubTitle2s = Get.textTheme.labelMedium?.copyWith(
-    fontWeight: _AppTextStyle.semiBold,
-  );
-
-  TextStyle? textSubTitle2m = Get.textTheme.labelMedium?.copyWith(
-    fontWeight: _AppTextStyle.medium,
-  );
-
-  TextStyle? textSubTitle2r = Get.textTheme.labelMedium?.copyWith(
-    fontWeight: _AppTextStyle.regular,
-  );
 }
