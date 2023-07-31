@@ -5,19 +5,22 @@ import 'package:app/src/pages/cart/components/cart_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
+import 'package:utilities/utilities.dart';
 
 part 'cart_binding.dart';
 
 part 'cart_page.dart';
 
 class CartItemModel {
+  final String id;
   final String name;
   final String description;
   final String image;
   final int price;
-  final int quantity;
+  int quantity;
 
   CartItemModel({
+    required this.id,
     required this.name,
     required this.description,
     required this.image,
@@ -27,31 +30,34 @@ class CartItemModel {
 }
 
 class CartController extends GetxController {
-  final RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
+  RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
 
   void getCart() async {
     cartItems.value = [
       CartItemModel(
-        name: 'Product 1',
-        description: 'Description 1',
+        id: '1',
+        name: 'Capuchino',
+        description: 'Đây là capuchino',
         image:
             'https://insanelygoodrecipes.com/wp-content/uploads/2020/07/Cup-Of-Creamy-Coffee-500x375.png',
         price: 50000,
         quantity: 1,
       ),
       CartItemModel(
-        name: 'Product 2',
-        description: 'Description 2',
+        id: '2',
+        name: 'Esspresso',
+        description: 'Cà phê pha máy',
         image:
             'https://file.hstatic.net/1000075078/article/blog_f80b599183c340bca744c174e7ab2af8.jpg',
         price: 50000,
         quantity: 2,
       ),
       CartItemModel(
-        name: 'Product 3',
-        description: 'Description 3',
+        id: '3',
+        name: 'Tà tưa',
+        description: 'Trà sữa nhưng dẹo',
         image:
-            'https://cdn.tgdd.vn/Files/2021/11/15/1397993/ca-phe-nam-mushroom-coffee-la-gi-loi-ich-cua-ca-phe-nam-202111150713402556.jpg',
+            'https://assets.epicurious.com/photos/629f98926e3960ec24778116/1:1/w_2560%2Cc_limit/BubbleTea_RECIPE_052522_34811.jpg',
         price: 50000,
         quantity: 3,
       ),
@@ -61,7 +67,28 @@ class CartController extends GetxController {
   int totalPrice() {
     return cartItems.fold(
       0,
-      (previousValue, element) => previousValue + element.price * element.quantity,
+      (previousValue, element) =>
+          previousValue + element.price * element.quantity,
     );
+  }
+
+  void increaseQuantity(String id) {
+    cartItems.firstWhere((element) => element.id == id).quantity++;
+    cartItems.refresh();
+  }
+
+  void decreaseQuantity(String id) {
+    final cartItem = cartItems.firstWhere((element) => element.id == id);
+    if (cartItem.quantity > 1) {
+      cartItem.quantity--;
+    } else {
+      cartItems.removeWhere((element) => element.id == id);
+    }
+    cartItems.refresh();
+  }
+
+  void removeItem(String id) {
+    cartItems.removeWhere((element) => element.id == id);
+    cartItems.refresh();
   }
 }
