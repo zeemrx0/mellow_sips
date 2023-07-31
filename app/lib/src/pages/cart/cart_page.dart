@@ -15,13 +15,16 @@ class CartPage extends GetView<CartController> {
   Widget _body(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: AppThemeExt.of.majorScale(4)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Obx(
                 () => ListView.builder(
+                  padding: EdgeInsets.symmetric(
+                    vertical: AppThemeExt.of.majorScale(4),
+                  ),
                   itemCount: controller.cartItems.length,
                   itemBuilder: (context, index) {
                     final item = controller.cartItems[index];
@@ -33,8 +36,8 @@ class CartPage extends GetView<CartController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppTextHeading1Widget().setText('Tổng đơn').build(context),
-                AppTextHeading1Widget()
+                AppTextHeading3Widget().setText(R.strings.totalPrice).build(context),
+                AppTextHeading3Widget()
                     .setText('${controller.totalPrice()}đ')
                     .setColor(AppColors.of.primaryColor)
                     .build(context),
@@ -53,15 +56,15 @@ class CartPage extends GetView<CartController> {
                   ),
                 ),
                 padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 15,
+                  EdgeInsets.symmetric(
+                    horizontal: AppThemeExt.of.majorScale(5),
+                    vertical: AppThemeExt.of.majorScale(9 / 4),
                   ),
                 ),
               ),
               onPressed: () {},
-              child: AppTextHeading1Widget()
-                  .setText('Thanh toán')
+              child: AppTextHeading3Widget()
+                  .setText(R.strings.pay)
                   .setColor(Colors.white)
                   .build(context),
             ),
@@ -73,13 +76,16 @@ class CartPage extends GetView<CartController> {
 
   PreferredSizeWidget _appBar(BuildContext context) {
     return AppBar(
-      title: AppTextHeading3Widget()
+      title: AppTextHeading4Widget()
           .setText(R.strings.cart)
           .setColor(AppColors.of.orangeColor)
           .build(context),
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
+        icon: Icon(
+          Icons.arrow_back,
+          size: AppThemeExt.of.majorScale(6),
+        ),
         onPressed: () => Get.back(),
       ),
     );

@@ -1,4 +1,6 @@
 {
 	"hello": "Xin chào",
-	"cart": "Giỏ hàng"
+	"cart": "Giỏ hàng",
+	"totalPrice": "Tổng đơn",
+	"pay": "Thanh toán"
 }

@@ -20,19 +20,20 @@ class CartItemWidget extends StatelessWidget {
         children: [
           Container(
             child: Center(
-              child: AppTextBody1Widget()
-                  .setText('Xóa')
-                  .build(context),
+              child: AppTextBody1Widget().setText('Xóa').build(context),
             ),
           )
         ],
       ),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        margin: const EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppThemeExt.of.majorPaddingScale(4),
+          vertical: AppThemeExt.of.majorPaddingScale(4),
+        ),
+        margin: EdgeInsets.only(bottom: AppThemeExt.of.majorMarginScale(4)),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(32),
+          borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(8)),
           boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(0, 0, 0, 0.11),
@@ -44,29 +45,35 @@ class CartItemWidget extends StatelessWidget {
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(5)),
               child: Image.network(
                 cartItem.image,
-                width: 84,
-                height: 84,
+                width: AppThemeExt.of.majorScale(84 / 4),
+                height: AppThemeExt.of.majorScale(84 / 4),
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(
-              width: 16,
+            SizedBox(
+              width: AppThemeExt.of.majorScale(4),
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppTextBody1Widget()
+                  AppTextHeading6Widget()
                       .setText(cartItem.name)
                       .setTextStyle(AppTextStyleExt.of.textBody1s)
                       .build(context),
+                  SizedBox(
+                    height: AppThemeExt.of.majorScale(1),
+                  ),
                   AppTextBody1Widget()
                       .setText(cartItem.description)
                       .build(context),
-                  AppTextBody1Widget()
+                  SizedBox(
+                    height: AppThemeExt.of.majorScale(6 / 4),
+                  ),
+                  AppTextHeading6Widget()
                       .setText('${cartItem.price}đ')
                       .setTextStyle(AppTextStyleExt.of.textBody1s)
                       .setColor(AppColors.of.secondaryColor)
@@ -74,43 +81,43 @@ class CartItemWidget extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              width: 12,
+            SizedBox(
+              width: AppThemeExt.of.majorScale(3),
             ),
             Row(
               children: [
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  width: AppThemeExt.of.majorScale(6),
+                  height: AppThemeExt.of.majorScale(6),
                   decoration: ShapeDecoration(
                     shape: const CircleBorder(),
                     color: AppColors.of.secondaryColor[400],
                   ),
                   child: Center(
-                    child: AppTextBody1Widget()
+                    child: AppTextHeading6Widget()
                         .setText('-')
                         .setColor(Colors.white)
                         .build(context),
                   ),
                 ),
-                const SizedBox(
-                  width: 8,
+                SizedBox(
+                  width: AppThemeExt.of.majorScale(3),
                 ),
-                AppTextBody1Widget()
+                AppTextHeading5Widget()
                     .setText('${cartItem.quantity}')
                     .build(context),
-                const SizedBox(
-                  width: 8,
+                SizedBox(
+                  width: AppThemeExt.of.majorScale(3),
                 ),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  width: AppThemeExt.of.majorScale(6),
+                  height: AppThemeExt.of.majorScale(6),
                   decoration: ShapeDecoration(
                     shape: const CircleBorder(),
                     color: AppColors.of.secondaryColor[400],
                   ),
                   child: Center(
-                    child: AppTextBody1Widget()
+                    child: AppTextHeading6Widget()
                         .setText('+')
                         .setColor(Colors.white)
                         .build(context),
