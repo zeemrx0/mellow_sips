@@ -1,3 +1,4 @@
+import 'package:app/src/pages/cart/cart_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
@@ -14,6 +15,11 @@ class AppPages {
       name: Routes.home,
       page: () => HomePage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.cart,
+      page: () => CartPage(),
+      binding: CartBinding(),
     ),
   ];
 }

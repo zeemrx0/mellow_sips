@@ -42,7 +42,7 @@ class AppLightColors implements AppColors {
 
   @override
   MaterialColor get grayColor => const MaterialColor(
-        0xFF646464,
+        0xFF0D0D0D,
         {
           50: Color(0xFFF2F2F2),
           100: Color(0xFFE6E6E6),
