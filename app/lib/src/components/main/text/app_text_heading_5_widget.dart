@@ -1,9 +1,9 @@
 part of 'app_text_base_builder.dart';
 
-class AppTextSubTitle2Widget extends AppTextBaseBuilder {
+class AppTextHeading5Widget extends AppTextBaseBuilder {
   @override
   Widget build(BuildContext context) {
-    final orgTextStyle = context.textTheme.labelMedium;
+    final orgTextStyle = context.textTheme.headlineMedium;
     if (_textStyle == null) {
       setTextStyle(orgTextStyle);
     } else {
@@ -15,37 +15,37 @@ class AppTextSubTitle2Widget extends AppTextBaseBuilder {
   }
 
   @override
-  AppTextSubTitle2Widget setMaxLines(int? maxLines) {
+  AppTextHeading5Widget setMaxLines(int? maxLines) {
     _maxLines = maxLines;
     return this;
   }
 
   @override
-  AppTextSubTitle2Widget setText(String? text) {
+  AppTextHeading5Widget setText(String? text) {
     _text = text;
     return this;
   }
 
   @override
-  AppTextSubTitle2Widget setTextAlign(TextAlign? textAlign) {
+  AppTextHeading5Widget setTextAlign(TextAlign? textAlign) {
     _textAlign = textAlign;
     return this;
   }
 
   @override
-  AppTextSubTitle2Widget setTextOverFlow(TextOverflow? textOverflow) {
+  AppTextHeading5Widget setTextOverFlow(TextOverflow? textOverflow) {
     _textOverflow = textOverflow;
     return this;
   }
 
   @override
-  AppTextSubTitle2Widget setTextStyle(TextStyle? textStyle) {
+  AppTextHeading5Widget setTextStyle(TextStyle? textStyle) {
     _textStyle = textStyle;
     return this;
   }
 
   @override
-  AppTextSubTitle2Widget setColor(Color? color) {
+  AppTextHeading5Widget setColor(Color? color) {
     _color = color;
     return this;
   }
