@@ -17,6 +17,7 @@ class HomePage extends GetView<HomeController> {
 
   Widget _body(BuildContext context) {
     print(BuildConfig.apiDomain);
+    print(NumberExt.withSeparator(1000000));
     controller.getTest();
     return Padding(
       padding:
