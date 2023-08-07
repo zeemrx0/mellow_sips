@@ -1,6 +1,5 @@
-import 'package:app/src/pages/home/home_controller.dart';
-import 'package:data/data.dart';
-import 'package:domain/domain.dart';
+
+import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:get/get.dart';
 
 part 'app_binding.dart';
@@ -11,9 +10,9 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: Routes.home,
-      page: () => HomePage(),
-      binding: HomeBinding(),
+      name: Routes.demo,
+      page: () => const DemoPage(),
+      binding: DemoBinding(),
     ),
   ];
 }

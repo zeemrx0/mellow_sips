@@ -11,7 +11,7 @@ import 'src/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DataProvider.inject();
+  await DataProvider.inject();
   DomainProvider.inject();
   runApp(const MyApp());
 }
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       theme: AppThemeData.lightTheme,
       darkTheme: AppThemeData.darkTheme,
       getPages: AppPages.routes,
-      initialRoute: Routes.home,
+      initialRoute: Routes.demo,
       initialBinding: AppBinding(),
       smartManagement: SmartManagement.full,
       builder: AppLoadingOverlayWidget.init(),

@@ -1,7 +1,7 @@
-part of 'home_controller.dart';
+part of 'demo_controller.dart';
 
-class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+class DemoPage extends GetView<DemoController> {
+  const DemoPage({Key? key}) : super(key: key);
 
   static void open() {
     Get.toNamed(Routes.home);
@@ -16,9 +16,8 @@ class HomePage extends GetView<HomeController> {
   }
 
   Widget _body(BuildContext context) {
-    print(BuildConfig.apiDomain);
-    print(NumberExt.withSeparator(1000000));
-    controller.getTest();
+    controller.saveLocalTest(message: DateTime.now().toString());
+    controller.getLocalTest();
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: AppThemeExt.of.majorPaddingScale(4)),

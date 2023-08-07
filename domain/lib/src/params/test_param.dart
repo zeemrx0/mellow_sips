@@ -6,7 +6,7 @@ class TestParam extends BaseParam {
   final String? message;
 
   TestParam({
-    this.message,
+    required this.message,
   });
 
   factory TestParam.fromJson(Map<String, dynamic> json) =>

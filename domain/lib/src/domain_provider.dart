@@ -4,5 +4,7 @@ import 'package:get/get.dart';
 class DomainProvider {
   static void inject() {
     Get.put<GetTestUseCase>(GetTestUseCaseImpl(Get.find()));
+    Get.put<GetLocalTestUseCase>(GetLocalTestUseCaseImpl(Get.find()));
+    Get.put<SaveLocalTestUseCase>(SaveLocalTestUseCaseImpl(Get.find()));
   }
 }
