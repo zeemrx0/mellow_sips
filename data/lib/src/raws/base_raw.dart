@@ -11,3 +11,10 @@ part 'test_raw.dart';
 abstract class BaseRaw<BM extends BaseModel> {
   BM toModel();
 }
+
+class EmptyRaw extends BaseRaw<EmptyModel> {
+  @override
+  EmptyModel toModel() {
+    return EmptyModel();
+  }
+}

@@ -10,3 +10,5 @@ part 'app_result_model.dart';
 part 'base_model.g.dart';
 
 abstract class BaseModel {}
+
+class EmptyModel extends BaseModel {}
