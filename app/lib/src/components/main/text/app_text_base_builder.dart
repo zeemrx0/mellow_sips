@@ -15,6 +15,8 @@ part 'app_text_heading_6_widget.dart';
 
 part 'app_text_body_1_widget.dart';
 
+part 'app_text_body_2_widget.dart';
+
 abstract class AppTextBaseBuilder {
   @protected
   String? _text;

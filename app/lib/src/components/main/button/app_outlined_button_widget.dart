@@ -61,12 +61,26 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
             onPressed: _isDisabled == true ? null : _onPressed,
             style: _buttonStyle(context),
             icon: _prefixIcon!,
-            label: AppTextBody1Widget().setText(_buttonText!).build(context),
+            label: AppTextBody1Widget()
+                .setTextStyle(
+                  _textStyle ??
+                      AppTextStyleExt.of.textBody1s
+                          ?.copyWith(fontFamily: R.fontFamily.workSans),
+                )
+                .setText(_buttonText!)
+                .build(context),
           )
         : OutlinedButton(
             onPressed: _isDisabled == true ? null : _onPressed,
             style: _buttonStyle(context),
-            child: AppTextBody1Widget().setText(_buttonText!).build(context),
+            child: AppTextBody1Widget()
+                .setTextStyle(
+                  _textStyle ??
+                      AppTextStyleExt.of.textBody1s
+                          ?.copyWith(fontFamily: R.fontFamily.workSans),
+                )
+                .setText(_buttonText!)
+                .build(context),
           );
   }
 
@@ -99,7 +113,8 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
                   Radius.circular(AppThemeExt.of.majorScale(1))),
               focusColor: Colors.blue,
               child: Container(
-                  padding: EdgeInsets.all(buttonPadding), child: Row(
+                  padding: EdgeInsets.all(buttonPadding),
+                  child: Row(
                     children: [
                       AppTextBody1Widget().setText(_buttonText!).build(context)
                     ],
@@ -147,13 +162,14 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
                     ),
                   ),
                 ),
-                child: AppTextBody1Widget().setText(_buttonText!).build(context),
+                child:
+                    AppTextBody1Widget().setText(_buttonText!).build(context),
               ));
   }
 
   ButtonStyle? _buttonStyle(BuildContext context) {
-    double horizontalPadding = AppThemeExt.of.majorScale(4);
-    double verticalPadding = AppThemeExt.of.majorScale(9 / 4);
+    double horizontalPadding = AppThemeExt.of.majorScale(5);
+    double verticalPadding = AppThemeExt.of.majorScale(3);
     TextStyle? textStyle = _textStyle ?? AppTextStyleExt.of.textBody1m;
 
     if (_appButtonSize == AppButtonSize.medium) {
@@ -173,6 +189,9 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
       );
     }
     return context.theme.outlinedButtonTheme.style?.copyWith(
+      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) => _backgroundColor,
+      ),
       padding: MaterialStateProperty.resolveWith<EdgeInsets?>(
         (Set<MaterialState> states) => EdgeInsets.symmetric(
             horizontal: horizontalPadding, vertical: verticalPadding),
