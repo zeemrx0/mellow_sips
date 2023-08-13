@@ -47,7 +47,7 @@ flutter_gen:
 flutter_intl:
   enabled: true
   class_name: Strings
-  main_locale: en
+  main_locale: vi
   output_dir: lib/src/generated/strings
   arb_dir: lib/src/strings
 

@@ -5,11 +5,11 @@ class AppButtonStyle {
   static ButtonStyle? get filledButtonStyle => ButtonStyle(
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(1)),
+            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(3)),
           ),
         ),
         iconColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.grayColor[1],
+          (Set<MaterialState> states) => AppColors.of.grayColor[100],
         ),
         iconSize: MaterialStateProperty.resolveWith<double?>(
           (Set<MaterialState> states) => AppThemeExt.of.majorScale(4),
@@ -17,16 +17,16 @@ class AppButtonStyle {
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.primaryColor;
           },
         ),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.primaryColor[6],
+          (Set<MaterialState> states) => AppColors.of.primaryColor[600],
         ),
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.grayColor[1],
+          (Set<MaterialState> states) => AppColors.of.grayColor[100],
         ),
       );
 
@@ -35,35 +35,35 @@ class AppButtonStyle {
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.redColor;
           },
         ),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.redColor[6],
+          (Set<MaterialState> states) => AppColors.of.redColor[600],
         ),
       );
 
   static ButtonStyle? get textButtonStyle => ButtonStyle(
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(1)),
+            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(3)),
           ),
         ),
         iconColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.primaryColor[6];
+              return AppColors.of.primaryColor[600];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.primaryColor[6];
+              return AppColors.of.primaryColor[600];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.primaryColor[6];
+              return AppColors.of.primaryColor[600];
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.primaryColor;
           },
@@ -80,16 +80,16 @@ class AppButtonStyle {
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.primaryColor[6];
+              return AppColors.of.primaryColor[600];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.primaryColor[6];
+              return AppColors.of.primaryColor[600];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.primaryColor[6];
+              return AppColors.of.primaryColor[600];
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.primaryColor;
           },
@@ -100,16 +100,16 @@ class AppButtonStyle {
         iconColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.redColor;
           },
@@ -117,16 +117,16 @@ class AppButtonStyle {
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.redColor;
           },
@@ -136,7 +136,7 @@ class AppButtonStyle {
   static ButtonStyle? get outlinedButtonStyle => ButtonStyle(
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(1)),
+            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(3)),
           ),
         ),
         side: MaterialStateProperty.resolveWith<BorderSide?>(
@@ -151,9 +151,9 @@ class AppButtonStyle {
               return BorderSide(color: AppColors.of.primaryColor);
             }
             if (states.contains(MaterialState.disabled)) {
-              return BorderSide(color: AppColors.of.grayColor[3]!);
+              return BorderSide(color: AppColors.of.grayColor[300]!);
             }
-            return BorderSide(color: AppColors.of.grayColor[4]!);
+            return BorderSide(color: AppColors.of.grayColor[400]!);
           },
         ),
         iconColor: MaterialStateProperty.resolveWith<Color?>(
@@ -168,7 +168,7 @@ class AppButtonStyle {
               return AppColors.of.primaryColor;
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.grayColor;
           },
@@ -177,7 +177,7 @@ class AppButtonStyle {
           (Set<MaterialState> states) => AppThemeExt.of.majorScale(4),
         ),
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.grayColor[1],
+          (Set<MaterialState> states) => Colors.white,
         ),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) => Colors.transparent,
@@ -194,7 +194,7 @@ class AppButtonStyle {
               return AppColors.of.primaryColor;
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.grayColor;
           },
@@ -206,16 +206,16 @@ class AppButtonStyle {
         side: MaterialStateProperty.resolveWith<BorderSide?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return BorderSide(color: AppColors.of.redColor[6]!);
+              return BorderSide(color: AppColors.of.redColor[600]!);
             }
             if (states.contains(MaterialState.hovered)) {
-              return BorderSide(color: AppColors.of.redColor[6]!);
+              return BorderSide(color: AppColors.of.redColor[600]!);
             }
             if (states.contains(MaterialState.pressed)) {
-              return BorderSide(color: AppColors.of.redColor[6]!);
+              return BorderSide(color: AppColors.of.redColor[600]!);
             }
             if (states.contains(MaterialState.disabled)) {
-              return BorderSide(color: AppColors.of.grayColor[3]!);
+              return BorderSide(color: AppColors.of.grayColor[300]!);
             }
             return BorderSide(color: AppColors.of.redColor);
           },
@@ -223,16 +223,16 @@ class AppButtonStyle {
         iconColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.redColor;
           },
@@ -240,16 +240,16 @@ class AppButtonStyle {
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[6];
+              return AppColors.of.redColor[600];
             }
             if (states.contains(MaterialState.disabled)) {
-              return AppColors.of.grayColor[5];
+              return AppColors.of.grayColor[500];
             }
             return AppColors.of.redColor;
           },
