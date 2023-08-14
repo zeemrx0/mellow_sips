@@ -1,5 +1,6 @@
 import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
+import 'package:app/src/pages/register/register_controller.dart';
 import 'package:get/get.dart';
 
 part 'app_binding.dart';
@@ -18,6 +19,11 @@ class AppPages {
       name: Routes.login,
       page: () => const LoginPage(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: Routes.register,
+      page: () => const RegisterPage(),
+      binding: RegisterBinding(),
     ),
   ];
 }

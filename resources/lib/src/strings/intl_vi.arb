@@ -9,5 +9,8 @@
 	"logInWithFacebook": "Đăng nhập với Facebook",
 	"logInWithGoogle": "Đăng nhập với Google",
 	"password": "Mật khẩu",
-	"or": "Hoặc"
+	"or": "Hoặc",
+	"confirmPassword": "Xác nhận mật khẩu",
+	"createAccount": "Tạo tài khoản",
+	"welcomeTo": "Chào mừng bạn đến với"
 }

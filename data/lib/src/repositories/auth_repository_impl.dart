@@ -32,4 +32,12 @@ class AuthRepositoryImpl extends AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<TokensModel>> register({
+    required Map<String, dynamic> body,
+  }) {
+    // TODO: implement register
+    throw UnimplementedError();
+  }
 }
