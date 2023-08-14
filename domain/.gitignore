@@ -29,5 +29,4 @@ migrate_working_dir/
 .packages
 build/
 pubspec_overrides.yaml
-lib/src/models/base_model.g.dart
-lib/src/params/base_param.g.dart
+*.g.dart
