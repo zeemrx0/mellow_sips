@@ -49,7 +49,7 @@ class LoginPage extends GetView<LoginController> {
                 ),
                 Expanded(
                   child: FormBuilder(
-                    key: controller.formKey,
+                    key: controller.loginFormKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,7 +112,7 @@ class LoginPage extends GetView<LoginController> {
                           child: AppFilledButtonWidget()
                               .setButtonText(R.strings.login)
                               .setOnPressed(() {
-                            // TODO: Login
+                            controller.login();
                           }).build(context),
                         ),
                       ],
@@ -182,6 +182,9 @@ class LoginPage extends GetView<LoginController> {
         R.svgs.logo.svg(
           width: AppThemeExt.of.majorScale(12),
           height: AppThemeExt.of.majorScale(12),
+        ),
+        SizedBox(
+          height: AppThemeExt.of.majorScale(1),
         ),
         AppTextHeading5Widget().setText(R.strings.login).build(context),
         SizedBox(
