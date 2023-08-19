@@ -14,19 +14,22 @@ class RegisterPage extends GetView<RegisterController> {
 
   Widget _body(BuildContext context) {
     final deviceHeight = MediaQuery.of(Get.context!).size.height;
+    final statusBarHeight = MediaQuery.of(Get.context!).padding.top;
+    final topMarginHeight = statusBarHeight + AppThemeExt.of.majorScale(4);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            height: deviceHeight * 0.1,
+            height: topMarginHeight,
           ),
           Container(
-            height: deviceHeight * 0.9,
+            height: deviceHeight - topMarginHeight,
             padding: EdgeInsets.only(
               left: AppThemeExt.of.majorScale(4),
               right: AppThemeExt.of.majorScale(4),
-              top: AppThemeExt.of.majorScale(8),
+              top: AppThemeExt.of.majorScale(5),
               bottom: AppThemeExt.of.majorScale(4),
             ),
             decoration: BoxDecoration(
