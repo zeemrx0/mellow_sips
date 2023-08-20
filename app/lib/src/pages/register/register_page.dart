@@ -148,7 +148,7 @@ class RegisterPage extends GetView<RegisterController> {
                                       child: AppFilledButtonWidget()
                                           .setButtonText(R.strings.register)
                                           .setOnPressed(() {
-                                        // TODO: Register
+                                        controller.register();
                                       }).build(context),
                                     );
                                   }

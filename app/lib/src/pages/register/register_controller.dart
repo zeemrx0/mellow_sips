@@ -18,7 +18,6 @@ part 'register_binding.dart';
 
 class RegisterKey {
   static const phoneNumber = 'phoneNumber';
-  static const fullName = 'fullName';
   static const password = 'password';
   static const confirmPassword = 'confirmPassword';
   static const displayName = 'displayName';
@@ -39,9 +38,8 @@ class RegisterController extends GetxController {
         await _registerUserCase.executeObject(
           param: RegisterParam(
             username: formData[RegisterKey.phoneNumber],
-            displayName: formData[RegisterKey.fullName],
-            // TODO: Change to personal
-            type: 'COMMERCIAL',
+            displayName: formData[RegisterKey.displayName],
+            type: 'PERSONAL',
             password: formData[RegisterKey.password],
           ),
         );

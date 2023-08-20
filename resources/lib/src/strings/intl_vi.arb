@@ -16,5 +16,6 @@
 	"fullName": "Họ và tên",
 	"confirmPasswordDoesNotMatch": "Mật khẩu xác nhận không khớp",
 	"cannotBeEmpty": "không được để trống",
-	"passwordInvalid": "Mật khẩu không hợp lệ"
+	"passwordInvalid": "Mật khẩu không hợp lệ",
+	"yourName": "Tên của bạn"
 }
