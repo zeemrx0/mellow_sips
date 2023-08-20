@@ -5,7 +5,9 @@ class AppButtonStyle {
   static ButtonStyle? get filledButtonStyle => ButtonStyle(
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(1)),
+            borderRadius: BorderRadius.circular(
+              AppThemeExt.of.majorScale(10 / 4),
+            ),
           ),
         ),
         iconColor: MaterialStateProperty.resolveWith<Color?>(
@@ -48,7 +50,9 @@ class AppButtonStyle {
   static ButtonStyle? get textButtonStyle => ButtonStyle(
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(1)),
+            borderRadius: BorderRadius.circular(
+              AppThemeExt.of.majorScale(10 / 4),
+            ),
           ),
         ),
         iconColor: MaterialStateProperty.resolveWith<Color?>(
@@ -136,7 +140,9 @@ class AppButtonStyle {
   static ButtonStyle? get outlinedButtonStyle => ButtonStyle(
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
           (states) => RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(1)),
+            borderRadius: BorderRadius.circular(
+              AppThemeExt.of.majorScale(10 / 4),
+            ),
           ),
         ),
         side: MaterialStateProperty.resolveWith<BorderSide?>(

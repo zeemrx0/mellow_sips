@@ -179,8 +179,8 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
   }
 
   ButtonStyle? _buttonStyle(BuildContext context) {
-    double horizontalPadding = AppThemeExt.of.majorScale(5);
-    double verticalPadding = AppThemeExt.of.majorScale(3);
+    double horizontalPadding = AppThemeExt.of.majorScale(4);
+    double verticalPadding = AppThemeExt.of.majorScale(10 / 4);
     final textColor = AppColors.of.grayColor[1];
     TextStyle? textStyle =
         _textStyle ?? AppTextStyleExt.of.textBody1s?.copyWith(color: textColor);
