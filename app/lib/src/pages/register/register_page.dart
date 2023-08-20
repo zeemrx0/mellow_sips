@@ -15,6 +15,7 @@ class RegisterPage extends GetView<RegisterController> {
   Widget _body(BuildContext context) {
     final statusBarHeight = MediaQuery.of(Get.context!).padding.top;
     final topMarginHeight = statusBarHeight + AppThemeExt.of.majorScale(5);
+    final bottomPadding = MediaQuery.of(Get.context!).padding.bottom;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,7 +29,6 @@ class RegisterPage extends GetView<RegisterController> {
               left: AppThemeExt.of.majorScale(4),
               right: AppThemeExt.of.majorScale(4),
               top: AppThemeExt.of.majorScale(5),
-              bottom: AppThemeExt.of.majorScale(4),
             ),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -75,6 +75,7 @@ class RegisterPage extends GetView<RegisterController> {
                                       .setFieldKey(RegisterKey.phoneNumber)
                                       .setHintText(R.strings.phoneNumber)
                                       .setInputType(TextInputType.phone)
+                                      .setValidator(controller.validatePhoneNumber)
                                       .build(context),
 
                                   SizedBox(
@@ -111,6 +112,7 @@ class RegisterPage extends GetView<RegisterController> {
                                       .setObscureText(true)
                                       .setMaxLine(1)
                                       .setInputType(TextInputType.text)
+                                      .setValidator(controller.validatePassword)
                                       .build(context),
 
                                   SizedBox(
@@ -130,6 +132,7 @@ class RegisterPage extends GetView<RegisterController> {
                                       .setObscureText(true)
                                       .setMaxLine(1)
                                       .setInputType(TextInputType.text)
+                                      .setValidator(controller.validateConfirmPassword)
                                       .build(context),
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),
@@ -144,6 +147,8 @@ class RegisterPage extends GetView<RegisterController> {
                                     return Padding(
                                       padding: EdgeInsets.only(
                                         top: AppThemeExt.of.majorScale(4),
+                                        bottom: bottomPadding +
+                                            AppThemeExt.of.majorScale(3),
                                       ),
                                       child: AppFilledButtonWidget()
                                           .setButtonText(R.strings.register)

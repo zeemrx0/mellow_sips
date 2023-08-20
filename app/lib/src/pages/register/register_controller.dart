@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
+import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
+import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
@@ -23,6 +25,11 @@ class RegisterKey {
   static const displayName = 'displayName';
 }
 
+class RegisterErrorMessage {
+  static const incorrectPhoneNumberFormat =
+      "User provider does not allowed for this user type";
+}
+
 class RegisterController extends GetxController {
   final RegisterUseCase _registerUserCase;
 
@@ -35,6 +42,8 @@ class RegisterController extends GetxController {
       if (registerFormKey.currentState!.saveAndValidate()) {
         final formData = registerFormKey.currentState!.value;
 
+        AppLoadingOverlayWidget.show();
+
         await _registerUserCase.executeObject(
           param: RegisterParam(
             username: formData[RegisterKey.phoneNumber],
@@ -44,17 +53,42 @@ class RegisterController extends GetxController {
           ),
         );
 
+        AppLoadingOverlayWidget.dismiss();
+
         // TODO: Go to verify page
         print('Register success');
       }
     } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+
       if (e.statusCode == HttpStatus.conflict) {
-        // TODO: Show dialog
-        print('Phone number is already in use');
+        AppDefaultDialogWidget()
+            .setContent(R.strings.phoneNumberExists)
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.close)
+            .buildDialog(Get.context!)
+            .show();
+
         return;
       }
-      // TODO: Show dialog
-      print('Register failed');
+
+      if (e.message == RegisterErrorMessage.incorrectPhoneNumberFormat) {
+        AppDefaultDialogWidget()
+            .setContent(R.strings.phoneNumberInvalid)
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.close)
+            .buildDialog(Get.context!)
+            .show();
+
+        return;
+      }
+
+      AppDefaultDialogWidget()
+          .setContent(R.strings.error)
+          .setAppDialogType(AppDialogType.error)
+          .setPositiveText(R.strings.close)
+          .buildDialog(Get.context!)
+          .show();
       return;
     }
   }

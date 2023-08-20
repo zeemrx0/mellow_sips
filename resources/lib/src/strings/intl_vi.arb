@@ -17,5 +17,9 @@
 	"confirmPasswordDoesNotMatch": "Mật khẩu xác nhận không khớp",
 	"cannotBeEmpty": "không được để trống",
 	"passwordInvalid": "Mật khẩu không hợp lệ",
-	"yourName": "Tên của bạn"
+	"yourName": "Tên của bạn",
+	"phoneNumberExists": "Số điện thoại đã tồn tại",
+	"close": "Đóng",
+	"phoneNumberInvalid": "Số điện thoại không hợp lệ",
+	"error": "Lỗi"
 }
