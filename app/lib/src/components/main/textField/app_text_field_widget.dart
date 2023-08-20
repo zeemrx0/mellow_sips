@@ -138,7 +138,7 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
         errorBorder: _inputBorder(context, AppTextFieldState.error),
         errorStyle: AppTextStyleExt.of.textBody2r?.copyWith(
           color: AppColors.of.redColor,
-          height: 0.8,
+          height: 1,
         ),
         suffixIconConstraints: suffixIconConstraints,
         suffixIcon: _suffixIcon ??
