@@ -13,5 +13,8 @@
 	"confirmPassword": "Xác nhận mật khẩu",
 	"createAccount": "Tạo tài khoản",
 	"welcomeTo": "Chào mừng bạn đến với",
-	"yourName": "Tên của bạn"
+	"fullName": "Họ và tên",
+	"confirmPasswordDoesNotMatch": "Mật khẩu xác nhận không khớp",
+	"cannotBeEmpty": "không được để trống",
+	"passwordInvalid": "Mật khẩu không hợp lệ"
 }
