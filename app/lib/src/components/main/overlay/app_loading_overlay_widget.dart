@@ -15,11 +15,11 @@ class AppLoadingOverlayWidget {
       ..maskType = EasyLoadingMaskType.custom
       ..indicatorSize = AppThemeExt.of.majorScale(12)
       ..radius = AppThemeExt.of.majorScale(2)
-      ..backgroundColor = AppColors.of.grayColor[2]
+      ..backgroundColor = AppColors.of.grayColor[100]
       ..indicatorColor = AppColors.of.primaryColor
       ..progressColor = AppColors.of.primaryColor[6]
       ..textColor = AppColors.of.grayColor
-      ..maskColor = AppColors.of.grayColor[4]?.withOpacity(0.4)
+      ..maskColor = AppColors.of.grayColor[500]?.withOpacity(0.4)
       ..userInteractions = false
       ..dismissOnTap = false;
   }
