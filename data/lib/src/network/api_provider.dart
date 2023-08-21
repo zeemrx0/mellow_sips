@@ -2,9 +2,9 @@ part of 'network_service.dart';
 
 class ApiProvider {
   static const test = '/test';
-  
+
   static const auth = '/api/auth';
-  static const login = '/api/authenticate/login';
+  static const login = '$auth/login';
   static const register = '$auth/register';
 }
 

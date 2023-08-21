@@ -6,14 +6,12 @@ class TokensRaw extends BaseRaw<TokensModel> {
   final String accessToken;
   final String refreshToken;
   final String idToken;
-  final String tokenType;
   final int expiresIn;
 
   TokensRaw({
     required this.accessToken,
     required this.refreshToken,
     required this.idToken,
-    required this.tokenType,
     required this.expiresIn,
   });
 
@@ -23,7 +21,6 @@ class TokensRaw extends BaseRaw<TokensModel> {
       accessToken: accessToken,
       refreshToken: refreshToken,
       idToken: idToken,
-      tokenType: tokenType,
       expiresIn: expiresIn,
     );
   }

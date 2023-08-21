@@ -8,7 +8,7 @@ part 'save_local_test_use_case.dart';
 
 part 'auth/login_use_case.dart';
 
-part 'auth/register_use_case.dart';
+part './auth/register_use_case.dart';
 
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {

@@ -41,12 +41,14 @@ class RegisterController extends GetxController {
     try {
       if (registerFormKey.currentState!.saveAndValidate()) {
         final formData = registerFormKey.currentState!.value;
+        final phoneNumber =
+            '84${(formData[RegisterKey.phoneNumber] as String).substring(1)}';
 
         AppLoadingOverlayWidget.show();
 
         await _registerUserCase.executeObject(
           param: RegisterParam(
-            username: formData[RegisterKey.phoneNumber],
+            username: phoneNumber,
             displayName: formData[RegisterKey.displayName],
             type: 'PERSONAL',
             password: formData[RegisterKey.password],

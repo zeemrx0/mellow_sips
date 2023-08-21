@@ -104,9 +104,8 @@ class AppDefaultDialogWidget extends AppDialogBaseBuilder {
                   .setTextAlign(TextAlign.center)
                   .build(context),
             SizedBox(height: AppThemeExt.of.majorScale(8)),
-              if(_textField != null)
-                _textField!,
-              SizedBox(height: AppThemeExt.of.majorScale(6)),
+            if (_textField != null) _textField!,
+            SizedBox(height: AppThemeExt.of.majorScale(6)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,

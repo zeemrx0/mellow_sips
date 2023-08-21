@@ -21,5 +21,7 @@
 	"phoneNumberExists": "Số điện thoại đã tồn tại",
 	"close": "Đóng",
 	"phoneNumberInvalid": "Số điện thoại không hợp lệ",
-	"error": "Lỗi"
+	"error": "Lỗi",
+	"incorrectUsernameOrPassword": "Số điện thoại hoặc mật khẩu không chính xác",
+	"accountHasNotBeenVerified": "Tài khoản chưa được xác thực"
 }

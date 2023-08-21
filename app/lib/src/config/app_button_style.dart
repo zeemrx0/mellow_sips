@@ -183,7 +183,7 @@ class AppButtonStyle {
           (Set<MaterialState> states) => AppThemeExt.of.majorScale(4),
         ),
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => Colors.white,
+          (Set<MaterialState> states) => AppColors.of.grayColor[100],
         ),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) => Colors.transparent,

@@ -5,7 +5,7 @@ part 'base_param.g.dart';
 
 part 'test_param.dart';
 
-part 'auth/login_param.dart';
+part './auth/login_param.dart';
 
 part './auth/register_param.dart';
 
