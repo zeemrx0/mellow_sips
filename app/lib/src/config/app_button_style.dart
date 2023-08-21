@@ -25,7 +25,7 @@ class AppButtonStyle {
           },
         ),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.primaryColor[600],
+          (Set<MaterialState> states) => AppColors.of.primaryColor[400],
         ),
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) => AppColors.of.grayColor[100],
@@ -43,7 +43,7 @@ class AppButtonStyle {
           },
         ),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.redColor[600],
+          (Set<MaterialState> states) => AppColors.of.redColor[400],
         ),
       );
 
@@ -58,13 +58,13 @@ class AppButtonStyle {
         iconColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.primaryColor[600];
+              return AppColors.of.primaryColor[400];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.primaryColor[600];
+              return AppColors.of.primaryColor[400];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.primaryColor[600];
+              return AppColors.of.primaryColor[400];
             }
             if (states.contains(MaterialState.disabled)) {
               return AppColors.of.grayColor[500];
@@ -84,13 +84,13 @@ class AppButtonStyle {
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.primaryColor[600];
+              return AppColors.of.primaryColor[400];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.primaryColor[600];
+              return AppColors.of.primaryColor[400];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.primaryColor[600];
+              return AppColors.of.primaryColor[400];
             }
             if (states.contains(MaterialState.disabled)) {
               return AppColors.of.grayColor[500];
@@ -104,13 +104,13 @@ class AppButtonStyle {
         iconColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.disabled)) {
               return AppColors.of.grayColor[500];
@@ -121,13 +121,13 @@ class AppButtonStyle {
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.disabled)) {
               return AppColors.of.grayColor[500];
@@ -212,13 +212,13 @@ class AppButtonStyle {
         side: MaterialStateProperty.resolveWith<BorderSide?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return BorderSide(color: AppColors.of.redColor[600]!);
+              return BorderSide(color: AppColors.of.redColor[400]!);
             }
             if (states.contains(MaterialState.hovered)) {
-              return BorderSide(color: AppColors.of.redColor[600]!);
+              return BorderSide(color: AppColors.of.redColor[400]!);
             }
             if (states.contains(MaterialState.pressed)) {
-              return BorderSide(color: AppColors.of.redColor[600]!);
+              return BorderSide(color: AppColors.of.redColor[400]!);
             }
             if (states.contains(MaterialState.disabled)) {
               return BorderSide(color: AppColors.of.grayColor[300]!);
@@ -229,13 +229,13 @@ class AppButtonStyle {
         iconColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.disabled)) {
               return AppColors.of.grayColor[500];
@@ -246,13 +246,13 @@ class AppButtonStyle {
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.hovered)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.pressed)) {
-              return AppColors.of.redColor[600];
+              return AppColors.of.redColor[400];
             }
             if (states.contains(MaterialState.disabled)) {
               return AppColors.of.grayColor[500];
