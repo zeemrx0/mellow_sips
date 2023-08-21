@@ -17,7 +17,7 @@ class AppLoadingOverlayWidget {
       ..radius = AppThemeExt.of.majorScale(2)
       ..backgroundColor = AppColors.of.grayColor[100]
       ..indicatorColor = AppColors.of.primaryColor
-      ..progressColor = AppColors.of.primaryColor[6]
+      ..progressColor = AppColors.of.primaryColor[600]
       ..textColor = AppColors.of.grayColor
       ..maskColor = AppColors.of.grayColor[500]?.withOpacity(0.4)
       ..userInteractions = false

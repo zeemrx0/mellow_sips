@@ -93,7 +93,7 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
         ? Container(
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.of.grayColor[4]!)),
+                border: Border.all(color: AppColors.of.grayColor[400]!)),
             child: InkWell(
               onTap: _onPressed,
               borderRadius: BorderRadius.all(
@@ -107,7 +107,7 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
         : Container(
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.of.grayColor[4]!)),
+                border: Border.all(color: AppColors.of.grayColor[400]!)),
             child: InkWell(
               borderRadius: BorderRadius.all(
                   Radius.circular(AppThemeExt.of.majorScale(1))),

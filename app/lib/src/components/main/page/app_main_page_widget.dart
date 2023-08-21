@@ -7,12 +7,12 @@ class AppMainPageWidget extends AppMainPageBaseBuilder {
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
         key: _key,
-        backgroundColor: _backgroundColor ?? AppColors.of.grayColor[2],
+        backgroundColor: _backgroundColor ?? AppColors.of.grayColor[200],
         appBar: _appBar,
         endDrawer: _endDrawer,
         endDrawerEnableOpenDragGesture: false,
         onEndDrawerChanged: _onEndDrawerChanged,
-        resizeToAvoidBottomInset: _resizeToAvoidBottomInset ?? false ,
+        resizeToAvoidBottomInset: _resizeToAvoidBottomInset ?? false,
         body: _body ?? const SizedBox(),
       ),
     );

@@ -24,7 +24,7 @@ class AppBarLeadingAvatarWidget extends AppBarBaseBuilder {
       ),
       centerTitle: _centerTitle,
       actions: _actions ?? [AppButtonAppBarWidget().build(context)],
-      backgroundColor: _backgroundColor ?? AppColors.of.grayColor[1],
+      backgroundColor: _backgroundColor ?? AppColors.of.grayColor[100],
       bottom: _bottom,
     );
   }

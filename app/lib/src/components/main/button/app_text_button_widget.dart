@@ -55,12 +55,18 @@ class AppTextButtonWidget extends AppButtonBaseBuilder {
             onPressed: _isDisabled == true ? null : _onPressed,
             style: _buttonStyle(context),
             icon: _prefixIcon!,
-            label: AppTextBody1Widget().setText(_buttonText!).setColor(AppColors.of.primaryColor[5]).build(context),
+            label: AppTextBody1Widget()
+                .setText(_buttonText!)
+                .setColor(AppColors.of.primaryColor[500])
+                .build(context),
           )
         : TextButton(
             onPressed: _isDisabled == true ? null : _onPressed,
             style: _buttonStyle(context),
-            child: AppTextBody1Widget().setText(_buttonText!).setColor(AppColors.of.primaryColor[5]).build(context),
+            child: AppTextBody1Widget()
+                .setText(_buttonText!)
+                .setColor(AppColors.of.primaryColor[500])
+                .build(context),
           );
   }
 
@@ -90,22 +96,21 @@ class AppTextButtonWidget extends AppButtonBaseBuilder {
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.focused)) {
               return textStyle?.copyWith(
-                  decorationColor: AppColors.of.redColor[6]);
+                  decorationColor: AppColors.of.redColor[600]);
             }
             if (states.contains(MaterialState.hovered)) {
               return textStyle?.copyWith(
-                  decorationColor: AppColors.of.redColor[6]);
+                  decorationColor: AppColors.of.redColor[600]);
             }
             if (states.contains(MaterialState.pressed)) {
               return textStyle?.copyWith(
-                  decorationColor: AppColors.of.redColor[6]);
+                  decorationColor: AppColors.of.redColor[600]);
             }
             if (states.contains(MaterialState.disabled)) {
               return textStyle?.copyWith(
-                  decorationColor: AppColors.of.grayColor[5]);
+                  decorationColor: AppColors.of.grayColor[500]);
             }
-            return textStyle?.copyWith(
-                decorationColor: AppColors.of.redColor);
+            return textStyle?.copyWith(decorationColor: AppColors.of.redColor);
           },
         ),
       );
@@ -122,19 +127,19 @@ class AppTextButtonWidget extends AppButtonBaseBuilder {
         (Set<MaterialState> states) {
           if (states.contains(MaterialState.focused)) {
             return textStyle?.copyWith(
-                decorationColor: AppColors.of.primaryColor[6]);
+                decorationColor: AppColors.of.primaryColor[600]);
           }
           if (states.contains(MaterialState.hovered)) {
             return textStyle?.copyWith(
-                decorationColor: AppColors.of.primaryColor[6]);
+                decorationColor: AppColors.of.primaryColor[600]);
           }
           if (states.contains(MaterialState.pressed)) {
             return textStyle?.copyWith(
-                decorationColor: AppColors.of.primaryColor[6]);
+                decorationColor: AppColors.of.primaryColor[600]);
           }
           if (states.contains(MaterialState.disabled)) {
             return textStyle?.copyWith(
-                decorationColor: AppColors.of.grayColor[5]);
+                decorationColor: AppColors.of.grayColor[500]);
           }
           return textStyle?.copyWith(
               decorationColor: AppColors.of.primaryColor);
