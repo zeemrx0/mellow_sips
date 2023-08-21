@@ -45,6 +45,8 @@ abstract class AppTextFieldBaseBuilder {
   @protected
   FocusNode? _focusNode;
   @protected
+  bool _hasClearButton = true;
+  @protected
   void Function(String? value)? _onSubmitted;
   @protected
   EdgeInsets? _contentPadding;
@@ -117,6 +119,10 @@ abstract class AppTextFieldBaseBuilder {
   }
 
   AppTextFieldBaseBuilder setFocusNode(FocusNode? focusNode) {
+    return this;
+  }
+
+  AppTextFieldBaseBuilder setHasClearButton(bool hasClearButton) {
     return this;
   }
 

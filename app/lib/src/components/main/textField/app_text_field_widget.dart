@@ -86,6 +86,12 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
   }
 
   @override
+  AppTextFieldBaseBuilder setHasClearButton(bool hasClearButton) {
+    _hasClearButton = hasClearButton;
+    return this;
+  }
+
+  @override
   AppTextFieldWidget setOnSubmitted(Function(String? value)? onSubmitted) {
     _onSubmitted = onSubmitted;
     return this;
@@ -107,8 +113,8 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
   @override
   Widget build(BuildContext context) {
     BoxConstraints suffixIconConstraints = BoxConstraints.expand(
-      width: AppThemeExt.of.majorScale(12),
-      height: AppThemeExt.of.majorScale(12),
+      width: AppThemeExt.of.majorScale(11),
+      height: AppThemeExt.of.majorScale(11),
     );
 
     return FormBuilderTextField(
@@ -136,19 +142,21 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
         focusedBorder: _inputBorder(context, AppTextFieldState.focused),
         disabledBorder: _inputBorder(context, AppTextFieldState.disabled),
         errorBorder: _inputBorder(context, AppTextFieldState.error),
-        errorStyle: AppTextStyleExt.of.textBody1r?.copyWith(
+        errorStyle: AppTextStyleExt.of.textBody2r?.copyWith(
           color: AppColors.of.redColor,
-          height: 0.6,
+          height: 1,
         ),
         suffixIconConstraints: suffixIconConstraints,
         suffixIcon: _suffixIcon ??
-            InkWell(
-              child: const Icon(Icons.clear_rounded),
-              onTap: () {
-                _textFieldKey.currentState?.didChange('');
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-            ),
+            (_hasClearButton
+                ? InkWell(
+                    child: const Icon(Icons.clear_rounded),
+                    onTap: () {
+                      _textFieldKey.currentState?.didChange('');
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    },
+                  )
+                : const SizedBox()),
       ),
       autovalidateMode: _autoValidateMode,
       validator: _validator,
@@ -187,7 +195,7 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
 
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(
-        AppThemeExt.of.majorScale(3),
+        AppThemeExt.of.majorScale(10 / 4),
       ),
       borderSide: BorderSide(
         color: borderColor,
@@ -201,7 +209,7 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
       );
 
   TextStyle? _hintTextStyle(BuildContext context) =>
-      AppTextStyleExt.of.textBody1r?.copyWith(
+      AppTextStyleExt.of.textBody2r?.copyWith(
         color: AppColors.of.grayColor[400],
       );
 }

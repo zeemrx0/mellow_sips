@@ -66,7 +66,7 @@ class AppTextButtonWidget extends AppButtonBaseBuilder {
 
   ButtonStyle? _buttonStyle(BuildContext context) {
     double horizontalPadding = AppThemeExt.of.majorScale(4);
-    double verticalPadding = AppThemeExt.of.majorScale(3);
+    double verticalPadding = AppThemeExt.of.majorScale(10 / 4);
     TextStyle? textStyle = _textStyle ?? AppTextStyleExt.of.textBody1m;
 
     if (_appButtonSize == AppButtonSize.medium) {
