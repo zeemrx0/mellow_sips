@@ -6,4 +6,6 @@ abstract class AuthRepository {
   Future<AppObjectResultModel<EmptyModel>> register({required Map<String, dynamic> body});
 
   Future<AppObjectResultModel<EmptyModel>> verifyRegistration({required Map<String, dynamic> body});
+
+  Future<AppObjectResultModel<EmptyModel>> requestOTP({required Map<String, dynamic> body});
 }

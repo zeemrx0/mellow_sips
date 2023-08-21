@@ -221,7 +221,8 @@ class VerifyRegistrationPage extends GetView<VerifyRegistrationController> {
                                                 controller.otpDigitFocusNodes[6]
                                                     ?.unfocus();
 
-                                                // TODO: Submit form
+                                                controller
+                                                    .submitVerificationRegistrationForm();
                                               } else {
                                                 controller.otpDigitFocusNodes[5]
                                                     ?.requestFocus();

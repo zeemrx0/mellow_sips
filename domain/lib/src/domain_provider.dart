@@ -11,5 +11,6 @@ class DomainProvider {
     Get.put<VerifyRegistrationUseCase>(
       VerifyRegistrationUseCaseImpl(Get.find()),
     );
+    Get.put<RequestOtpUseCase>(RequestOtpUseCaseImpl(Get.find()));
   }
 }
