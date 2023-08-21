@@ -7,4 +7,6 @@ part 'test_param.dart';
 
 part './auth/login_param.dart';
 
+part './auth/register_param.dart';
+
 abstract class BaseParam {}

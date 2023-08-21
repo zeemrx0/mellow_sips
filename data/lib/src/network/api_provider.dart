@@ -5,6 +5,7 @@ class ApiProvider {
 
   static const auth = '/api/auth';
   static const login = '$auth/login';
+  static const register = '$auth/register';
 }
 
 class StatusCode extends HttpStatus {

@@ -32,4 +32,19 @@ class AuthRepositoryImpl extends AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> register({
+    required Map<String, dynamic> body,
+  }) async {
+    try {
+      final remoteData = await _remoteDataSource.register(
+        body: body,
+      );
+
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

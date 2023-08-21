@@ -53,14 +53,9 @@ class NetworkServiceImpl extends NetworkService {
         onSendProgress: clientRequest.onSendProgress,
         onReceiveProgress: clientRequest.onReceiveProgress,
       );
-
-      print('Response: ${response.data}');
-
       final AppResponse appResponse = clientRequest.isRequestedForList
           ? AppResponse.fromJsonToList(response.data)
           : AppResponse.fromJsonToObject(response.data);
-
-      print('AppResponse: $appResponse');
 
       return HttpStatus(response.statusCode).isOk
           ? appResponse
@@ -70,14 +65,12 @@ class NetworkServiceImpl extends NetworkService {
               error: appResponse.error,
             );
     } on DioException catch (e) {
-      print('DioException: ${e.response?.data}');
       throw NetworkException(
         statusCode: e.response?.statusCode,
         message: e.response?.data['message'],
         error: ErrorCode.dioError,
       );
     } catch (e) {
-      print('Exception: ${e.toString()}');
       throw NetworkException(
         statusCode: StatusCode.code999,
         message: 'Something went wrong ${e.toString()}',
