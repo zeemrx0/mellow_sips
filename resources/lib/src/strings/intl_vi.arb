@@ -23,5 +23,7 @@
 	"phoneNumberInvalid": "Số điện thoại không hợp lệ",
 	"error": "Lỗi",
 	"incorrectUsernameOrPassword": "Số điện thoại hoặc mật khẩu không chính xác",
-	"accountHasNotBeenVerified": "Tài khoản chưa được xác thực"
+	"accountHasNotBeenVerified": "Tài khoản chưa được xác thực",
+	"verifyAccount": "Xác nhận tài khoản",
+	"enterOtpToVerifyAccount": "Nhập mã OTP để xác nhận tài khoản"
 }
