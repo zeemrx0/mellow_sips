@@ -17,7 +17,9 @@ class IntroView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        image,
+        Flexible(
+          child: image,
+        ),
         SizedBox(
           height: AppThemeExt.of.majorPaddingScale(4),
         ),

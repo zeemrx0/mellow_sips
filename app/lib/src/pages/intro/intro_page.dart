@@ -5,7 +5,14 @@ class IntroPage extends GetView<IntroController> {
 
   @override
   Widget build(BuildContext context) {
-    return AppMainPageWidget().setBody(_body(context)).build(context);
+    return AppMainPageWidget()
+        .setAppBar(_appBar(context))
+        .setBody(_body(context))
+        .build(context);
+  }
+
+  PreferredSizeWidget _appBar(BuildContext context) {
+    return AppBarBasicWidget().setCanBack(true).build(context);
   }
 
   Widget _body(BuildContext context) {
@@ -70,9 +77,8 @@ class IntroPage extends GetView<IntroController> {
               AppTextButtonWidget()
                   .setButtonText(R.strings.skip)
                   .setOnPressed(() {
-                    // TODO: Go to welcome page
-                  })
-                  .build(context),
+                // TODO: Go to welcome page
+              }).build(context),
               InkWell(
                 onTap: () {
                   // TODO: Go to next page
@@ -93,7 +99,7 @@ class IntroPage extends GetView<IntroController> {
             ],
           ),
           SizedBox(
-            height: AppThemeExt.of.majorPaddingScale(6),
+            height: AppThemeExt.of.majorPaddingScale(2),
           ),
         ],
       ),
