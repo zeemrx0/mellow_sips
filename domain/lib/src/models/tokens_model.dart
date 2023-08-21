@@ -6,14 +6,12 @@ class TokensModel extends BaseModel {
   final String accessToken;
   final String refreshToken;
   final String idToken;
-  final String tokenType;
   final int expiresIn;
 
   TokensModel({
     required this.accessToken,
     required this.refreshToken,
     required this.idToken,
-    required this.tokenType,
     required this.expiresIn,
   });
 

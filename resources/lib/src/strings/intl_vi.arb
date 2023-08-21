@@ -9,5 +9,7 @@
 	"logInWithFacebook": "Đăng nhập với Facebook",
 	"logInWithGoogle": "Đăng nhập với Google",
 	"password": "Mật khẩu",
-	"or": "Hoặc"
+	"or": "Hoặc",
+	"error": "Lỗi",
+	"close": "Đóng"
 }

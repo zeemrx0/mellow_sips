@@ -3,11 +3,11 @@ part of '../base_param.dart';
 @JsonSerializable()
 @CopyWith()
 class LoginParam extends BaseParam {
-  final String phone;
+  final String username;
   final String password;
 
   LoginParam({
-    required this.phone,
+    required this.username,
     required this.password,
   });
 
