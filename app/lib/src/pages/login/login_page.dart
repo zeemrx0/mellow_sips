@@ -142,28 +142,29 @@ class LoginPage extends GetView<LoginController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        R.svgs.logo.svg(
-          width: AppThemeExt.of.majorScale(12),
-          height: AppThemeExt.of.majorScale(12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            R.svgs.logo.svg(
+              width: AppThemeExt.of.majorScale(12),
+              height: AppThemeExt.of.majorScale(12),
+            ),
+            InkWell(
+              onTap: () {
+                Get.back();
+              },
+              child: R.svgs.icClose.svg(
+                width: AppThemeExt.of.majorScale(6),
+                height: AppThemeExt.of.majorScale(6),
+              ),
+            ),
+          ],
         ),
         SizedBox(
           height: AppThemeExt.of.majorScale(1),
         ),
-        AppTextHeading5Widget().setText(R.strings.login).build(context),
-        SizedBox(
-          height: AppThemeExt.of.majorScale(4),
-        ),
-        AppTextHeading3Widget()
-            .setText(R.strings.welcomeBack)
-            .setTextStyle(
-              AppTextStyleExt.of.textHeading3b
-                  ?.copyWith(fontFamily: R.fontFamily.comfortaa),
-            )
-            .build(context),
-        AppTextHeading1Widget()
-            .setText(R.strings.mellowSips)
-            .setColor(AppColors.of.redColor[500])
-            .build(context),
+        AppTextHeading3Widget().setText(R.strings.login).build(context),
       ],
     );
   }
