@@ -1,0 +1,37 @@
+name: clean_monorepo_skeleton
+
+packages:
+  - '*'
+
+scripts:
+  # Config
+  gen-env:
+    run: melos exec --fail-fast --scope="*config*" "dart run lib/src/env.dart $1"
+    description: Generate environment file.
+  # End config
+
+  # Data
+  build-data:
+    run: melos exec --fail-fast --scope="*data*" --flutter -- flutter packages pub run build_runner build --delete-conflicting-outputs
+    description: Build data.
+  # End data
+
+  # Domain
+  build-domain:
+    run: melos exec --fail-fast --scope="*domain*" --flutter -- flutter packages pub run build_runner build --delete-conflicting-outputs
+    description: Build domain.
+  # End domain
+
+  # Resources
+  build-resources:
+    run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter packages pub run build_runner build --delete-conflicting-outputs
+    description: Build resources.
+
+  gen-strings:
+    run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter pub run intl_utils:generate
+    description: Generate strings resource.
+
+  gen-splash:
+    run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter pub run flutter_native_splash:create --flavor $1
+    description: Generate splash screen.
+  # End resources
