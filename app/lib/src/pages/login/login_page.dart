@@ -77,6 +77,7 @@ class LoginPage extends GetView<LoginController> {
                                       .setFieldKey(LoginKey.phoneNumber)
                                       .setHintText(R.strings.phoneNumber)
                                       .setInputType(TextInputType.phone)
+                                      .setValidator(controller.validatePhoneNumber)
                                       .build(context),
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),
@@ -93,6 +94,7 @@ class LoginPage extends GetView<LoginController> {
                                       .setObscureText(true)
                                       .setMaxLine(1)
                                       .setInputType(TextInputType.text)
+                                      .setValidator(controller.validatePassword)
                                       .build(context),
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),

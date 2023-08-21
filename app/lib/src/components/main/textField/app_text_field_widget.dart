@@ -177,7 +177,7 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
 
     switch (appTextFieldState) {
       case AppTextFieldState.normal:
-        borderColor = AppColors.of.grayColor[200] ?? AppColors.of.grayColor;
+        borderColor = AppColors.of.grayColor[400] ?? AppColors.of.grayColor;
         break;
       case AppTextFieldState.focused:
         borderColor = AppColors.of.primaryColor;
@@ -186,7 +186,7 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
         borderColor = AppColors.of.redColor[500] ?? AppColors.of.redColor;
         break;
       case AppTextFieldState.enabled:
-        borderColor = AppColors.of.grayColor[200] ?? AppColors.of.grayColor;
+        borderColor = AppColors.of.grayColor[400] ?? AppColors.of.grayColor;
         break;
       case AppTextFieldState.disabled:
         borderColor = AppColors.of.grayColor[300] ?? AppColors.of.grayColor;
