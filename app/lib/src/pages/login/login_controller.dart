@@ -43,6 +43,22 @@ class LoginController extends GetxController {
 
   final loginFormKey = GlobalKey<FormBuilderState>();
 
+  String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return '${R.strings.phoneNumber} ${R.strings.cannotBeEmpty}';
+    }
+
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return '${R.strings.password} ${R.strings.cannotBeEmpty}';
+    }
+
+    return null;
+  }
+
   Future<void> login() async {
     try {
       if (loginFormKey.currentState!.saveAndValidate()) {

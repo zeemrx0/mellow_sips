@@ -48,6 +48,8 @@ dependencies:
   flutter_loadingindicator: ^1.0.1
   flutter_form_builder: ^9.0.0
   form_builder_validators: ^9.0.0
+  
+  smooth_page_indicator: ^1.1.0
 
   flutter_keyboard_visibility: ^5.4.1
 
