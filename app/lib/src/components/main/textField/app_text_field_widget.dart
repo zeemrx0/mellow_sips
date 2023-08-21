@@ -86,6 +86,12 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
   }
 
   @override
+  AppTextFieldBaseBuilder setHasClearButton(bool hasClearButton) {
+    _hasClearButton = hasClearButton;
+    return this;
+  }
+
+  @override
   AppTextFieldWidget setOnSubmitted(Function(String? value)? onSubmitted) {
     _onSubmitted = onSubmitted;
     return this;
@@ -142,13 +148,15 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
         ),
         suffixIconConstraints: suffixIconConstraints,
         suffixIcon: _suffixIcon ??
-            InkWell(
-              child: const Icon(Icons.clear_rounded),
-              onTap: () {
-                _textFieldKey.currentState?.didChange('');
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-            ),
+            (_hasClearButton
+                ? InkWell(
+                    child: const Icon(Icons.clear_rounded),
+                    onTap: () {
+                      _textFieldKey.currentState?.didChange('');
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    },
+                  )
+                : const SizedBox()),
       ),
       autovalidateMode: _autoValidateMode,
       validator: _validator,
