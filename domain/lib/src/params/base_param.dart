@@ -9,4 +9,8 @@ part './auth/login_param.dart';
 
 part './auth/register_param.dart';
 
+part './auth/verify_registration_param.dart';
+
+part './auth/request_otp_param.dart';
+
 abstract class BaseParam {}

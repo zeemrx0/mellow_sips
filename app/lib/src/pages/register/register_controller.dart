@@ -6,6 +6,7 @@ import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart'
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
@@ -57,8 +58,9 @@ class RegisterController extends GetxController {
 
         AppLoadingOverlayWidget.dismiss();
 
-        // TODO: Go to verify page
-        print('Register success');
+        VerifyRegistrationPage.open(
+          phoneNumber: phoneNumber,
+        );
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();

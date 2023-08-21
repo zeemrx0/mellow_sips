@@ -8,6 +8,8 @@ import 'package:app/src/components/main/textField/app_text_field_base_builder.da
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/pages/home/home_controller.dart';
+import 'package:app/src/pages/verify/verify_registration_controller.dart';
+import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -35,8 +37,9 @@ class LoginKey {
 
 class LoginController extends GetxController {
   final LoginUseCase _loginUseCase;
+  final RequestOtpUseCase _requestOtpUseCase;
 
-  LoginController(this._loginUseCase);
+  LoginController(this._loginUseCase, this._requestOtpUseCase);
 
   final loginFormKey = GlobalKey<FormBuilderState>();
 
@@ -82,7 +85,19 @@ class LoginController extends GetxController {
         AppDefaultDialogWidget()
             .setContent(R.strings.accountHasNotBeenVerified)
             .setAppDialogType(AppDialogType.error)
-            .setPositiveText(R.strings.close)
+            .setPositiveText(R.strings.verifyAccount)
+            .setOnPositive(() {
+              final formData = loginFormKey.currentState!.value;
+              final phoneNumber =
+                  '84${(formData[LoginKey.phoneNumber] as String).substring(1)}';
+
+              _requestOtpUseCase.executeObject(
+                param: RequestOtpParam(
+                  username: phoneNumber,
+                ),
+              );
+              VerifyRegistrationPage.open(phoneNumber: phoneNumber);
+            })
             .buildDialog(Get.context!)
             .show();
 
