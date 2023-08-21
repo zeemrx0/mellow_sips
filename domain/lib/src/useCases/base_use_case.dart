@@ -10,6 +10,8 @@ part 'auth/login_use_case.dart';
 
 part './auth/register_use_case.dart';
 
+part './auth/verify_registration_use_case.dart';
+
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {
     return Future.value(

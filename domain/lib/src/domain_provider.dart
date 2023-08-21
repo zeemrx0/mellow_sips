@@ -8,5 +8,8 @@ class DomainProvider {
     Get.put<SaveLocalTestUseCase>(SaveLocalTestUseCaseImpl(Get.find()));
     Get.put<LoginUseCase>(LoginUseCaseImpl(Get.find()));
     Get.put<RegisterUseCase>(RegisterUseCaseImpl(Get.find()));
+    Get.put<VerifyRegistrationUseCase>(
+      VerifyRegistrationUseCaseImpl(Get.find()),
+    );
   }
 }

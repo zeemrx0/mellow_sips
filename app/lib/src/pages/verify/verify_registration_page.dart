@@ -3,8 +3,10 @@ part of './verify_registration_controller.dart';
 class VerifyRegistrationPage extends GetView<VerifyRegistrationController> {
   const VerifyRegistrationPage({super.key});
 
-  static void open() {
-    Get.toNamed(Routes.verifyRegistration);
+  static void open({required String phoneNumber}) {
+    Get.toNamed(Routes.verifyRegistration, arguments: {
+      VerifyRegistrationKey.phoneNumber: phoneNumber,
+    });
   }
 
   @override

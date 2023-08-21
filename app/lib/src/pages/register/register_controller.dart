@@ -58,7 +58,9 @@ class RegisterController extends GetxController {
 
         AppLoadingOverlayWidget.dismiss();
 
-        VerifyRegistrationPage.open();
+        VerifyRegistrationPage.open(
+          phoneNumber: phoneNumber,
+        );
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();

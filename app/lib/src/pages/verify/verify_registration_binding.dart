@@ -4,7 +4,7 @@ class VerifyRegistrationBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<VerifyRegistrationController>(
-      () => VerifyRegistrationController(),
+      () => VerifyRegistrationController(Get.find()),
     );
   }
 }
