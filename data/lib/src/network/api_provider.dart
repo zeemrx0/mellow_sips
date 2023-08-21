@@ -2,6 +2,9 @@ part of 'network_service.dart';
 
 class ApiProvider {
   static const test = '/test';
+
+  static const auth = '/api/auth';
+  static const login = '$auth/login';
 }
 
 class StatusCode extends HttpStatus {

@@ -1,3 +1,17 @@
 {
-	"hello": "Xin chào"
+	"hello": "Xin chào",
+	"mellowSips": "Mellow Sips",
+	"login": "Đăng nhập",
+	"welcomeBack": "Chào mừng trở lại với",
+	"phoneNumber": "Số điện thoại",
+	"youAlreadyHaveAnAccount": "Bạn đã có tài khoản?",
+	"register": "Đăng kí",
+	"logInWithFacebook": "Đăng nhập với Facebook",
+	"logInWithGoogle": "Đăng nhập với Google",
+	"password": "Mật khẩu",
+	"or": "Hoặc",
+	"error": "Lỗi",
+	"close": "Đóng",
+	"incorrectUsernameOrPassword": "Số điện thoại hoặc mật khẩu không chính xác",
+	"accountHasNotBeenVerified": "Tài khoản chưa được xác thực"
 }

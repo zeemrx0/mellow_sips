@@ -6,5 +6,6 @@ class DomainProvider {
     Get.put<GetTestUseCase>(GetTestUseCaseImpl(Get.find()));
     Get.put<GetLocalTestUseCase>(GetLocalTestUseCaseImpl(Get.find()));
     Get.put<SaveLocalTestUseCase>(SaveLocalTestUseCaseImpl(Get.find()));
+    Get.put<LoginUseCase>(LoginUseCaseImpl(Get.find()));
   }
 }

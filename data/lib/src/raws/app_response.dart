@@ -2,7 +2,7 @@ import 'package:data/src/raws/base_raw.dart';
 
 class AppResponse {
   final int statusCode;
-  final String message;
+  final String? message;
   final String? error;
   final dynamic data;
   final int page;
