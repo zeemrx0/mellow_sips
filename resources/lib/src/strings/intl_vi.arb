@@ -11,5 +11,7 @@
 	"password": "Mật khẩu",
 	"or": "Hoặc",
 	"error": "Lỗi",
-	"close": "Đóng"
+	"close": "Đóng",
+	"incorrectUsernameOrPassword": "Số điện thoại hoặc mật khẩu không chính xác",
+	"accountHasNotBeenVerified": "Tài khoản chưa được xác thực"
 }

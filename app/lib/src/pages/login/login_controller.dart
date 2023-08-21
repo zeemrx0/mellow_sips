@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
@@ -16,6 +18,13 @@ import 'package:resources/resources.dart';
 part 'login_page.dart';
 
 part 'login_binding.dart';
+
+class LoginErrorMessage {
+  LoginErrorMessage._();
+
+  static const String incorrectUsernameOrPassword =
+      'Incorrect username or password';
+}
 
 class LoginKey {
   LoginKey._();
@@ -53,8 +62,32 @@ class LoginController extends GetxController {
           HomePage.open();
         }
       }
-    } on AppException catch (_) {
+    } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
+
+      if (e.statusCode == HttpStatus.notFound ||
+          (e.statusCode == HttpStatus.badRequest &&
+              e.message == LoginErrorMessage.incorrectUsernameOrPassword)) {
+        AppDefaultDialogWidget()
+            .setContent(R.strings.incorrectUsernameOrPassword)
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.close)
+            .buildDialog(Get.context!)
+            .show();
+
+        return;
+      }
+
+      if (e.statusCode == HttpStatus.unauthorized) {
+        AppDefaultDialogWidget()
+            .setContent(R.strings.accountHasNotBeenVerified)
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.close)
+            .buildDialog(Get.context!)
+            .show();
+
+        return;
+      }
 
       AppDefaultDialogWidget()
           .setContent(R.strings.error)
