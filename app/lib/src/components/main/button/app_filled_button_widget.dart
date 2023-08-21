@@ -116,7 +116,7 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
         : Container(
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.of.grayColor[4]!)),
+                border: Border.all(color: AppColors.of.grayColor[400]!)),
             child: InkWell(
               borderRadius: BorderRadius.all(
                   Radius.circular(AppThemeExt.of.majorScale(3))),
@@ -172,7 +172,7 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
               ),
               child: AppTextBody1Widget()
                   .setText(_buttonText!)
-                  .setColor(AppColors.of.grayColor[1])
+                  .setColor(AppColors.of.grayColor[100])
                   .build(context),
             ),
     );
@@ -181,7 +181,7 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
   ButtonStyle? _buttonStyle(BuildContext context) {
     double horizontalPadding = AppThemeExt.of.majorScale(4);
     double verticalPadding = AppThemeExt.of.majorScale(10 / 4);
-    final textColor = AppColors.of.grayColor[1];
+    final textColor = AppColors.of.grayColor[100];
     TextStyle? textStyle =
         _textStyle ?? AppTextStyleExt.of.textBody1s?.copyWith(color: textColor);
 
