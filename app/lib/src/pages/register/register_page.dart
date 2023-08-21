@@ -3,6 +3,10 @@ part of 'register_controller.dart';
 class RegisterPage extends GetView<RegisterController> {
   const RegisterPage({super.key});
 
+  static void open() {
+    Get.toNamed(Routes.register);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppMainPageWidget()
@@ -75,7 +79,8 @@ class RegisterPage extends GetView<RegisterController> {
                                       .setFieldKey(RegisterKey.phoneNumber)
                                       .setHintText(R.strings.phoneNumber)
                                       .setInputType(TextInputType.phone)
-                                      .setValidator(controller.validatePhoneNumber)
+                                      .setValidator(
+                                          controller.validatePhoneNumber)
                                       .build(context),
 
                                   SizedBox(
@@ -132,7 +137,8 @@ class RegisterPage extends GetView<RegisterController> {
                                       .setObscureText(true)
                                       .setMaxLine(1)
                                       .setInputType(TextInputType.text)
-                                      .setValidator(controller.validateConfirmPassword)
+                                      .setValidator(
+                                          controller.validateConfirmPassword)
                                       .build(context),
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),

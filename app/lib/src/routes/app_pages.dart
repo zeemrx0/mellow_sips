@@ -4,6 +4,7 @@ import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
+import 'package:app/src/pages/welcome/welcome_controller.dart';
 import 'package:get/get.dart';
 
 part 'app_binding.dart';
@@ -21,6 +22,10 @@ class AppPages {
     GetPage(
       name: Routes.intro,
       page: () => const IntroPage(),
+    ),
+    GetPage(
+      name: Routes.welcome,
+      page: () => const WelcomePage(),
     ),
     GetPage(
       name: Routes.home,
