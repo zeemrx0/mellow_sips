@@ -1,6 +1,6 @@
 part of './verify_registration_controller.dart';
 
-class VerifyRegistrationPage extends GetView<VerifyRegistrationController> {
+class VerifyRegistrationPage extends GetWidget<VerifyRegistrationController> {
   const VerifyRegistrationPage({super.key});
 
   static void open({required String phoneNumber}) {
@@ -234,6 +234,23 @@ class VerifyRegistrationPage extends GetView<VerifyRegistrationController> {
                                       ),
                                     ],
                                   ),
+
+                                  SizedBox(
+                                    height: AppThemeExt.of.majorScale(5),
+                                  ),
+
+                                  InkWell(
+                                    onTap: () {
+                                      controller.resendOtp();
+                                    },
+                                    child: AppTextBody1Widget()
+                                        .setText(
+                                          R.strings.resendOtp,
+                                        )
+                                        .setTextStyle(
+                                            AppTextStyleExt.of.textBody1s)
+                                        .build(context),
+                                  )
                                 ],
                               ),
                             ],

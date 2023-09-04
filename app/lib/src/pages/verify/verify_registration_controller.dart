@@ -29,8 +29,10 @@ class VerifyRegistrationKey {
 
 class VerifyRegistrationController extends GetxController {
   final VerifyRegistrationUseCase _verifyRegistrationUseCase;
+  final RequestOtpUseCase _requestOtpUseCase;
 
-  VerifyRegistrationController(this._verifyRegistrationUseCase);
+  VerifyRegistrationController(
+      this._verifyRegistrationUseCase, this._requestOtpUseCase);
 
   final verifyRegistrationFormKey = GlobalKey<FormBuilderState>();
   final phoneNumber =
@@ -88,7 +90,11 @@ class VerifyRegistrationController extends GetxController {
             .setAppDialogType(AppDialogType.error)
             .setPositiveText(R.strings.resendOtp)
             .setOnPositive(() {
-              // TODO: Resend OTP
+              _requestOtpUseCase.executeObject(
+                param: RequestOtpParam(
+                  username: phoneNumber,
+                ),
+              );
             })
             .buildDialog(Get.context!)
             .show();
@@ -104,5 +110,13 @@ class VerifyRegistrationController extends GetxController {
           .show();
       return;
     }
+  }
+
+  void resendOtp() {
+    _requestOtpUseCase.executeObject(
+      param: RequestOtpParam(
+        username: phoneNumber,
+      ),
+    );
   }
 }
