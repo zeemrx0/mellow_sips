@@ -97,7 +97,6 @@ class AppListViewWidget<BM extends BaseModel,
   }
 
   void _onLoadMore(AppListViewController<BM> controller) async {
-    Logs.i(controller.hasMore.value);
     if (!controller.hasMore.value) {
       return _refreshController.loadComplete();
     }
