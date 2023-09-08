@@ -10,6 +10,8 @@ class TestRaw extends BaseRaw<TestModel> {
   factory TestRaw.fromJson(Map<String, dynamic> json) =>
       _$TestRawFromJson(json);
 
+  Map<String, dynamic> toJson() => _$TestRawToJson(this);
+
   @override
   TestModel toModel() {
     return TestModel(

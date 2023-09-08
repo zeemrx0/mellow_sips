@@ -29,10 +29,6 @@ class Logs {
     _logger.w(message);
   }
 
-  static void wtf(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    _logger.wtf(message);
-  }
-
   static void close() {
     _logger.close();
   }
