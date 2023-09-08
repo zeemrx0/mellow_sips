@@ -8,10 +8,10 @@ import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-part 'intro_page.dart';
+part './intro_page.dart';
 
-part 'intro_binding.dart';
+part './intro_binding.dart';
 
-part 'views/intro_view.dart';
+part './views/intro_view.dart';
 
 class IntroController extends GetxController {}

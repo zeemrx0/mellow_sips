@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
-part 'app_dialog_default_widget.dart';
+part './app_dialog_default_widget.dart';
 
-part 'app_dialog_screen_widget.dart';
+part './app_dialog_screen_widget.dart';
 
 enum AppDialogType {
   success(type: 'success'),

@@ -12,7 +12,7 @@ class AppResponse {
 
   AppResponse({
     required this.statusCode,
-    required this.message,
+    this.message,
     this.error,
     this.data,
     this.page = 1,
@@ -31,15 +31,18 @@ class AppResponse {
   }
 
   factory AppResponse.fromJsonToList(Map<String, dynamic> json) {
+    final hasMore =
+        json['meta']['page'] * json['meta']['limit'] < json['meta']['total'];
+
     return AppResponse(
       statusCode: json['statusCode'],
       message: json['message'],
       error: json['error'],
       data: json['data'],
-      page: json['page'] ?? 1,
-      limit: json['limit'] ?? 25,
-      hasMore: json['hasMore'] ?? false,
-      total: json['total'] ?? 0,
+      page: json['meta']['page'] ?? 1,
+      limit: json['meta']['limit'] ?? 25,
+      hasMore: hasMore,
+      total: json['meta']['total'] ?? 0,
     );
   }
 
@@ -53,5 +56,9 @@ class AppResponse {
   AppListResultRaw<BR> toListRaw<BR extends BaseRaw>(
     List<BR>? Function(dynamic data) toListRaw,
   ) =>
-      AppListResultRaw(netData: toListRaw.call(data));
+      AppListResultRaw(
+        netData: toListRaw.call(data),
+        hasMore: hasMore,
+        total: total,
+      );
 }
