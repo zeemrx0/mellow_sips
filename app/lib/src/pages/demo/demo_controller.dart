@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
-part 'demo_binding.dart';
+part './demo_binding.dart';
 
-part 'demo_page.dart';
+part './demo_page.dart';
 
 class DemoController extends GetxController {
   final GetTestUseCase _getTestUseCase;

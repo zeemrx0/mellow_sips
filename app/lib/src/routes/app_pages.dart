@@ -2,8 +2,8 @@
 import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:get/get.dart';
 
-part 'app_binding.dart';
-part 'app_routes.dart';
+part './app_binding.dart';
+part './app_routes.dart';
 
 class AppPages {
   AppPages._();

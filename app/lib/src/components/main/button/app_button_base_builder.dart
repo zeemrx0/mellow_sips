@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
-part 'app_filled_button_widget.dart';
+part './app_filled_button_widget.dart';
 
-part 'app_outlined_button_widget.dart';
+part './app_outlined_button_widget.dart';
 
-part 'app_text_button_widget.dart';
+part './app_text_button_widget.dart';
 
-part 'app_button_app_bar_widget.dart';
+part './app_button_app_bar_widget.dart';
 
 enum AppButtonSize {
   large(size: 'large'),

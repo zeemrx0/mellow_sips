@@ -1,4 +1,4 @@
-part of 'base_remote_data_source.dart';
+part of './base_remote_data_source.dart';
 
 abstract class TestRemoteDataSource {
   Future<AppObjectResultRaw<TestRaw>> getTest();

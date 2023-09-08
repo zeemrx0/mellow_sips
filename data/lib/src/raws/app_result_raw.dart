@@ -1,4 +1,4 @@
-part of 'base_raw.dart';
+part of './base_raw.dart';
 
 class AppObjectResultRaw<BR extends BaseRaw> {
   final BR? netData;

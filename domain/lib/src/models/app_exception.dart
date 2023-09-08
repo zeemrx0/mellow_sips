@@ -1,4 +1,4 @@
-part of 'base_model.dart';
+part of './base_model.dart';
 
 abstract class AppException implements Exception {
   final int? statusCode;

@@ -6,9 +6,9 @@ import 'package:configs/configs.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-part 'api_provider.dart';
+part './api_provider.dart';
 
-part 'client_request.dart';
+part './client_request.dart';
 
 abstract class NetworkService extends GetxService {
   static Dio getNewDio() {

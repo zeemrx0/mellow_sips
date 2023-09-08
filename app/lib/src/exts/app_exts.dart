@@ -5,5 +5,5 @@ import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
-part 'app_constant_ext.dart';
-part 'app_exception_ext.dart';
+part './app_constant_ext.dart';
+part './app_exception_ext.dart';

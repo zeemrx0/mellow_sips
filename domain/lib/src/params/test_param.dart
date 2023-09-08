@@ -1,4 +1,4 @@
-part of 'base_param.dart';
+part of './base_param.dart';
 
 @JsonSerializable()
 @CopyWith()
