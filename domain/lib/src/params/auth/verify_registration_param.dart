@@ -11,5 +11,8 @@ class VerifyRegistrationParam extends BaseParam {
     this.confirmationCode,
   });
 
+  factory VerifyRegistrationParam.fromJson(Map<String, dynamic> json) =>
+      _$VerifyRegistrationParamFromJson(json);
+
   Map<String, dynamic> toJson() => _$VerifyRegistrationParamToJson(this);
 }

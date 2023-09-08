@@ -9,5 +9,8 @@ class RequestOtpParam extends BaseParam {
     required this.username,
   });
 
+  factory RequestOtpParam.fromJson(Map<String, dynamic> json) =>
+      _$RequestOtpParamFromJson(json);
+
   Map<String, dynamic> toJson() => _$RequestOtpParamToJson(this);
 }
