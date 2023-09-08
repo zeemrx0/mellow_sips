@@ -1,3 +1,9 @@
 {
-	"hello": "Xin chào"
+	"hello": "Xin chào",
+	"close": "Đóng",
+	"error": "Lỗi",
+	"confirm": "Xác nhận",
+	"empty": "Trống",
+	"retry": "Thử lại",
+	"systemIsCurrentlyErrorPleaseTryAgainLater": "Hệ thống đang gặp sự cố, vui lòng thử lại sau"
 }

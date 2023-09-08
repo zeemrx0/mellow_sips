@@ -47,7 +47,7 @@ flutter_gen:
 flutter_intl:
   enabled: true
   class_name: Strings
-  main_locale: en
+  main_locale: vi
   output_dir: lib/src/generated/strings
   arb_dir: lib/src/strings
 
@@ -86,7 +86,7 @@ flutter:
           weight: 600
         - asset: assets/fonts/Comfortaa-Bold.ttf
           weight: 700
-    - family: WorkSans
+    - family: Work Sans
       fonts:
         - asset: assets/fonts/WorkSans-Regular.ttf
         - asset: assets/fonts/WorkSans-Medium.ttf

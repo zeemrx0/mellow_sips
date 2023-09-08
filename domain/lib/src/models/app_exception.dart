@@ -19,3 +19,11 @@ class NetworkException extends AppException {
     super.error,
   });
 }
+
+class LocalException extends AppException {
+  LocalException({
+    required super.statusCode,
+    required super.message,
+    super.error,
+  });
+}
