@@ -2,7 +2,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:domain/domain.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part './base_raw.g.dart';
+part 'base_raw.g.dart';
 
 part './test_raw.dart';
 
