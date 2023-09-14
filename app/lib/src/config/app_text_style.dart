@@ -11,6 +11,8 @@ class _AppTextSize {
   static const double T18 = 18;
   static const double T16 = 16;
   static const double T14 = 14;
+  static const double T12 = 12;
+  static const double T10 = 10;
 }
 
 class _AppTextHeight {
@@ -21,6 +23,8 @@ class _AppTextHeight {
   static const double H18_24 = 24 / 18;
   static const double H16_22 = 22 / 16;
   static const double H14_20 = 20 / 14;
+  static const double H12_16 = 16 / 12;
+  static const double H10_14 = 14 / 10;
 }
 
 abstract class _AppTextStyle {
@@ -71,6 +75,16 @@ abstract class _AppTextStyle {
 
       // Body 2
       bodyMedium: _textBody2.copyWith(
+        color: appColor.grayColor,
+      ),
+
+      // Caption 1
+      labelLarge: _textCaption1.copyWith(
+        color: appColor.grayColor,
+      ),
+
+      // Caption 2
+      labelMedium: _textCaption2.copyWith(
         color: appColor.grayColor,
       ),
     );
@@ -128,5 +142,19 @@ abstract class _AppTextStyle {
     height: _AppTextHeight.H14_20,
     fontSize: _AppTextSize.T14,
     fontWeight: regular,
+  );
+
+  static final TextStyle _textCaption1 = TextStyle(
+    height: _AppTextHeight.H12_16,
+    fontSize: _AppTextSize.T12,
+    fontWeight: regular,
+    fontFamily: R.fontFamily.workSans,
+  );
+
+  static final TextStyle _textCaption2 = TextStyle(
+    height: _AppTextHeight.H10_14,
+    fontSize: _AppTextSize.T10,
+    fontWeight: regular,
+    fontFamily: R.fontFamily.workSans,
   );
 }
