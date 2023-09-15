@@ -10,6 +10,7 @@ class AppListViewWidget<BM extends BaseModel,
     this.physics = const AlwaysScrollableScrollPhysics(),
     this.emptyView,
     this.retryView,
+    this.padding,
     Key? key,
   }) : super(key: key);
 
@@ -20,6 +21,7 @@ class AppListViewWidget<BM extends BaseModel,
   final bool reverse;
   final ScrollController? scrollController;
   final ScrollPhysics physics;
+  final EdgeInsetsGeometry? padding;
 
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
@@ -66,6 +68,7 @@ class AppListViewWidget<BM extends BaseModel,
               controller.data[index],
               index,
             ),
+            padding: padding,
           );
   }
 
