@@ -7,7 +7,7 @@ class AppMainPageWidget extends AppMainPageBaseBuilder {
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
         key: _key,
-        backgroundColor: _backgroundColor ?? AppColors.of.grayColor[200],
+        backgroundColor: _backgroundColor ?? AppColors.of.backgroundColor,
         appBar: _appBar,
         endDrawer: _endDrawer,
         endDrawerEnableOpenDragGesture: false,

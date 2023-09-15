@@ -77,7 +77,7 @@ class AppDefaultDialogWidget extends AppDialogBaseBuilder {
       insetPadding: EdgeInsets.all(AppThemeExt.of.majorScale(6)),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.of.grayColor[100],
+          color: AppColors.of.whiteColor,
           borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(3)),
         ),
         padding: EdgeInsets.all(AppThemeExt.of.majorScale(6)),

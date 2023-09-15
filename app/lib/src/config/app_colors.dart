@@ -29,6 +29,24 @@ abstract class AppColors {
   MaterialColor get yellowColor;
 
   MaterialColor get blueColor;
+
+  Color get blackColor;
+
+  Color get mainTextColor;
+
+  Color get subTextColor;
+
+  Color get disabledColor;
+
+  Color get borderColor;
+
+  Color get disabledBorderColor;
+
+  Color get dividerColor;
+
+  Color get backgroundColor;
+
+  Color get whiteColor;
 }
 
 class AppLightColors implements AppColors {
@@ -45,31 +63,35 @@ class AppLightColors implements AppColors {
   MaterialColor get grayColor => const MaterialColor(
         0xFF1A1A19,
         {
-          100: Color(0xFFFFFFFF),
-          200: Color(0xFFF5F3F2),
-          300: Color(0xFFD9D8D7),
-          400: Color(0xFFB2B0AF),
-          500: Color(0xFF8A8887),
-          600: Color(0xFF666564),
-          700: Color(0xFF474746),
-          800: Color(0xFF2E2D2D),
+          50: Color(0xFFFFFFFF),
+          100: Color(0xFFFAFAFA),
+          200: Color(0xFFEDEDED),
+          300: Color(0xFFE0E0E0),
+          400: Color(0xFFD1D0CF),
+          500: Color(0xFFBAB9B8),
+          600: Color(0xFF919190),
+          700: Color(0xFF6A6A69),
+          800: Color(0xFF414141),
           900: Color(0xFF1A1A19),
+          950: Color(0xFF000000),
         },
       );
 
   @override
   MaterialColor get orangeColor => const MaterialColor(
-        0xFFEA772B,
+        0xFFF46C1D,
         {
-          100: Color(0xFFFEF3EC),
-          200: Color(0xFFFACAAA),
-          300: Color(0xFFF8AB77),
-          400: Color(0xFFF6914D),
-          500: Color(0xFFEA772B),
-          600: Color(0xFFC2540A),
-          700: Color(0xFF944007),
-          800: Color(0xFF612A05),
-          900: Color(0xFF381600),
+          50: Color(0xFFFFF3EB),
+          100: Color(0xFFFFD8C2),
+          200: Color(0xFFFFBE99),
+          300: Color(0xFFFFA470),
+          400: Color(0xFFFF8A47),
+          500: Color(0xFFF46C1D),
+          600: Color(0xFFCF550E),
+          700: Color(0xFFA84003),
+          800: Color(0xFF823000),
+          900: Color(0xFF5C2200),
+          950: Color(0xFF381500),
         },
       );
 
@@ -77,47 +99,53 @@ class AppLightColors implements AppColors {
   MaterialColor get redColor => const MaterialColor(
         0xFFEE212E,
         {
-          100: Color(0xFFFEECED),
-          200: Color(0xFFFAB4B9),
-          300: Color(0xFFF88189),
-          400: Color(0xFFF65560),
+          50: Color(0xFFFFF0F1),
+          100: Color(0xFFFCC5C9),
+          200: Color(0xFFFA9BA1),
+          300: Color(0xFFFA737C),
+          400: Color(0xFFF54955),
           500: Color(0xFFEE212E),
-          600: Color(0xFFC20A16),
-          700: Color(0xFF940711),
-          800: Color(0xFF61050B),
-          900: Color(0xFF380004),
+          600: Color(0xFFC7121E),
+          700: Color(0xFFA10610),
+          800: Color(0xFF7A0008),
+          900: Color(0xFF540006),
+          950: Color(0xFF380004),
         },
       );
 
   @override
   MaterialColor get greenColor => const MaterialColor(
-        0xFF07B71F,
+        0xFF08C722,
         {
-          100: Color(0xFFE8FAEB),
-          200: Color(0xFFA6F5B0),
-          300: Color(0xFF57E96B),
-          400: Color(0xFF25D73C),
-          500: Color(0xFF07B71F),
-          600: Color(0xFF0A951C),
-          700: Color(0xFF057413),
-          800: Color(0xFF03530D),
-          900: Color(0xFF003307),
+          50: Color(0xFFE6FFE9),
+          100: Color(0xFFAAFAB5),
+          200: Color(0xFF7BED8A),
+          300: Color(0xFF51E064),
+          400: Color(0xFF2AD441),
+          500: Color(0xFF08C722),
+          600: Color(0xFF03A118),
+          700: Color(0xFF03A118),
+          800: Color(0xFF00540B),
+          900: Color(0xFF003D08),
+          950: Color(0xFF002E06),
         },
       );
 
   @override
   MaterialColor get yellowColor => const MaterialColor(
-        0xFFFFD21C,
+        0xFFFFD52E,
         {
-          100: Color(0xFFFFFBEB),
-          200: Color(0xFFFFEFAD),
-          300: Color(0xFFFFE684),
-          400: Color(0xFFFFDE5B),
-          500: Color(0xFFFFD21C),
-          600: Color(0xFFDBB20F),
-          700: Color(0xFFA5860A),
-          800: Color(0xFF6D5804),
-          900: Color(0xFF6D5804),
+          50: Color(0xFFFFFBEB),
+          100: Color(0xFFFFF5CC),
+          200: Color(0xFFFFEEA8),
+          300: Color(0xFFFFE680),
+          400: Color(0xFFFFDD57),
+          500: Color(0xFFFFD52E),
+          600: Color(0xFFD4B01D),
+          700: Color(0xFFA8890A),
+          800: Color(0xFF745D03),
+          900: Color(0xFF4D3D01),
+          950: Color(0xFF332900),
         },
       );
 
@@ -125,17 +153,46 @@ class AppLightColors implements AppColors {
   MaterialColor get blueColor => const MaterialColor(
         0xFF188FFF,
         {
-          100: Color(0xFFF0F8FF),
-          200: Color(0xFFB4DAFF),
-          300: Color(0xFF7DC0FF),
-          400: Color(0xFF4FA9FF),
+          50: Color(0xFFF0F8FF),
+          100: Color(0xFFD6EBFF),
+          200: Color(0xFFA7D4FF),
+          300: Color(0xFF75BCFF),
+          400: Color(0xFF49A7FF),
           500: Color(0xFF188FFF),
           600: Color(0xFF096ECC),
-          700: Color(0xFF06529A),
-          800: Color(0xFF043B70),
-          900: Color(0xFF011D38),
+          700: Color(0xFF0A569C),
+          800: Color(0xFF063D71),
+          900: Color(0xFF042F58),
+          950: Color(0xFFFAFAFA),
         },
       );
+
+  @override
+  Color get blackColor => grayColor[950]!;
+
+  @override
+  Color get mainTextColor => grayColor[900]!;
+
+  @override
+  Color get subTextColor => grayColor[700]!;
+
+  @override
+  Color get disabledColor => grayColor[400]!;
+
+  @override
+  Color get borderColor => grayColor[400]!;
+
+  @override
+  Color get disabledBorderColor => grayColor[300]!;
+
+  @override
+  Color get dividerColor => grayColor[200]!;
+
+  @override
+  Color get backgroundColor => grayColor[100]!;
+
+  @override
+  Color get whiteColor => grayColor[50]!;
 }
 
 class AppDarkColors implements AppColors {
@@ -152,31 +209,35 @@ class AppDarkColors implements AppColors {
   MaterialColor get grayColor => const MaterialColor(
         0xFF1A1A19,
         {
-          100: Color(0xFFFFFFFF),
-          200: Color(0xFFF5F3F2),
-          300: Color(0xFFD9D8D7),
-          400: Color(0xFFB2B0AF),
-          500: Color(0xFF8A8887),
-          600: Color(0xFF666564),
-          700: Color(0xFF474746),
-          800: Color(0xFF2E2D2D),
+          50: Color(0xFFFFFFFF),
+          100: Color(0xFFFAFAFA),
+          200: Color(0xFFEDEDED),
+          300: Color(0xFFE0E0E0),
+          400: Color(0xFFD1D0CF),
+          500: Color(0xFFBAB9B8),
+          600: Color(0xFF919190),
+          700: Color(0xFF6A6A69),
+          800: Color(0xFF414141),
           900: Color(0xFF1A1A19),
+          950: Color(0xFF000000),
         },
       );
 
   @override
   MaterialColor get orangeColor => const MaterialColor(
-        0xFFEA772B,
+        0xFFF46C1D,
         {
-          100: Color(0xFFFEF3EC),
-          200: Color(0xFFFACAAA),
-          300: Color(0xFFF8AB77),
-          400: Color(0xFFF6914D),
-          500: Color(0xFFEA772B),
-          600: Color(0xFFC2540A),
-          700: Color(0xFF944007),
-          800: Color(0xFF612A05),
-          900: Color(0xFF381600),
+          50: Color(0xFFFFF3EB),
+          100: Color(0xFFFFD8C2),
+          200: Color(0xFFFFBE99),
+          300: Color(0xFFFFA470),
+          400: Color(0xFFFF8A47),
+          500: Color(0xFFF46C1D),
+          600: Color(0xFFCF550E),
+          700: Color(0xFFA84003),
+          800: Color(0xFF823000),
+          900: Color(0xFF5C2200),
+          950: Color(0xFF381500),
         },
       );
 
@@ -184,47 +245,53 @@ class AppDarkColors implements AppColors {
   MaterialColor get redColor => const MaterialColor(
         0xFFEE212E,
         {
-          100: Color(0xFFFEECED),
-          200: Color(0xFFFAB4B9),
-          300: Color(0xFFF88189),
-          400: Color(0xFFF65560),
+          50: Color(0xFFFFF0F1),
+          100: Color(0xFFFCC5C9),
+          200: Color(0xFFFA9BA1),
+          300: Color(0xFFFA737C),
+          400: Color(0xFFF54955),
           500: Color(0xFFEE212E),
-          600: Color(0xFFC20A16),
-          700: Color(0xFF940711),
-          800: Color(0xFF61050B),
-          900: Color(0xFF380004),
+          600: Color(0xFFC7121E),
+          700: Color(0xFFA10610),
+          800: Color(0xFF7A0008),
+          900: Color(0xFF540006),
+          950: Color(0xFF380004),
         },
       );
 
   @override
   MaterialColor get greenColor => const MaterialColor(
-        0xFF07B71F,
+        0xFF08C722,
         {
-          100: Color(0xFFE8FAEB),
-          200: Color(0xFFA6F5B0),
-          300: Color(0xFF57E96B),
-          400: Color(0xFF25D73C),
-          500: Color(0xFF07B71F),
-          600: Color(0xFF0A951C),
-          700: Color(0xFF057413),
-          800: Color(0xFF03530D),
-          900: Color(0xFF003307),
+          50: Color(0xFFE6FFE9),
+          100: Color(0xFFAAFAB5),
+          200: Color(0xFF7BED8A),
+          300: Color(0xFF51E064),
+          400: Color(0xFF2AD441),
+          500: Color(0xFF08C722),
+          600: Color(0xFF03A118),
+          700: Color(0xFF03A118),
+          800: Color(0xFF00540B),
+          900: Color(0xFF003D08),
+          950: Color(0xFF002E06),
         },
       );
 
   @override
   MaterialColor get yellowColor => const MaterialColor(
-        0xFFFFD21C,
+        0xFFFFD52E,
         {
-          100: Color(0xFFFFFBEB),
-          200: Color(0xFFFFEFAD),
-          300: Color(0xFFFFE684),
-          400: Color(0xFFFFDE5B),
-          500: Color(0xFFFFD21C),
-          600: Color(0xFFDBB20F),
-          700: Color(0xFFA5860A),
-          800: Color(0xFF6D5804),
-          900: Color(0xFF6D5804),
+          50: Color(0xFFFFFBEB),
+          100: Color(0xFFFFF5CC),
+          200: Color(0xFFFFEEA8),
+          300: Color(0xFFFFE680),
+          400: Color(0xFFFFDD57),
+          500: Color(0xFFFFD52E),
+          600: Color(0xFFD4B01D),
+          700: Color(0xFFA8890A),
+          800: Color(0xFF745D03),
+          900: Color(0xFF4D3D01),
+          950: Color(0xFF332900),
         },
       );
 
@@ -232,15 +299,44 @@ class AppDarkColors implements AppColors {
   MaterialColor get blueColor => const MaterialColor(
         0xFF188FFF,
         {
-          100: Color(0xFFF0F8FF),
-          200: Color(0xFFB4DAFF),
-          300: Color(0xFF7DC0FF),
-          400: Color(0xFF4FA9FF),
+          50: Color(0xFFF0F8FF),
+          100: Color(0xFFD6EBFF),
+          200: Color(0xFFA7D4FF),
+          300: Color(0xFF75BCFF),
+          400: Color(0xFF49A7FF),
           500: Color(0xFF188FFF),
           600: Color(0xFF096ECC),
-          700: Color(0xFF06529A),
-          800: Color(0xFF043B70),
-          900: Color(0xFF011D38),
+          700: Color(0xFF0A569C),
+          800: Color(0xFF063D71),
+          900: Color(0xFF042F58),
+          950: Color(0xFFFAFAFA),
         },
       );
+
+  @override
+  Color get blackColor => grayColor[950]!;
+
+  @override
+  Color get mainTextColor => grayColor[900]!;
+
+  @override
+  Color get subTextColor => grayColor[700]!;
+
+  @override
+  Color get disabledColor => grayColor[400]!;
+
+  @override
+  Color get borderColor => grayColor[400]!;
+
+  @override
+  Color get disabledBorderColor => grayColor[300]!;
+
+  @override
+  Color get dividerColor => grayColor[200]!;
+
+  @override
+  Color get backgroundColor => grayColor[100]!;
+
+  @override
+  Color get whiteColor => grayColor[50]!;
 }
