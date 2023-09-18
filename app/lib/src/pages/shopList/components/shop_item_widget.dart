@@ -12,19 +12,20 @@ class ShopItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: AppThemeExt.of.majorScale(105 / 4),
+      color: AppColors.of.whiteColor,
+      padding: EdgeInsets.symmetric(
+        horizontal: AppThemeExt.of.majorScale(4),
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: AppThemeExt.of.majorScale(4),
         ),
-        margin: EdgeInsets.symmetric(
-          horizontal: AppThemeExt.of.majorScale(4),
-        ),
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: AppColors.of.grayColor[300]!,
+              color: AppColors.of.dividerColor,
               width: AppThemeExt.of.majorScale(1 / 4),
             ),
           ),
@@ -147,7 +148,7 @@ class ShopItemWidget extends StatelessWidget {
         ),
         child: AppTextCaption2Widget()
             .setText(R.strings.promo)
-            .setColor(AppColors.of.grayColor[100])
+            .setColor(AppColors.of.whiteColor)
             .build(context),
       ),
     );

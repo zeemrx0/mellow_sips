@@ -75,7 +75,7 @@ class WelcomePage extends StatelessWidget {
                     width: AppThemeExt.of.majorScale(6),
                     height: AppThemeExt.of.majorScale(6),
                     colorFilter: ColorFilter.mode(
-                      AppColors.of.grayColor[100]!,
+                      AppColors.of.whiteColor,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -95,10 +95,10 @@ class WelcomePage extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppColors.of.grayColor[400]!,
+                      color: AppColors.of.borderColor,
                       width: 1,
                     ),
-                    color: AppColors.of.grayColor[100],
+                    color: AppColors.of.whiteColor,
                   ),
                   child: R.svgs.icGoogle.svg(
                     width: AppThemeExt.of.majorScale(6),

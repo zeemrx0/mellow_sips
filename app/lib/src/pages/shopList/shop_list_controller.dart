@@ -4,6 +4,7 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/pages/shopList/components/shop_item_widget.dart';
+import 'package:app/src/pages/shopList/components/toogle_chip_widget.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,11 @@ import 'package:resources/resources.dart';
 
 part './shop_list_page.dart';
 part './shop_list_binding.dart';
+
+class ShopListKey {
+  static const hasPromo = 'hasPromo';
+  static const isOpen = 'isOpen';
+}
 
 class ShopListController extends AppListViewController<ShopModel> {
   final GetShopListUseCase _getShopListUseCase;
