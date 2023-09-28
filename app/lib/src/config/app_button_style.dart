@@ -11,7 +11,7 @@ class AppButtonStyle {
           ),
         ),
         iconColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.grayColor[100],
+          (Set<MaterialState> states) => AppColors.of.whiteColor,
         ),
         iconSize: MaterialStateProperty.resolveWith<double?>(
           (Set<MaterialState> states) => AppThemeExt.of.majorScale(4),
@@ -28,7 +28,7 @@ class AppButtonStyle {
           (Set<MaterialState> states) => AppColors.of.primaryColor[400],
         ),
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.grayColor[100],
+          (Set<MaterialState> states) => AppColors.of.whiteColor,
         ),
       );
 
@@ -159,7 +159,7 @@ class AppButtonStyle {
             if (states.contains(MaterialState.disabled)) {
               return BorderSide(color: AppColors.of.grayColor[300]!);
             }
-            return BorderSide(color: AppColors.of.grayColor[400]!);
+            return BorderSide(color: AppColors.of.borderColor);
           },
         ),
         iconColor: MaterialStateProperty.resolveWith<Color?>(
@@ -183,7 +183,7 @@ class AppButtonStyle {
           (Set<MaterialState> states) => AppThemeExt.of.majorScale(4),
         ),
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => AppColors.of.grayColor[100],
+          (Set<MaterialState> states) => AppColors.of.whiteColor,
         ),
         overlayColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) => Colors.transparent,
@@ -221,7 +221,7 @@ class AppButtonStyle {
               return BorderSide(color: AppColors.of.redColor[400]!);
             }
             if (states.contains(MaterialState.disabled)) {
-              return BorderSide(color: AppColors.of.grayColor[300]!);
+              return BorderSide(color: AppColors.of.disabledBorderColor);
             }
             return BorderSide(color: AppColors.of.redColor);
           },
