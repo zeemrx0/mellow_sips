@@ -77,13 +77,19 @@ class AppListViewWidget<BM extends BaseModel,
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
+            Container(
+              constraints: const BoxConstraints(
+                maxWidth: 320,
+              ),
               padding: EdgeInsets.symmetric(
                   horizontal: AppThemeExt.of.majorPaddingScale(4)),
-              child: AppTextHeading3Widget()
+              child: AppTextHeading5Widget()
                   .setText(R.strings.systemIsCurrentlyErrorPleaseTryAgainLater)
                   .setTextAlign(TextAlign.center)
                   .build(context),
+            ),
+            SizedBox(
+              height: AppThemeExt.of.majorScale(2),
             ),
             AppFilledButtonWidget()
                 .setButtonText(R.strings.retry)
