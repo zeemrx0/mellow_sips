@@ -64,11 +64,11 @@ class AppLightColors implements AppColors {
         0xFF1A1A19,
         {
           50: Color(0xFFFFFFFF),
-          100: Color(0xFFFAFAFA),
-          200: Color(0xFFEDEDED),
-          300: Color(0xFFE0E0E0),
-          400: Color(0xFFD1D0CF),
-          500: Color(0xFFBAB9B8),
+          100: Color(0xFFFAF7F5),
+          200: Color(0xFFF0EDEB),
+          300: Color(0xFFE0DEDC),
+          400: Color(0xFFD1CFCD),
+          500: Color(0xFFBAB8B6),
           600: Color(0xFF919190),
           700: Color(0xFF6A6A69),
           800: Color(0xFF414141),
@@ -163,7 +163,7 @@ class AppLightColors implements AppColors {
           700: Color(0xFF0A569C),
           800: Color(0xFF063D71),
           900: Color(0xFF042F58),
-          950: Color(0xFFFAFAFA),
+          950: Color(0xFF011D38),
         },
       );
 
@@ -210,11 +210,11 @@ class AppDarkColors implements AppColors {
         0xFF1A1A19,
         {
           50: Color(0xFFFFFFFF),
-          100: Color(0xFFFAFAFA),
-          200: Color(0xFFEDEDED),
-          300: Color(0xFFE0E0E0),
-          400: Color(0xFFD1D0CF),
-          500: Color(0xFFBAB9B8),
+          100: Color(0xFFFAF7F5),
+          200: Color(0xFFF0EDEB),
+          300: Color(0xFFE0DEDC),
+          400: Color(0xFFD1CFCD),
+          500: Color(0xFFBAB8B6),
           600: Color(0xFF919190),
           700: Color(0xFF6A6A69),
           800: Color(0xFF414141),
@@ -309,7 +309,7 @@ class AppDarkColors implements AppColors {
           700: Color(0xFF0A569C),
           800: Color(0xFF063D71),
           900: Color(0xFF042F58),
-          950: Color(0xFFFAFAFA),
+          950: Color(0xFF011D38),
         },
       );
 
