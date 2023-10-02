@@ -3,6 +3,7 @@ import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
+import 'package:app/src/pages/shop/shopDetail/shop_detail_controller.dart';
 import 'package:app/src/pages/shopList/shop_list_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/pages/welcome/welcome_controller.dart';
@@ -52,6 +53,11 @@ class AppPages {
       name: Routes.shops,
       page: () => const ShopListPage(),
       binding: ShopListBinding(),
+    ),
+    GetPage(
+      name: Routes.shopDetail,
+      page: () => const ShopDetailPage(),
+      binding: ShopDetailBinding(),
     ),
   ];
 }

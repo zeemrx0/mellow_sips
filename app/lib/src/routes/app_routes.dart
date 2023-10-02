@@ -2,7 +2,7 @@ part of 'app_pages.dart';
 
 class Routes {
   Routes._();
-  
+
   static const demo = '/demo';
   static const intro = '/intro';
   static const welcome = '/welcome';
@@ -11,4 +11,5 @@ class Routes {
   static const register = '/register';
   static const verifyRegistration = '/verify-registration';
   static const shops = '/shops';
+  static const shopDetail = '/shop-detail';
 }
