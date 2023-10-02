@@ -60,6 +60,7 @@ class ShopDetailPage extends GetView<ShopDetailController> {
                     SizedBox(
                       height: AppThemeExt.of.majorScale(3),
                     ),
+                    _foodList(context),
                   ],
                 ),
               ),
@@ -90,6 +91,9 @@ class ShopDetailPage extends GetView<ShopDetailController> {
         child: Row(
           children: [
             InkWell(
+              onTap: () {
+                Get.back();
+              },
               child: Container(
                 padding: EdgeInsets.all(
                   AppThemeExt.of.majorPaddingScale(6 / 4),
@@ -100,7 +104,7 @@ class ShopDetailPage extends GetView<ShopDetailController> {
                     AppThemeExt.of.majorScale(2),
                   ),
                 ),
-                child: R.svgs.icArrowLeft.svg(
+                child: R.svgs.icArrowLongLeft.svg(
                   width: AppThemeExt.of.majorScale(5),
                   height: AppThemeExt.of.majorScale(5),
                   colorFilter: ColorFilter.mode(
@@ -113,6 +117,35 @@ class ShopDetailPage extends GetView<ShopDetailController> {
           ],
         ),
       ),
+      actions: [
+        InkWell(
+          onTap: () {
+            // TODO: Like
+          },
+          child: Container(
+            padding: EdgeInsets.all(
+              AppThemeExt.of.majorPaddingScale(6 / 4),
+            ),
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(106, 106, 105, 0.7),
+              borderRadius: BorderRadius.circular(
+                AppThemeExt.of.majorScale(2),
+              ),
+            ),
+            child: R.svgs.icHeartOutline.svg(
+              width: AppThemeExt.of.majorScale(5),
+              height: AppThemeExt.of.majorScale(5),
+              colorFilter: ColorFilter.mode(
+                AppColors.of.whiteColor,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: AppThemeExt.of.majorScale(4),
+        )
+      ],
     );
   }
 
@@ -167,6 +200,40 @@ class ShopDetailPage extends GetView<ShopDetailController> {
             ),
             AppTextCaption1Widget().setText('Ưu đãi đến 45k').build(context),
           ],
+        ),
+      ],
+    );
+  }
+
+  Widget _foodList(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        AppTextHeading6Widget()
+            .setText('Bán chạy')
+            .setTextAlign(TextAlign.left)
+            .setColor(AppColors.of.primaryColor)
+            .build(context),
+        FoodItemWidget(
+          imageUrl:
+              'https://cdn-images.kiotviet.vn/mintymartdn/b035cdd700604bb4939d1f55a71a4845.jpg',
+          name: 'Trà sữa Phúc Long',
+          description: 'Trà đổ vào sữa',
+          price: 45000,
+        ),
+        FoodItemWidget(
+          imageUrl:
+              'https://cdn-images.kiotviet.vn/mintymartdn/b035cdd700604bb4939d1f55a71a4845.jpg',
+          name: 'Trà sữa Phúc Long',
+          description: 'Trà đổ vào sữa',
+          price: 45000,
+        ),
+        FoodItemWidget(
+          imageUrl:
+              'https://cdn-images.kiotviet.vn/mintymartdn/b035cdd700604bb4939d1f55a71a4845.jpg',
+          name: 'Trà sữa Phúc Long',
+          description: 'Trà đổ vào sữa',
+          price: 45000,
         ),
       ],
     );
