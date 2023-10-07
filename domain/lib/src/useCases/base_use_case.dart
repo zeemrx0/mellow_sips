@@ -14,7 +14,9 @@ part './auth/verify_registration_use_case.dart';
 
 part './auth/request_otp_use_case.dart';
 
-part './shop/get_shop_list_use_case.dart';
+part './store/get_store_list_use_case.dart';
+
+part './store/search_stores_use_case.dart';
 
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {

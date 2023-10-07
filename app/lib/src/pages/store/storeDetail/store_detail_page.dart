@@ -1,7 +1,7 @@
-part of 'shop_detail_controller.dart';
+part of './store_detail_controller.dart';
 
-class ShopDetailPage extends GetView<ShopDetailController> {
-  const ShopDetailPage({super.key});
+class StoreDetailPage extends GetView<StoreDetailController> {
+  const StoreDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -10,6 +10,6 @@ class Routes {
   static const login = '/login';
   static const register = '/register';
   static const verifyRegistration = '/verify-registration';
-  static const shops = '/shops';
-  static const shopDetail = '/shop-detail';
+  static const stores = '/stores';
+  static const storeDetail = '/store-detail';
 }

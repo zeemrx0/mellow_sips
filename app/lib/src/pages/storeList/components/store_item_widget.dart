@@ -5,10 +5,10 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:resources/resources.dart';
 
-class ShopItemWidget extends StatelessWidget {
-  final ShopModel shop;
+class StoreItemWidget extends StatelessWidget {
+  final StoreModel store;
 
-  const ShopItemWidget({super.key, required this.shop});
+  const StoreItemWidget({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +43,12 @@ class ShopItemWidget extends StatelessWidget {
                     height: AppThemeExt.of.majorScale(72 / 4),
                     width: AppThemeExt.of.majorScale(72 / 4),
                     child: CachedNetworkImage(
-                      imageUrl: shop.avatarUrl,
+                      imageUrl: store.avatarUrl ?? '',
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                if (shop.hasPromotion) _promotionTag(context),
+                if (store.hasPromotion ?? false) _promotionTag(context),
               ],
             ),
             SizedBox(
@@ -64,7 +64,7 @@ class ShopItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppTextBody2Widget()
-                          .setText(shop.name)
+                          .setText(store.name)
                           .setTextStyle(
                             AppTextStyleExt.of.textBody2s?.copyWith(
                               fontFamily: R.fontFamily.workSans,
@@ -75,7 +75,7 @@ class ShopItemWidget extends StatelessWidget {
                         height: AppThemeExt.of.majorScale(1),
                       ),
                       AppTextCaption1Widget()
-                          .setText(shop.address)
+                          .setText(store.address)
                           .setColor(AppColors.of.grayColor[700])
                           .build(context),
                     ],
@@ -164,17 +164,19 @@ class ShopItemWidget extends StatelessWidget {
         SizedBox(
           width: AppThemeExt.of.majorScale(1),
         ),
-        AppTextCaption1Widget().setText(shop.rating.toString()).build(context),
+        AppTextCaption1Widget()
+            .setText(store.rating?.toString())
+            .build(context),
       ],
     );
   }
 
   Widget _distance(BuildContext context) {
     /// TODO: Implement distance calculation
-    return AppTextCaption1Widget().setText('2.2km').build(context);
+    return AppTextCaption1Widget().build(context);
   }
 
   Widget _type(BuildContext context) {
-    return AppTextCaption1Widget().setText(shop.type).build(context);
+    return AppTextCaption1Widget().setText(store.type).build(context);
   }
 }

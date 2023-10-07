@@ -4,11 +4,11 @@ part of './base_param.dart';
 @CopyWith()
 class AppListParam extends BaseParam {
   final int page;
-  final int limit;
+  final int itemsPerPage;
 
   AppListParam({
     this.page = 1,
-    this.limit = 10,
+    this.itemsPerPage = 10,
   });
 
   factory AppListParam.fromJson(Map<String, dynamic> json) =>

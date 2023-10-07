@@ -6,4 +6,4 @@ part './test_remote_data_source.dart';
 
 part './auth_remote_data_source.dart';
 
-part './shop/shop_remote_data_source.dart';
+part './store/store_remote_data_source.dart';

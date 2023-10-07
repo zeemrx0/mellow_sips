@@ -2,43 +2,43 @@ part of '../base_raw.dart';
 
 @JsonSerializable()
 @CopyWith()
-class ShopRaw extends BaseRaw {
-  final String id;
-  final String avatarUrl;
-  final String name;
-  final String type;
-  final bool hasPromotion;
-  final bool isWorking;
-  final double rating;
-  final String address;
+class StoreRaw extends BaseRaw {
+  final String? id;
+  final String? avatarUrl;
+  final String? name;
+  final String? type;
+  final bool? hasPromotion;
+  final bool? isOpen;
+  final double? rating;
+  final String? address;
 
-  ShopRaw({
+  StoreRaw({
     required this.id,
     required this.avatarUrl,
     required this.name,
     required this.type,
     required this.hasPromotion,
-    required this.isWorking,
+    required this.isOpen,
     required this.rating,
     required this.address,
   });
 
   @override
   BaseModel toModel() {
-    return ShopModel(
+    return StoreModel(
       id: id,
       avatarUrl: avatarUrl,
       name: name,
       type: type,
       hasPromotion: hasPromotion,
-      isWorking: isWorking,
+      isWorking: isOpen,
       rating: rating,
       address: address,
     );
   }
 
-  factory ShopRaw.fromJson(Map<String, dynamic> json) =>
-      _$ShopRawFromJson(json);
+  factory StoreRaw.fromJson(Map<String, dynamic> json) =>
+      _$StoreRawFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ShopRawToJson(this);
+  Map<String, dynamic> toJson() => _$StoreRawToJson(this);
 }

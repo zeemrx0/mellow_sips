@@ -10,6 +10,7 @@ part './auth/register_param.dart';
 part './auth/verify_registration_param.dart';
 part './auth/request_otp_param.dart';
 
-part './shop/get_shop_list_param.dart';
+part './store/get_store_list_param.dart';
+part './store/search_stores_param.dart';
 
 abstract class BaseParam {}

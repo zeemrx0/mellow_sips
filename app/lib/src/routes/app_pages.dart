@@ -3,8 +3,8 @@ import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
-import 'package:app/src/pages/shop/shopDetail/shop_detail_controller.dart';
-import 'package:app/src/pages/shopList/shop_list_controller.dart';
+import 'package:app/src/pages/store/storeDetail/store_detail_controller.dart';
+import 'package:app/src/pages/storeList/store_list_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/pages/welcome/welcome_controller.dart';
 import 'package:get/get.dart';
@@ -50,14 +50,14 @@ class AppPages {
       binding: VerifyRegistrationBinding(),
     ),
     GetPage(
-      name: Routes.shops,
-      page: () => const ShopListPage(),
-      binding: ShopListBinding(),
+      name: Routes.stores,
+      page: () => const StoreListPage(),
+      binding: StoreListBinding(),
     ),
     GetPage(
-      name: Routes.shopDetail,
-      page: () => const ShopDetailPage(),
-      binding: ShopDetailBinding(),
+      name: Routes.storeDetail,
+      page: () => const StoreDetailPage(),
+      binding: StoreDetailBinding(),
     ),
   ];
 }

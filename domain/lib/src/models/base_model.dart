@@ -8,7 +8,7 @@ part './test_model.dart';
 
 part 'tokens_model.dart';
 
-part 'shop/shop_model.dart';
+part 'store/store_model.dart';
 
 abstract class BaseModel {}
 

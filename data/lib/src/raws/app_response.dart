@@ -6,7 +6,7 @@ class AppResponse {
   final String? error;
   final dynamic data;
   final int page;
-  final int limit;
+  final int itemsPerPage;
   final bool hasMore;
   final int total;
 
@@ -16,7 +16,7 @@ class AppResponse {
     this.error,
     this.data,
     this.page = 1,
-    this.limit = 25,
+    this.itemsPerPage = 25,
     this.hasMore = false,
     this.total = 0,
   });
@@ -31,18 +31,18 @@ class AppResponse {
   }
 
   factory AppResponse.fromJsonToList(Map<String, dynamic> json) {
-    final hasMore =
-        json['meta']['page'] * json['meta']['limit'] < json['meta']['total'];
+    final hasMore = json['data']['page'] * json['data']['itemsPerPage'] <
+        json['data']['totalItems'];
 
     return AppResponse(
       statusCode: json['statusCode'],
       message: json['message'],
       error: json['error'],
-      data: json['data'],
-      page: json['meta']['page'] ?? 1,
-      limit: json['meta']['limit'] ?? 25,
+      data: json['data']['results'],
+      page: json['data']['page'] ?? 1,
+      itemsPerPage: json['data']['itemsPerPage'] ?? 25,
       hasMore: hasMore,
-      total: json['meta']['total'] ?? 0,
+      total: json['data']['totalItems'] ?? 0,
     );
   }
 

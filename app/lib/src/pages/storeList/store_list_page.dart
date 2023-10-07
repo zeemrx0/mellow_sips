@@ -1,7 +1,7 @@
-part of './shop_list_controller.dart';
+part of './store_list_controller.dart';
 
-class ShopListPage extends GetView<ShopListController> {
-  const ShopListPage({super.key});
+class StoreListPage extends GetView<StoreListController> {
+  const StoreListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ShopListPage extends GetView<ShopListController> {
     return AppBarBasicWidget()
         .setBackgroundColor(AppColors.of.whiteColor)
         .setTitle(
-          AppTextHeading6Widget().setText(R.strings.shop).build(context),
+          AppTextHeading6Widget().setText(R.strings.store).build(context),
         )
         .setTrailing(
           InkWell(
@@ -82,22 +82,22 @@ class ShopListPage extends GetView<ShopListController> {
                   width: AppThemeExt.of.majorPaddingScale(2),
                 ),
                 ToggleChipWidget()
-                    .setFieldKey(ShopListKey.hasPromo)
+                    .setFieldKey(StoreListKey.hasPromo)
                     .setText(R.strings.promo)
                     .setOnClick(
                   () {
-                    // TODO: Load the list of shops with promo
+                    // TODO: Load the list of stores with promo
                   },
                 ).build(context),
                 SizedBox(
                   width: AppThemeExt.of.majorPaddingScale(2),
                 ),
                 ToggleChipWidget()
-                    .setFieldKey(ShopListKey.isOpen)
+                    .setFieldKey(StoreListKey.isOpen)
                     .setText(R.strings.open)
                     .setOnClick(
                   () {
-                    // TODO: Load the list of shops that are open
+                    // TODO: Load the list of stores that are open
                   },
                 ).build(context),
               ],
@@ -111,24 +111,24 @@ class ShopListPage extends GetView<ShopListController> {
     return Column(
       children: [
         Expanded(
-          child: AppListViewWidget<ShopModel, ShopListController>(
+          child: AppListViewWidget<StoreModel, StoreListController>(
             padding: EdgeInsets.only(
               top: AppThemeExt.of.majorPaddingScale(2),
             ),
-            childBuilder: _shopItemBuilder,
+            childBuilder: _storeItemBuilder,
           ),
         ),
       ],
     );
   }
 
-  Widget _shopItemBuilder(
+  Widget _storeItemBuilder(
     BuildContext context,
-    ShopModel shopModel,
+    StoreModel storeModel,
     int index,
   ) {
-    return ShopItemWidget(
-      shop: shopModel,
+    return StoreItemWidget(
+      store: storeModel,
     );
   }
 
