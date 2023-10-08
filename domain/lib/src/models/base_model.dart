@@ -9,6 +9,9 @@ part './test_model.dart';
 part 'tokens_model.dart';
 
 part 'store/store_model.dart';
+part 'store/product_model.dart';
+part 'store/menu_section_model.dart';
+part 'store/menu_model.dart';
 
 abstract class BaseModel {}
 

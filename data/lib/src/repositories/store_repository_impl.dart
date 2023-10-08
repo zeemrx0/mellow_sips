@@ -22,8 +22,25 @@ class StoreRepositoryImpl extends StoreRepository {
   Future<AppListResultModel<StoreModel>> searchStores({
     required Map<String, dynamic> params,
   }) async {
-    final remoteData =
-        await _storeRemoteDataSource.searchStores(params: params);
-    return remoteData.toAppListResultModel();
+    try {
+      final remoteData =
+          await _storeRemoteDataSource.searchStores(params: params);
+      return remoteData.toAppListResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultModel<MenuModel>> getStoreMenu({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData =
+          await _storeRemoteDataSource.getStoreMenu(params: params);
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
   }
 }

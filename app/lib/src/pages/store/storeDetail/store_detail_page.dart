@@ -5,6 +5,8 @@ class StoreDetailPage extends GetView<StoreDetailController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getStoreMenu();
+
     return AppMainPageWidget()
         .setBody(_body(context))
         .setBackgroundColor(AppColors.of.backgroundColor)
@@ -46,22 +48,27 @@ class StoreDetailPage extends GetView<StoreDetailController> {
                   horizontal: AppThemeExt.of.majorPaddingScale(4),
                   vertical: AppThemeExt.of.majorPaddingScale(5),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _generalInfo(context),
-                    SizedBox(
-                      height: AppThemeExt.of.majorScale(3),
-                    ),
-                    Container(
-                      color: AppColors.of.dividerColor,
-                      height: 1,
-                    ),
-                    SizedBox(
-                      height: AppThemeExt.of.majorScale(3),
-                    ),
-                    _foodList(context),
-                  ],
+                child: Obx(
+                  () => Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _generalInfo(context),
+                      SizedBox(
+                        height: AppThemeExt.of.majorScale(3),
+                      ),
+                      Container(
+                        color: AppColors.of.dividerColor,
+                        height: 1,
+                      ),
+                      SizedBox(
+                        height: AppThemeExt.of.majorScale(3),
+                      ),
+                      if (controller.menu.value != null)
+                        ...controller.menu.value!.menuSections.map((section) {
+                          return _foodList(context, section);
+                        }).toList(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -205,36 +212,23 @@ class StoreDetailPage extends GetView<StoreDetailController> {
     );
   }
 
-  Widget _foodList(BuildContext context) {
+  Widget _foodList(BuildContext context, MenuSectionModel section) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AppTextHeading6Widget()
-            .setText('Bán chạy')
+            .setText(section.name)
             .setTextAlign(TextAlign.left)
             .setColor(AppColors.of.primaryColor)
             .build(context),
-        FoodItemWidget(
-          imageUrl:
-              'https://cdn-images.kiotviet.vn/mintymartdn/b035cdd700604bb4939d1f55a71a4845.jpg',
-          name: 'Trà sữa Phúc Long',
-          description: 'Trà đổ vào sữa',
-          price: 45000,
-        ),
-        FoodItemWidget(
-          imageUrl:
-              'https://cdn-images.kiotviet.vn/mintymartdn/b035cdd700604bb4939d1f55a71a4845.jpg',
-          name: 'Trà sữa Phúc Long',
-          description: 'Trà đổ vào sữa',
-          price: 45000,
-        ),
-        FoodItemWidget(
-          imageUrl:
-              'https://cdn-images.kiotviet.vn/mintymartdn/b035cdd700604bb4939d1f55a71a4845.jpg',
-          name: 'Trà sữa Phúc Long',
-          description: 'Trà đổ vào sữa',
-          price: 45000,
-        ),
+        ...section.products.map((product) {
+          return FoodItemWidget(
+            imageUrl: product.coverImage ?? '',
+            name: product.name ?? '',
+            description: product.description ?? '',
+            price: product.price ?? 0,
+          );
+        }).toList(),
       ],
     );
   }

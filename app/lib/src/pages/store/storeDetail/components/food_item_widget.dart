@@ -3,6 +3,7 @@ import 'package:app/src/config/app_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:resources/resources.dart';
+import 'package:utilities/utilities.dart';
 
 class FoodItemWidget extends StatelessWidget {
   final String imageUrl;
@@ -76,7 +77,7 @@ class FoodItemWidget extends StatelessWidget {
                   ],
                 ),
                 AppTextBody2Widget()
-                    .setText('${price}k')
+                    .setText('${NumberExt.withSeparator(price)}đ')
                     .setColor(AppColors.of.primaryColor)
                     .setTextStyle(
                       AppTextStyleExt.of.textBody2s?.copyWith(
