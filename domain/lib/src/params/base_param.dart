@@ -5,6 +5,8 @@ part 'base_param.g.dart';
 part './app_list_param.dart';
 part './test_param.dart';
 
+part './document/get_document_param.dart';
+
 part './auth/login_param.dart';
 part './auth/register_param.dart';
 part './auth/verify_registration_param.dart';

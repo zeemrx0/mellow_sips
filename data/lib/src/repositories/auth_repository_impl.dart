@@ -22,7 +22,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       if (remoteData.netData != null) {
         _localDataSource.saveTokens(
-          accessToken: remoteData.netData!.accessToken,
+          accessToken: remoteData.netData!.accessToken.split(' ').last,
           refreshToken: remoteData.netData!.refreshToken,
         );
       }

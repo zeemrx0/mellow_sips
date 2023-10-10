@@ -6,7 +6,7 @@ class ProductModel extends BaseModel {
   final String? id;
   final String? name;
   final String? description;
-  final String? coverImage;
+  String? coverImage;
   final int? price;
   final List<String>? categories;
   final List<String>? tags;
@@ -23,7 +23,8 @@ class ProductModel extends BaseModel {
     required this.isSoldOut,
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductModelToJson(this);
 }

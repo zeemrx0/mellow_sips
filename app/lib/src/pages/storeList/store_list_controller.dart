@@ -22,8 +22,9 @@ class StoreListKey {
 
 class StoreListController extends AppListViewController<StoreModel> {
   final SearchStoresUseCase _searchStoresUseCase;
+  final GetDocumentUseCase _getDocumentUseCase;
 
-  StoreListController(this._searchStoresUseCase);
+  StoreListController(this._searchStoresUseCase, this._getDocumentUseCase);
 
   @override
   Future<AppListResultModel<StoreModel>> onCall(
@@ -42,12 +43,37 @@ class StoreListController extends AppListViewController<StoreModel> {
       ),
     );
 
+    final storeList = response.netData ?? List.empty();
+
+    final storeListWithImage = await Future.wait(
+      storeList.map(
+        (store) async {
+          final image = await getImage(store.coverImage);
+          return store.copyWith(coverImage: image);
+        },
+      ),
+    );
+
     return Future(
       () => AppListResultModel(
-        netData: response.netData ?? List.empty(),
+        netData: storeListWithImage,
         hasMore: response.hasMore,
         total: response.total,
       ),
     );
+  }
+
+  Future<String?> getImage(String? imageId) async {
+    if (imageId == null) return null;
+
+    final splitId = imageId.split('|').last;
+
+    final response = await _getDocumentUseCase.executeObject(
+      param: GetDocumentParam(
+        documentId: splitId,
+      ),
+    );
+
+    return Future.value(response.netData!.content);
   }
 }

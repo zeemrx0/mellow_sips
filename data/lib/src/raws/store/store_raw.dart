@@ -4,7 +4,7 @@ part of '../base_raw.dart';
 @CopyWith()
 class StoreRaw extends BaseRaw {
   final String? id;
-  final String? avatarUrl;
+  final String? coverImage;
   final String? name;
   final String? type;
   final bool? hasPromotion;
@@ -14,7 +14,7 @@ class StoreRaw extends BaseRaw {
 
   StoreRaw({
     required this.id,
-    required this.avatarUrl,
+    required this.coverImage,
     required this.name,
     required this.type,
     required this.hasPromotion,
@@ -27,7 +27,7 @@ class StoreRaw extends BaseRaw {
   BaseModel toModel() {
     return StoreModel(
       id: id,
-      avatarUrl: avatarUrl,
+      coverImage: coverImage,
       name: name,
       type: type,
       hasPromotion: hasPromotion,

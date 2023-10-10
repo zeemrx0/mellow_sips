@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:resources/resources.dart';
@@ -42,9 +43,8 @@ class StoreItemWidget extends StatelessWidget {
                   child: SizedBox(
                     height: AppThemeExt.of.majorScale(72 / 4),
                     width: AppThemeExt.of.majorScale(72 / 4),
-                    child: CachedNetworkImage(
-                      imageUrl: store.avatarUrl ?? '',
-                      fit: BoxFit.cover,
+                    child: Image.memory(
+                      base64Decode(store.coverImage ?? ''),
                     ),
                   ),
                 ),

@@ -9,6 +9,8 @@ part './auth/register_use_case.dart';
 part './auth/verify_registration_use_case.dart';
 part './auth/request_otp_use_case.dart';
 
+part './document/get_document_use_case.dart';
+
 part './store/get_store_list_use_case.dart';
 part './store/search_stores_use_case.dart';
 part './store/get_store_menu_use_case.dart';

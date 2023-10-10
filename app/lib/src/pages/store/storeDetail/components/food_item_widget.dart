@@ -1,19 +1,20 @@
+import 'dart:convert';
+
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
 class FoodItemWidget extends StatelessWidget {
-  final String imageUrl;
+  final String image;
   final String name;
   final String description;
   final int price;
 
   const FoodItemWidget({
     super.key,
-    required this.imageUrl,
+    required this.image,
     required this.name,
     required this.description,
     required this.price,
@@ -41,11 +42,13 @@ class FoodItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(
               AppThemeExt.of.majorScale(4),
             ),
-            child: CachedNetworkImage(
+            child: Container(
               height: AppThemeExt.of.majorScale(72 / 4),
               width: AppThemeExt.of.majorScale(72 / 4),
-              imageUrl: imageUrl,
-              fit: BoxFit.cover,
+              child: Image.memory(
+                base64Decode(image),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(

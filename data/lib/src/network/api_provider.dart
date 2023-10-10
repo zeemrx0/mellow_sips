@@ -9,6 +9,8 @@ class ApiProvider {
   static const verifyRegistration = '$auth/verify';
   static const requestOTP = '$auth/resend-confirmation-code';
 
+  static const documents = '/documents';
+
   static const stores = '/stores';
   static const searchStores = '$stores/customer/search';
 }

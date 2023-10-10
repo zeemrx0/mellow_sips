@@ -223,7 +223,7 @@ class StoreDetailPage extends GetView<StoreDetailController> {
             .build(context),
         ...section.products.map((product) {
           return FoodItemWidget(
-            imageUrl: product.coverImage ?? '',
+            image: product.coverImage ?? '',
             name: product.name ?? '',
             description: product.description ?? '',
             price: product.price ?? 0,
