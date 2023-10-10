@@ -12,6 +12,10 @@ abstract class StoreRemoteDataSource {
   Future<AppObjectResultRaw<MenuRaw>> getStoreMenu({
     required Map<String, dynamic> params,
   });
+
+  Future<AppObjectResultRaw<StoreRaw>> getStoreDetail({
+    required Map<String, dynamic> params,
+  });
 }
 
 class StoreRemoteDataSourceImpl extends StoreRemoteDataSource {
@@ -73,6 +77,24 @@ class StoreRemoteDataSourceImpl extends StoreRemoteDataSource {
       );
 
       return remoteData.toObjectRaw((data) => MenuRaw.fromJson(data));
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultRaw<StoreRaw>> getStoreDetail({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _networkService.request(
+        clientRequest: ClientRequest(
+          url: '${ApiProvider.stores}/${params['storeId']}',
+          method: HttpMethod.get,
+        ),
+      );
+
+      return remoteData.toObjectRaw((data) => StoreRaw.fromJson(data));
     } on NetworkException catch (_) {
       rethrow;
     }

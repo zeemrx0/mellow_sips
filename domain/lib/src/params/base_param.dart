@@ -15,5 +15,6 @@ part './auth/request_otp_param.dart';
 part './store/get_store_list_param.dart';
 part './store/search_stores_param.dart';
 part './store/get_store_menu_param.dart';
+part './store/get_store_detail_param.dart';
 
 abstract class BaseParam {}

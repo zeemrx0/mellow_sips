@@ -4,7 +4,7 @@ part of '../base_model.dart';
 @CopyWith()
 class StoreModel extends BaseModel {
   final String? id;
-  final String? coverImage;
+  String? coverImage;
   final String? name;
   final String? type;
   final bool? hasPromotion;

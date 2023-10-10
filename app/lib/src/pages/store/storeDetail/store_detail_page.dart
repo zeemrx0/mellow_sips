@@ -5,6 +5,7 @@ class StoreDetailPage extends GetView<StoreDetailController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getStoreDetail();
     controller.getStoreMenu();
 
     return AppMainPageWidget()
@@ -16,13 +17,21 @@ class StoreDetailPage extends GetView<StoreDetailController> {
   Widget _body(BuildContext context) {
     return Stack(
       children: [
-        CachedNetworkImage(
-          width: MediaQuery.of(Get.context!).size.width,
-          height: MediaQuery.of(Get.context!).padding.top +
-              AppThemeExt.of.majorScale(136 / 4),
-          imageUrl:
-              'https://phuclong.com.vn/uploads/store/83943c23fd8b7a-ntmk.jpg',
-          fit: BoxFit.cover,
+        Obx(
+          () => Container(
+            width: MediaQuery.of(Get.context!).size.width,
+            height: MediaQuery.of(Get.context!).padding.top +
+                AppThemeExt.of.majorScale(136 / 4),
+            color: AppColors.of.grayColor[300],
+            child: controller.store.value?.coverImage != null
+                ? Image.memory(
+                    base64Decode(
+                      controller.store.value?.coverImage ?? '',
+                    ),
+                    fit: BoxFit.cover,
+                  )
+                : null,
+          ),
         ),
         CustomScrollView(
           slivers: [
@@ -161,7 +170,7 @@ class StoreDetailPage extends GetView<StoreDetailController> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AppTextHeading4Widget()
-            .setText('Phúc Long, Phan Xích Long')
+            .setText(controller.store.value?.name)
             .setTextAlign(TextAlign.left)
             .setColor(AppColors.of.primaryColor)
             .build(context),
@@ -169,8 +178,7 @@ class StoreDetailPage extends GetView<StoreDetailController> {
           height: AppThemeExt.of.majorScale(1),
         ),
         AppTextCaption1Widget()
-            .setText(
-                '95 Phan Xích Long, Phường 7, Phú Nhuận, Thành phố Hồ Chí Minh')
+            .setText(controller.store.value?.address)
             .setColor(AppColors.of.subTextColor)
             .setMaxLines(2)
             .build(context),
@@ -186,7 +194,11 @@ class StoreDetailPage extends GetView<StoreDetailController> {
             SizedBox(
               width: AppThemeExt.of.majorScale(2),
             ),
-            AppTextCaption1Widget().setText('4.5 (1k+)').build(context),
+            AppTextCaption1Widget()
+                .setText(controller.store.value?.rating != null
+                    ? '${controller.store.value?.rating}'
+                    : null)
+                .build(context),
           ],
         ),
         SizedBox(

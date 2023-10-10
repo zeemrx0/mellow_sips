@@ -43,4 +43,17 @@ class StoreRepositoryImpl extends StoreRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<StoreModel>> getStoreDetail({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData =
+          await _storeRemoteDataSource.getStoreDetail(params: params);
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

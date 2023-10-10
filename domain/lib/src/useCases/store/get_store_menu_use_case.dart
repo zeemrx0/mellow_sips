@@ -1,7 +1,7 @@
 part of '../base_use_case.dart';
 
 abstract class GetStoreMenuUseCase
-    extends BaseUseCase<GetStoreMenuParam, MenuModel> {}
+    extends BaseUseCase<GetStoreDetailParam, MenuModel> {}
 
 class GetStoreMenuUseCaseImpl extends GetStoreMenuUseCase {
   final StoreRepository _storeRepository;
@@ -9,7 +9,7 @@ class GetStoreMenuUseCaseImpl extends GetStoreMenuUseCase {
   GetStoreMenuUseCaseImpl(this._storeRepository);
 
   @override
-  Future<AppObjectResultModel<MenuModel>> executeObject({GetStoreMenuParam? param}) {
+  Future<AppObjectResultModel<MenuModel>> executeObject({GetStoreDetailParam? param}) {
     return _storeRepository.getStoreMenu(params: param!.toJson());
   }
 }

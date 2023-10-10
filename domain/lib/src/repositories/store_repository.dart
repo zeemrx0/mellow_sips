@@ -4,4 +4,5 @@ abstract class StoreRepository {
   Future<AppListResultModel<StoreModel>> getStoreList({required Map<String, dynamic> params});
   Future<AppListResultModel<StoreModel>> searchStores({required Map<String, dynamic> params});
   Future<AppObjectResultModel<MenuModel>> getStoreMenu({required Map<String, dynamic> params});
+  Future<AppObjectResultModel<StoreModel>> getStoreDetail({required Map<String, dynamic> params});
 }

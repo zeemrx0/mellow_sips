@@ -4,6 +4,6 @@ class StoreDetailBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<StoreDetailController>(
-        () => StoreDetailController(Get.find(), Get.find()));
+        () => StoreDetailController(Get.find(), Get.find(), Get.find()));
   }
 }
