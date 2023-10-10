@@ -1,7 +1,7 @@
-part of 'home_controller.dart';
+part of './home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   static void open() {
     Get.toNamed(Routes.home);
@@ -9,25 +9,6 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return AppMainPageWidget()
-        .setAppBar(AppBarWidget().setHeaderPage(R.strings.hello).build(context))
-        .setBody(_body(context))
-        .build(context);
-  }
-
-  Widget _body(BuildContext context) {
-    print(BuildConfig.apiDomain);
-    print(NumberExt.withSeparator(1000000));
-    controller.getTest();
-    return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: AppThemeExt.of.majorPaddingScale(4)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: AppThemeExt.of.majorScale(2)),
-        ],
-      ),
-    );
+    return AppMainPageWidget().build(context);
   }
 }

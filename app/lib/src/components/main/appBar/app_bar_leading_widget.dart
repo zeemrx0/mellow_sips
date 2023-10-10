@@ -12,7 +12,7 @@ class AppBarLeadingWidget extends AppBarBaseBuilder {
       title: AppTextHeading3Widget().setText(_headerPage).build(context),
       centerTitle: _centerTitle,
       actions: _actions,
-      backgroundColor: _backgroundColor ?? AppColors.of.grayColor[1],
+      backgroundColor: _backgroundColor ?? AppColors.of.whiteColor,
       bottom: _bottom,
     );
   }

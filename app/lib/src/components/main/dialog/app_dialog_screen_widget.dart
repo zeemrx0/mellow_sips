@@ -50,7 +50,7 @@ class AppScreenDialogWidget extends AppDialogBaseBuilder {
     }
     _dialog = Dialog.fullscreen(
       child: Container(
-        color: AppColors.of.grayColor[1],
+        color: AppColors.of.whiteColor,
         padding: EdgeInsets.all(AppThemeExt.of.majorScale(6)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

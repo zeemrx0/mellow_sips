@@ -1,6 +1,20 @@
 import 'package:domain/domain.dart';
 
-part 'get_test_use_case.dart';
+part './get_test_use_case.dart';
+part './get_local_test_use_case.dart';
+part './save_local_test_use_case.dart';
+
+part './auth/login_use_case.dart';
+part './auth/register_use_case.dart';
+part './auth/verify_registration_use_case.dart';
+part './auth/request_otp_use_case.dart';
+
+part './document/get_document_use_case.dart';
+
+part './store/get_store_list_use_case.dart';
+part './store/search_stores_use_case.dart';
+part './store/get_store_menu_use_case.dart';
+part './store/get_store_detail_use_case.dart';
 
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {

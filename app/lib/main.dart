@@ -11,7 +11,7 @@ import 'src/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DataProvider.inject();
+  await DataProvider.inject();
   DomainProvider.inject();
   runApp(const MyApp());
 }

@@ -1,4 +1,4 @@
-part of 'base_raw.dart';
+part of './base_raw.dart';
 
 @JsonSerializable()
 @CopyWith()
@@ -9,6 +9,8 @@ class TestRaw extends BaseRaw<TestModel> {
 
   factory TestRaw.fromJson(Map<String, dynamic> json) =>
       _$TestRawFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TestRawToJson(this);
 
   @override
   TestModel toModel() {

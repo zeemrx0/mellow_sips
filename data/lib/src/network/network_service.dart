@@ -1,4 +1,6 @@
+import 'package:data/src/local/app_shared_pref.dart';
 import 'package:data/src/raws/app_response.dart';
+import 'package:data/src/sources/keys/app_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:get/get.dart';
@@ -6,9 +8,10 @@ import 'package:configs/configs.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-part 'api_provider.dart';
+part './api_provider.dart';
 
-part 'client_request.dart';
+part './client_request.dart';
+part './network_interceptor_wrapper.dart';
 
 abstract class NetworkService extends GetxService {
   static Dio getNewDio() {
@@ -36,6 +39,7 @@ class NetworkServiceImpl extends NetworkService {
   void onInit() {
     _dio = NetworkService.getNewDio();
     super.onInit();
+    _dio.interceptors.add(NetworkInterceptorWrapper(diO: _dio));
   }
 
   @override
