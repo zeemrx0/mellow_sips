@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
-part 'app_bar_widget.dart';
-
-part 'app_bar_leading_widget.dart';
-
-part 'app_bar_leading_avatar_widget.dart';
+part './app_bar_widget.dart';
+part './app_bar_leading_widget.dart';
+part './app_bar_leading_avatar_widget.dart';
 
 abstract class AppBarBaseBuilder {
   @protected

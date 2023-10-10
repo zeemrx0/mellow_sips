@@ -63,7 +63,7 @@ class IntroPage extends GetView<IntroController> {
             effect: ExpandingDotsEffect(
               dotHeight: AppThemeExt.of.majorScale(2),
               dotWidth: AppThemeExt.of.majorScale(2),
-              dotColor: AppColors.of.grayColor[200]!,
+              dotColor: AppColors.of.backgroundColor,
               activeDotColor: AppColors.of.grayColor[800]!,
             ),
           ),

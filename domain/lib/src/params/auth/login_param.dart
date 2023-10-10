@@ -11,5 +11,8 @@ class LoginParam extends BaseParam {
     required this.password,
   });
 
+  factory LoginParam.fromJson(Map<String, dynamic> json) =>
+      _$LoginParamFromJson(json);
+
   Map<String, dynamic> toJson() => _$LoginParamToJson(this);
 }

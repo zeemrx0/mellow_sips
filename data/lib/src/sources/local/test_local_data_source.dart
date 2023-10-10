@@ -1,4 +1,4 @@
-part of 'base_local_data_source.dart';
+part of './base_local_data_source.dart';
 
 abstract class TestLocalDataSource {
   Future<AppObjectResultRaw<EmptyRaw>> saveTest({required String message});

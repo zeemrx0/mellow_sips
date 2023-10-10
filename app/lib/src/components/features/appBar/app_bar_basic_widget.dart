@@ -4,57 +4,64 @@ import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
 class AppBarBasicWidget {
-  double? height;
-  bool? canBack;
-  Widget? title;
-  Widget? leading;
-  Widget? trailing;
-  Widget? bottom;
+  double? _height;
+  bool? _canBack;
+  Widget? _title;
+  Widget? _leading;
+  Widget? _trailing;
+  Widget? _bottom;
+  Color? _backgroundColor;
 
   AppBarBasicWidget setHeight(double? height) {
-    this.height = height;
+    _height = height;
     return this;
   }
 
   AppBarBasicWidget setCanBack(bool? canBack) {
-    this.canBack = canBack;
+    _canBack = canBack;
     return this;
   }
 
   AppBarBasicWidget setTitle(Widget? title) {
-    this.title = title;
+    _title = title;
     return this;
   }
 
   AppBarBasicWidget setLeading(Widget? leading) {
-    this.leading = leading;
+    _leading = leading;
     return this;
   }
 
   AppBarBasicWidget setTrailing(Widget? trailing) {
-    this.trailing = trailing;
+    _trailing = trailing;
     return this;
   }
 
   AppBarBasicWidget setBottom(Widget? bottom) {
-    this.bottom = bottom;
+    _bottom = bottom;
+    return this;
+  }
+
+  AppBarBasicWidget setBackgroundColor(Color? backgroundColor) {
+    _backgroundColor = backgroundColor;
     return this;
   }
 
   PreferredSize build(BuildContext context) {
-    Widget leadingWidget = canBack == true
+    Widget leadingWidget = _canBack == true
         ? InkWell(
             onTap: () {
               Get.back();
             },
             child: R.svgs.icLongArrowLeft.svg(),
           )
-        : (leading ?? const SizedBox());
+        : (_leading ?? const SizedBox());
 
     return PreferredSize(
-      preferredSize: Size.fromHeight(height ?? kToolbarHeight),
+      preferredSize: Size.fromHeight(_height ?? kToolbarHeight),
       child: SafeArea(
-        child: Padding(
+        child: Container(
+          color: _backgroundColor,
           padding: EdgeInsets.symmetric(
             horizontal: AppThemeExt.of.majorScale(4),
           ),
@@ -68,12 +75,12 @@ class AppBarBasicWidget {
                 height: kToolbarHeight,
                 child: NavigationToolbar(
                   leading: leadingWidget,
-                  middle: title ?? const SizedBox(),
-                  trailing: trailing ?? const SizedBox(),
+                  middle: _title ?? const SizedBox(),
+                  trailing: _trailing ?? const SizedBox(),
                   centerMiddle: true,
                 ),
               ),
-              if (bottom != null) bottom!,
+              if (_bottom != null) _bottom!,
             ],
           ),
         ),

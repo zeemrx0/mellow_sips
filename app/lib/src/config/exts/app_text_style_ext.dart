@@ -61,4 +61,20 @@ class AppTextStyleExt {
   TextStyle? textBody2r = Get.textTheme.bodyMedium?.copyWith(
     fontWeight: _AppTextStyle.regular,
   );
+
+  TextStyle? textCaption1s = Get.textTheme.labelLarge?.copyWith(
+    fontWeight: _AppTextStyle.semiBold,
+  );
+
+  TextStyle? textCaption1r = Get.textTheme.labelLarge?.copyWith(
+    fontWeight: _AppTextStyle.regular,
+  );
+
+  TextStyle? textCaption2s = Get.textTheme.labelMedium?.copyWith(
+    fontWeight: _AppTextStyle.semiBold,
+  );
+
+  TextStyle? textCaption2r = Get.textTheme.labelMedium?.copyWith(
+    fontWeight: _AppTextStyle.regular,
+  );
 }

@@ -16,5 +16,8 @@ class RegisterParam extends BaseParam {
     required this.password,
   });
 
+  factory RegisterParam.fromJson(Map<String, dynamic> json) =>
+      _$RegisterParamFromJson(json);
+
   Map<String, dynamic> toJson() => _$RegisterParamToJson(this);
 }

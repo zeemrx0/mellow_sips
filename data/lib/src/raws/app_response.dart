@@ -6,17 +6,17 @@ class AppResponse {
   final String? error;
   final dynamic data;
   final int page;
-  final int limit;
+  final int itemsPerPage;
   final bool hasMore;
   final int total;
 
   AppResponse({
     required this.statusCode,
-    required this.message,
+    this.message,
     this.error,
     this.data,
     this.page = 1,
-    this.limit = 25,
+    this.itemsPerPage = 25,
     this.hasMore = false,
     this.total = 0,
   });
@@ -31,15 +31,18 @@ class AppResponse {
   }
 
   factory AppResponse.fromJsonToList(Map<String, dynamic> json) {
+    final hasMore = json['data']['page'] * json['data']['itemsPerPage'] <
+        json['data']['totalItems'];
+
     return AppResponse(
       statusCode: json['statusCode'],
       message: json['message'],
       error: json['error'],
-      data: json['data'],
-      page: json['page'] ?? 1,
-      limit: json['limit'] ?? 25,
-      hasMore: json['hasMore'] ?? false,
-      total: json['total'] ?? 0,
+      data: json['data']['results'],
+      page: json['data']['page'] ?? 1,
+      itemsPerPage: json['data']['itemsPerPage'] ?? 25,
+      hasMore: hasMore,
+      total: json['data']['totalItems'] ?? 0,
     );
   }
 
@@ -53,5 +56,9 @@ class AppResponse {
   AppListResultRaw<BR> toListRaw<BR extends BaseRaw>(
     List<BR>? Function(dynamic data) toListRaw,
   ) =>
-      AppListResultRaw(netData: toListRaw.call(data));
+      AppListResultRaw(
+        netData: toListRaw.call(data),
+        hasMore: hasMore,
+        total: total,
+      );
 }

@@ -1,6 +1,8 @@
 import 'package:data/src/local/app_shared_pref.dart';
 import 'package:data/src/network/network_service.dart';
 import 'package:data/src/repositories/auth_repository_impl.dart';
+import 'package:data/src/repositories/document_repository_impl.dart';
+import 'package:data/src/repositories/store_repository_impl.dart';
 import 'package:data/src/repositories/test_repository_impl.dart';
 import 'package:data/src/sources/local/base_local_data_source.dart';
 import 'package:data/src/sources/remote/base_remote_data_source.dart';
@@ -33,6 +35,12 @@ class _DataSourcesProvider {
     Get.lazyPut<AuthLocalDataSource>(
       () => AuthLocalDataSourceImpl(Get.find()),
     );
+    Get.lazyPut<DocumentRemoteDataSource>(
+      () => DocumentRemoteDataSourceImpl(Get.find()),
+    );
+    Get.lazyPut<StoreRemoteDataSource>(
+      () => StoreRemoteDataSourceImpl(Get.find()),
+    );
   }
 }
 
@@ -43,6 +51,12 @@ class _RepositoriesProvider {
     );
     Get.lazyPut<AuthRepository>(
       () => AuthRepositoryImpl(Get.find(), Get.find()),
+    );
+    Get.lazyPut<DocumentRepository>(
+      () => DocumentRepositoryImpl(Get.find()),
+    );
+    Get.lazyPut<StoreRepository>(
+      () => StoreRepositoryImpl(Get.find()),
     );
   }
 }

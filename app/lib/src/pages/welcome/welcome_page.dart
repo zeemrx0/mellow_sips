@@ -95,7 +95,7 @@ class WelcomePage extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppColors.of.grayColor[400]!,
+                      color: AppColors.of.borderColor,
                       width: 1,
                     ),
                     color: AppColors.of.whiteColor,

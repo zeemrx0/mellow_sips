@@ -2,7 +2,7 @@ import 'package:app/src/config/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-part 'app_text_field_widget.dart';
+part './app_text_field_widget.dart';
 
 enum AppTextFieldState {
   normal,

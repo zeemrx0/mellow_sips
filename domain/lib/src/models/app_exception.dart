@@ -1,4 +1,4 @@
-part of 'base_model.dart';
+part of './base_model.dart';
 
 abstract class AppException implements Exception {
   final int? statusCode;
@@ -14,6 +14,14 @@ abstract class AppException implements Exception {
 
 class NetworkException extends AppException {
   NetworkException({
+    required super.statusCode,
+    required super.message,
+    super.error,
+  });
+}
+
+class LocalException extends AppException {
+  LocalException({
     required super.statusCode,
     required super.message,
     super.error,

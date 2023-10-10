@@ -1,4 +1,4 @@
-part of 'base_use_case.dart';
+part of './base_use_case.dart';
 
 abstract class SaveLocalTestUseCase
     extends BaseUseCase<TestParam, EmptyModel> {}
