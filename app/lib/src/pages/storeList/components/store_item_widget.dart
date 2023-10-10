@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
 class StoreItemWidget extends StatelessWidget {
@@ -13,108 +15,113 @@ class StoreItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: AppThemeExt.of.majorScale(105 / 4),
-      color: AppColors.of.whiteColor,
-      padding: EdgeInsets.symmetric(
-        horizontal: AppThemeExt.of.majorScale(4),
-      ),
+    return InkWell(
+      onTap: () {
+        Get.toNamed(Routes.storeDetail, arguments: store.id);
+      },
       child: Container(
+        height: AppThemeExt.of.majorScale(105 / 4),
+        color: AppColors.of.whiteColor,
         padding: EdgeInsets.symmetric(
-          vertical: AppThemeExt.of.majorScale(4),
+          horizontal: AppThemeExt.of.majorScale(4),
         ),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: AppColors.of.dividerColor,
-              width: AppThemeExt.of.majorScale(1 / 4),
-            ),
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            vertical: AppThemeExt.of.majorScale(4),
           ),
-        ),
-        child: Row(
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    AppThemeExt.of.majorScale(3),
-                  ),
-                  child: SizedBox(
-                    height: AppThemeExt.of.majorScale(72 / 4),
-                    width: AppThemeExt.of.majorScale(72 / 4),
-                    child: Image.memory(
-                      base64Decode(store.coverImage ?? ''),
-                    ),
-                  ),
-                ),
-                if (store.hasPromotion ?? false) _promotionTag(context),
-              ],
-            ),
-            SizedBox(
-              width: AppThemeExt.of.majorScale(3),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppTextBody2Widget()
-                          .setText(store.name)
-                          .setTextStyle(
-                            AppTextStyleExt.of.textBody2s?.copyWith(
-                              fontFamily: R.fontFamily.workSans,
-                            ),
-                          )
-                          .build(context),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(1),
-                      ),
-                      AppTextCaption1Widget()
-                          .setText(store.address)
-                          .setColor(AppColors.of.grayColor[700])
-                          .build(context),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _rating(context),
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: AppThemeExt.of.majorScale(2),
-                        ),
-                        height: AppThemeExt.of.majorScale(3 / 4),
-                        width: AppThemeExt.of.majorScale(3 / 4),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.of.grayColor[500],
-                        ),
-                      ),
-                      _distance(context),
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: AppThemeExt.of.majorScale(2),
-                        ),
-                        height: AppThemeExt.of.majorScale(3 / 4),
-                        width: AppThemeExt.of.majorScale(3 / 4),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.of.grayColor[500],
-                        ),
-                      ),
-                      _type(context),
-                    ],
-                  ),
-                ],
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: AppColors.of.dividerColor,
+                width: AppThemeExt.of.majorScale(1 / 4),
               ),
             ),
-          ],
+          ),
+          child: Row(
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                      AppThemeExt.of.majorScale(3),
+                    ),
+                    child: SizedBox(
+                      height: AppThemeExt.of.majorScale(72 / 4),
+                      width: AppThemeExt.of.majorScale(72 / 4),
+                      child: Image.memory(
+                        base64Decode(store.coverImage ?? ''),
+                      ),
+                    ),
+                  ),
+                  if (store.hasPromotion ?? false) _promotionTag(context),
+                ],
+              ),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(3),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppTextBody2Widget()
+                            .setText(store.name)
+                            .setTextStyle(
+                              AppTextStyleExt.of.textBody2s?.copyWith(
+                                fontFamily: R.fontFamily.workSans,
+                              ),
+                            )
+                            .build(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(1),
+                        ),
+                        AppTextCaption1Widget()
+                            .setText(store.address)
+                            .setColor(AppColors.of.grayColor[700])
+                            .build(context),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _rating(context),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: AppThemeExt.of.majorScale(2),
+                          ),
+                          height: AppThemeExt.of.majorScale(3 / 4),
+                          width: AppThemeExt.of.majorScale(3 / 4),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.of.grayColor[500],
+                          ),
+                        ),
+                        _distance(context),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: AppThemeExt.of.majorScale(2),
+                          ),
+                          height: AppThemeExt.of.majorScale(3 / 4),
+                          width: AppThemeExt.of.majorScale(3 / 4),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.of.grayColor[500],
+                          ),
+                        ),
+                        _type(context),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
