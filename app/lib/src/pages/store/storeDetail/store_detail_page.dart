@@ -1,6 +1,6 @@
 part of './store_detail_controller.dart';
 
-class StoreDetailPage extends GetView<StoreDetailController> {
+class StoreDetailPage extends GetWidget<StoreDetailController> {
   const StoreDetailPage({super.key});
 
   @override

@@ -24,16 +24,20 @@ class ProductDetailKey {
 class ProductDetailController extends GetxController {
   final GetProductDetailUseCase _getProductDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
+  final AddToCartUseCase _addToCartUseCase;
 
   ProductDetailController(
     this._getProductDetailUseCase,
     this._getDocumentUseCase,
+    this._addToCartUseCase,
   );
 
   Rxn<ProductModel> product = Rxn<ProductModel>();
   Rxn<int> quantity = Rxn<int>(1);
 
   Rx<Map<String, int>> addonQuantity = Rx<Map<String, int>>({});
+
+  Rx<String> note = Rx<String>('');
 
   Future<void> getProductDetail(String productId) async {
     try {
@@ -96,5 +100,29 @@ class ProductDetailController extends GetxController {
     );
 
     return Future.value(response.netData!.content);
+  }
+
+  Future<void> addToCart() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      final result = await _addToCartUseCase.executeObject(
+        param: AddToCartParam(
+          productId: product.value!.id!,
+          addons: addonQuantity.value.keys.toList(),
+          quantity: quantity.value ?? 0,
+          note: note.value,
+        ),
+      );
+
+      if (result.netData != null) {
+        Get.back();
+      }
+
+      AppLoadingOverlayWidget.dismiss();
+    } catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      print(e);
+    }
   }
 }

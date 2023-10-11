@@ -1,6 +1,6 @@
 part of './product_detail_controller.dart';
 
-class ProductDetailPage extends GetView<ProductDetailController> {
+class ProductDetailPage extends GetWidget<ProductDetailController> {
   const ProductDetailPage({super.key});
 
   @override
@@ -191,8 +191,11 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                 Expanded(
                   child: AppFilledButtonWidget()
                       .setButtonText(R.strings.add)
-                      .setOnPressed(() {})
-                      .build(context),
+                      .setOnPressed(
+                    () {
+                      controller.addToCart();
+                    },
+                  ).build(context),
                 ),
               ],
             ),

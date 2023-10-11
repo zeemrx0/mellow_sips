@@ -2,6 +2,10 @@ part of '../base_remote_data_source.dart';
 
 abstract class CartRemoteDataSource {
   Future<AppListResultRaw<CartRaw>> getAllCarts();
+
+  Future<AppObjectResultRaw<EmptyRaw>> addToCart({
+    required Map<String, dynamic> params,
+  });
 }
 
 class CartRemoteDataSourceImpl implements CartRemoteDataSource {
@@ -23,6 +27,24 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
       return remoteData.toListRaw(
         (data) => data.map((e) => CartRaw.fromJson(e)).toList(),
       );
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultRaw<EmptyRaw>> addToCart(
+      {required Map<String, dynamic> params}) async {
+    try {
+      final remoteData = await _networkService.request(
+        clientRequest: ClientRequest(
+          url: ApiProvider.carts,
+          method: HttpMethod.post,
+          body: params,
+        ),
+      );
+
+      return remoteData.toObjectRaw((data) => EmptyRaw());
     } on NetworkException catch (_) {
       rethrow;
     }

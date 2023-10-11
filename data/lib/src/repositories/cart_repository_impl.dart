@@ -9,9 +9,22 @@ class CartRepositoryImpl extends CartRepository {
   @override
   Future<AppListResultModel<CartModel>> getAllCarts() async {
     try {
-      final remoteData =
-          await _cartRemoteDataSource.getAllCarts();
+      final remoteData = await _cartRemoteDataSource.getAllCarts();
       return remoteData.toAppListResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> addToCart({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _cartRemoteDataSource.addToCart(
+        params: params,
+      );
+      return remoteData.toAppObjectResultModel();
     } on NetworkException catch (_) {
       rethrow;
     }

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       theme: AppThemeData.lightTheme,
       darkTheme: AppThemeData.darkTheme,
       getPages: AppPages.routes,
-      initialRoute: Routes.cart,
+      initialRoute: Routes.stores,
       initialBinding: AppBinding(),
       smartManagement: SmartManagement.full,
       builder: AppLoadingOverlayWidget.init(),
