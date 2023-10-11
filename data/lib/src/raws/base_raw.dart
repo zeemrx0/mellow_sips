@@ -13,6 +13,8 @@ part './store/store_raw.dart';
 part './store/product_raw.dart';
 part './store/menu_section_raw.dart';
 part './store/menu_raw.dart';
+part './store/product_option_section_raw.dart';
+part './store/product_addon_raw.dart';
 
 abstract class BaseRaw<BM extends BaseModel> {
   BM toModel();

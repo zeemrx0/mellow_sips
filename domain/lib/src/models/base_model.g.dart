@@ -333,6 +333,9 @@ abstract class _$ProductModelCWProxy {
 
   ProductModel isSoldOut(bool? isSoldOut);
 
+  ProductModel productOptionSections(
+      List<ProductOptionSectionModel>? productOptionSections);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -348,6 +351,7 @@ abstract class _$ProductModelCWProxy {
     List<String>? categories,
     List<String>? tags,
     bool? isSoldOut,
+    List<ProductOptionSectionModel>? productOptionSections,
   });
 }
 
@@ -384,6 +388,11 @@ class _$ProductModelCWProxyImpl implements _$ProductModelCWProxy {
   ProductModel isSoldOut(bool? isSoldOut) => this(isSoldOut: isSoldOut);
 
   @override
+  ProductModel productOptionSections(
+          List<ProductOptionSectionModel>? productOptionSections) =>
+      this(productOptionSections: productOptionSections);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -400,6 +409,7 @@ class _$ProductModelCWProxyImpl implements _$ProductModelCWProxy {
     Object? categories = const $CopyWithPlaceholder(),
     Object? tags = const $CopyWithPlaceholder(),
     Object? isSoldOut = const $CopyWithPlaceholder(),
+    Object? productOptionSections = const $CopyWithPlaceholder(),
   }) {
     return ProductModel(
       id: id == const $CopyWithPlaceholder()
@@ -434,6 +444,11 @@ class _$ProductModelCWProxyImpl implements _$ProductModelCWProxy {
           ? _value.isSoldOut
           // ignore: cast_nullable_to_non_nullable
           : isSoldOut as bool?,
+      productOptionSections:
+          productOptionSections == const $CopyWithPlaceholder()
+              ? _value.productOptionSections
+              // ignore: cast_nullable_to_non_nullable
+              : productOptionSections as List<ProductOptionSectionModel>?,
     );
   }
 }
@@ -578,6 +593,192 @@ extension $MenuModelCopyWith on MenuModel {
   _$MenuModelCWProxy get copyWith => _$MenuModelCWProxyImpl(this);
 }
 
+abstract class _$ProductOptionSectionModelCWProxy {
+  ProductOptionSectionModel name(String name);
+
+  ProductOptionSectionModel order(int order);
+
+  ProductOptionSectionModel isRequired(bool isRequired);
+
+  ProductOptionSectionModel maxAllowedChoices(int maxAllowedChoices);
+
+  ProductOptionSectionModel productAddons(
+      List<ProductAddonModel> productAddons);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductOptionSectionModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductOptionSectionModel(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductOptionSectionModel call({
+    String? name,
+    int? order,
+    bool? isRequired,
+    int? maxAllowedChoices,
+    List<ProductAddonModel>? productAddons,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductOptionSectionModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductOptionSectionModel.copyWith.fieldName(...)`
+class _$ProductOptionSectionModelCWProxyImpl
+    implements _$ProductOptionSectionModelCWProxy {
+  const _$ProductOptionSectionModelCWProxyImpl(this._value);
+
+  final ProductOptionSectionModel _value;
+
+  @override
+  ProductOptionSectionModel name(String name) => this(name: name);
+
+  @override
+  ProductOptionSectionModel order(int order) => this(order: order);
+
+  @override
+  ProductOptionSectionModel isRequired(bool isRequired) =>
+      this(isRequired: isRequired);
+
+  @override
+  ProductOptionSectionModel maxAllowedChoices(int maxAllowedChoices) =>
+      this(maxAllowedChoices: maxAllowedChoices);
+
+  @override
+  ProductOptionSectionModel productAddons(
+          List<ProductAddonModel> productAddons) =>
+      this(productAddons: productAddons);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductOptionSectionModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductOptionSectionModel(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductOptionSectionModel call({
+    Object? name = const $CopyWithPlaceholder(),
+    Object? order = const $CopyWithPlaceholder(),
+    Object? isRequired = const $CopyWithPlaceholder(),
+    Object? maxAllowedChoices = const $CopyWithPlaceholder(),
+    Object? productAddons = const $CopyWithPlaceholder(),
+  }) {
+    return ProductOptionSectionModel(
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+      order: order == const $CopyWithPlaceholder() || order == null
+          ? _value.order
+          // ignore: cast_nullable_to_non_nullable
+          : order as int,
+      isRequired:
+          isRequired == const $CopyWithPlaceholder() || isRequired == null
+              ? _value.isRequired
+              // ignore: cast_nullable_to_non_nullable
+              : isRequired as bool,
+      maxAllowedChoices: maxAllowedChoices == const $CopyWithPlaceholder() ||
+              maxAllowedChoices == null
+          ? _value.maxAllowedChoices
+          // ignore: cast_nullable_to_non_nullable
+          : maxAllowedChoices as int,
+      productAddons:
+          productAddons == const $CopyWithPlaceholder() || productAddons == null
+              ? _value.productAddons
+              // ignore: cast_nullable_to_non_nullable
+              : productAddons as List<ProductAddonModel>,
+    );
+  }
+}
+
+extension $ProductOptionSectionModelCopyWith on ProductOptionSectionModel {
+  /// Returns a callable class that can be used as follows: `instanceOfProductOptionSectionModel.copyWith(...)` or like so:`instanceOfProductOptionSectionModel.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductOptionSectionModelCWProxy get copyWith =>
+      _$ProductOptionSectionModelCWProxyImpl(this);
+}
+
+abstract class _$ProductAddonModelCWProxy {
+  ProductAddonModel id(String id);
+
+  ProductAddonModel name(String name);
+
+  ProductAddonModel price(int price);
+
+  ProductAddonModel isSoldOut(bool isSoldOut);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAddonModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductAddonModel(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductAddonModel call({
+    String? id,
+    String? name,
+    int? price,
+    bool? isSoldOut,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductAddonModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductAddonModel.copyWith.fieldName(...)`
+class _$ProductAddonModelCWProxyImpl implements _$ProductAddonModelCWProxy {
+  const _$ProductAddonModelCWProxyImpl(this._value);
+
+  final ProductAddonModel _value;
+
+  @override
+  ProductAddonModel id(String id) => this(id: id);
+
+  @override
+  ProductAddonModel name(String name) => this(name: name);
+
+  @override
+  ProductAddonModel price(int price) => this(price: price);
+
+  @override
+  ProductAddonModel isSoldOut(bool isSoldOut) => this(isSoldOut: isSoldOut);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAddonModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductAddonModel(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductAddonModel call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+    Object? price = const $CopyWithPlaceholder(),
+    Object? isSoldOut = const $CopyWithPlaceholder(),
+  }) {
+    return ProductAddonModel(
+      id: id == const $CopyWithPlaceholder() || id == null
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+      price: price == const $CopyWithPlaceholder() || price == null
+          ? _value.price
+          // ignore: cast_nullable_to_non_nullable
+          : price as int,
+      isSoldOut: isSoldOut == const $CopyWithPlaceholder() || isSoldOut == null
+          ? _value.isSoldOut
+          // ignore: cast_nullable_to_non_nullable
+          : isSoldOut as bool,
+    );
+  }
+}
+
+extension $ProductAddonModelCopyWith on ProductAddonModel {
+  /// Returns a callable class that can be used as follows: `instanceOfProductAddonModel.copyWith(...)` or like so:`instanceOfProductAddonModel.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductAddonModelCWProxy get copyWith =>
+      _$ProductAddonModelCWProxyImpl(this);
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -649,6 +850,10 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
           .toList(),
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
       isSoldOut: json['isSoldOut'] as bool?,
+      productOptionSections: (json['productOptionSections'] as List<dynamic>?)
+          ?.map((e) =>
+              ProductOptionSectionModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
@@ -661,6 +866,7 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'categories': instance.categories,
       'tags': instance.tags,
       'isSoldOut': instance.isSoldOut,
+      'productOptionSections': instance.productOptionSections,
     };
 
 MenuSectionModel _$MenuSectionModelFromJson(Map<String, dynamic> json) =>
@@ -689,4 +895,42 @@ MenuModel _$MenuModelFromJson(Map<String, dynamic> json) => MenuModel(
 Map<String, dynamic> _$MenuModelToJson(MenuModel instance) => <String, dynamic>{
       'id': instance.id,
       'menuSections': instance.menuSections,
+    };
+
+ProductOptionSectionModel _$ProductOptionSectionModelFromJson(
+        Map<String, dynamic> json) =>
+    ProductOptionSectionModel(
+      name: json['name'] as String,
+      order: json['order'] as int,
+      isRequired: json['isRequired'] as bool,
+      maxAllowedChoices: json['maxAllowedChoices'] as int,
+      productAddons: (json['productAddons'] as List<dynamic>)
+          .map((e) => ProductAddonModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ProductOptionSectionModelToJson(
+        ProductOptionSectionModel instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'order': instance.order,
+      'isRequired': instance.isRequired,
+      'maxAllowedChoices': instance.maxAllowedChoices,
+      'productAddons': instance.productAddons,
+    };
+
+ProductAddonModel _$ProductAddonModelFromJson(Map<String, dynamic> json) =>
+    ProductAddonModel(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      price: json['price'] as int,
+      isSoldOut: json['isSoldOut'] as bool,
+    );
+
+Map<String, dynamic> _$ProductAddonModelToJson(ProductAddonModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'price': instance.price,
+      'isSoldOut': instance.isSoldOut,
     };

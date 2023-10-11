@@ -316,6 +316,9 @@ extension $StoreRawCopyWith on StoreRaw {
 }
 
 abstract class _$ProductRawCWProxy {
+  ProductRaw productOptionSections(
+      List<ProductOptionSectionRaw>? productOptionSections);
+
   ProductRaw id(String? id);
 
   ProductRaw name(String? name);
@@ -339,6 +342,7 @@ abstract class _$ProductRawCWProxy {
   /// ProductRaw(...).copyWith(id: 12, name: "My name")
   /// ````
   ProductRaw call({
+    List<ProductOptionSectionRaw>? productOptionSections,
     String? id,
     String? name,
     String? description,
@@ -355,6 +359,11 @@ class _$ProductRawCWProxyImpl implements _$ProductRawCWProxy {
   const _$ProductRawCWProxyImpl(this._value);
 
   final ProductRaw _value;
+
+  @override
+  ProductRaw productOptionSections(
+          List<ProductOptionSectionRaw>? productOptionSections) =>
+      this(productOptionSections: productOptionSections);
 
   @override
   ProductRaw id(String? id) => this(id: id);
@@ -390,6 +399,7 @@ class _$ProductRawCWProxyImpl implements _$ProductRawCWProxy {
   /// ProductRaw(...).copyWith(id: 12, name: "My name")
   /// ````
   ProductRaw call({
+    Object? productOptionSections = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
@@ -400,6 +410,10 @@ class _$ProductRawCWProxyImpl implements _$ProductRawCWProxy {
     Object? isSoldOut = const $CopyWithPlaceholder(),
   }) {
     return ProductRaw(
+      productOptionSections == const $CopyWithPlaceholder()
+          ? _value.productOptionSections
+          // ignore: cast_nullable_to_non_nullable
+          : productOptionSections as List<ProductOptionSectionRaw>?,
       id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
@@ -576,6 +590,189 @@ extension $MenuRawCopyWith on MenuRaw {
   _$MenuRawCWProxy get copyWith => _$MenuRawCWProxyImpl(this);
 }
 
+abstract class _$ProductOptionSectionRawCWProxy {
+  ProductOptionSectionRaw name(String name);
+
+  ProductOptionSectionRaw order(int order);
+
+  ProductOptionSectionRaw isRequired(bool isRequired);
+
+  ProductOptionSectionRaw maxAllowedChoices(int maxAllowedChoices);
+
+  ProductOptionSectionRaw productAddons(List<ProductAddonRaw> productAddons);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductOptionSectionRaw(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductOptionSectionRaw(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductOptionSectionRaw call({
+    String? name,
+    int? order,
+    bool? isRequired,
+    int? maxAllowedChoices,
+    List<ProductAddonRaw>? productAddons,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductOptionSectionRaw.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductOptionSectionRaw.copyWith.fieldName(...)`
+class _$ProductOptionSectionRawCWProxyImpl
+    implements _$ProductOptionSectionRawCWProxy {
+  const _$ProductOptionSectionRawCWProxyImpl(this._value);
+
+  final ProductOptionSectionRaw _value;
+
+  @override
+  ProductOptionSectionRaw name(String name) => this(name: name);
+
+  @override
+  ProductOptionSectionRaw order(int order) => this(order: order);
+
+  @override
+  ProductOptionSectionRaw isRequired(bool isRequired) =>
+      this(isRequired: isRequired);
+
+  @override
+  ProductOptionSectionRaw maxAllowedChoices(int maxAllowedChoices) =>
+      this(maxAllowedChoices: maxAllowedChoices);
+
+  @override
+  ProductOptionSectionRaw productAddons(List<ProductAddonRaw> productAddons) =>
+      this(productAddons: productAddons);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductOptionSectionRaw(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductOptionSectionRaw(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductOptionSectionRaw call({
+    Object? name = const $CopyWithPlaceholder(),
+    Object? order = const $CopyWithPlaceholder(),
+    Object? isRequired = const $CopyWithPlaceholder(),
+    Object? maxAllowedChoices = const $CopyWithPlaceholder(),
+    Object? productAddons = const $CopyWithPlaceholder(),
+  }) {
+    return ProductOptionSectionRaw(
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+      order: order == const $CopyWithPlaceholder() || order == null
+          ? _value.order
+          // ignore: cast_nullable_to_non_nullable
+          : order as int,
+      isRequired:
+          isRequired == const $CopyWithPlaceholder() || isRequired == null
+              ? _value.isRequired
+              // ignore: cast_nullable_to_non_nullable
+              : isRequired as bool,
+      maxAllowedChoices: maxAllowedChoices == const $CopyWithPlaceholder() ||
+              maxAllowedChoices == null
+          ? _value.maxAllowedChoices
+          // ignore: cast_nullable_to_non_nullable
+          : maxAllowedChoices as int,
+      productAddons:
+          productAddons == const $CopyWithPlaceholder() || productAddons == null
+              ? _value.productAddons
+              // ignore: cast_nullable_to_non_nullable
+              : productAddons as List<ProductAddonRaw>,
+    );
+  }
+}
+
+extension $ProductOptionSectionRawCopyWith on ProductOptionSectionRaw {
+  /// Returns a callable class that can be used as follows: `instanceOfProductOptionSectionRaw.copyWith(...)` or like so:`instanceOfProductOptionSectionRaw.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductOptionSectionRawCWProxy get copyWith =>
+      _$ProductOptionSectionRawCWProxyImpl(this);
+}
+
+abstract class _$ProductAddonRawCWProxy {
+  ProductAddonRaw id(String id);
+
+  ProductAddonRaw name(String name);
+
+  ProductAddonRaw price(int price);
+
+  ProductAddonRaw isSoldOut(bool isSoldOut);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAddonRaw(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductAddonRaw(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductAddonRaw call({
+    String? id,
+    String? name,
+    int? price,
+    bool? isSoldOut,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductAddonRaw.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductAddonRaw.copyWith.fieldName(...)`
+class _$ProductAddonRawCWProxyImpl implements _$ProductAddonRawCWProxy {
+  const _$ProductAddonRawCWProxyImpl(this._value);
+
+  final ProductAddonRaw _value;
+
+  @override
+  ProductAddonRaw id(String id) => this(id: id);
+
+  @override
+  ProductAddonRaw name(String name) => this(name: name);
+
+  @override
+  ProductAddonRaw price(int price) => this(price: price);
+
+  @override
+  ProductAddonRaw isSoldOut(bool isSoldOut) => this(isSoldOut: isSoldOut);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAddonRaw(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductAddonRaw(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductAddonRaw call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
+    Object? price = const $CopyWithPlaceholder(),
+    Object? isSoldOut = const $CopyWithPlaceholder(),
+  }) {
+    return ProductAddonRaw(
+      id: id == const $CopyWithPlaceholder() || id == null
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String,
+      name: name == const $CopyWithPlaceholder() || name == null
+          ? _value.name
+          // ignore: cast_nullable_to_non_nullable
+          : name as String,
+      price: price == const $CopyWithPlaceholder() || price == null
+          ? _value.price
+          // ignore: cast_nullable_to_non_nullable
+          : price as int,
+      isSoldOut: isSoldOut == const $CopyWithPlaceholder() || isSoldOut == null
+          ? _value.isSoldOut
+          // ignore: cast_nullable_to_non_nullable
+          : isSoldOut as bool,
+    );
+  }
+}
+
+extension $ProductAddonRawCopyWith on ProductAddonRaw {
+  /// Returns a callable class that can be used as follows: `instanceOfProductAddonRaw.copyWith(...)` or like so:`instanceOfProductAddonRaw.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductAddonRawCWProxy get copyWith => _$ProductAddonRawCWProxyImpl(this);
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -634,6 +831,10 @@ Map<String, dynamic> _$StoreRawToJson(StoreRaw instance) => <String, dynamic>{
     };
 
 ProductRaw _$ProductRawFromJson(Map<String, dynamic> json) => ProductRaw(
+      (json['productOptionSections'] as List<dynamic>?)
+          ?.map((e) =>
+              ProductOptionSectionRaw.fromJson(e as Map<String, dynamic>))
+          .toList(),
       id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
@@ -656,6 +857,7 @@ Map<String, dynamic> _$ProductRawToJson(ProductRaw instance) =>
       'categories': instance.categories,
       'tags': instance.tags,
       'isSoldOut': instance.isSoldOut,
+      'productOptionSections': instance.productOptionSections,
     };
 
 MenuSectionRaw _$MenuSectionRawFromJson(Map<String, dynamic> json) =>
@@ -684,4 +886,42 @@ MenuRaw _$MenuRawFromJson(Map<String, dynamic> json) => MenuRaw(
 Map<String, dynamic> _$MenuRawToJson(MenuRaw instance) => <String, dynamic>{
       'id': instance.id,
       'menuSections': instance.menuSections,
+    };
+
+ProductOptionSectionRaw _$ProductOptionSectionRawFromJson(
+        Map<String, dynamic> json) =>
+    ProductOptionSectionRaw(
+      name: json['name'] as String,
+      order: json['order'] as int,
+      isRequired: json['isRequired'] as bool,
+      maxAllowedChoices: json['maxAllowedChoices'] as int,
+      productAddons: (json['productAddons'] as List<dynamic>)
+          .map((e) => ProductAddonRaw.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ProductOptionSectionRawToJson(
+        ProductOptionSectionRaw instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'order': instance.order,
+      'isRequired': instance.isRequired,
+      'maxAllowedChoices': instance.maxAllowedChoices,
+      'productAddons': instance.productAddons,
+    };
+
+ProductAddonRaw _$ProductAddonRawFromJson(Map<String, dynamic> json) =>
+    ProductAddonRaw(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      price: json['price'] as int,
+      isSoldOut: json['isSoldOut'] as bool,
+    );
+
+Map<String, dynamic> _$ProductAddonRawToJson(ProductAddonRaw instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'price': instance.price,
+      'isSoldOut': instance.isSoldOut,
     };

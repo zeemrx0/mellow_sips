@@ -7,3 +7,4 @@ part './test_remote_data_source.dart';
 part './auth_remote_data_source.dart';
 part './store/store_remote_data_source.dart';
 part './document/document_remote_data_source.dart';
+part './product/product_remote_data_source.dart';

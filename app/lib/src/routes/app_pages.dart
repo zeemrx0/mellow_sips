@@ -2,6 +2,7 @@ import 'package:app/src/pages/cart/cart_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
+import 'package:app/src/pages/product/product_detail_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/pages/store/storeDetail/store_detail_controller.dart';
@@ -59,6 +60,11 @@ class AppPages {
       name: Routes.storeDetail,
       page: () => const StoreDetailPage(),
       binding: StoreDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.productDetail,
+      page: () => const ProductDetailPage(),
+      binding: ProductDetailBinding(),
     ),
     GetPage(
       name: Routes.cart,
