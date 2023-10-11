@@ -11,6 +11,7 @@ class ProductModel extends BaseModel {
   final List<String>? categories;
   final List<String>? tags;
   final bool? isSoldOut;
+  final List<ProductOptionSectionModel>? productOptionSections;
 
   ProductModel({
     required this.id,
@@ -21,6 +22,7 @@ class ProductModel extends BaseModel {
     required this.categories,
     required this.tags,
     required this.isSoldOut,
+    required this.productOptionSections,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
