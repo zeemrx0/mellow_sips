@@ -773,6 +773,66 @@ extension $ProductAddonRawCopyWith on ProductAddonRaw {
   _$ProductAddonRawCWProxy get copyWith => _$ProductAddonRawCWProxyImpl(this);
 }
 
+abstract class _$CartRawCWProxy {
+  CartRaw id(String id);
+
+  CartRaw store(StoreRaw store);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CartRaw(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// CartRaw(...).copyWith(id: 12, name: "My name")
+  /// ````
+  CartRaw call({
+    String? id,
+    StoreRaw? store,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCartRaw.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCartRaw.copyWith.fieldName(...)`
+class _$CartRawCWProxyImpl implements _$CartRawCWProxy {
+  const _$CartRawCWProxyImpl(this._value);
+
+  final CartRaw _value;
+
+  @override
+  CartRaw id(String id) => this(id: id);
+
+  @override
+  CartRaw store(StoreRaw store) => this(store: store);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CartRaw(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// CartRaw(...).copyWith(id: 12, name: "My name")
+  /// ````
+  CartRaw call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? store = const $CopyWithPlaceholder(),
+  }) {
+    return CartRaw(
+      id: id == const $CopyWithPlaceholder() || id == null
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String,
+      store: store == const $CopyWithPlaceholder() || store == null
+          ? _value.store
+          // ignore: cast_nullable_to_non_nullable
+          : store as StoreRaw,
+    );
+  }
+}
+
+extension $CartRawCopyWith on CartRaw {
+  /// Returns a callable class that can be used as follows: `instanceOfCartRaw.copyWith(...)` or like so:`instanceOfCartRaw.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CartRawCWProxy get copyWith => _$CartRawCWProxyImpl(this);
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -924,4 +984,14 @@ Map<String, dynamic> _$ProductAddonRawToJson(ProductAddonRaw instance) =>
       'name': instance.name,
       'price': instance.price,
       'isSoldOut': instance.isSoldOut,
+    };
+
+CartRaw _$CartRawFromJson(Map<String, dynamic> json) => CartRaw(
+      id: json['id'] as String,
+      store: StoreRaw.fromJson(json['store'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CartRawToJson(CartRaw instance) => <String, dynamic>{
+      'id': instance.id,
+      'store': instance.store,
     };

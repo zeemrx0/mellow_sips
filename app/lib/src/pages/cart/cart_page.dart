@@ -5,7 +5,7 @@ class CartPage extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getCart();
+    controller.getAllCart();
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))

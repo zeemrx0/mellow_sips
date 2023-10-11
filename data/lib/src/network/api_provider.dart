@@ -15,6 +15,8 @@ class ApiProvider {
   static const searchStores = '$stores/customer/search';
 
   static const products = '/products';
+
+  static const carts = '/carts';
 }
 
 class StatusCode extends HttpStatus {

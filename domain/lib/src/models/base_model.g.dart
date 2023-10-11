@@ -779,6 +779,66 @@ extension $ProductAddonModelCopyWith on ProductAddonModel {
       _$ProductAddonModelCWProxyImpl(this);
 }
 
+abstract class _$CartModelCWProxy {
+  CartModel id(String id);
+
+  CartModel store(StoreModel store);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CartModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// CartModel(...).copyWith(id: 12, name: "My name")
+  /// ````
+  CartModel call({
+    String? id,
+    StoreModel? store,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCartModel.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfCartModel.copyWith.fieldName(...)`
+class _$CartModelCWProxyImpl implements _$CartModelCWProxy {
+  const _$CartModelCWProxyImpl(this._value);
+
+  final CartModel _value;
+
+  @override
+  CartModel id(String id) => this(id: id);
+
+  @override
+  CartModel store(StoreModel store) => this(store: store);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CartModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// CartModel(...).copyWith(id: 12, name: "My name")
+  /// ````
+  CartModel call({
+    Object? id = const $CopyWithPlaceholder(),
+    Object? store = const $CopyWithPlaceholder(),
+  }) {
+    return CartModel(
+      id: id == const $CopyWithPlaceholder() || id == null
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String,
+      store: store == const $CopyWithPlaceholder() || store == null
+          ? _value.store
+          // ignore: cast_nullable_to_non_nullable
+          : store as StoreModel,
+    );
+  }
+}
+
+extension $CartModelCopyWith on CartModel {
+  /// Returns a callable class that can be used as follows: `instanceOfCartModel.copyWith(...)` or like so:`instanceOfCartModel.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$CartModelCWProxy get copyWith => _$CartModelCWProxyImpl(this);
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
@@ -933,4 +993,14 @@ Map<String, dynamic> _$ProductAddonModelToJson(ProductAddonModel instance) =>
       'name': instance.name,
       'price': instance.price,
       'isSoldOut': instance.isSoldOut,
+    };
+
+CartModel _$CartModelFromJson(Map<String, dynamic> json) => CartModel(
+      id: json['id'] as String,
+      store: StoreModel.fromJson(json['store'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CartModelToJson(CartModel instance) => <String, dynamic>{
+      'id': instance.id,
+      'store': instance.store,
     };
