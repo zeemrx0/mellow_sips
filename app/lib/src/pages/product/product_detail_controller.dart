@@ -27,6 +27,7 @@ class ProductDetailController extends GetxController {
   );
 
   Rxn<ProductModel> product = Rxn<ProductModel>();
+  Rxn<int> quantity = Rxn<int>(1);
 
   Rx<Map<String, int>> addonQuantity = Rx<Map<String, int>>({});
 
@@ -51,18 +52,32 @@ class ProductDetailController extends GetxController {
     }
   }
 
-  void increaseQuantity(String addonId) {
+  void increaseAddonQuantity(String addonId) {
     final currentQuantity = addonQuantity.value[addonId] ?? 0;
     addonQuantity.value[addonId] = currentQuantity + 1;
     addonQuantity.refresh();
   }
 
-  void deceaseQuantity(String addonId) {
+  void deceaseAddonQuantity(String addonId) {
     final currentQuantity = addonQuantity.value[addonId] ?? 0;
     if (currentQuantity > 0) {
       addonQuantity.value[addonId] = currentQuantity - 1;
     }
     addonQuantity.refresh();
+  }
+
+  void increaseProductQuantity() {
+    final currentQuantity = quantity.value ?? 0;
+    quantity.value = currentQuantity + 1;
+    quantity.refresh();
+  }
+
+  void decreaseProductQuantity() {
+    final currentQuantity = quantity.value ?? 0;
+    if (currentQuantity > 0) {
+      quantity.value = currentQuantity - 1;
+    }
+    quantity.refresh();
   }
 
   Future<String?> getImage(String? imageId) async {

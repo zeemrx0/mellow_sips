@@ -81,9 +81,10 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                     quantity: controller
                                             .addonQuantity.value[addon.id] ??
                                         0,
-                                    deceaseQuantity: controller.deceaseQuantity,
+                                    deceaseQuantity:
+                                        controller.deceaseAddonQuantity,
                                     increaseQuantity:
-                                        controller.increaseQuantity,
+                                        controller.increaseAddonQuantity,
                                   );
                                 }).toList(),
                               ],
@@ -133,6 +134,9 @@ class ProductDetailPage extends GetView<ProductDetailController> {
             child: Row(
               children: [
                 InkWell(
+                  onTap: () {
+                    controller.decreaseProductQuantity();
+                  },
                   child: Container(
                     padding: EdgeInsets.all(
                       AppThemeExt.of.majorPaddingScale(2),
@@ -152,11 +156,18 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                 SizedBox(
                   width: AppThemeExt.of.majorScale(4),
                 ),
-                AppTextBody1Widget().setText('1').build(context),
+                Obx(
+                  () => AppTextBody1Widget()
+                      .setText('${controller.quantity.value}')
+                      .build(context),
+                ),
                 SizedBox(
                   width: AppThemeExt.of.majorScale(4),
                 ),
                 InkWell(
+                  onTap: () {
+                    controller.increaseProductQuantity();
+                  },
                   child: Container(
                     padding: EdgeInsets.all(
                       AppThemeExt.of.majorPaddingScale(2),
