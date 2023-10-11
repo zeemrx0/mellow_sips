@@ -235,6 +235,7 @@ class StoreDetailPage extends GetView<StoreDetailController> {
             .build(context),
         ...section.products.map((product) {
           return FoodItemWidget(
+            id: product.id ?? '',
             image: product.coverImage ?? '',
             name: product.name ?? '',
             description: product.description ?? '',

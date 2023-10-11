@@ -11,8 +11,10 @@ class ProductRaw extends BaseRaw {
   final List<String>? categories;
   final List<String>? tags;
   final bool? isSoldOut;
+  final List<ProductOptionSectionRaw>? productOptionSections;
 
-  ProductRaw({
+  ProductRaw(
+    this.productOptionSections, {
     required this.id,
     required this.name,
     required this.description,
@@ -38,5 +40,8 @@ class ProductRaw extends BaseRaw {
         categories: categories,
         tags: tags,
         isSoldOut: isSoldOut,
+        productOptionSections: productOptionSections
+            ?.map((e) => e.toModel() as ProductOptionSectionModel)
+            .toList(),
       );
 }
