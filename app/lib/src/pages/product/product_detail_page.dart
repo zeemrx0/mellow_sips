@@ -5,7 +5,8 @@ class ProductDetailPage extends GetView<ProductDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getProductDetail('e2f9ce78-2f0e-49d4-b888-449e71ea9680');
+    controller.getProductDetail(Get.arguments as String);
+
     return AppMainPageWidget()
         .setBody(_body(context))
         .setBackgroundColor(AppColors.of.backgroundColor)
@@ -189,7 +190,7 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                 ),
                 Expanded(
                   child: AppFilledButtonWidget()
-                      .setButtonText('Thêm')
+                      .setButtonText(R.strings.add)
                       .setOnPressed(() {})
                       .build(context),
                 ),
@@ -284,8 +285,8 @@ class ProductDetailPage extends GetView<ProductDetailController> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AppTextFieldWidget()
-            .setFieldKey('note')
-            .setHintText('Ghi chú')
+            .setFieldKey(ProductDetailKey.note)
+            .setHintText(R.strings.note)
             .build(context),
         SizedBox(
           height: AppThemeExt.of.majorScale(6),

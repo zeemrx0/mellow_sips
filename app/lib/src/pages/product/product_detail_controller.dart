@@ -17,6 +17,10 @@ import 'package:resources/resources.dart';
 part './product_detail_page.dart';
 part './product_detail_binding.dart';
 
+class ProductDetailKey {
+  static String note = 'note';
+}
+
 class ProductDetailController extends GetxController {
   final GetProductDetailUseCase _getProductDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
