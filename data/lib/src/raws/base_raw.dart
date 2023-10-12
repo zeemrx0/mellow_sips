@@ -17,6 +17,7 @@ part './store/product_option_section_raw.dart';
 part './store/product_addon_raw.dart';
 
 part './cart/cart_raw.dart';
+part './cart/cart_item_raw.dart';
 
 abstract class BaseRaw<BM extends BaseModel> {
   BM toModel();

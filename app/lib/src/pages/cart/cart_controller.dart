@@ -13,37 +13,40 @@ part 'cart_binding.dart';
 
 part 'cart_page.dart';
 
-class CartItemModel {
-  final String id;
-  final String name;
-  final String description;
-  final String image;
-  final int price;
-  int quantity;
-
-  CartItemModel({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.image,
-    required this.price,
-    required this.quantity,
-  });
-}
-
 class CartController extends GetxController {
   final GetAllCartUseCase _getAllCartUseCase;
+  final GetCartDetailUseCase _getCartDetailUseCase;
+  final GetDocumentUseCase _getDocumentUseCase;
 
-  CartController(this._getAllCartUseCase);
+  CartController(this._getAllCartUseCase, this._getCartDetailUseCase,
+      this._getDocumentUseCase);
 
-  RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
+  RxList<CartModel> carts = <CartModel>[].obs;
 
   Future<void> getAllCart() async {
     try {
       AppLoadingOverlayWidget.show();
       final result = await _getAllCartUseCase.executeList();
 
-      print(result.netData?.first);
+      if (result.netData != null) {
+        for (var cart in result.netData!) {
+          final cartResult = await _getCartDetailUseCase.executeObject(
+            param: GetCartDetailParam(cartId: cart.id),
+          );
+
+          if (cartResult.netData != null) {
+            final cartData = cartResult.netData as CartModel;
+
+            for (var cartItem in cartResult.netData!.cartItems) {
+              cartItem.product.coverImageData =
+                  await getImage(cartItem.product.coverImage);
+            }
+
+            carts.add(cartData);
+          }
+        }
+      }
+
       AppLoadingOverlayWidget.dismiss();
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();
@@ -51,31 +54,44 @@ class CartController extends GetxController {
     }
   }
 
-  int totalPrice() {
-    return cartItems.fold(
+  double totalPrice(CartModel cart) {
+    return cart.cartItems.fold(
       0,
-      (previousValue, element) =>
-          previousValue + element.price * element.quantity,
+      (previousValue, element) => previousValue + element.finalPrice,
     );
   }
 
   void increaseQuantity(String id) {
-    cartItems.firstWhere((element) => element.id == id).quantity++;
-    cartItems.refresh();
+    // carts.firstWhere((element) => element.id == id).quantity++;
+    // carts.refresh();
   }
 
   void decreaseQuantity(String id) {
-    final cartItem = cartItems.firstWhere((element) => element.id == id);
-    if (cartItem.quantity > 1) {
-      cartItem.quantity--;
-    } else {
-      cartItems.removeWhere((element) => element.id == id);
-    }
-    cartItems.refresh();
+    // final cartItem = carts.firstWhere((element) => element.id == id);
+    // if (cartItem.quantity > 1) {
+    //   cartItem.quantity--;
+    // } else {
+    //   carts.removeWhere((element) => element.id == id);
+    // }
+    // carts.refresh();
   }
 
   void removeItem(String id) {
-    cartItems.removeWhere((element) => element.id == id);
-    cartItems.refresh();
+    carts.removeWhere((element) => element.id == id);
+    carts.refresh();
+  }
+
+  Future<String?> getImage(String? imageId) async {
+    if (imageId == null) return null;
+
+    final splitId = imageId.split('|').last;
+
+    final response = await _getDocumentUseCase.executeObject(
+      param: GetDocumentParam(
+        documentId: splitId,
+      ),
+    );
+
+    return Future.value(response.netData!.content);
   }
 }

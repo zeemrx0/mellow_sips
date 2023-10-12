@@ -5,10 +5,12 @@ part of '../base_model.dart';
 class CartModel extends BaseModel {
   final String id;
   final StoreModel store;
+  final List<CartItemModel> cartItems;
 
   CartModel({
     required this.id,
     required this.store,
+    this.cartItems = const [],
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>

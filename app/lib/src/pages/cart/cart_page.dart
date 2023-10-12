@@ -6,7 +6,7 @@ class CartPage extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     controller.getAllCart();
-    
+
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
@@ -21,16 +21,53 @@ class CartPage extends GetView<CartController> {
         children: [
           Expanded(
             child: Obx(
-              () => ListView.builder(
+              () => Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: AppThemeExt.of.majorScale(4),
                   horizontal: AppThemeExt.of.majorScale(4),
                 ),
-                itemCount: controller.cartItems.length,
-                itemBuilder: (context, index) {
-                  final item = controller.cartItems[index];
-                  return CartItemWidget(cartItem: item);
-                },
+                child: Column(
+                  children: controller.carts
+                      .map(
+                        (cart) => Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            AppTextHeading5Widget()
+                                .setText(cart.store.name)
+                                .setTextAlign(TextAlign.start)
+                                .build(
+                                  context,
+                                ),
+                            SizedBox(
+                              height: AppThemeExt.of.majorScale(4),
+                            ),
+                            ...cart.cartItems
+                                .map(
+                                  (cartItem) => CartItemWidget(
+                                    cartItem: cartItem,
+                                  ),
+                                )
+                                .toList(),
+                            SizedBox(
+                              height: AppThemeExt.of.majorScale(3),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppTextHeading5Widget()
+                                    .setText(R.strings.totalPrice)
+                                    .build(context),
+                                AppTextHeading5Widget()
+                                    .setText(
+                                        '${NumberExt.withSeparator(controller.totalPrice(cart))}đ')
+                                    .setColor(AppColors.of.primaryColor)
+                                    .build(context),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ),
               ),
             ),
           ),
@@ -38,50 +75,27 @@ class CartPage extends GetView<CartController> {
             padding: EdgeInsets.symmetric(
               horizontal: AppThemeExt.of.majorScale(4),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppTextHeading3Widget()
-                        .setText(R.strings.totalPrice)
-                        .build(context),
-                    Obx(
-                      () => AppTextHeading3Widget()
-                          .setText(
-                              '${NumberExt.withSeparator(controller.totalPrice())}đ')
-                          .setColor(AppColors.of.primaryColor)
-                          .build(context),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                FilledButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(AppColors.of.primaryColor),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(
-                        horizontal: AppThemeExt.of.majorScale(5),
-                        vertical: AppThemeExt.of.majorScale(9 / 4),
-                      ),
-                    ),
+            child: FilledButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(AppColors.of.primaryColor),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  onPressed: () {},
-                  child: AppTextHeading4Widget()
-                      .setText(R.strings.pay)
-                      .setColor(Colors.white)
-                      .build(context),
                 ),
-              ],
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(
+                    horizontal: AppThemeExt.of.majorScale(5),
+                    vertical: AppThemeExt.of.majorScale(9 / 4),
+                  ),
+                ),
+              ),
+              onPressed: () {},
+              child: AppTextHeading4Widget()
+                  .setText(R.strings.pay)
+                  .setColor(Colors.white)
+                  .build(context),
             ),
           )
         ],

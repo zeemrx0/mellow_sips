@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/pages/cart/cart_controller.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
 class CartItemWidget extends GetView<CartController> {
@@ -99,10 +103,10 @@ class CartItemWidget extends GetView<CartController> {
               ClipRRect(
                 borderRadius:
                     BorderRadius.circular(AppThemeExt.of.majorScale(5)),
-                child: Image.network(
-                  cartItem.image,
-                  width: AppThemeExt.of.majorScale(84 / 4),
-                  height: AppThemeExt.of.majorScale(84 / 4),
+                child: Image.memory(
+                  base64Decode(cartItem.product.coverImageData ?? ''),
+                  width: AppThemeExt.of.majorScale(72 / 4),
+                  height: AppThemeExt.of.majorScale(72 / 4),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -113,20 +117,27 @@ class CartItemWidget extends GetView<CartController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppTextHeading6Widget()
-                        .setText(cartItem.name)
+                    AppTextBody1Widget()
+                        .setText(cartItem.product.name)
+                        .setTextStyle(
+                          AppTextStyleExt.of.textBody1s?.copyWith(
+                            fontFamily: R.fontFamily.workSans,
+                          ),
+                        )
                         .build(context),
                     SizedBox(
-                      height: AppThemeExt.of.majorScale(1),
+                      height: AppThemeExt.of.majorScale(2 / 4),
                     ),
-                    AppTextBody1Widget()
-                        .setText(cartItem.description)
+                    AppTextBody2Widget()
+                        .setText(cartItem.product.description)
+                        .setColor(AppColors.of.subTextColor)
                         .build(context),
                     SizedBox(
                       height: AppThemeExt.of.majorScale(6 / 4),
                     ),
                     AppTextHeading6Widget()
-                        .setText('${NumberExt.withSeparator(cartItem.price)}đ')
+                        .setText(
+                            '${NumberExt.withSeparator(cartItem.tempPrice)}đ')
                         .setColor(AppColors.of.secondaryColor)
                         .build(context),
                   ],
