@@ -9,7 +9,7 @@ class SearchStoresUseCaseImpl extends SearchStoresUseCase {
   SearchStoresUseCaseImpl(this._storeRepository);
 
   @override
-  Future<AppListResultModel<StoreModel>> executeList({
+  Future<AppPaginationListResultModel<StoreModel>> executePaginationList({
     SearchStoresParam? param,
   }) {
     return _storeRepository.searchStores(params: param!.toJson());

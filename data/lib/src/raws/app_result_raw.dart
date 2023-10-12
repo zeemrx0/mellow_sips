@@ -13,19 +13,31 @@ class AppObjectResultRaw<BR extends BaseRaw> {
 
 class AppListResultRaw<BR extends BaseRaw> {
   final List<BR>? netData;
+
+  AppListResultRaw({required this.netData});
+
+  AppListResultModel<BM> toAppListResultModel<BM extends BaseModel>() =>
+      AppListResultModel<BM>(
+        netData: netData?.map((e) => e.toModel() as BM).toList(),
+      );
+}
+
+class AppPaginationListResultRaw<BR extends BaseRaw> {
+  final List<BR>? netData;
   final bool hasMore;
   final int total;
 
-  AppListResultRaw({
+  AppPaginationListResultRaw({
     required this.netData,
     this.hasMore = false,
     this.total = 0,
   });
 
-  AppListResultModel<BM> toAppListResultModel<BM extends BaseModel>() =>
-      AppListResultModel<BM>(
-        netData: netData?.map((e) => e.toModel() as BM).toList(),
-        hasMore: hasMore,
-        total: total,
-      );
+  AppPaginationListResultModel<BM>
+      toAppPaginationListResultModel<BM extends BaseModel>() =>
+          AppPaginationListResultModel<BM>(
+            netData: netData?.map((e) => e.toModel() as BM).toList(),
+            hasMore: hasMore,
+            total: total,
+          );
 }

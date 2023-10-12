@@ -43,7 +43,7 @@ class CartController extends GetxController {
       AppLoadingOverlayWidget.show();
       final result = await _getAllCartUseCase.executeList();
 
-      print(result.netData!.first);
+      print(result.netData?.first);
       AppLoadingOverlayWidget.dismiss();
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();

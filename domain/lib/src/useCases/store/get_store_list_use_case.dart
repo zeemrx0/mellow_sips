@@ -9,7 +9,7 @@ class GetStoreListUseCaseImpl extends GetStoreListUseCase {
   GetStoreListUseCaseImpl(this._storeRepository);
 
   @override
-  Future<AppListResultModel<StoreModel>> executeList({GetStoreListParam? param}) {
+  Future<AppPaginationListResultModel<StoreModel>> executePaginationList({GetStoreListParam? param}) {
     return _storeRepository.getStoreList(params: param!.toJson());
   }
 }

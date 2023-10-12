@@ -8,10 +8,16 @@ class AppObjectResultModel<BM extends BaseModel> {
 
 class AppListResultModel<BM extends BaseModel> {
   final List<BM>? netData;
+
+  AppListResultModel({required this.netData});
+}
+
+class AppPaginationListResultModel<BM extends BaseModel> {
+  final List<BM>? netData;
   final bool hasMore;
   final int total;
 
-  AppListResultModel({
+  AppPaginationListResultModel({
     required this.netData,
     this.hasMore = false,
     this.total = 0,

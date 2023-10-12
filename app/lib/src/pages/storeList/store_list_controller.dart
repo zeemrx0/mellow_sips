@@ -27,9 +27,9 @@ class StoreListController extends AppListViewController<StoreModel> {
   StoreListController(this._searchStoresUseCase, this._getDocumentUseCase);
 
   @override
-  Future<AppListResultModel<StoreModel>> onCall(
+  Future<AppPaginationListResultModel<StoreModel>> onCall(
       AppListParam appListParam) async {
-    final response = await _searchStoresUseCase.executeList(
+    final response = await _searchStoresUseCase.executePaginationList(
       param: SearchStoresParam(
         criteria: {
           StoreListKey.filter: {
@@ -55,7 +55,7 @@ class StoreListController extends AppListViewController<StoreModel> {
     );
 
     return Future(
-      () => AppListResultModel(
+      () => AppPaginationListResultModel(
         netData: storeListWithImage,
         hasMore: response.hasMore,
         total: response.total,

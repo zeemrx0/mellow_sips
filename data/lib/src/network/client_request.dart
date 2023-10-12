@@ -13,6 +13,12 @@ enum HttpMethod {
   const HttpMethod({required this.value});
 }
 
+enum RequestType {
+  object,
+  list,
+  paginationList,
+}
+
 class ClientRequest {
   String url;
   HttpMethod method;
@@ -22,7 +28,7 @@ class ClientRequest {
   String? contentType;
   ProgressCallback? onSendProgress;
   ProgressCallback? onReceiveProgress;
-  bool isRequestedForList = false;
+  RequestType requestType;
 
   ClientRequest({
     required this.url,
@@ -33,6 +39,6 @@ class ClientRequest {
     this.contentType,
     this.onSendProgress,
     this.onReceiveProgress,
-    this.isRequestedForList = false,
+    this.requestType = RequestType.object,
   });
 }

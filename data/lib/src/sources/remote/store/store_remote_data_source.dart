@@ -1,11 +1,11 @@
 part of '../base_remote_data_source.dart';
 
 abstract class StoreRemoteDataSource {
-  Future<AppListResultRaw<StoreRaw>> getStoreList({
+  Future<AppPaginationListResultRaw<StoreRaw>> getStoreList({
     required Map<String, dynamic> params,
   });
 
-  Future<AppListResultRaw<StoreRaw>> searchStores({
+  Future<AppPaginationListResultRaw<StoreRaw>> searchStores({
     required Map<String, dynamic> params,
   });
 
@@ -24,7 +24,7 @@ class StoreRemoteDataSourceImpl extends StoreRemoteDataSource {
   StoreRemoteDataSourceImpl(this._networkService);
 
   @override
-  Future<AppListResultRaw<StoreRaw>> getStoreList(
+  Future<AppPaginationListResultRaw<StoreRaw>> getStoreList(
       {required Map<String, dynamic> params}) async {
     try {
       final remoteData = await _networkService.request(
@@ -32,11 +32,11 @@ class StoreRemoteDataSourceImpl extends StoreRemoteDataSource {
           url: ApiProvider.stores,
           method: HttpMethod.get,
           queryParameters: params,
-          isRequestedForList: true,
+          requestType: RequestType.paginationList,
         ),
       );
 
-      return remoteData.toListRaw((data) =>
+      return remoteData.toPaginationListRaw((data) =>
           (data as List).map((item) => StoreRaw.fromJson(item)).toList());
     } on NetworkException catch (_) {
       rethrow;
@@ -44,7 +44,7 @@ class StoreRemoteDataSourceImpl extends StoreRemoteDataSource {
   }
 
   @override
-  Future<AppListResultRaw<StoreRaw>> searchStores({
+  Future<AppPaginationListResultRaw<StoreRaw>> searchStores({
     required Map<String, dynamic> params,
   }) async {
     try {
@@ -53,11 +53,11 @@ class StoreRemoteDataSourceImpl extends StoreRemoteDataSource {
           url: ApiProvider.searchStores,
           method: HttpMethod.post,
           body: params,
-          isRequestedForList: true,
+          requestType: RequestType.paginationList,
         ),
       );
 
-      return remoteData.toListRaw((data) =>
+      return remoteData.toPaginationListRaw((data) =>
           (data as List).map((item) => StoreRaw.fromJson(item)).toList());
     } on NetworkException catch (_) {
       rethrow;

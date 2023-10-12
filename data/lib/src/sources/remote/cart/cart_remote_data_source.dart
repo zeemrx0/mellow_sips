@@ -20,12 +20,13 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
         clientRequest: ClientRequest(
           url: ApiProvider.carts,
           method: HttpMethod.get,
-          isRequestedForList: true,
+          requestType: RequestType.list,
         ),
       );
 
       return remoteData.toListRaw(
-        (data) => data.map((e) => CartRaw.fromJson(e)).toList(),
+        (data) =>
+            (data as List<dynamic>).map((e) => CartRaw.fromJson(e)).toList(),
       );
     } on NetworkException catch (_) {
       rethrow;

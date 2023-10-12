@@ -30,7 +30,13 @@ abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
 
   Future<AppListResultModel<Out>> executeList({In? param}) {
     return Future.value(
-      AppListResultModel<Out>(
+      AppListResultModel<Out>(netData: null),
+    );
+  }
+
+  Future<AppPaginationListResultModel<Out>> executePaginationList({In? param}) {
+    return Future.value(
+      AppPaginationListResultModel<Out>(
         netData: null,
         hasMore: false,
         total: 0,
