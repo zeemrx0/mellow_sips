@@ -10,4 +10,8 @@ abstract class CartRepository {
   Future<AppObjectResultModel<CartModel>> getCartDetail({
     required Map<String, dynamic> params,
   });
+
+  Future<AppObjectResultModel<EmptyModel>> deleteCart({
+    required Map<String, dynamic> params,
+  });
 }

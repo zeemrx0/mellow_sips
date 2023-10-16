@@ -56,7 +56,7 @@ class CartItemWidget extends GetView<CartController> {
             Expanded(
               child: InkWell(
                 onTap: () {
-                  controller.removeItem(cartItem.id);
+                  // controller.removeItem(cartItem.id);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(

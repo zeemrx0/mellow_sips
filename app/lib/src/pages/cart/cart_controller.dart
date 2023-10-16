@@ -17,9 +17,10 @@ class CartController extends GetxController {
   final GetAllCartUseCase _getAllCartUseCase;
   final GetCartDetailUseCase _getCartDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
+  final DeleteCartUseCase _deleteCartUseCase;
 
   CartController(this._getAllCartUseCase, this._getCartDetailUseCase,
-      this._getDocumentUseCase);
+      this._getDocumentUseCase, this._deleteCartUseCase);
 
   RxList<CartModel> carts = <CartModel>[].obs;
 
@@ -37,10 +38,10 @@ class CartController extends GetxController {
           if (cartResult.netData != null) {
             final cartData = cartResult.netData as CartModel;
 
-            for (var cartItem in cartResult.netData!.cartItems) {
-              cartItem.product.coverImageData =
-                  await getImage(cartItem.product.coverImage);
-            }
+            // for (var cartItem in cartResult.netData!.cartItems) {
+            //   cartItem.product.coverImageData =
+            //       await getImage(cartItem.product.coverImage);
+            // }
 
             carts.add(cartData);
           }
@@ -76,9 +77,14 @@ class CartController extends GetxController {
     // carts.refresh();
   }
 
-  void removeItem(String id) {
-    carts.removeWhere((element) => element.id == id);
-    carts.refresh();
+  Future<void> deleteCart(String id) async {
+    await _deleteCartUseCase.executeObject(
+      param: DeleteCartParam(
+        cartId: id,
+      ),
+    );
+
+    await getAllCart();
   }
 
   Future<String?> getImage(String? imageId) async {

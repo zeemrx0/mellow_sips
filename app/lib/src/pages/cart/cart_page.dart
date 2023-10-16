@@ -31,12 +31,26 @@ class CartPage extends GetView<CartController> {
                         (cart) => Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            AppTextHeading5Widget()
-                                .setText(cart.store.name)
-                                .setTextAlign(TextAlign.start)
-                                .build(
-                                  context,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppTextHeading5Widget()
+                                    .setText(cart.store.name)
+                                    .setTextAlign(TextAlign.start)
+                                    .build(
+                                      context,
+                                    ),
+                                InkWell(
+                                  onTap: () {
+                                    controller.deleteCart(cart.id);
+                                  },
+                                  child: R.svgs.icClose.svg(
+                                    width: AppThemeExt.of.majorScale(6),
+                                    height: AppThemeExt.of.majorScale(6),
+                                  ),
                                 ),
+                              ],
+                            ),
                             SizedBox(
                               height: AppThemeExt.of.majorScale(4),
                             ),
