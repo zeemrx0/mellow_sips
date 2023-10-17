@@ -22,7 +22,11 @@ class CartItemWidget extends GetView<CartController> {
   Widget build(BuildContext context) {
     return Padding(
       key: ValueKey(cartItem.id),
-      padding: EdgeInsets.only(bottom: AppThemeExt.of.majorMarginScale(4)),
+      padding: EdgeInsets.only(
+        bottom: AppThemeExt.of.majorMarginScale(
+          4,
+        ),
+      ),
       child: Slidable(
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
@@ -56,7 +60,7 @@ class CartItemWidget extends GetView<CartController> {
             Expanded(
               child: InkWell(
                 onTap: () {
-                  // controller.removeItem(cartItem.id);
+                  controller.deleteCartItem(cartItem.id);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(
@@ -149,9 +153,7 @@ class CartItemWidget extends GetView<CartController> {
               Row(
                 children: [
                   InkWell(
-                    onTap: () {
-                      controller.decreaseQuantity(cartItem.id);
-                    },
+                    onTap: () {},
                     child: Container(
                       width: AppThemeExt.of.majorScale(6),
                       height: AppThemeExt.of.majorScale(6),
@@ -177,9 +179,7 @@ class CartItemWidget extends GetView<CartController> {
                     width: AppThemeExt.of.majorScale(3),
                   ),
                   InkWell(
-                    onTap: () {
-                      controller.increaseQuantity(cartItem.id);
-                    },
+                    onTap: () {},
                     child: Container(
                       width: AppThemeExt.of.majorScale(6),
                       height: AppThemeExt.of.majorScale(6),

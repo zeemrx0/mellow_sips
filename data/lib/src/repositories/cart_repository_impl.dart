@@ -56,4 +56,18 @@ class CartRepositoryImpl extends CartRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> deleteCartItem({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _cartRemoteDataSource.deleteCartItem(
+        params: params,
+      );
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

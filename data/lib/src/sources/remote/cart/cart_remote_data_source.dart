@@ -14,6 +14,10 @@ abstract class CartRemoteDataSource {
   Future<AppObjectResultRaw<EmptyRaw>> deleteCart({
     required Map<String, dynamic> params,
   });
+
+  Future<AppObjectResultRaw<EmptyRaw>> deleteCartItem({
+    required Map<String, dynamic> params,
+  });
 }
 
 class CartRemoteDataSourceImpl implements CartRemoteDataSource {
@@ -85,6 +89,25 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
       final remoteData = await _networkService.request(
         clientRequest: ClientRequest(
           url: '${ApiProvider.carts}/${params['cartId']}',
+          method: HttpMethod.delete,
+          requestType: RequestType.object,
+        ),
+      );
+
+      return remoteData.toObjectRaw((data) => EmptyRaw());
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultRaw<EmptyRaw>> deleteCartItem({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _networkService.request(
+        clientRequest: ClientRequest(
+          url: '${ApiProvider.cartItems}/${params['cartItemId']}',
           method: HttpMethod.delete,
           requestType: RequestType.object,
         ),

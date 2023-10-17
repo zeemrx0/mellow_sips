@@ -18,9 +18,15 @@ class CartController extends GetxController {
   final GetCartDetailUseCase _getCartDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
   final DeleteCartUseCase _deleteCartUseCase;
+  final DeleteCartItemUseCase _deleteCartItemUseCase;
 
-  CartController(this._getAllCartUseCase, this._getCartDetailUseCase,
-      this._getDocumentUseCase, this._deleteCartUseCase);
+  CartController(
+    this._getAllCartUseCase,
+    this._getCartDetailUseCase,
+    this._getDocumentUseCase,
+    this._deleteCartUseCase,
+    this._deleteCartItemUseCase,
+  );
 
   RxList<CartModel> carts = <CartModel>[].obs;
 
@@ -38,10 +44,10 @@ class CartController extends GetxController {
           if (cartResult.netData != null) {
             final cartData = cartResult.netData as CartModel;
 
-            // for (var cartItem in cartResult.netData!.cartItems) {
-            //   cartItem.product.coverImageData =
-            //       await getImage(cartItem.product.coverImage);
-            // }
+            for (var cartItem in cartResult.netData!.cartItems) {
+              cartItem.product.coverImageData =
+                  await getImage(cartItem.product.coverImage);
+            }
 
             carts.add(cartData);
           }
@@ -62,29 +68,26 @@ class CartController extends GetxController {
     );
   }
 
-  void increaseQuantity(String id) {
-    // carts.firstWhere((element) => element.id == id).quantity++;
-    // carts.refresh();
-  }
-
-  void decreaseQuantity(String id) {
-    // final cartItem = carts.firstWhere((element) => element.id == id);
-    // if (cartItem.quantity > 1) {
-    //   cartItem.quantity--;
-    // } else {
-    //   carts.removeWhere((element) => element.id == id);
-    // }
-    // carts.refresh();
-  }
-
-  Future<void> deleteCart(String id) async {
+  Future<void> deleteCart(String cartId) async {
     await _deleteCartUseCase.executeObject(
       param: DeleteCartParam(
-        cartId: id,
+        cartId: cartId,
       ),
     );
 
     await getAllCart();
+    carts.refresh();
+  }
+
+  Future<void> deleteCartItem(String cartItemId) async {
+    await _deleteCartItemUseCase.executeObject(
+      param: DeleteCartItemParam(
+        cartItemId: cartItemId,
+      ),
+    );
+
+    await getAllCart();
+    carts.refresh();
   }
 
   Future<String?> getImage(String? imageId) async {
