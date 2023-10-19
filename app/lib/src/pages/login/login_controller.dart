@@ -7,7 +7,7 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
-import 'package:app/src/pages/home/home_controller.dart';
+import 'package:app/src/pages/storeList/store_list_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
@@ -78,7 +78,7 @@ class LoginController extends GetxController {
         AppLoadingOverlayWidget.dismiss();
 
         if (result.netData != null) {
-          HomePage.open();
+          StoreListPage.open();
         }
       }
     } on AppException catch (e) {

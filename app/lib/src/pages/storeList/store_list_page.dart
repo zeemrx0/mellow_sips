@@ -3,6 +3,10 @@ part of './store_list_controller.dart';
 class StoreListPage extends GetView<StoreListController> {
   const StoreListPage({super.key});
 
+  static void open() {
+    Get.toNamed(Routes.stores);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppMainPageWidget()

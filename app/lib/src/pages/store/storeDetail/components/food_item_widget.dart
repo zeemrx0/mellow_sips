@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/routes/app_pages.dart';
@@ -10,7 +9,7 @@ import 'package:utilities/utilities.dart';
 
 class FoodItemWidget extends StatelessWidget {
   final String id;
-  final String image;
+  final String? imageData;
   final String name;
   final String description;
   final int price;
@@ -18,7 +17,7 @@ class FoodItemWidget extends StatelessWidget {
   const FoodItemWidget({
     super.key,
     required this.id,
-    required this.image,
+    required this.imageData,
     required this.name,
     required this.description,
     required this.price,
@@ -50,13 +49,10 @@ class FoodItemWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(
                 AppThemeExt.of.majorScale(4),
               ),
-              child: Container(
+              child: DataImageWidget(
                 height: AppThemeExt.of.majorScale(72 / 4),
                 width: AppThemeExt.of.majorScale(72 / 4),
-                child: Image.memory(
-                  base64Decode(image),
-                  fit: BoxFit.cover,
-                ),
+                imageData: imageData,
               ),
             ),
             SizedBox(

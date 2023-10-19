@@ -17,19 +17,11 @@ class ProductDetailPage extends GetView<ProductDetailController> {
     return Stack(
       children: [
         Obx(
-          () => Container(
+          () => DataImageWidget(
             width: MediaQuery.of(Get.context!).size.width,
             height: MediaQuery.of(Get.context!).padding.top +
                 AppThemeExt.of.majorScale(136 / 4),
-            color: AppColors.of.grayColor[300],
-            child: controller.product.value?.coverImage != null
-                ? Image.memory(
-                    base64Decode(
-                      controller.product.value?.coverImage ?? '',
-                    ),
-                    fit: BoxFit.cover,
-                  )
-                : null,
+            imageData: controller.product.value?.coverImageData,
           ),
         ),
         CustomScrollView(
@@ -64,33 +56,55 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                       SizedBox(
                         height: AppThemeExt.of.majorScale(3),
                       ),
-                      ...(controller.product.value?.productOptionSections!
-                              .map((section) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                AppTextHeading6Widget()
-                                    .setText(section.name)
-                                    .setTextAlign(TextAlign.left)
-                                    .build(context),
-                                SizedBox(
-                                  height: AppThemeExt.of.majorScale(1),
-                                ),
-                                ...section.productAddons.map((addon) {
-                                  return QuantityAddonWidget(
-                                    productAddon: addon,
-                                    quantity: controller
-                                            .addonQuantity.value[addon.id] ??
-                                        0,
-                                    deceaseQuantity:
-                                        controller.deceaseAddonQuantity,
-                                    increaseQuantity:
-                                        controller.increaseAddonQuantity,
-                                  );
-                                }).toList(),
-                              ],
-                            );
-                          }).toList() ??
+                      ...(controller.product.value?.productOptionSections!.map(
+                            (section) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  AppTextHeading6Widget()
+                                      .setText(section.name)
+                                      .setTextAlign(TextAlign.left)
+                                      .build(context),
+                                  SizedBox(
+                                    height: AppThemeExt.of.majorScale(1),
+                                  ),
+                                  ...section.productAddons.map(
+                                    (addon) {
+                                      return Row(
+                                        children: [
+                                          Checkbox(
+                                            value: controller.isAddonChecked
+                                                    .value[addon.id] ??
+                                                false,
+                                            activeColor:
+                                                AppColors.of.primaryColor,
+                                            overlayColor: MaterialStateProperty
+                                                .resolveWith<Color?>(
+                                              (Set<MaterialState> states) =>
+                                                  AppColors.of.grayColor[300],
+                                            ),
+                                            side: BorderSide(
+                                                color:
+                                                    AppColors.of.borderColor),
+                                            onChanged: (value) {
+                                              controller.isAddonChecked
+                                                      .value[addon.id] =
+                                                  value ?? false;
+                                              controller.isAddonChecked
+                                                  .refresh();
+                                            },
+                                          ),
+                                          AppTextBody2Widget()
+                                              .setText(addon.name)
+                                              .build(context),
+                                        ],
+                                      );
+                                    },
+                                  ).toList(),
+                                ],
+                              );
+                            },
+                          ).toList() ??
                           []),
                       SizedBox(
                         height: AppThemeExt.of.majorScale(3),

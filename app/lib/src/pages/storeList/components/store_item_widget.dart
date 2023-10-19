@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/routes/app_pages.dart';
@@ -42,16 +41,12 @@ class StoreItemWidget extends StatelessWidget {
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  ClipRRect(
+                  DataImageWidget(
+                    imageData: store.coverImage,
+                    width: AppThemeExt.of.majorScale(72 / 4),
+                    height: AppThemeExt.of.majorScale(72 / 4),
                     borderRadius: BorderRadius.circular(
-                      AppThemeExt.of.majorScale(3),
-                    ),
-                    child: SizedBox(
-                      height: AppThemeExt.of.majorScale(72 / 4),
-                      width: AppThemeExt.of.majorScale(72 / 4),
-                      child: Image.memory(
-                        base64Decode(store.coverImage ?? ''),
-                      ),
+                      AppThemeExt.of.majorScale(2),
                     ),
                   ),
                   if (store.hasPromotion ?? false) _promotionTag(context),

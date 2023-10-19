@@ -1,6 +1,6 @@
-import 'dart:convert';
 import 'dart:math';
 
+import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
@@ -35,7 +35,6 @@ class StoreDetailController extends GetxController {
   Future<void> getStoreDetail() async {
     try {
       AppLoadingOverlayWidget.show();
-      _isStoreDetailLoad.value = true;
 
       final result = await _getStoreDetailUseCase.executeObject(
         param: GetStoreDetailParam(
@@ -45,13 +44,15 @@ class StoreDetailController extends GetxController {
 
       final storeData = result.netData;
 
-      storeData?.coverImage = await getImage(storeData.coverImage);
+      store.value = storeData;
+
+      _isStoreDetailLoad.value = true;
 
       if (_isStoreMenuLoad.value) {
         AppLoadingOverlayWidget.dismiss();
       }
 
-      store.value = storeData;
+      store.value?.coverImageData = await getImage(store.value?.coverImage);
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();
       print(e);
@@ -70,18 +71,20 @@ class StoreDetailController extends GetxController {
 
       final menuData = result.netData;
 
-      for (MenuSectionModel section in menuData?.menuSections ?? []) {
-        for (ProductModel product in section.products) {
-          final image = await getImage(product.coverImage);
-          product.coverImage = image;
-        }
-      }
+      menu.value = menuData;
+
+      _isStoreMenuLoad.value = true;
 
       if (_isStoreDetailLoad.value) {
         AppLoadingOverlayWidget.dismiss();
       }
 
-      menu.value = menuData;
+      for (MenuSectionModel section in menu.value?.menuSections ?? []) {
+        for (ProductModel product in section.products) {
+          product.coverImageData = await getImage(product.coverImage);
+          menu.refresh();
+        }
+      }
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();
       print(e);

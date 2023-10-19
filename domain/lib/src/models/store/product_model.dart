@@ -7,6 +7,7 @@ class ProductModel extends BaseModel {
   final String? name;
   final String? description;
   String? coverImage;
+  String? coverImageData;
   final int? price;
   final List<String>? categories;
   final List<String>? tags;
@@ -18,6 +19,7 @@ class ProductModel extends BaseModel {
     required this.name,
     required this.description,
     required this.coverImage,
+    this.coverImageData,
     required this.price,
     required this.categories,
     required this.tags,

@@ -5,6 +5,7 @@ import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/pages/storeList/components/store_item_widget.dart';
 import 'package:app/src/pages/storeList/components/toogle_chip_widget.dart';
+import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,7 +50,7 @@ class StoreListController extends AppListViewController<StoreModel> {
       storeList.map(
         (store) async {
           final image = await getImage(store.coverImage);
-          return store.copyWith(coverImage: image);
+          return store.copyWith(coverImageData: image);
         },
       ),
     );
