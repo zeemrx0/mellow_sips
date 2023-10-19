@@ -3,6 +3,7 @@ part of '../base_raw.dart';
 @JsonSerializable()
 @CopyWith()
 class ProductOptionSectionRaw extends BaseRaw {
+  final String id;
   final String name;
   final int order;
   final bool isRequired;
@@ -10,6 +11,7 @@ class ProductOptionSectionRaw extends BaseRaw {
   final List<ProductAddonRaw> productAddons;
 
   ProductOptionSectionRaw({
+    required this.id,
     required this.name,
     required this.order,
     required this.isRequired,
@@ -25,6 +27,7 @@ class ProductOptionSectionRaw extends BaseRaw {
   @override
   BaseModel toModel() {
     return ProductOptionSectionModel(
+      id: id,
       name: name,
       order: order,
       isRequired: isRequired,

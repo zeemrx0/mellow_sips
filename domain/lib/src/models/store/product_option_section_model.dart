@@ -3,6 +3,7 @@ part of '../base_model.dart';
 @JsonSerializable()
 @CopyWith()
 class ProductOptionSectionModel extends BaseModel {
+  final String id;
   final String name;
   final int order;
   final bool isRequired;
@@ -10,6 +11,7 @@ class ProductOptionSectionModel extends BaseModel {
   final List<ProductAddonModel> productAddons;
 
   ProductOptionSectionModel({
+    required this.id,
     required this.name,
     required this.order,
     required this.isRequired,

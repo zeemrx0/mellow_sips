@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
-import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
@@ -39,10 +38,6 @@ class ProductDetailController extends GetxController {
 
   Rxn<ProductModel> product = Rxn<ProductModel>();
   Rxn<int> quantity = Rxn<int>(1);
-
-  Rx<Map<String, bool>> isAddonChecked = Rx<Map<String, bool>>({});
-
-  Rx<String> note = Rx<String>('');
 
   Future<void> getProductDetail(String productId) async {
     try {
@@ -102,20 +97,37 @@ class ProductDetailController extends GetxController {
     try {
       AppLoadingOverlayWidget.show();
 
+      if (formKey.currentState == null) return;
+
+      formKey.currentState?.save();
+
+      List<String> addons = [];
+
+      product.value?.productOptionSections?.forEach((section) {
+        if (section.maxAllowedChoices > 1) {
+          final values = formKey.currentState!.fields[section.id]!.value;
+          if (values is List<String>) {
+            addons.addAll(values);
+          }
+        } else {
+          addons.add(formKey.currentState!.fields[section.name]!.value);
+        }
+      });
+
       final result = await _addToCartUseCase.executeObject(
         param: AddToCartParam(
           productId: product.value!.id!,
-          addons: addonQuantity.value.keys.toList(),
+          addons: addons,
           quantity: quantity.value ?? 0,
-          note: note.value,
+          note:
+              formKey.currentState!.fields[ProductDetailKey.note]?.value ?? '',
         ),
       );
 
       if (result.netData != null) {
+        AppLoadingOverlayWidget.dismiss();
         Get.back();
       }
-
-      AppLoadingOverlayWidget.dismiss();
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();
       print(e);
