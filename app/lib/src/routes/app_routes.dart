@@ -15,5 +15,5 @@ class Routes {
 
   static const products = '/products';
   static const productDetail = '/product-detail';
-  static const cart = '/cart';
+  static const carts = '/carts';
 }

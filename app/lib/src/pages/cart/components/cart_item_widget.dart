@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/pages/cart/cart_controller.dart';
@@ -104,15 +103,13 @@ class CartItemWidget extends GetView<CartController> {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius:
-                    BorderRadius.circular(AppThemeExt.of.majorScale(5)),
-                child: Image.memory(
-                  base64Decode(cartItem.product.coverImageData ?? ''),
-                  width: AppThemeExt.of.majorScale(72 / 4),
-                  height: AppThemeExt.of.majorScale(72 / 4),
-                  fit: BoxFit.cover,
+              DataImageWidget(
+                width: AppThemeExt.of.majorScale(72 / 4),
+                height: AppThemeExt.of.majorScale(72 / 4),
+                borderRadius: BorderRadius.circular(
+                  AppThemeExt.of.majorScale(5),
                 ),
+                imageData: cartItem.product.coverImageData,
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(4),

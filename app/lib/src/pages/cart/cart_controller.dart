@@ -33,6 +33,7 @@ class CartController extends GetxController {
   Future<void> getAllCart() async {
     try {
       AppLoadingOverlayWidget.show();
+
       final result = await _getAllCartUseCase.executeList();
 
       if (result.netData != null) {
@@ -44,17 +45,21 @@ class CartController extends GetxController {
           if (cartResult.netData != null) {
             final cartData = cartResult.netData as CartModel;
 
-            for (var cartItem in cartResult.netData!.cartItems) {
-              cartItem.product.coverImageData =
-                  await getImage(cartItem.product.coverImage);
-            }
-
             carts.add(cartData);
           }
         }
       }
 
       AppLoadingOverlayWidget.dismiss();
+
+      for (var cart in carts) {
+        for (var cartItem in cart.cartItems) {
+          cartItem.product.coverImageData =
+              await getImage(cartItem.product.coverImage);
+        }
+
+        carts.refresh();
+      }
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();
       print(e);

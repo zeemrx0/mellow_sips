@@ -111,45 +111,50 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             ),
             child: Row(
               children: [
-                Container(
-                  height: AppThemeExt.of.majorScale(42 / 4),
-                  width: AppThemeExt.of.majorScale(86 / 4),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppThemeExt.of.majorPaddingScale(4),
-                    vertical: AppThemeExt.of.majorPaddingScale(10 / 4),
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.of.whiteColor,
-                    borderRadius: BorderRadius.circular(
-                      AppThemeExt.of.majorScale(10 / 4),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.carts);
+                  },
+                  child: Container(
+                    height: AppThemeExt.of.majorScale(42 / 4),
+                    width: AppThemeExt.of.majorScale(86 / 4),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppThemeExt.of.majorPaddingScale(4),
+                      vertical: AppThemeExt.of.majorPaddingScale(10 / 4),
                     ),
-                    border: Border.all(
-                      color: AppColors.of.borderColor,
-                      width: 1,
+                    decoration: BoxDecoration(
+                      color: AppColors.of.whiteColor,
+                      borderRadius: BorderRadius.circular(
+                        AppThemeExt.of.majorScale(10 / 4),
+                      ),
+                      border: Border.all(
+                        color: AppColors.of.borderColor,
+                        width: 1,
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      R.svgs.icCartOutline.svg(
-                        width: AppThemeExt.of.majorScale(5),
-                        height: AppThemeExt.of.majorScale(5),
-                      ),
-                      SizedBox(
-                        width: AppThemeExt.of.majorScale(2),
-                      ),
-                      Obx(
-                        () => AppTextBody1Widget()
-                            .setText('${controller.numberOfCartItems.value}')
-                            .setTextStyle(
-                              AppTextStyleExt.of.textBody1s?.copyWith(
-                                fontFamily: R.fontFamily.workSans,
-                              ),
-                            )
-                            .build(context),
-                      ),
-                    ],
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        R.svgs.icCartOutline.svg(
+                          width: AppThemeExt.of.majorScale(5),
+                          height: AppThemeExt.of.majorScale(5),
+                        ),
+                        SizedBox(
+                          width: AppThemeExt.of.majorScale(2),
+                        ),
+                        Obx(
+                          () => AppTextBody1Widget()
+                              .setText('${controller.numberOfCartItems.value}')
+                              .setTextStyle(
+                                AppTextStyleExt.of.textBody1s?.copyWith(
+                                  fontFamily: R.fontFamily.workSans,
+                                ),
+                              )
+                              .build(context),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
