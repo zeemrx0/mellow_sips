@@ -6,11 +6,13 @@ class CartRaw extends BaseRaw {
   final String id;
   final StoreRaw store;
   final List<CartItemRaw> cartItems;
+  final int numberOfItems;
 
   CartRaw({
     required this.id,
     required this.store,
     this.cartItems = const [],
+    this.numberOfItems = 0,
   });
 
   factory CartRaw.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +26,7 @@ class CartRaw extends BaseRaw {
       id: id,
       store: store.toModel() as StoreModel,
       cartItems: cartItems.map((e) => e.toModel() as CartItemModel).toList(),
+      numberOfItems: numberOfItems,
     );
   }
 }
