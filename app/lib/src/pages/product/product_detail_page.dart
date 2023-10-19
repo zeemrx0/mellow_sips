@@ -17,19 +17,11 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
     return Stack(
       children: [
         Obx(
-          () => Container(
+          () => DataImageWidget(
             width: MediaQuery.of(Get.context!).size.width,
             height: MediaQuery.of(Get.context!).padding.top +
                 AppThemeExt.of.majorScale(136 / 4),
-            color: AppColors.of.grayColor[300],
-            child: controller.product.value?.coverImage != null
-                ? Image.memory(
-                    base64Decode(
-                      controller.product.value?.coverImage ?? '',
-                    ),
-                    fit: BoxFit.cover,
-                  )
-                : null,
+            imageData: controller.product.value?.coverImageData,
           ),
         ),
         CustomScrollView(
@@ -57,45 +49,47 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                   vertical: AppThemeExt.of.majorPaddingScale(5),
                 ),
                 child: Obx(
-                  () => Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _generalInfo(context),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
-                      ),
-                      ...(controller.product.value?.productOptionSections!
-                              .map((section) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                AppTextHeading6Widget()
-                                    .setText(section.name)
-                                    .setTextAlign(TextAlign.left)
-                                    .build(context),
-                                SizedBox(
-                                  height: AppThemeExt.of.majorScale(1),
-                                ),
-                                ...section.productAddons.map((addon) {
-                                  return QuantityAddonWidget(
-                                    productAddon: addon,
-                                    quantity: controller
-                                            .addonQuantity.value[addon.id] ??
-                                        0,
-                                    deceaseQuantity:
-                                        controller.deceaseAddonQuantity,
-                                    increaseQuantity:
-                                        controller.increaseAddonQuantity,
-                                  );
-                                }).toList(),
-                              ],
-                            );
-                          }).toList() ??
-                          []),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
-                      ),
-                    ],
+                  () => Form(
+                    key: controller.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _generalInfo(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(3),
+                        ),
+                        ...(controller.product.value?.productOptionSections!
+                                .map(
+                              (section) {
+                                return Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    AppTextHeading6Widget()
+                                        .setText(section.name)
+                                        .setTextAlign(TextAlign.left)
+                                        .build(context),
+                                    SizedBox(
+                                      height: AppThemeExt.of.majorScale(2),
+                                    ),
+                                    RadioButtonGroupWidget(
+                                      fieldKey: section.name,
+                                      addons: section.productAddons,
+                                    ),
+                                    // CheckboxButtonGroupWidget(
+                                    //   fieldKey: section.name,
+                                    //   addons: section.productAddons,
+                                    // ),
+                                  ],
+                                );
+                              },
+                            ).toList() ??
+                            []),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(3),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

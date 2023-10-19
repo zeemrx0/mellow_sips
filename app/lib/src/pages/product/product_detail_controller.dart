@@ -1,16 +1,19 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
+import 'package:app/src/components/main/dataImage/data_image_widget.dart';
+import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
-import 'package:app/src/pages/product/components/quantity_addon_widget.dart';
+import 'package:app/src/pages/product/components/checkbox_button_group.dart';
+import 'package:app/src/pages/product/components/radio_button_group_widget.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
@@ -22,6 +25,8 @@ class ProductDetailKey {
 }
 
 class ProductDetailController extends GetxController {
+  final formKey = GlobalKey<FormBuilderState>();
+
   final GetProductDetailUseCase _getProductDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
   final AddToCartUseCase _addToCartUseCase;
@@ -35,7 +40,7 @@ class ProductDetailController extends GetxController {
   Rxn<ProductModel> product = Rxn<ProductModel>();
   Rxn<int> quantity = Rxn<int>(1);
 
-  Rx<Map<String, int>> addonQuantity = Rx<Map<String, int>>({});
+  Rx<Map<String, bool>> isAddonChecked = Rx<Map<String, bool>>({});
 
   Rx<String> note = Rx<String>('');
 
@@ -49,29 +54,20 @@ class ProductDetailController extends GetxController {
 
       if (result.netData != null) {
         final productData = result.netData;
-        productData!.coverImage = await getImage(productData.coverImage);
 
         product.value = productData;
+
+        AppLoadingOverlayWidget.dismiss();
+
+        product.value?.coverImageData =
+            await getImage(product.value?.coverImage);
+
+        product.refresh();
       }
-      AppLoadingOverlayWidget.dismiss();
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();
       print(e);
     }
-  }
-
-  void increaseAddonQuantity(String addonId) {
-    final currentQuantity = addonQuantity.value[addonId] ?? 0;
-    addonQuantity.value[addonId] = currentQuantity + 1;
-    addonQuantity.refresh();
-  }
-
-  void deceaseAddonQuantity(String addonId) {
-    final currentQuantity = addonQuantity.value[addonId] ?? 0;
-    if (currentQuantity > 0) {
-      addonQuantity.value[addonId] = currentQuantity - 1;
-    }
-    addonQuantity.refresh();
   }
 
   void increaseProductQuantity() {

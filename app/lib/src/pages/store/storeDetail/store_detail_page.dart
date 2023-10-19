@@ -23,14 +23,9 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             height: MediaQuery.of(Get.context!).padding.top +
                 AppThemeExt.of.majorScale(136 / 4),
             color: AppColors.of.grayColor[300],
-            child: controller.store.value?.coverImage != null
-                ? Image.memory(
-                    base64Decode(
-                      controller.store.value?.coverImage ?? '',
-                    ),
-                    fit: BoxFit.cover,
-                  )
-                : null,
+            child: DataImageWidget(
+              imageData: controller.store.value?.coverImageData,
+            ),
           ),
         ),
         CustomScrollView(
@@ -236,7 +231,7 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
         ...section.products.map((product) {
           return FoodItemWidget(
             id: product.id ?? '',
-            image: product.coverImage ?? '',
+            imageData: product.coverImageData,
             name: product.name ?? '',
             description: product.description ?? '',
             price: product.price ?? 0,

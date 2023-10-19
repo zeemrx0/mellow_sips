@@ -59,30 +59,30 @@ class AppBarBasicWidget {
 
     return PreferredSize(
       preferredSize: Size.fromHeight(_height ?? kToolbarHeight),
-      child: SafeArea(
-        child: Container(
-          color: _backgroundColor,
-          padding: EdgeInsets.symmetric(
-            horizontal: AppThemeExt.of.majorScale(4),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.only(
-                  top: AppThemeExt.of.majorScale(1),
-                ),
-                height: kToolbarHeight,
-                child: NavigationToolbar(
-                  leading: leadingWidget,
-                  middle: _title ?? const SizedBox(),
-                  trailing: _trailing ?? const SizedBox(),
-                  centerMiddle: true,
-                ),
+      child: Container(
+        color: _backgroundColor,
+        padding: EdgeInsets.only(
+          left: AppThemeExt.of.majorScale(4),
+          right: AppThemeExt.of.majorScale(4),
+          top: MediaQuery.of(Get.context!).padding.top,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                top: AppThemeExt.of.majorScale(1),
               ),
-              if (_bottom != null) _bottom!,
-            ],
-          ),
+              height: kToolbarHeight,
+              child: NavigationToolbar(
+                leading: leadingWidget,
+                middle: _title ?? const SizedBox(),
+                trailing: _trailing ?? const SizedBox(),
+                centerMiddle: true,
+              ),
+            ),
+            if (_bottom != null) _bottom!,
+          ],
         ),
       ),
     );

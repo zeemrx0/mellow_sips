@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:utilities/utilities.dart';
 
-class RadioButtonGroupWidget extends StatelessWidget {
+class CheckboxButtonGroupWidget extends StatelessWidget {
   final String fieldKey;
   final List<ProductAddonModel> addons;
 
-  const RadioButtonGroupWidget({
+  const CheckboxButtonGroupWidget({
     super.key,
     required this.fieldKey,
     required this.addons,
@@ -17,13 +17,15 @@ class RadioButtonGroupWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> selectedOptionIds = [];
+
     return FormBuilderField(
       name: fieldKey,
       builder: (field) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _radioButtons(context, field),
+            _radioButtons(context, field, selectedOptionIds),
           ],
         );
       },
@@ -33,6 +35,7 @@ class RadioButtonGroupWidget extends StatelessWidget {
   Widget _radioButtons(
     BuildContext context,
     FormFieldState field,
+    List<String> selectedOptionIds,
   ) {
     List<Widget> widgets = [];
 
@@ -43,7 +46,12 @@ class RadioButtonGroupWidget extends StatelessWidget {
         ));
       }
 
-      widgets.add(_radioButton(context, field, addons[i]));
+      widgets.add(_radioButton(
+        context,
+        field,
+        addons[i],
+        selectedOptionIds,
+      ));
     }
 
     return Column(
@@ -52,7 +60,11 @@ class RadioButtonGroupWidget extends StatelessWidget {
   }
 
   Widget _radioButton(
-      BuildContext context, FormFieldState field, ProductAddonModel addon) {
+    BuildContext context,
+    FormFieldState field,
+    ProductAddonModel addon,
+    List<String> selectedOptionIds,
+  ) {
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -72,14 +84,20 @@ class RadioButtonGroupWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Radio(
+              Checkbox(
+                value: selectedOptionIds.contains(addon.id),
                 activeColor: AppColors.of.primaryColor,
-                splashRadius: AppThemeExt.of.majorScale(1),
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                value: addon,
-                groupValue: field.value,
+                overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) => AppColors.of.grayColor[300],
+                ),
+                side: BorderSide(color: AppColors.of.borderColor),
                 onChanged: (value) {
-                  field.didChange(value);
+                  if (value == true) {
+                    selectedOptionIds.add(addon.id);
+                  } else {
+                    selectedOptionIds.remove(addon.id);
+                  }
+                  field.didChange(selectedOptionIds);
                 },
               ),
               Expanded(
