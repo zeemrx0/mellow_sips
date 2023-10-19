@@ -2,14 +2,18 @@ import 'dart:math';
 
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
+import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/pages/product/components/checkbox_button_group.dart';
+import 'package:app/src/pages/product/components/radio_button_group_widget.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
@@ -21,6 +25,8 @@ class ProductDetailKey {
 }
 
 class ProductDetailController extends GetxController {
+  final formKey = GlobalKey<FormBuilderState>();
+
   final GetProductDetailUseCase _getProductDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
 
