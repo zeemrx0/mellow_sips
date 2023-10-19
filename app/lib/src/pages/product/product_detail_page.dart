@@ -1,6 +1,6 @@
 part of './product_detail_controller.dart';
 
-class ProductDetailPage extends GetView<ProductDetailController> {
+class ProductDetailPage extends GetWidget<ProductDetailController> {
   const ProductDetailPage({super.key});
 
   @override
@@ -49,67 +49,47 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                   vertical: AppThemeExt.of.majorPaddingScale(5),
                 ),
                 child: Obx(
-                  () => Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _generalInfo(context),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
-                      ),
-                      ...(controller.product.value?.productOptionSections!.map(
-                            (section) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  AppTextHeading6Widget()
-                                      .setText(section.name)
-                                      .setTextAlign(TextAlign.left)
-                                      .build(context),
-                                  SizedBox(
-                                    height: AppThemeExt.of.majorScale(1),
-                                  ),
-                                  ...section.productAddons.map(
-                                    (addon) {
-                                      return Row(
-                                        children: [
-                                          Checkbox(
-                                            value: controller.isAddonChecked
-                                                    .value[addon.id] ??
-                                                false,
-                                            activeColor:
-                                                AppColors.of.primaryColor,
-                                            overlayColor: MaterialStateProperty
-                                                .resolveWith<Color?>(
-                                              (Set<MaterialState> states) =>
-                                                  AppColors.of.grayColor[300],
-                                            ),
-                                            side: BorderSide(
-                                                color:
-                                                    AppColors.of.borderColor),
-                                            onChanged: (value) {
-                                              controller.isAddonChecked
-                                                      .value[addon.id] =
-                                                  value ?? false;
-                                              controller.isAddonChecked
-                                                  .refresh();
-                                            },
-                                          ),
-                                          AppTextBody2Widget()
-                                              .setText(addon.name)
-                                              .build(context),
-                                        ],
-                                      );
-                                    },
-                                  ).toList(),
-                                ],
-                              );
-                            },
-                          ).toList() ??
-                          []),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
-                      ),
-                    ],
+                  () => Form(
+                    key: controller.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _generalInfo(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(3),
+                        ),
+                        ...(controller.product.value?.productOptionSections!
+                                .map(
+                              (section) {
+                                return Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    AppTextHeading6Widget()
+                                        .setText(section.name)
+                                        .setTextAlign(TextAlign.left)
+                                        .build(context),
+                                    SizedBox(
+                                      height: AppThemeExt.of.majorScale(2),
+                                    ),
+                                    RadioButtonGroupWidget(
+                                      fieldKey: section.name,
+                                      addons: section.productAddons,
+                                    ),
+                                    // CheckboxButtonGroupWidget(
+                                    //   fieldKey: section.name,
+                                    //   addons: section.productAddons,
+                                    // ),
+                                  ],
+                                );
+                              },
+                            ).toList() ??
+                            []),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(3),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
