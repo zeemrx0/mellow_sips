@@ -37,6 +37,8 @@ class CartController extends GetxController {
       final result = await _getAllCartUseCase.executeList();
 
       if (result.netData != null) {
+        carts.value = <CartModel>[];
+
         for (var cart in result.netData!) {
           final cartResult = await _getCartDetailUseCase.executeObject(
             param: GetCartDetailParam(cartId: cart.id),
