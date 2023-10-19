@@ -17,19 +17,11 @@ class ProductDetailPage extends GetView<ProductDetailController> {
     return Stack(
       children: [
         Obx(
-          () => Container(
+          () => DataImageWidget(
             width: MediaQuery.of(Get.context!).size.width,
             height: MediaQuery.of(Get.context!).padding.top +
                 AppThemeExt.of.majorScale(136 / 4),
-            color: AppColors.of.grayColor[300],
-            child: controller.product.value?.coverImage != null
-                ? Image.memory(
-                    base64Decode(
-                      controller.product.value?.coverImage ?? '',
-                    ),
-                    fit: BoxFit.cover,
-                  )
-                : null,
+            imageData: controller.product.value?.coverImageData,
           ),
         ),
         CustomScrollView(

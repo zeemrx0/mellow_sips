@@ -5,6 +5,7 @@ part of '../base_model.dart';
 class StoreModel extends BaseModel {
   final String? id;
   String? coverImage;
+  String? coverImageData;
   final String? name;
   final String? type;
   final bool? hasPromotion;
@@ -15,6 +16,7 @@ class StoreModel extends BaseModel {
   StoreModel({
     required this.id,
     required this.coverImage,
+    this.coverImageData,
     required this.name,
     required this.type,
     required this.hasPromotion,

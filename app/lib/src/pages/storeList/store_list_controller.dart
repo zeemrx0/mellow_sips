@@ -49,7 +49,7 @@ class StoreListController extends AppListViewController<StoreModel> {
       storeList.map(
         (store) async {
           final image = await getImage(store.coverImage);
-          return store.copyWith(coverImage: image);
+          return store.copyWith(coverImageData: image);
         },
       ),
     );
