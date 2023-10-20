@@ -57,9 +57,19 @@ class NetworkServiceImpl extends NetworkService {
         onSendProgress: clientRequest.onSendProgress,
         onReceiveProgress: clientRequest.onReceiveProgress,
       );
-      final AppResponse appResponse = clientRequest.isRequestedForList
-          ? AppResponse.fromJsonToList(response.data)
-          : AppResponse.fromJsonToObject(response.data);
+      late final AppResponse appResponse;
+
+      switch (clientRequest.requestType) {
+        case RequestType.object:
+          appResponse = AppResponse.fromJsonToObject(response.data);
+          break;
+        case RequestType.list:
+          appResponse = AppResponse.fromJsonToList(response.data);
+          break;
+        case RequestType.paginationList:
+          appResponse = AppResponse.fromJsonToPaginationList(response.data);
+          break;
+      }
 
       return HttpStatus(response.statusCode).isOk
           ? appResponse

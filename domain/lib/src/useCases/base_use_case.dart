@@ -18,6 +18,12 @@ part './store/get_store_detail_use_case.dart';
 
 part './product/get_product_detail_use_case.dart';
 
+part './cart/get_all_cart_use_case.dart';
+part './cart/add_to_cart_use_case.dart';
+part './cart/get_cart_detail_use_case.dart';
+part './cart/delete_cart_use_case.dart';
+part './cart/delete_cart_item_use_case.dart';
+
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {
     return Future.value(
@@ -27,7 +33,13 @@ abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
 
   Future<AppListResultModel<Out>> executeList({In? param}) {
     return Future.value(
-      AppListResultModel<Out>(
+      AppListResultModel<Out>(netData: null),
+    );
+  }
+
+  Future<AppPaginationListResultModel<Out>> executePaginationList({In? param}) {
+    return Future.value(
+      AppPaginationListResultModel<Out>(
         netData: null,
         hasMore: false,
         total: 0,

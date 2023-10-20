@@ -48,10 +48,10 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                   horizontal: AppThemeExt.of.majorPaddingScale(4),
                   vertical: AppThemeExt.of.majorPaddingScale(5),
                 ),
-                child: Obx(
-                  () => Form(
-                    key: controller.formKey,
-                    child: Column(
+                child: FormBuilder(
+                  key: controller.formKey,
+                  child: Obx(
+                    () => Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         _generalInfo(context),
@@ -72,14 +72,16 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                                     SizedBox(
                                       height: AppThemeExt.of.majorScale(2),
                                     ),
-                                    RadioButtonGroupWidget(
-                                      fieldKey: section.name,
-                                      addons: section.productAddons,
-                                    ),
-                                    // CheckboxButtonGroupWidget(
-                                    //   fieldKey: section.name,
-                                    //   addons: section.productAddons,
-                                    // ),
+                                    if (section.maxAllowedChoices > 1)
+                                      CheckboxButtonGroupWidget(
+                                        fieldKey: section.id,
+                                        addons: section.productAddons,
+                                      ),
+                                    if (section.maxAllowedChoices <= 1)
+                                      RadioButtonGroupWidget(
+                                        fieldKey: section.id,
+                                        addons: section.productAddons,
+                                      ),
                                   ],
                                 );
                               },
@@ -185,8 +187,11 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                 Expanded(
                   child: AppFilledButtonWidget()
                       .setButtonText(R.strings.add)
-                      .setOnPressed(() {})
-                      .build(context),
+                      .setOnPressed(
+                    () {
+                      controller.addToCart();
+                    },
+                  ).build(context),
                 ),
               ],
             ),

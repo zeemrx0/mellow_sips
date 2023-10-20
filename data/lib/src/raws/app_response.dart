@@ -31,6 +31,15 @@ class AppResponse {
   }
 
   factory AppResponse.fromJsonToList(Map<String, dynamic> json) {
+    return AppResponse(
+      statusCode: json['statusCode'],
+      message: json['message'],
+      error: json['error'],
+      data: json['data'],
+    );
+  }
+
+  factory AppResponse.fromJsonToPaginationList(Map<String, dynamic> json) {
     final hasMore = json['data']['page'] * json['data']['itemsPerPage'] <
         json['data']['totalItems'];
 
@@ -58,6 +67,13 @@ class AppResponse {
   ) =>
       AppListResultRaw(
         netData: toListRaw.call(data),
+      );
+
+  AppPaginationListResultRaw<BR> toPaginationListRaw<BR extends BaseRaw>(
+    List<BR>? Function(dynamic data) toPaginationListRaw,
+  ) =>
+      AppPaginationListResultRaw(
+        netData: toPaginationListRaw.call(data),
         hasMore: hasMore,
         total: total,
       );

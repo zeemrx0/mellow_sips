@@ -44,10 +44,13 @@
 	"resendOtp": "Gửi lại OTP",
 	"verifySuccessfully": "Xác nhận thành công",
 	"goToLoginPage": "Đi đến trang đăng nhập",
-  "promo": "Ưu đãi",
-  "open": "Đang mở",
-  "sort": "Sắp xếp",
-  "store": "Cửa hàng",
+	"promo": "Ưu đãi",
+	"open": "Đang mở",
+	"sort": "Sắp xếp",
+	"store": "Cửa hàng",
   "add": "Thêm",
-  "note": "Ghi chú"
+  "note": "Ghi chú",
+	"totalPrice": "Tổng tiền",
+	"pay": "Thanh toán",
+	"cart": "Giỏ hàng"
 }

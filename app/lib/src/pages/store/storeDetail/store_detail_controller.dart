@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/pages/store/storeDetail/components/food_item_widget.dart';
+import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -19,17 +21,20 @@ class StoreDetailController extends GetxController {
   final GetStoreMenuUseCase _getStoreMenuUseCase;
   final GetStoreDetailUseCase _getStoreDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
+  final GetAllCartUseCase _getAllCartUseCase;
 
   final _isStoreDetailLoad = false.obs;
   final _isStoreMenuLoad = false.obs;
 
   Rxn<StoreModel> store = Rxn<StoreModel>();
   Rxn<MenuModel> menu = Rxn<MenuModel>();
+  Rx<int> numberOfCartItems = 0.obs;
 
   StoreDetailController(
     this._getStoreMenuUseCase,
     this._getStoreDetailUseCase,
     this._getDocumentUseCase,
+    this._getAllCartUseCase,
   );
 
   Future<void> getStoreDetail() async {
@@ -85,6 +90,25 @@ class StoreDetailController extends GetxController {
           menu.refresh();
         }
       }
+    } catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      print(e);
+    }
+  }
+
+  Future<void> getNumberOfCartItems() async {
+    try {
+      AppLoadingOverlayWidget.show();
+      final result = await _getAllCartUseCase.executeList();
+
+      if (result.netData != null) {
+        numberOfCartItems.value = result.netData
+                ?.firstWhere((cart) => cart.store.id == store.value?.id)
+                .numberOfItems ??
+            0;
+      }
+
+      AppLoadingOverlayWidget.dismiss();
     } catch (e) {
       AppLoadingOverlayWidget.dismiss();
       print(e);

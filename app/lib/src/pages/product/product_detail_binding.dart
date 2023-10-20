@@ -4,6 +4,6 @@ class ProductDetailBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ProductDetailController>(
-        () => ProductDetailController(Get.find(), Get.find()));
+        () => ProductDetailController(Get.find(), Get.find(), Get.find()));
   }
 }

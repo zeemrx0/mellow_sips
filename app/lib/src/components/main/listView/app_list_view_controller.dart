@@ -20,7 +20,7 @@ abstract class AppListViewController<BM extends BaseModel> extends GetxControlle
 
   AppListParam _appListParam = AppListParam();
 
-  Future<AppListResultModel<BM>> onCall(AppListParam appListParam);
+  Future<AppPaginationListResultModel<BM>> onCall(AppListParam appListParam);
 
   @override
   void onReady() {

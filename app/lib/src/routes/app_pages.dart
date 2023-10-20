@@ -1,3 +1,4 @@
+import 'package:app/src/pages/cart/cart_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
@@ -62,8 +63,13 @@ class AppPages {
     ),
     GetPage(
       name: Routes.productDetail,
-      page: () => const ProductDetailPage(),
+      page: () => ProductDetailPage(),
       binding: ProductDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.carts,
+      page: () => const CartPage(),
+      binding: CartBinding(),
     ),
   ];
 }

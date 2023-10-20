@@ -7,25 +7,25 @@ class StoreRepositoryImpl extends StoreRepository {
   StoreRepositoryImpl(this._storeRemoteDataSource);
 
   @override
-  Future<AppListResultModel<StoreModel>> getStoreList(
+  Future<AppPaginationListResultModel<StoreModel>> getStoreList(
       {required Map<String, dynamic> params}) async {
     try {
       final remoteData =
           await _storeRemoteDataSource.getStoreList(params: params);
-      return remoteData.toAppListResultModel();
+      return remoteData.toAppPaginationListResultModel();
     } on NetworkException catch (_) {
       rethrow;
     }
   }
 
   @override
-  Future<AppListResultModel<StoreModel>> searchStores({
+  Future<AppPaginationListResultModel<StoreModel>> searchStores({
     required Map<String, dynamic> params,
   }) async {
     try {
       final remoteData =
           await _storeRemoteDataSource.searchStores(params: params);
-      return remoteData.toAppListResultModel();
+      return remoteData.toAppPaginationListResultModel();
     } on NetworkException catch (_) {
       rethrow;
     }

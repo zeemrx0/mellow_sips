@@ -19,4 +19,9 @@ part './store/get_store_detail_param.dart';
 
 part './product/get_product_detail_param.dart';
 
+part './cart/add_to_cart_param.dart';
+part './cart/get_cart_detail_param.dart';
+part 'cart/delete_cart_param.dart';
+part 'cart/delete_cart_item_param.dart';
+
 abstract class BaseParam {}

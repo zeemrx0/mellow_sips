@@ -11,12 +11,15 @@ part './tokens_model.dart';
 
 part  './document_model.dart';
 
-part 'store/store_model.dart';
-part 'store/product_model.dart';
-part 'store/menu_section_model.dart';
-part 'store/menu_model.dart';
-part 'store/product_option_section_model.dart';
+part './store/store_model.dart';
+part './store/product_model.dart';
+part './store/menu_section_model.dart';
+part './store/menu_model.dart';
+part './store/product_option_section_model.dart';
 part './store/product_addon_model.dart';
+
+part './cart/cart_model.dart';
+part './cart/cart_item_model.dart';
 
 abstract class BaseModel {}
 
