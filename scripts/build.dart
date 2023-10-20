@@ -5,7 +5,7 @@ const _devJsonConfigFilePath = './configs/.env/config.dev.json';
 const _stagingJsonConfigFilePath = './configs/.env/config.staging.json';
 const _prodJsonConfigFilePath = './configs/.env/config.prod.json';
 
-void main(List<String>? args) {
+void main(List<String>? args) async {
   if (args?.isEmpty == true) {
     return;
   }
@@ -21,24 +21,81 @@ void main(List<String>? args) {
     return;
   }
 
-  List<String> arguments = [];
-
   if (!configJson.containsKey('dartDefine')) {
     throw Exception('Please update config file - dartDefine not found');
   }
   final dartDefine = _getDartDefine(configJson['dartDefine']);
 
-  arguments = [
-    '-t',
-    'lib/main.dart',
-    '--flavor',
-    args?.first ?? '',
-    dartDefine,
-  ];
+  final runBuild = args?[1] ?? '';
+  if (!['run', 'build'].contains(runBuild)) {
+    print('$runBuild invalid');
+    return;
+  }
 
-  print('To run the project, run the following commands:\n');
-  print('- cd app');
-  print('- fvm flutter run ${arguments.join(' ')}');
+  final target = (args?.length ?? 0) > 2 ? args![2] : '';
+  List<String> arguments = [];
+  if (['ipa', 'apk', 'ios', 'android', 'aab'].contains(target)) {
+    final buildName = (args?.length ?? 0) > 3 ? args![3] : '';
+    final buildNumber = (args?.length ?? 0) > 4 ? args![4] : '';
+    if (buildName.isEmpty && buildNumber.isEmpty) {
+      arguments = [
+        runBuild,
+        target,
+        '-t',
+        'lib/main.dart',
+        '--flavor',
+        args?.first ?? '',
+        ['ipa'].contains(target)
+            ? "--export-options-plist=ios/ExportOptions.plist"
+            : "",
+        dartDefine,
+      ];
+    } else {
+      arguments = [
+        runBuild,
+        target,
+        '-t',
+        'lib/main.dart',
+        '--flavor',
+        args?.first ?? '',
+        ['ipa'].contains(target)
+            ? "--export-options-plist=ios/ExportOptions.plist"
+            : "",
+        '--build-name',
+        buildName,
+        '--build-number',
+        buildNumber,
+        dartDefine,
+      ];
+    }
+  } else {
+    arguments = [
+      runBuild,
+      '-t',
+      'lib/main.dart',
+      '--flavor',
+      args?.first ?? '',
+      dartDefine,
+    ];
+  }
+
+  if (runBuild.contains('build')) {
+    var process = await Process.start(
+      'bash',
+      ['-c', 'fvm flutter ${arguments.join(' ')}'],
+      workingDirectory: './app',
+    );
+    process.stdout.transform(utf8.decoder).listen((data) {
+      print(data);
+    });
+    process.stderr.transform(utf8.decoder).listen((data) {
+      print(data);
+    });
+  } else {
+    print('To run the project, run the following commands:\n');
+    print('- cd app');
+    print('- fvm flutter run ${arguments.join(' ')}');
+  }
 }
 
 String _getDartDefine(Map<String, dynamic> configData) {

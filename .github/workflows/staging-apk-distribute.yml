@@ -1,0 +1,33 @@
+name: Staging APK Distribution
+on:
+  push:
+    tags:
+      - 'staging/*'
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Create .env.zip
+        run: |
+          cd configs
+          echo -n ${{secrets.ENV}} | base64 -d > .env.zip
+          jar xf .env.zip
+
+      - name: Build APK
+        run: |
+          build_name=$(echo ${{ github.ref }} | cut -d'/' -f3)
+          build_number=$(echo ${{ github.ref }} | cut -d'/' -f4)
+          make build-android-apk flavor=staging buildName=$build_name buildNumber=$build_number
+
+      - name: Distribute APK
+        run: |
+          firebase appdistribution:distribute app/build/app/outputs/flutter-apk/app-staging-release.apk --app ${{secrets.FIREBASE_APP_STAGING}} --groups "mellowsips"

@@ -14,4 +14,8 @@ upgrade:
 
 run:
 	@melos gen-env $(flavor)
-	dart run scripts/build.dart $(flavor)
+	dart run scripts/build.dart $(flavor) run $(device)
+
+build-android-apk:
+	@melos gen-env $(flavor)
+	dart run scripts/build.dart $(flavor) build apk $(buildName) $(buildNumber)
