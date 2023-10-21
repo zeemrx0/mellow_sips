@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Install Melos
+        run: npm install -g melos
+
       - name: Create .env.zip
         run: |
           mkdir -p configs/.env
