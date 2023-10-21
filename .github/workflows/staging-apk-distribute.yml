@@ -16,9 +16,6 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install Melos
-        run: npm install -g melos
-
       - name: Create .env.zip
         run: |
           mkdir -p configs/.env
@@ -26,8 +23,8 @@ jobs:
 
       - name: Build APK
         run: |
-          build_name=$(echo ${{ github.ref }} | cut -d'/' -f3)
-          build_number=$(echo ${{ github.ref }} | cut -d'/' -f4)
+          build_name=$(echo ${{ github.ref }} | cut -d'/' -f2)
+          build_number=$(echo ${{ github.ref }} | cut -d'/' -f3)
           make build-android-apk flavor=staging buildName=$build_name buildNumber=$build_number
 
       - name: Distribute APK
