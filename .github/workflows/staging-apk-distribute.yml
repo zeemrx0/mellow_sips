@@ -16,6 +16,16 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Setup Flutter
+        run: |
+          make denied
+          make pre-bootstrap
+          make pub-get
+          make build-init flavor=dev
+          make build-init flavor=staging
+          make build-init flavor=prod
+          make build-runner
+
       - name: Create .env.zip
         run: |
           mkdir -p configs/.env

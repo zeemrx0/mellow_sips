@@ -1,3 +1,12 @@
+denied:
+	cd scripts && chmod +x pre-bootstrap.sh
+
+pre-bootstrap:
+	cd scripts && ./pre-bootstrap.sh
+	fvm install 3.13.6
+	fvm use 3.13.6 --force
+	fvm flutter --version
+
 pub-get:
 	@melos bootstrap
 
