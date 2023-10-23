@@ -5,10 +5,12 @@ part of '../base_model.dart';
 class OrderModel extends BaseModel {
   final String id;
   final String status;
+  final OrderExternalPaymentInfoModel externalPaymentInfo;
 
   OrderModel({
     required this.id,
     required this.status,
+    required this.externalPaymentInfo,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>

@@ -12,6 +12,6 @@ class RegisterUseCaseImpl extends RegisterUseCase {
     RegisterParam? param,
   }) =>
       _authRepository.register(
-        body: param!.toJson(),
+        params: param!.toJson(),
       );
 }

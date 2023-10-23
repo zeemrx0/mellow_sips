@@ -28,7 +28,7 @@ class CheckoutController extends GetxController {
   );
 
   Rxn<CartModel> cart = Rxn<CartModel>();
-  Rx<String> transactionMethod = 'ZALO_PAY'.obs;
+  Rx<String> transactionMethod = (AppPaymentMethod.zalopay).obs;
 
   Future<void> getCart() async {
     try {

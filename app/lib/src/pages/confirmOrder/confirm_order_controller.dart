@@ -1,11 +1,14 @@
+import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
+import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zalopay_sdk/flutter_zalopay_sdk.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:resources/resources.dart';
@@ -61,12 +64,15 @@ class ConfirmOrderController extends GetxController {
     try {
       AppLoadingOverlayWidget.show();
 
+      final cartId = Get.arguments[ConfirmOrderControllerKey.cartId] as String;
+      final initialTransactionMethod =
+          Get.arguments[ConfirmOrderControllerKey.initialTransactionMethod]
+              as String;
+
       final result = await _createOrderUseCase.executeObject(
         param: CreateOrderParam(
-          cartId: Get.arguments[ConfirmOrderControllerKey.cartId] as String,
-          initialTransactionMethod:
-              Get.arguments[ConfirmOrderControllerKey.initialTransactionMethod]
-                  as String,
+          cartId: cartId,
+          initialTransactionMethod: initialTransactionMethod,
           qrCode: qrCode,
           qrId: qrId,
         ),
@@ -74,6 +80,28 @@ class ConfirmOrderController extends GetxController {
 
       if (result.netData != null) {
         order.value = result.netData;
+
+        switch (initialTransactionMethod) {
+          case AppPaymentMethod.cash:
+            Get.offAllNamed(Routes.orderStatus, arguments: order.value!.id);
+            break;
+          case AppPaymentMethod.zalopay:
+            FlutterZaloPayStatus zaloPayStatus =
+                await FlutterZaloPaySdk.payOrder(
+              zpToken: order.value!.externalPaymentInfo.zpTransToken,
+            );
+
+            if (zaloPayStatus == FlutterZaloPayStatus.success) {
+              Get.offAllNamed(Routes.orderStatus, arguments: order.value!.id);
+            } else {
+              AppDefaultDialogWidget()
+                  .setTitle(R.strings.paymentFailed)
+                  .setAppDialogType(AppDialogType.error)
+                  .buildDialog(Get.context!)
+                  .show();
+            }
+            break;
+        }
       }
 
       AppLoadingOverlayWidget.dismiss();

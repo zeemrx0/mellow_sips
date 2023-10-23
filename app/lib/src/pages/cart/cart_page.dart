@@ -83,9 +83,8 @@ class CartPage extends GetView<CartController> {
                             AppFilledButtonWidget()
                                 .setButtonText(R.strings.pay)
                                 .setOnPressed(() {
-                                  Get.toNamed(Routes.checkout, arguments: cart.id);
-                                })
-                                .build(context),
+                              Get.toNamed(Routes.checkout, arguments: cart.id);
+                            }).build(context),
                           ],
                         ),
                       )

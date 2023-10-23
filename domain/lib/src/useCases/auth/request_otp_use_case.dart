@@ -13,6 +13,6 @@ class RequestOtpUseCaseImpl extends RequestOtpUseCase {
     RequestOtpParam? param,
   }) =>
       _authRepository.requestOTP(
-        body: param!.toJson(),
+        params: param!.toJson(),
       );
 }

@@ -2,19 +2,19 @@ part of 'base_remote_data_source.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AppObjectResultRaw<TokensRaw>> login({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   });
 
   Future<AppObjectResultRaw<EmptyRaw>> register({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   });
 
   Future<AppObjectResultRaw<EmptyRaw>> verifyRegistration({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   });
 
   Future<AppObjectResultRaw<EmptyRaw>> requestOTP({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   });
 }
 
@@ -25,17 +25,17 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AppObjectResultRaw<TokensRaw>> login({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   }) async {
     try {
       final remoteData = await _networkService.request(
         clientRequest: ClientRequest(
           url: ApiProvider.login,
           method: HttpMethod.post,
-          body: {...body},
+          body: {...params},
         ),
       );
-      
+
       return remoteData.toObjectRaw(
         (data) => TokensRaw.fromJson(data),
       );
@@ -46,14 +46,14 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AppObjectResultRaw<EmptyRaw>> register({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   }) async {
     try {
       final remoteData = await _networkService.request(
         clientRequest: ClientRequest(
           url: ApiProvider.register,
           method: HttpMethod.post,
-          body: {...body},
+          body: {...params},
         ),
       );
 
@@ -67,14 +67,14 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   @override
   Future<AppObjectResultRaw<EmptyRaw>> verifyRegistration({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   }) async {
     try {
       final remoteData = await _networkService.request(
         clientRequest: ClientRequest(
           url: ApiProvider.verifyRegistration,
           method: HttpMethod.post,
-          body: {...body},
+          body: {...params},
         ),
       );
 
@@ -85,15 +85,17 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       rethrow;
     }
   }
-  
+
   @override
-  Future<AppObjectResultRaw<EmptyRaw>> requestOTP({required Map<String, dynamic> body}) async {
+  Future<AppObjectResultRaw<EmptyRaw>> requestOTP({
+    required Map<String, dynamic> params,
+  }) async {
     try {
       final remoteData = await _networkService.request(
         clientRequest: ClientRequest(
           url: ApiProvider.requestOTP,
           method: HttpMethod.post,
-          body: {...body},
+          body: {...params},
         ),
       );
 

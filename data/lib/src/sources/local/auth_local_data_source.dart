@@ -24,8 +24,17 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
   @override
   Future<AppObjectResultRaw<TokensRaw>> getTokens() {
-    // TODO: implement getTokens
-    throw UnimplementedError();
+    final accessToken = _pref.getString(AppPrefKey.accessToken, '');
+    final refreshToken = _pref.getString(AppPrefKey.refreshToken, '');
+
+    return Future.value(
+      AppObjectResultRaw(
+        netData: TokensRaw(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        ),
+      ),
+    );
   }
 
   @override

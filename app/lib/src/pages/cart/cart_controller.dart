@@ -119,6 +119,4 @@ class CartController extends GetxController {
 
     return Future.value(response.netData!.content);
   }
-
-  
 }
