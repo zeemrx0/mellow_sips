@@ -127,11 +127,12 @@ class ProductDetailController extends GetxController {
 
       if (result.netData != null) {
         AppLoadingOverlayWidget.dismiss();
-        Get.back();
+        Get.back(result: true);
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      AppExceptionExt(appException: e).detected();;
+      AppExceptionExt(appException: e).detected();
+      ;
     }
   }
 }

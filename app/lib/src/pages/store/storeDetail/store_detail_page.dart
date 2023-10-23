@@ -164,9 +164,13 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                   child: AppFilledButtonWidget()
                       .setButtonText(R.strings.pay)
                       .setOnPressed(
-                        () {},
-                      )
-                      .build(context),
+                    () {
+                      Get.toNamed(
+                        Routes.checkout,
+                        arguments: controller.cartId.value,
+                      );
+                    },
+                  ).build(context),
                 ),
               ],
             ),
@@ -330,8 +334,9 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             description: product.description ?? '',
             price: product.price ?? 0,
             onPressed: () async {
-              final result = await Get.toNamed(Routes.productDetail, arguments: product.id);
-              if (result != null) {
+              final result = await Get.toNamed(Routes.productDetail,
+                  arguments: product.id);
+              if (result == true) {
                 controller.getNumberOfCartItems();
               }
             },
