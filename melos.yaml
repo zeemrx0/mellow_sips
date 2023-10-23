@@ -43,6 +43,10 @@ scripts:
     run: melos exec --fail-fast --scope="*resources*" --flutter -- fvm flutter pub run intl_utils:generate
     description: Generate strings resource.
 
+  gen-app-icon:
+    run: melos exec --fail-fast --scope="*resources*" --flutter -- flutter pub run flutter_launcher_icons
+    description: Generates app icon.
+
   gen-splash:
     run: melos exec --fail-fast --scope="*resources*" --flutter -- fvm flutter pub run flutter_native_splash:create --flavor $1
     description: Generate splash screen.
