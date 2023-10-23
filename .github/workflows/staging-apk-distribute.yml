@@ -1,0 +1,42 @@
+name: Staging APK Distribution
+on:
+  push:
+    tags:
+      - 'staging/*'
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Setup Flutter
+        run: |
+          make denied
+          make pre-bootstrap
+          make pub-get
+          make build-init flavor=dev
+          make build-init flavor=staging
+          make build-init flavor=prod
+          make build-runner
+
+      - name: Create .env.zip
+        run: |
+          mkdir -p configs/.env
+          echo "${{ secrets.CONFIG_STAGING }}" > configs/.env/config.staging.json
+
+      - name: Build APK
+        run: |
+          build_name=$(echo ${{ github.ref }} | cut -d'/' -f2)
+          build_number=$(echo ${{ github.ref }} | cut -d'/' -f3)
+          make build-android-apk flavor=staging buildName=$build_name buildNumber=$build_number
+
+      - name: Distribute APK
+        run: |
+          firebase appdistribution:distribute app/build/app/outputs/flutter-apk/app-staging-release.apk --app ${{secrets.FIREBASE_APP_STAGING}} --groups "mellowsips"
