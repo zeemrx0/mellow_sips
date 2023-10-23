@@ -7,12 +7,14 @@ class CartModel extends BaseModel {
   final StoreModel store;
   final List<CartItemModel> cartItems;
   final int numberOfItems;
+  final int? finalPrice;
 
   CartModel({
     required this.id,
     required this.store,
     this.cartItems = const [],
     this.numberOfItems = 0,
+    required this.finalPrice,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>

@@ -54,6 +54,8 @@ dependencies:
   cached_network_image: ^3.2.3
   extended_nested_scroll_view: ^6.1.2
   flutter_slidable: ^3.0.0
+  qr_code_scanner: ^1.0.1
+  flutter_zalopay_sdk: ^0.1.14
 
   flutter_keyboard_visibility: ^5.4.1
 

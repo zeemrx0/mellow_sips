@@ -12,6 +12,6 @@ class LoginUseCaseImpl extends LoginUseCase {
     LoginParam? param,
   }) =>
       _authRepository.login(
-        body: param!.toJson(),
+        params: param!.toJson(),
       );
 }

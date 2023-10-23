@@ -17,15 +17,24 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   AuthLocalDataSourceImpl(this._pref);
 
   @override
-  Future<void> clearTokens() {
-    // TODO: implement clearTokens
-    throw UnimplementedError();
+  Future<void> clearTokens() async {
+    await _pref.deleteValue(AppPrefKey.accessToken);
+    await _pref.deleteValue(AppPrefKey.refreshToken);
   }
 
   @override
   Future<AppObjectResultRaw<TokensRaw>> getTokens() {
-    // TODO: implement getTokens
-    throw UnimplementedError();
+    final accessToken = _pref.getString(AppPrefKey.accessToken, '');
+    final refreshToken = _pref.getString(AppPrefKey.refreshToken, '');
+
+    return Future.value(
+      AppObjectResultRaw(
+        netData: TokensRaw(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        ),
+      ),
+    );
   }
 
   @override

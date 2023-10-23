@@ -128,6 +128,8 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
       textInputAction: _textInputAction ?? TextInputAction.next,
       textCapitalization: _textCapitalization ?? TextCapitalization.none,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: AppColors.of.whiteColor,
         prefix: Padding(
           padding: EdgeInsets.only(
             left: AppThemeExt.of.majorScale(4),

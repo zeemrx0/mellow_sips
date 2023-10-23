@@ -5,14 +5,14 @@ part of './base_raw.dart';
 class TokensRaw extends BaseRaw<TokensModel> {
   final String accessToken;
   final String refreshToken;
-  final String idToken;
-  final int expiresIn;
+  final String? idToken;
+  final int? expiresIn;
 
   TokensRaw({
     required this.accessToken,
     required this.refreshToken,
-    required this.idToken,
-    required this.expiresIn,
+    this.idToken,
+    this.expiresIn,
   });
 
   @override

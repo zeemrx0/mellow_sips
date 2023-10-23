@@ -5,8 +5,8 @@ part of 'base_model.dart';
 class TokensModel extends BaseModel {
   final String accessToken;
   final String refreshToken;
-  final String idToken;
-  final int expiresIn;
+  final String? idToken;
+  final int? expiresIn;
 
   TokensModel({
     required this.accessToken,

@@ -18,6 +18,8 @@ class ApiProvider {
 
   static const carts = '/carts';
   static const cartItems = '$carts/items';
+
+  static const orders = '/orders';
 }
 
 class StatusCode extends HttpStatus {
