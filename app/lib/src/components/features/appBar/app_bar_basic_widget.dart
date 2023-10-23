@@ -53,7 +53,10 @@ class AppBarBasicWidget {
             onTap: () {
               Get.back();
             },
-            child: R.svgs.icLongArrowLeft.svg(),
+            child: R.svgs.icLongArrowLeft.svg(
+              width: AppThemeExt.of.majorScale(4),
+              height: AppThemeExt.of.majorScale(4),
+            ),
           )
         : (_leading ?? const SizedBox());
 

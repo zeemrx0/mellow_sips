@@ -7,7 +7,6 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
-import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/storeList/store_list_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/routes/app_pages.dart';
@@ -39,18 +38,13 @@ class LoginKey {
 class LoginController extends GetxController {
   final LoginUseCase _loginUseCase;
   final RequestOtpUseCase _requestOtpUseCase;
-  final GetTokensUseCase _getTokensUseCase;
 
   LoginController(
-      this._loginUseCase, this._requestOtpUseCase, this._getTokensUseCase);
+    this._loginUseCase,
+    this._requestOtpUseCase,
+  );
 
   final loginFormKey = GlobalKey<FormBuilderState>();
-
-  @override
-  void onReady() async {
-    await _checkIsLoggedIn();
-    super.onReady();
-  }
 
   String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
@@ -137,20 +131,6 @@ class LoginController extends GetxController {
           .show();
 
       return;
-    }
-  }
-
-  Future<void> _checkIsLoggedIn() async {
-    try {
-      final tokenObj = await _getTokensUseCase.executeObject();
-
-      if (tokenObj.netData?.accessToken != null &&
-          tokenObj.netData!.accessToken.isNotEmpty) {
-        await Get.offAllNamed(Routes.stores);
-      }
-    } on AppException catch (e) {
-      AppLoadingOverlayWidget.dismiss();
-      AppExceptionExt(appException: e).detected();
     }
   }
 }

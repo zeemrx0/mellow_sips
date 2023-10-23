@@ -5,6 +5,8 @@ class CheckoutPage extends GetView<CheckoutController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getCart();
+
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
@@ -12,8 +14,6 @@ class CheckoutPage extends GetView<CheckoutController> {
   }
 
   PreferredSizeWidget _appBar(BuildContext context) {
-    controller.getCart();
-
     return AppBarBasicWidget()
         .setTitle(
           AppTextBody1Widget()
@@ -26,6 +26,7 @@ class CheckoutPage extends GetView<CheckoutController> {
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )
+        .setCanBack(true)
         .build(context);
   }
 

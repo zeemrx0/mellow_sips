@@ -33,6 +33,7 @@ class AppPages {
     GetPage(
       name: Routes.welcome,
       page: () => const WelcomePage(),
+      binding: WelcomeBinding(),
     ),
     GetPage(
       name: Routes.home,
