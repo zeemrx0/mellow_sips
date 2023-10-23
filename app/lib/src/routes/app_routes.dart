@@ -15,5 +15,10 @@ class Routes {
 
   static const products = '/products';
   static const productDetail = '/product-detail';
+
   static const carts = '/carts';
+  static const checkout = '/checkout';
+
+  static const orderStatus = '/orderStatus';
+  static const confirmOrder = '/confirmOrder';
 }

@@ -13,6 +13,6 @@ class VerifyRegistrationUseCaseImpl extends VerifyRegistrationUseCase {
     VerifyRegistrationParam? param,
   }) =>
       _authRepository.verifyRegistration(
-        body: param!.toJson(),
+        params: param!.toJson(),
       );
 }

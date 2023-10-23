@@ -32,6 +32,21 @@ class AppExceptionExt {
               })
               .buildDialog(Get.context!)
               .show();
+        case HttpStatus.internalServerError:
+          return AppDefaultDialogWidget()
+              .setTitle(R.strings.serverError)
+              .setContent(appException?.message)
+              .setAppDialogType(AppDialogType.error)
+              .setPositiveText(R.strings.logOut)
+              .setOnPositive(() async {
+                await _forceLogOut();
+              })
+              .setNegativeText(R.strings.close)
+              .setOnNegative(() {
+                Get.back();
+              })
+              .buildDialog(Get.context!)
+              .show();
         case HttpStatus.badRequest:
         case HttpStatus.internalServerError:
         case HttpStatus.serviceUnavailable:
@@ -67,6 +82,12 @@ class AppExceptionExt {
   }
 
   Future<void> _forceLogOut() async {
-    // TODO: Force log out
+    try {
+      final forceLogOutUseCase = Get.find<LogoutUseCase>();
+      await forceLogOutUseCase.executeObject();
+      Get.offAllNamed(Routes.login);
+    } on LocalException catch (e) {
+      AppExceptionExt(appException: e).detected();
+    }
   }
 }

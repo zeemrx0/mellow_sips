@@ -13,11 +13,11 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<AppObjectResultModel<TokensModel>> login({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   }) async {
     try {
       final remoteData = await _remoteDataSource.login(
-        body: body,
+        params: params,
       );
 
       if (remoteData.netData != null) {
@@ -35,11 +35,11 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<AppObjectResultModel<EmptyModel>> register({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   }) async {
     try {
       final remoteData = await _remoteDataSource.register(
-        body: body,
+        params: params,
       );
 
       return remoteData.toAppObjectResultModel();
@@ -50,11 +50,11 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<AppObjectResultModel<EmptyModel>> verifyRegistration({
-    required Map<String, dynamic> body,
+    required Map<String, dynamic> params,
   }) async {
     try {
       final remoteData = await _remoteDataSource.verifyRegistration(
-        body: body,
+        params: params,
       );
 
       return remoteData.toAppObjectResultModel();
@@ -65,13 +65,37 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<AppObjectResultModel<EmptyModel>> requestOTP(
-      {required Map<String, dynamic> body}) async {
+      {required Map<String, dynamic> params}) async {
     try {
       final remoteData = await _remoteDataSource.requestOTP(
-        body: body,
+        params: params,
       );
 
       return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> logOut() async {
+    try {
+      await _localDataSource.clearTokens();
+
+      return AppObjectResultModel<EmptyModel>(
+        netData: EmptyModel(),
+      );
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultModel<TokensModel>> getTokens() async {
+    try {
+      final localData = await _localDataSource.getTokens();
+
+      return localData.toAppObjectResultModel();
     } on NetworkException catch (_) {
       rethrow;
     }
