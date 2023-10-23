@@ -7,7 +7,7 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
-import 'package:app/src/pages/store/storeDetail/components/food_item_widget.dart';
+import 'package:app/src/pages/store/storeDetail/components/product_item_widget.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +30,7 @@ class StoreDetailController extends GetxController {
   Rxn<StoreModel> store = Rxn<StoreModel>();
   Rxn<MenuModel> menu = Rxn<MenuModel>();
   Rx<int> numberOfCartItems = 0.obs;
+  Rxn<String> cartId = Rxn<String>();
 
   StoreDetailController(
     this._getStoreMenuUseCase,
@@ -61,7 +62,8 @@ class StoreDetailController extends GetxController {
       store.value?.coverImageData = await getImage(store.value?.coverImage);
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      AppExceptionExt(appException: e).detected();;
+      AppExceptionExt(appException: e).detected();
+      ;
     }
   }
 
@@ -93,7 +95,8 @@ class StoreDetailController extends GetxController {
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      AppExceptionExt(appException: e).detected();;
+      AppExceptionExt(appException: e).detected();
+      ;
     }
   }
 
@@ -103,10 +106,11 @@ class StoreDetailController extends GetxController {
       final result = await _getAllCartUseCase.executeList();
 
       if (result.netData != null) {
-        numberOfCartItems.value = result.netData
-                ?.firstWhere((cart) => cart.store.id == store.value?.id)
-                .numberOfItems ??
-            0;
+        final cart = result.netData
+            ?.firstWhere((cart) => cart.store.id == store.value?.id);
+
+        numberOfCartItems.value = cart?.numberOfItems ?? 0;
+        cartId.value = cart?.id;
       }
 
       AppLoadingOverlayWidget.dismiss();

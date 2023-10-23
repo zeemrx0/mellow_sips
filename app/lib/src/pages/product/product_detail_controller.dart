@@ -111,7 +111,7 @@ class ProductDetailController extends GetxController {
             addons.addAll(values);
           }
         } else {
-          addons.add(formKey.currentState!.fields[section.name]!.value);
+          addons.add(formKey.currentState!.fields[section.id]!.value);
         }
       });
 
@@ -127,11 +127,12 @@ class ProductDetailController extends GetxController {
 
       if (result.netData != null) {
         AppLoadingOverlayWidget.dismiss();
-        Get.back();
+        Get.back(result: true);
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      AppExceptionExt(appException: e).detected();;
+      AppExceptionExt(appException: e).detected();
+      ;
     }
   }
 }
