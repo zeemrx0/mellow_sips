@@ -6,22 +6,29 @@ class DomainProvider {
     Get.put<GetTestUseCase>(GetTestUseCaseImpl(Get.find()));
     Get.put<GetLocalTestUseCase>(GetLocalTestUseCaseImpl(Get.find()));
     Get.put<SaveLocalTestUseCase>(SaveLocalTestUseCaseImpl(Get.find()));
+
+    // Auth
     Get.put<LoginUseCase>(LoginUseCaseImpl(Get.find()));
     Get.put<RegisterUseCase>(RegisterUseCaseImpl(Get.find()));
     Get.put<VerifyRegistrationUseCase>(
       VerifyRegistrationUseCaseImpl(Get.find()),
     );
     Get.put<RequestOtpUseCase>(RequestOtpUseCaseImpl(Get.find()));
+    Get.put<LogoutUseCase>(LogoutUseCaseImpl(Get.find()));
 
+    // Document
     Get.put<GetDocumentUseCase>(GetDocumentUseCaseImpl(Get.find()));
 
+    // Store
     Get.put<GetStoreListUseCase>(GetStoreListUseCaseImpl(Get.find()));
     Get.put<SearchStoresUseCase>(SearchStoresUseCaseImpl(Get.find()));
     Get.put<GetStoreMenuUseCase>(GetStoreMenuUseCaseImpl(Get.find()));
     Get.put<GetStoreDetailUseCase>(GetStoreDetailUseCaseImpl(Get.find()));
 
+    // Product
     Get.put<GetProductDetailUseCase>(GetProductDetailUseCaseImpl(Get.find()));
 
+    // Cart
     Get.put<GetAllCartUseCase>(GetAllCartUseCaseImpl(Get.find()));
     Get.put<AddToCartUseCase>(AddToCartUseCaseImpl(Get.find()));
     Get.put<GetCartDetailUseCase>(GetCartDetailUseCaseImpl(Get.find()));

@@ -5,6 +5,7 @@ class CartPage extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.logOut();
     controller.getAllCart();
 
     return AppMainPageWidget()

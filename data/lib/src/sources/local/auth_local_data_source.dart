@@ -17,9 +17,9 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   AuthLocalDataSourceImpl(this._pref);
 
   @override
-  Future<void> clearTokens() {
-    // TODO: implement clearTokens
-    throw UnimplementedError();
+  Future<void> clearTokens() async {
+    await _pref.deleteValue(AppPrefKey.accessToken);
+    await _pref.deleteValue(AppPrefKey.refreshToken);
   }
 
   @override

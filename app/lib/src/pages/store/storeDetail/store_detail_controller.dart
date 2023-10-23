@@ -6,6 +6,7 @@ import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart'
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/store/storeDetail/components/food_item_widget.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
@@ -58,9 +59,9 @@ class StoreDetailController extends GetxController {
       }
 
       store.value?.coverImageData = await getImage(store.value?.coverImage);
-    } catch (e) {
+    } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      print(e);
+      AppExceptionExt(appException: e).detected();;
     }
   }
 
@@ -90,9 +91,9 @@ class StoreDetailController extends GetxController {
           menu.refresh();
         }
       }
-    } catch (e) {
+    } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      print(e);
+      AppExceptionExt(appException: e).detected();;
     }
   }
 
@@ -109,9 +110,9 @@ class StoreDetailController extends GetxController {
       }
 
       AppLoadingOverlayWidget.dismiss();
-    } catch (e) {
+    } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      print(e);
+      AppExceptionExt(appException: e).detected();
     }
   }
 

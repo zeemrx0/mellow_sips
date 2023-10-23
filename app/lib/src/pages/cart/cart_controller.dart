@@ -3,6 +3,7 @@ import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart'
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/cart/components/cart_item_widget.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class CartController extends GetxController {
   final GetDocumentUseCase _getDocumentUseCase;
   final DeleteCartUseCase _deleteCartUseCase;
   final DeleteCartItemUseCase _deleteCartItemUseCase;
+  final LogoutUseCase _logoutUseCase;
 
   CartController(
     this._getAllCartUseCase,
@@ -27,9 +29,14 @@ class CartController extends GetxController {
     this._getDocumentUseCase,
     this._deleteCartUseCase,
     this._deleteCartItemUseCase,
+    this._logoutUseCase,
   );
 
   RxList<CartModel> carts = <CartModel>[].obs;
+
+  Future<void> logOut() async {
+    await _logoutUseCase.executeObject();
+  }
 
   Future<void> getAllCart() async {
     try {
@@ -63,9 +70,9 @@ class CartController extends GetxController {
 
         carts.refresh();
       }
-    } catch (e) {
+    } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      print(e);
+      AppExceptionExt(appException: e).detected();
     }
   }
 

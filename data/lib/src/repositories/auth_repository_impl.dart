@@ -76,4 +76,17 @@ class AuthRepositoryImpl extends AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> logOut() async {
+    try {
+      await _localDataSource.clearTokens();
+
+      return AppObjectResultModel<EmptyModel>(
+        netData: EmptyModel(),
+      );
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

@@ -53,5 +53,7 @@
 	"totalPrice": "Tổng tiền",
 	"pay": "Thanh toán",
 	"cart": "Giỏ hàng",
-  "order": "Đặt hàng"
+  "order": "Đặt hàng",
+  "serverError": "Lỗi máy chủ",
+  "logOut": "Đăng xuất"
 }

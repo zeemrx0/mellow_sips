@@ -7,6 +7,7 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/product/components/checkbox_button_group.dart';
 import 'package:app/src/pages/product/components/radio_button_group_widget.dart';
 import 'package:domain/domain.dart';
@@ -59,9 +60,9 @@ class ProductDetailController extends GetxController {
 
         product.refresh();
       }
-    } catch (e) {
+    } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      print(e);
+      AppExceptionExt(appException: e).detected();
     }
   }
 
@@ -128,9 +129,9 @@ class ProductDetailController extends GetxController {
         AppLoadingOverlayWidget.dismiss();
         Get.back();
       }
-    } catch (e) {
+    } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
-      print(e);
+      AppExceptionExt(appException: e).detected();;
     }
   }
 }
