@@ -10,4 +10,6 @@ import 'package:resources/resources.dart';
 part './checkout_page.dart';
 part './checkout_binding.dart';
 
-class CheckoutController extends GetxController {}
+class CheckoutController extends GetxController {
+  
+}

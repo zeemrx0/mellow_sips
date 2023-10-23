@@ -12,6 +12,12 @@ import 'package:resources/resources.dart';
 part 'order_status_page.dart';
 part 'order_status_binding.dart';
 
+class OrderStatusKey {
+  static String pending = 'PENDING';
+  static String inProgress = 'IN_PROGRESS';
+  static String done = 'DONE';
+}
+
 class OrderStatusController extends GetxController {
   final GetOrderDetailUseCase _getOrderDetailUseCase;
 
@@ -31,7 +37,6 @@ class OrderStatusController extends GetxController {
 
       if (result.netData != null) {
         order.value = result.netData;
-        print(order.value?.status);
       }
 
       AppLoadingOverlayWidget.dismiss();

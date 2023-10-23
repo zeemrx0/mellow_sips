@@ -13,7 +13,22 @@ class OrderRepositoryImpl extends OrderRepository {
     try {
       final remoteData =
           await _orderRemoteDataSource.getOrderDetail(params: params);
-          
+
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultModel<OrderModel>> createOrder({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _orderRemoteDataSource.createOrder(
+        params: params,
+      );
+
       return remoteData.toAppObjectResultModel();
     } on NetworkException catch (_) {
       rethrow;

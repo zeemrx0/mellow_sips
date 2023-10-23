@@ -1,12 +1,18 @@
 part of 'order_status_controller.dart';
 
+enum StepStatus {
+  undone,
+  inProgress,
+  done,
+}
+
 class OrderStatusPage extends GetView<OrderStatusController> {
   const OrderStatusPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     controller.getOrderDetail();
-    
+
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
@@ -17,7 +23,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
     return AppBarBasicWidget()
         .setTitle(
           AppTextBody1Widget()
-              .setText('Tình trạng đơn hàng')
+              .setText(R.strings.orderStatus)
               .setTextStyle(
                 AppTextStyleExt.of.textBody1s?.copyWith(
                   fontFamily: R.fontFamily.workSans,
@@ -34,15 +40,45 @@ class OrderStatusPage extends GetView<OrderStatusController> {
       padding: EdgeInsets.symmetric(
         horizontal: AppThemeExt.of.majorScale(4),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _undoneStep(context, 'Chờ nhận đơn'),
-          _connectionLine(context),
-          _inProgressStep(context, 'Đang chuẩn bị'),
-          _connectionLine(context),
-          _undoneStep(context, 'Hoàn thành'),
-        ],
+      child: Obx(
+        () => Padding(
+          padding: EdgeInsets.only(
+            left: MediaQuery.of(Get.context!).size.width / 2 -
+                2 * AppThemeExt.of.majorScale(4) -
+                AppThemeExt.of.majorScale(18),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _step(
+                context,
+                title: R.strings.waitForConfirm,
+                stepStatus:
+                    controller.order.value?.status == OrderStatusKey.pending
+                        ? StepStatus.inProgress
+                        : StepStatus.undone,
+              ),
+              _connectionLine(context),
+              _step(
+                context,
+                title: R.strings.preparing,
+                stepStatus:
+                    controller.order.value?.status == OrderStatusKey.inProgress
+                        ? StepStatus.inProgress
+                        : StepStatus.undone,
+              ),
+              _connectionLine(context),
+              _step(
+                context,
+                title: R.strings.completed,
+                stepStatus:
+                    controller.order.value?.status == OrderStatusKey.done
+                        ? StepStatus.inProgress
+                        : StepStatus.undone,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -53,7 +89,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
       margin: EdgeInsets.only(
         left: AppThemeExt.of.majorScale(4) - 0.5,
       ),
-      height: AppThemeExt.of.majorScale(14),
+      height: AppThemeExt.of.majorScale(12),
       color: AppColors.of.primaryColor[300],
     );
   }
@@ -103,7 +139,6 @@ class OrderStatusPage extends GetView<OrderStatusController> {
             ),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              // color: AppColors.of.primaryColor,
               border: Border.all(
                 color: AppColors.of.primaryColor,
                 width: 1,
@@ -128,5 +163,19 @@ class OrderStatusPage extends GetView<OrderStatusController> {
         ],
       ),
     );
+  }
+
+  Widget _step(
+    BuildContext context, {
+    required String title,
+    required StepStatus stepStatus,
+  }) {
+    if (stepStatus == StepStatus.undone) {
+      return _undoneStep(context, title);
+    } else if (stepStatus == StepStatus.inProgress) {
+      return _inProgressStep(context, title);
+    } else {
+      return _undoneStep(context, title);
+    }
   }
 }
