@@ -57,7 +57,6 @@ class NetworkInterceptorWrapper extends QueuedInterceptorsWrapper {
 
   Map<String, String> _headerToken() {
     final token = _pref.getString(AppPrefKey.accessToken, '');
-    print("Token: $token");
     return {AppNetworkKey.authorization: '${AppNetworkKey.bearer} $token'};
   }
 

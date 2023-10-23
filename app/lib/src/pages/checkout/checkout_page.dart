@@ -12,10 +12,12 @@ class CheckoutPage extends GetView<CheckoutController> {
   }
 
   PreferredSizeWidget _appBar(BuildContext context) {
+    controller.getCart();
+
     return AppBarBasicWidget()
         .setTitle(
           AppTextBody1Widget()
-              .setText('Đặt hàng')
+              .setText(R.strings.order)
               .setTextStyle(
                 AppTextStyleExt.of.textBody1s?.copyWith(
                   fontFamily: R.fontFamily.workSans,
@@ -36,21 +38,25 @@ class CheckoutPage extends GetView<CheckoutController> {
           ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppTextHeading6Widget()
-                      .setText('Tạm tính (3 phần)')
-                      .build(context),
-                  AppTextBody1Widget()
-                      .setText('21.000đ')
-                      .setTextStyle(
-                        AppTextStyleExt.of.textBody1r?.copyWith(
-                          fontFamily: R.fontFamily.workSans,
-                        ),
-                      )
-                      .build(context),
-                ],
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppTextHeading6Widget()
+                        .setText(
+                            'Tạm tính (${controller.cart.value?.numberOfItems ?? 0} phần)')
+                        .build(context),
+                    AppTextBody1Widget()
+                        .setText(
+                            '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
+                        .setTextStyle(
+                          AppTextStyleExt.of.textBody1r?.copyWith(
+                            fontFamily: R.fontFamily.workSans,
+                          ),
+                        )
+                        .build(context),
+                  ],
+                ),
               )
             ],
           ),
@@ -85,15 +91,95 @@ class CheckoutPage extends GetView<CheckoutController> {
               top: AppThemeExt.of.majorPaddingScale(4),
               bottom: AppThemeExt.of.majorPaddingScale(2),
             ),
-            child: Row(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: AppFilledButtonWidget()
-                      .setButtonText(R.strings.order)
-                      .setOnPressed(
-                        () {},
-                      )
-                      .build(context),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppTextCaption1Widget()
+                        .setText(R.strings.paymentMethod)
+                        .build(context),
+                    InkWell(
+                      child: Row(
+                        children: [
+                          R.pngs.zaloPay.image(
+                            width: AppThemeExt.of.majorScale(5),
+                            height: AppThemeExt.of.majorScale(5),
+                          ),
+                          SizedBox(
+                            width: AppThemeExt.of.majorScale(1),
+                          ),
+                          AppTextBody2Widget()
+                              .setText(R.strings.zaloPay)
+                              .setTextStyle(
+                                AppTextStyleExt.of.textBody1s?.copyWith(
+                                  fontFamily: R.fontFamily.workSans,
+                                ),
+                              )
+                              .build(context),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(4),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 1,
+                  color: AppColors.of.dividerColor,
+                ),
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(4),
+                ),
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AppTextCaption1Widget()
+                            .setText(R.strings.totalPrice)
+                            .build(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(1),
+                        ),
+                        Obx(
+                          () => AppTextBody1Widget()
+                              .setText(
+                                  '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
+                              .setTextStyle(
+                                AppTextStyleExt.of.textBody1s?.copyWith(
+                                  fontFamily: R.fontFamily.workSans,
+                                ),
+                              )
+                              .build(context),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: AppThemeExt.of.majorScale(10),
+                    ),
+                    Expanded(
+                      child: AppFilledButtonWidget()
+                          .setButtonText(R.strings.order)
+                          .setOnPressed(
+                        () {
+                          Get.toNamed(
+                            Routes.confirmOrder,
+                            arguments: {
+                              CheckoutControllerKey.cartId:
+                                  controller.cart.value?.id,
+                              CheckoutControllerKey.initialTransactionMethod:
+                                  controller.transactionMethod.value,
+                            },
+                          );
+                        },
+                      ).build(context),
+                    ),
+                  ],
                 ),
               ],
             ),

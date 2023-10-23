@@ -62,5 +62,8 @@
 	"orderStatus": "Trạng thái đơn hàng",
 	"scanQRCodeOrEnterCodeToConfirm": "Quét QR hoặc nhập mã để xác nhận",
 	"scanCode": "Quét mã",
-	"enterCode": "Nhập mã"
+	"enterCode": "Nhập mã",
+  "paymentMethod": "Phương thức thanh toán",
+  "cash": "Tiền mặt",
+  "zaloPay": "ZaloPay"
 }

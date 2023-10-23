@@ -11,10 +11,10 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
   Widget _body(BuildContext context) {
     return Stack(
       children: [
-        QRView(
-          key: controller.qrKey,
-          onQRViewCreated: controller.onQRViewCreated,
-        ),
+        // QRView(
+        //   key: controller.qrKey,
+        //   onQRViewCreated: controller.onQRViewCreated,
+        // ),
         Padding(
           padding: EdgeInsets.symmetric(
             horizontal: AppThemeExt.of.majorScale(4),
@@ -103,14 +103,22 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
                             width: 230,
                             child: AppTextFieldWidget()
                                 .setFocusNode(controller.codeTextFieldFocusNode)
-                                .setFieldKey('qrCode')
-                                .setHintText('Nhập mã')
+                                .setFieldKey(ConfirmOrderControllerKey.qrCode)
+                                .setOnChanged((value) {
+                                  controller.qrCode.value = value ?? '';
+                                })
+                                .setHintText(R.strings.enterCode)
                                 .build(context),
                           ),
                           SizedBox(
                             width: AppThemeExt.of.majorScale(2),
                           ),
                           InkWell(
+                            onTap: () {
+                              controller.createOrder(
+                                qrCode: controller.qrCode.value,
+                              );
+                            },
                             child: Container(
                               padding: EdgeInsets.all(
                                 AppThemeExt.of.majorScale(10 / 4),

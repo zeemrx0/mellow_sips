@@ -5,7 +5,6 @@ class CartPage extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.logOut();
     controller.getAllCart();
 
     return AppMainPageWidget()
@@ -78,10 +77,13 @@ class CartPage extends GetView<CartController> {
                                     .build(context),
                               ],
                             ),
+                            SizedBox(
+                              height: AppThemeExt.of.majorScale(6),
+                            ),
                             AppFilledButtonWidget()
                                 .setButtonText(R.strings.pay)
                                 .setOnPressed(() {
-                                  
+                                  Get.toNamed(Routes.checkout, arguments: cart.id);
                                 })
                                 .build(context),
                           ],
