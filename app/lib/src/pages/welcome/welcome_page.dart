@@ -1,10 +1,12 @@
 part of './welcome_controller.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends GetView<WelcomeController> {
   const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    controller.checkIsLoggedIn();
+    
     return AppMainPageWidget().setBody(_body(context)).build(context);
   }
 

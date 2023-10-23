@@ -1,3 +1,4 @@
+import 'package:app/src/components/features/appBar/app_bar_basic_widget.dart';
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
@@ -22,7 +23,6 @@ class CartController extends GetxController {
   final GetDocumentUseCase _getDocumentUseCase;
   final DeleteCartUseCase _deleteCartUseCase;
   final DeleteCartItemUseCase _deleteCartItemUseCase;
-  final LogoutUseCase _logoutUseCase;
 
   CartController(
     this._getAllCartUseCase,
@@ -30,14 +30,9 @@ class CartController extends GetxController {
     this._getDocumentUseCase,
     this._deleteCartUseCase,
     this._deleteCartItemUseCase,
-    this._logoutUseCase,
   );
 
   RxList<CartModel> carts = <CartModel>[].obs;
-
-  Future<void> logOut() async {
-    await _logoutUseCase.executeObject();
-  }
 
   Future<void> getAllCart() async {
     try {
