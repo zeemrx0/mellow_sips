@@ -22,6 +22,7 @@ part './cart/cart_model.dart';
 part './cart/cart_item_model.dart';
 
 part './order/order_model.dart';
+part './order/order_transaction_model.dart';
 part './order/order_external_payment_info_model.dart';
 
 abstract class BaseModel {}

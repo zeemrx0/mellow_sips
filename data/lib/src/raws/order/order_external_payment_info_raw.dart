@@ -5,7 +5,7 @@ part of '../base_raw.dart';
 class OrderExternalPaymentInfoRaw extends BaseRaw {
   final String orderUrl;
   final String appTransId;
-  final String appId;
+  final int appId;
   final String zpTransToken;
 
   OrderExternalPaymentInfoRaw({

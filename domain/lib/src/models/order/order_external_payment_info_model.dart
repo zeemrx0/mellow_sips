@@ -5,7 +5,7 @@ part of '../base_model.dart';
 class OrderExternalPaymentInfoModel extends BaseModel {
   final String orderUrl;
   final String appTransId;
-  final String appId;
+  final int appId;
   final String zpTransToken;
 
   OrderExternalPaymentInfoModel({

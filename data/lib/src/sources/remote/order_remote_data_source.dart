@@ -46,6 +46,8 @@ class OrderRemoteDataSourceImpl extends OrderRemoteDataSource {
         ),
       );
 
+      print((response.data as Map<String, dynamic>)['externalPaymentInfo']);
+
       return response.toObjectRaw((data) => OrderRaw.fromJson(data));
     } on NetworkException catch (_) {
       rethrow;
