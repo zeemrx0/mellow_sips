@@ -329,6 +329,12 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             name: product.name ?? '',
             description: product.description ?? '',
             price: product.price ?? 0,
+            onPressed: () async {
+              final result = await Get.toNamed(Routes.productDetail, arguments: product.id);
+              if (result != null) {
+                controller.getNumberOfCartItems();
+              }
+            },
           );
         }).toList(),
       ],

@@ -1,9 +1,7 @@
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
-import 'package:app/src/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
@@ -13,6 +11,7 @@ class FoodItemWidget extends StatelessWidget {
   final String name;
   final String description;
   final int price;
+  final Function onPressed;
 
   const FoodItemWidget({
     super.key,
@@ -21,13 +20,14 @@ class FoodItemWidget extends StatelessWidget {
     required this.name,
     required this.description,
     required this.price,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.productDetail, arguments: id);
+        onPressed();
       },
       child: Container(
         height: AppThemeExt.of.majorScale(105 / 4),

@@ -111,7 +111,7 @@ class ProductDetailController extends GetxController {
             addons.addAll(values);
           }
         } else {
-          addons.add(formKey.currentState!.fields[section.name]!.value);
+          addons.add(formKey.currentState!.fields[section.id]!.value);
         }
       });
 
