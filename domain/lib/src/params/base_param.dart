@@ -24,4 +24,6 @@ part './cart/get_cart_detail_param.dart';
 part 'cart/delete_cart_param.dart';
 part 'cart/delete_cart_item_param.dart';
 
+part 'order/get_order_detail_param.dart';
+
 abstract class BaseParam {}

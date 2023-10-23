@@ -77,6 +77,12 @@ class CartPage extends GetView<CartController> {
                                     .build(context),
                               ],
                             ),
+                            AppFilledButtonWidget()
+                                .setButtonText(R.strings.pay)
+                                .setOnPressed(() {
+                                  
+                                })
+                                .build(context),
                           ],
                         ),
                       )
@@ -85,33 +91,6 @@ class CartPage extends GetView<CartController> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: AppThemeExt.of.majorScale(4),
-            ),
-            child: FilledButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(AppColors.of.primaryColor),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(
-                    horizontal: AppThemeExt.of.majorScale(5),
-                    vertical: AppThemeExt.of.majorScale(9 / 4),
-                  ),
-                ),
-              ),
-              onPressed: () {},
-              child: AppTextHeading4Widget()
-                  .setText(R.strings.pay)
-                  .setColor(Colors.white)
-                  .build(context),
-            ),
-          )
         ],
       ),
     );

@@ -52,5 +52,6 @@
   "note": "Ghi chú",
 	"totalPrice": "Tổng tiền",
 	"pay": "Thanh toán",
-	"cart": "Giỏ hàng"
+	"cart": "Giỏ hàng",
+  "order": "Đặt hàng"
 }

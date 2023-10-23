@@ -1,7 +1,9 @@
 import 'package:app/src/pages/cart/cart_controller.dart';
+import 'package:app/src/pages/checkout/checkout_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
+import 'package:app/src/pages/orderStatus/order_status_controller.dart';
 import 'package:app/src/pages/product/product_detail_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
@@ -70,6 +72,16 @@ class AppPages {
       name: Routes.carts,
       page: () => const CartPage(),
       binding: CartBinding(),
+    ),
+    GetPage(
+      name: Routes.checkout,
+      page: () => const CheckoutPage(),
+      binding: CheckoutBinding(),
+    ),
+    GetPage(
+      name: Routes.orderStatus,
+      page: () => const OrderStatusPage(),
+      binding: OrderStatusBinding(),
     ),
   ];
 }

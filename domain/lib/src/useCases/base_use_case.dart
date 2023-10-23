@@ -24,6 +24,8 @@ part './cart/get_cart_detail_use_case.dart';
 part './cart/delete_cart_use_case.dart';
 part './cart/delete_cart_item_use_case.dart';
 
+part 'order/get_order_detail_use_case.dart';
+
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {
     return Future.value(
