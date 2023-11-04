@@ -63,8 +63,10 @@
 	"scanQRCodeOrEnterCodeToConfirm": "Quét QR hoặc nhập mã để xác nhận",
 	"scanCode": "Quét mã",
 	"enterCode": "Nhập mã",
-  "paymentMethod": "Phương thức thanh toán",
-  "cash": "Tiền mặt",
-  "zaloPay": "ZaloPay",
-  "paymentFailed": "Thanh toán thất bại"
+	"paymentMethod": "Phương thức thanh toán",
+	"cash": "Tiền mặt",
+	"zaloPay": "ZaloPay",
+	"paymentFailed": "Thanh toán thất bại",
+	"pleaseSelect": "Vui lòng chọn",
+	"pleaseSelectMaximum": "Vui lòng chọn tối đa"
 }

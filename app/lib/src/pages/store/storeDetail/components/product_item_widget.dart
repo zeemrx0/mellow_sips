@@ -98,28 +98,6 @@ class FoodItemWidget extends StatelessWidget {
             SizedBox(
               width: AppThemeExt.of.majorScale(3),
             ),
-            InkWell(
-              onTap: () {
-                // TODO: Add to cart
-              },
-              child: Container(
-                padding: EdgeInsets.all(
-                  AppThemeExt.of.majorPaddingScale(6 / 4),
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.of.secondaryColor,
-                  shape: BoxShape.circle,
-                ),
-                child: R.svgs.icPlus.svg(
-                  width: AppThemeExt.of.majorScale(3),
-                  height: AppThemeExt.of.majorScale(3),
-                  colorFilter: ColorFilter.mode(
-                    AppColors.of.whiteColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            )
           ],
         ),
       ),

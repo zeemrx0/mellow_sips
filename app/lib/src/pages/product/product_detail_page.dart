@@ -76,11 +76,29 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                                       CheckboxButtonGroupWidget(
                                         fieldKey: section.id,
                                         addons: section.productAddons,
+                                        initialValue: controller
+                                            .formKey
+                                            .currentState
+                                            ?.fields[section.id]
+                                            ?.value,
+                                        onChanged: () {
+                                          controller.formKey.currentState
+                                              ?.save();
+                                        },
                                       ),
                                     if (section.maxAllowedChoices <= 1)
                                       RadioButtonGroupWidget(
                                         fieldKey: section.id,
                                         addons: section.productAddons,
+                                        initialValue: controller
+                                            .formKey
+                                            .currentState
+                                            ?.fields[section.id]
+                                            ?.value,
+                                        onChanged: () {
+                                          controller.formKey.currentState
+                                              ?.save();
+                                        },
                                       ),
                                   ],
                                 );
