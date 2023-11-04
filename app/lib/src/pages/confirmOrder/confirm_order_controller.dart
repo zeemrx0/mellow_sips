@@ -25,8 +25,12 @@ class ConfirmOrderControllerKey {
 
 class ConfirmOrderController extends GetxController {
   final CreateOrderUseCase _createOrderUseCase;
+  final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
 
-  ConfirmOrderController(this._createOrderUseCase);
+  ConfirmOrderController(
+    this._createOrderUseCase,
+    this._updateOrderStatusUseCase,
+  );
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? qrViewController;
@@ -92,9 +96,17 @@ class ConfirmOrderController extends GetxController {
                   .value!.latestTransaction.externalPaymentInfo.zpTransToken,
             );
 
-            if (zaloPayStatus == FlutterZaloPayStatus.success) {
+            if (zaloPayStatus == FlutterZaloPayStatus.success ||
+                zaloPayStatus == FlutterZaloPayStatus.processing) {
               Get.offAllNamed(Routes.orderStatus, arguments: order.value!.id);
             } else {
+              await _updateOrderStatusUseCase.executeObject(
+                param: UpdateOrderStatusParam(
+                  orderId: order.value!.id,
+                  status: AppOrderStatusUpdateAction.cancel,
+                ),
+              );
+
               AppDefaultDialogWidget()
                   .setTitle(R.strings.paymentFailed)
                   .setAppDialogType(AppDialogType.error)
