@@ -160,17 +160,20 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                 SizedBox(
                   width: AppThemeExt.of.majorScale(5),
                 ),
-                Expanded(
-                  child: AppFilledButtonWidget()
-                      .setButtonText(R.strings.pay)
-                      .setOnPressed(
-                    () {
-                      Get.toNamed(
-                        Routes.checkout,
-                        arguments: controller.cartId.value,
-                      );
-                    },
-                  ).build(context),
+                Obx(
+                  () => Expanded(
+                    child: AppFilledButtonWidget()
+                        .setButtonText(R.strings.checkout)
+                        .setIsDisabled(controller.numberOfCartItems.value == 0)
+                        .setOnPressed(
+                      () {
+                        Get.toNamed(
+                          Routes.checkout,
+                          arguments: controller.cartId.value,
+                        );
+                      },
+                    ).build(context),
+                  ),
                 ),
               ],
             ),

@@ -53,7 +53,7 @@
 	"totalPrice": "Tổng tiền",
 	"pay": "Thanh toán",
 	"cart": "Giỏ hàng",
-	"order": "Đặt hàng",
+	"order": "Đặt món",
 	"serverError": "Lỗi máy chủ",
 	"logOut": "Đăng xuất",
 	"waitForConfirm": "Chờ nhận đơn",
@@ -72,5 +72,6 @@
 	"pleaseSelectMaximum": "Vui lòng chọn tối đa",
 	"minimum": "Tối thiểu",
 	"maximum": "Tối đa",
-	"and": "và"
+	"and": "và",
+  "checkout": "Đặt món"
 }
