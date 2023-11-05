@@ -89,8 +89,8 @@ class IntroPage extends GetView<IntroController> {
                   child: R.svgs.icArrowRight.svg(
                     width: AppThemeExt.of.majorScale(4),
                     height: AppThemeExt.of.majorScale(4),
-                    colorFilter: const ColorFilter.mode(
-                      Colors.white,
+                    colorFilter: ColorFilter.mode(
+                      AppColors.of.whiteColor,
                       BlendMode.srcIn,
                     ),
                   ),

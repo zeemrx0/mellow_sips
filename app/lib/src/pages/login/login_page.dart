@@ -35,7 +35,7 @@ class LoginPage extends GetView<LoginController> {
               top: AppThemeExt.of.majorScale(5),
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.of.whiteColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   AppThemeExt.of.majorScale(6),

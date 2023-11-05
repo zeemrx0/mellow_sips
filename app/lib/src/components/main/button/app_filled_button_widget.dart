@@ -74,7 +74,7 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
                       AppTextStyleExt.of.textBody1s
                           ?.copyWith(fontFamily: R.fontFamily.workSans),
                 )
-                .setColor(Colors.white)
+                .setColor(AppColors.of.whiteColor)
                 .build(context),
           )
         : FilledButton(
@@ -87,7 +87,7 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
                       AppTextStyleExt.of.textBody1s
                           ?.copyWith(fontFamily: R.fontFamily.workSans),
                 )
-                .setColor(Colors.white)
+                .setColor(AppColors.of.whiteColor)
                 .build(context),
           );
   }
