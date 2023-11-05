@@ -5,7 +5,7 @@ part of '../base_model.dart';
 class OrderModel extends BaseModel {
   final String id;
   final String status;
-  final OrderTransactionModel latestTransaction;
+  final OrderTransactionModel? latestTransaction;
 
   OrderModel({
     required this.id,

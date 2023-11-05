@@ -63,7 +63,6 @@ class StoreDetailController extends GetxController {
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
-      ;
     }
   }
 
@@ -106,11 +105,13 @@ class StoreDetailController extends GetxController {
       final result = await _getAllCartUseCase.executeList();
 
       if (result.netData != null) {
-        final cart = result.netData
-            ?.firstWhere((cart) => cart.store.id == store.value?.id);
+        final cart = result.netData!
+            .firstWhereOrNull((cart) => cart.store.id == store.value?.id);
 
-        numberOfCartItems.value = cart?.numberOfItems ?? 0;
-        cartId.value = cart?.id;
+        if (cart != null) {
+          numberOfCartItems.value = cart.numberOfItems;
+          cartId.value = cart.id;
+        }
       }
 
       AppLoadingOverlayWidget.dismiss();

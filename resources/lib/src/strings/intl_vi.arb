@@ -57,6 +57,7 @@
 	"serverError": "Lỗi máy chủ",
 	"logOut": "Đăng xuất",
 	"waitForConfirm": "Chờ nhận đơn",
+  "waitForPayment": "Chờ thanh toán",
 	"preparing": "Đang chuẩn bị",
 	"completed": "Hoàn thành",
 	"orderStatus": "Trạng thái đơn hàng",
@@ -68,5 +69,8 @@
 	"zaloPay": "ZaloPay",
 	"paymentFailed": "Thanh toán thất bại",
 	"pleaseSelect": "Vui lòng chọn",
-	"pleaseSelectMaximum": "Vui lòng chọn tối đa"
+	"pleaseSelectMaximum": "Vui lòng chọn tối đa",
+	"minimum": "Tối thiểu",
+	"maximum": "Tối đa",
+	"and": "và"
 }

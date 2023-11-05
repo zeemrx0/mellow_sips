@@ -111,14 +111,30 @@ class RegisterPage extends GetView<RegisterController> {
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(2),
                                   ),
-                                  AppTextFieldWidget()
-                                      .setFieldKey(RegisterKey.password)
-                                      .setHintText(R.strings.password)
-                                      .setObscureText(true)
-                                      .setMaxLine(1)
-                                      .setInputType(TextInputType.text)
-                                      .setValidator(controller.validatePassword)
-                                      .build(context),
+                                  Obx(
+                                    () => AppTextFieldWidget()
+                                        .setFieldKey(RegisterKey.password)
+                                        .setHintText(R.strings.password)
+                                        .setObscureText(
+                                            !controller.isPasswordShown.value)
+                                        .setMaxLine(1)
+                                        .setInputType(TextInputType.text)
+                                        .setValidator(
+                                            controller.validatePassword)
+                                        .setSuffixIcon(
+                                          IconButton(
+                                            onPressed: () {
+                                              controller
+                                                  .togglePasswordVisibility();
+                                            },
+                                            icon:
+                                                controller.isPasswordShown.value
+                                                    ? R.svgs.icView.svg()
+                                                    : R.svgs.icNoView.svg(),
+                                          ),
+                                        )
+                                        .build(context),
+                                  ),
 
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),
@@ -131,15 +147,32 @@ class RegisterPage extends GetView<RegisterController> {
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(2),
                                   ),
-                                  AppTextFieldWidget()
-                                      .setFieldKey(RegisterKey.confirmPassword)
-                                      .setHintText(R.strings.confirmPassword)
-                                      .setObscureText(true)
-                                      .setMaxLine(1)
-                                      .setInputType(TextInputType.text)
-                                      .setValidator(
-                                          controller.validateConfirmPassword)
-                                      .build(context),
+                                  Obx(
+                                    () => AppTextFieldWidget()
+                                        .setFieldKey(
+                                            RegisterKey.confirmPassword)
+                                        .setHintText(R.strings.confirmPassword)
+                                        .setObscureText(controller
+                                            .isConfirmPasswordShown.value)
+                                        .setMaxLine(1)
+                                        .setInputType(TextInputType.text)
+                                        .setValidator(
+                                            controller.validateConfirmPassword)
+                                        .setSuffixIcon(
+                                          IconButton(
+                                            onPressed: () {
+                                              controller
+                                                  .toggleConfirmPasswordVisibility();
+                                            },
+                                            icon: controller
+                                                    .isConfirmPasswordShown
+                                                    .value
+                                                ? R.svgs.icView.svg()
+                                                : R.svgs.icNoView.svg(),
+                                          ),
+                                        )
+                                        .build(context),
+                                  ),
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),
                                   ),

@@ -151,12 +151,16 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
         suffixIconConstraints: suffixIconConstraints,
         suffixIcon: _suffixIcon ??
             (_hasClearButton
-                ? InkWell(
-                    child: const Icon(Icons.clear_rounded),
-                    onTap: () {
-                      _textFieldKey.currentState?.didChange('');
-                      FocusManager.instance.primaryFocus?.unfocus();
-                    },
+                ? Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: AppThemeExt.of.majorScale(3),
+                    ),
+                    child: InkWell(
+                      child: R.svgs.icClose.svg(),
+                      onTap: () {
+                        _textFieldKey.currentState?.didChange('');
+                      },
+                    ),
                   )
                 : const SizedBox()),
       ),

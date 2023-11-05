@@ -32,6 +32,17 @@ class OrderStatusPage extends GetView<OrderStatusController> {
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )
+        .setLeading(
+          InkWell(
+            onTap: () {
+              Get.offAllNamed(Routes.stores);
+            },
+            child: R.svgs.icLongArrowLeft.svg(
+              width: AppThemeExt.of.majorScale(4),
+              height: AppThemeExt.of.majorScale(4),
+            ),
+          ),
+        )
         .build(context);
   }
 
@@ -52,7 +63,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
             children: [
               _step(
                 context,
-                title: R.strings.waitForConfirm,
+                title: R.strings.waitForPayment,
                 stepStatus:
                     controller.order.value?.status == OrderStatusKey.pending
                         ? StepStatus.inProgress
@@ -61,9 +72,18 @@ class OrderStatusPage extends GetView<OrderStatusController> {
               _connectionLine(context),
               _step(
                 context,
+                title: R.strings.waitForConfirm,
+                stepStatus:
+                    controller.order.value?.status == OrderStatusKey.ordered
+                        ? StepStatus.inProgress
+                        : StepStatus.undone,
+              ),
+              _connectionLine(context),
+              _step(
+                context,
                 title: R.strings.preparing,
                 stepStatus:
-                    controller.order.value?.status == OrderStatusKey.inProgress
+                    controller.order.value?.status == OrderStatusKey.processing
                         ? StepStatus.inProgress
                         : StepStatus.undone,
               ),
@@ -72,7 +92,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
                 context,
                 title: R.strings.completed,
                 stepStatus:
-                    controller.order.value?.status == OrderStatusKey.done
+                    controller.order.value?.status == OrderStatusKey.completed
                         ? StepStatus.inProgress
                         : StepStatus.undone,
               ),

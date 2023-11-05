@@ -45,9 +45,10 @@ class ProductDetailController extends GetxController {
     try {
       AppLoadingOverlayWidget.show();
       final result = await _getProductDetailUseCase.executeObject(
-          param: GetProductDetailParam(
-        productId: productId,
-      ));
+        param: GetProductDetailParam(
+          productId: productId,
+        ),
+      );
 
       if (result.netData != null) {
         final productData = result.netData;

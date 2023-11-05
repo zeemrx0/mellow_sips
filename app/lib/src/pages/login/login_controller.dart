@@ -45,6 +45,8 @@ class LoginController extends GetxController {
   );
 
   final loginFormKey = GlobalKey<FormBuilderState>();
+  final FocusNode passwordFocusNode = FocusNode();
+  Rx<bool> isPasswordShown = false.obs;
 
   String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
@@ -60,6 +62,11 @@ class LoginController extends GetxController {
     }
 
     return null;
+  }
+
+  void togglePasswordVisibility() {
+    isPasswordShown.value = !isPasswordShown.value;
+    FocusScope.of(Get.context!).requestFocus(passwordFocusNode);
   }
 
   Future<void> login() async {

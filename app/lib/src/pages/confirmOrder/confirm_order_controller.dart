@@ -93,7 +93,7 @@ class ConfirmOrderController extends GetxController {
             FlutterZaloPayStatus zaloPayStatus =
                 await FlutterZaloPaySdk.payOrder(
               zpToken: order
-                  .value!.latestTransaction.externalPaymentInfo.zpTransToken,
+                  .value!.latestTransaction!.externalPaymentInfo.zpTransToken,
             );
 
             if (zaloPayStatus == FlutterZaloPayStatus.success ||

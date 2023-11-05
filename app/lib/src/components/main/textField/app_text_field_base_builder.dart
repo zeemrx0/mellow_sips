@@ -1,6 +1,7 @@
 import 'package:app/src/config/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:resources/resources.dart';
 
 part './app_text_field_widget.dart';
 

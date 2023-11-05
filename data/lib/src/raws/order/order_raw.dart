@@ -5,7 +5,7 @@ part of '../base_raw.dart';
 class OrderRaw extends BaseRaw {
   final String id;
   final String status;
-  final OrderTransactionRaw latestTransaction;
+  final OrderTransactionRaw? latestTransaction;
 
   OrderRaw({
     required this.id,
@@ -23,7 +23,7 @@ class OrderRaw extends BaseRaw {
     return OrderModel(
       id: id,
       status: status,
-      latestTransaction: latestTransaction.toModel() as OrderTransactionModel,
+      latestTransaction: latestTransaction?.toModel() as OrderTransactionModel?,
     );
   }
 }

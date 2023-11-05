@@ -4,7 +4,9 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
+import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
@@ -14,8 +16,13 @@ part 'order_status_binding.dart';
 
 class OrderStatusKey {
   static String pending = 'PENDING';
-  static String inProgress = 'IN_PROGRESS';
-  static String done = 'DONE';
+  static String ordered = 'ORDERED';
+  static String canceled = 'CANCELED';
+  static String rejected = 'REJECTED';
+  static String processing = 'PROCESSING';
+  static String completed = 'COMPLETED';
+  static String received = 'RECEIVED';
+  static String declined = 'DECLINED';
 }
 
 class OrderStatusController extends GetxController {
@@ -26,12 +33,14 @@ class OrderStatusController extends GetxController {
   Rxn<OrderModel> order = Rxn<OrderModel>();
 
   Future<void> getOrderDetail() async {
+    final orderId = Get.arguments as String;
+
     try {
       AppLoadingOverlayWidget.show();
 
       final result = await _getOrderDetailUseCase.executeObject(
         param: GetOrderDetailParam(
-          orderId: '6e329e9e-8b29-4765-91a5-bc4bd8a5a3ae',
+          orderId: orderId,
         ),
       );
 

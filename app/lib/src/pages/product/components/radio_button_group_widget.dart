@@ -59,6 +59,7 @@ class RadioButtonGroupWidget extends StatelessWidget {
                               value: addon.id,
                               groupValue: selectedOptionId,
                               onChanged: (value) {
+                                selectedOptionId = value;
                                 field.didChange(value);
                               },
                             ),

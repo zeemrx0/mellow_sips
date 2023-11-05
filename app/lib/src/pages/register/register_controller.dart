@@ -39,6 +39,21 @@ class RegisterController extends GetxController {
 
   final registerFormKey = GlobalKey<FormBuilderState>();
 
+  Rx<bool> isPasswordShown = false.obs;
+  Rx<bool> isConfirmPasswordShown = false.obs;
+  final FocusNode passwordFocusNode = FocusNode();
+  final FocusNode confirmPasswordFocusNode = FocusNode();
+
+  void togglePasswordVisibility() {
+    isPasswordShown.value = !isPasswordShown.value;
+    FocusScope.of(Get.context!).requestFocus(passwordFocusNode);
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    isConfirmPasswordShown.value = !isConfirmPasswordShown.value;
+    FocusScope.of(Get.context!).requestFocus(confirmPasswordFocusNode);
+  }
+
   Future<void> register() async {
     try {
       if (registerFormKey.currentState!.saveAndValidate()) {
