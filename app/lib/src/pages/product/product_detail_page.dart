@@ -1,6 +1,6 @@
 part of './product_detail_controller.dart';
 
-class ProductDetailPage extends GetWidget<ProductDetailController> {
+class ProductDetailPage extends GetView<ProductDetailController> {
   const ProductDetailPage({super.key});
 
   @override
@@ -65,10 +65,21 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                    AppTextHeading6Widget()
-                                        .setText(section.name)
-                                        .setTextAlign(TextAlign.left)
-                                        .build(context),
+                                    Row(
+                                      children: [
+                                        AppTextHeading6Widget()
+                                            .setText(section.name)
+                                            .setTextAlign(TextAlign.left)
+                                            .build(context),
+                                        SizedBox(
+                                          width: AppThemeExt.of.majorScale(2),
+                                        ),
+                                        _productOptionSectionHelpText(
+                                          context,
+                                          section,
+                                        ),
+                                      ],
+                                    ),
                                     SizedBox(
                                       height: AppThemeExt.of.majorScale(2),
                                     ),
@@ -76,11 +87,29 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                                       CheckboxButtonGroupWidget(
                                         fieldKey: section.id,
                                         addons: section.productAddons,
+                                        initialValue: controller
+                                            .formKey
+                                            .currentState
+                                            ?.fields[section.id]
+                                            ?.value,
+                                        onChanged: () {
+                                          controller.formKey.currentState
+                                              ?.save();
+                                        },
                                       ),
                                     if (section.maxAllowedChoices <= 1)
                                       RadioButtonGroupWidget(
                                         fieldKey: section.id,
                                         addons: section.productAddons,
+                                        initialValue: controller
+                                            .formKey
+                                            .currentState
+                                            ?.fields[section.id]
+                                            ?.value,
+                                        onChanged: () {
+                                          controller.formKey.currentState
+                                              ?.save();
+                                        },
                                       ),
                                   ],
                                 );
@@ -303,5 +332,32 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
         ),
       ],
     );
+  }
+
+  Widget _productOptionSectionHelpText(
+      BuildContext context, ProductOptionSectionModel section) {
+    if (section.isRequired && section.maxAllowedChoices > 1) {
+      return AppTextBody2Widget()
+          .setText('${R.strings.minimum} 1 ${R.strings.and} '
+              '${R.strings.maximum} ${section.maxAllowedChoices}')
+          .setColor(AppColors.of.subTextColor)
+          .setTextAlign(TextAlign.left)
+          .build(context);
+    }
+    if (section.isRequired) {
+      return AppTextBody2Widget()
+          .setText('${R.strings.minimum} 1')
+          .setColor(AppColors.of.subTextColor)
+          .setTextAlign(TextAlign.left)
+          .build(context);
+    }
+    if (section.maxAllowedChoices > 1) {
+      return AppTextBody2Widget()
+          .setText('${R.strings.maximum} ${section.maxAllowedChoices}')
+          .setColor(AppColors.of.subTextColor)
+          .setTextAlign(TextAlign.left)
+          .build(context);
+    }
+    return const SizedBox();
   }
 }

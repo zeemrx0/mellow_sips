@@ -35,7 +35,7 @@ class LoginPage extends GetView<LoginController> {
               top: AppThemeExt.of.majorScale(5),
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.of.whiteColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
                   AppThemeExt.of.majorScale(6),
@@ -77,7 +77,8 @@ class LoginPage extends GetView<LoginController> {
                                       .setFieldKey(LoginKey.phoneNumber)
                                       .setHintText(R.strings.phoneNumber)
                                       .setInputType(TextInputType.phone)
-                                      .setValidator(controller.validatePhoneNumber)
+                                      .setValidator(
+                                          controller.validatePhoneNumber)
                                       .build(context),
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),
@@ -88,14 +89,35 @@ class LoginPage extends GetView<LoginController> {
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(2),
                                   ),
-                                  AppTextFieldWidget()
-                                      .setFieldKey(LoginKey.password)
-                                      .setHintText(R.strings.password)
-                                      .setObscureText(true)
-                                      .setMaxLine(1)
-                                      .setInputType(TextInputType.text)
-                                      .setValidator(controller.validatePassword)
-                                      .build(context),
+                                  Obx(
+                                    () => AppTextFieldWidget()
+                                        .setFieldKey(LoginKey.password)
+                                        .setHintText(R.strings.password)
+                                        .setObscureText(
+                                          !controller.isPasswordShown.value,
+                                        )
+                                        .setMaxLine(1)
+                                        .setInputType(TextInputType.text)
+                                        .setValidator(
+                                          controller.validatePassword,
+                                        )
+                                        .setFocusNode(
+                                          controller.passwordFocusNode,
+                                        )
+                                        .setSuffixIcon(
+                                          IconButton(
+                                            onPressed: () {
+                                              controller
+                                                  .togglePasswordVisibility();
+                                            },
+                                            icon:
+                                                controller.isPasswordShown.value
+                                                    ? R.svgs.icView.svg()
+                                                    : R.svgs.icNoView.svg(),
+                                          ),
+                                        )
+                                        .build(context),
+                                  ),
                                   SizedBox(
                                     height: AppThemeExt.of.majorScale(3),
                                   ),

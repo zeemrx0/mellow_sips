@@ -34,4 +34,19 @@ class OrderRepositoryImpl extends OrderRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> updateOrderStatus({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _orderRemoteDataSource.updateOrderStatus(
+        params: params,
+      );
+
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

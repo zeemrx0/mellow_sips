@@ -4,7 +4,7 @@ class AppMainPageWidget extends AppMainPageBaseBuilder {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      onTap: () => FocusScope.of(Get.context!).requestFocus(FocusNode()),
       child: Scaffold(
         key: _key,
         backgroundColor: _backgroundColor ?? AppColors.of.grayColor[2],

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
+import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
@@ -44,9 +45,10 @@ class ProductDetailController extends GetxController {
     try {
       AppLoadingOverlayWidget.show();
       final result = await _getProductDetailUseCase.executeObject(
-          param: GetProductDetailParam(
-        productId: productId,
-      ));
+        param: GetProductDetailParam(
+          productId: productId,
+        ),
+      );
 
       if (result.netData != null) {
         final productData = result.netData;
@@ -64,6 +66,28 @@ class ProductDetailController extends GetxController {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
     }
+  }
+
+  String? validateProductOptions() {
+    String? errorString;
+
+    for (ProductOptionSectionModel section
+        in product.value?.productOptionSections ?? []) {
+      final options = formKey.currentState?.fields[section.id]?.value;
+
+      if (section.isRequired && options == null) {
+        errorString = '${R.strings.pleaseSelect} 1 ${section.name}';
+      }
+      if (options is List<String> &&
+          options.length > section.maxAllowedChoices) {
+        errorString =
+            '${R.strings.pleaseSelectMaximum} ${section.maxAllowedChoices} ${section.name}';
+      }
+
+      if (errorString != null) return errorString;
+    }
+
+    return errorString;
   }
 
   void increaseProductQuantity() {
@@ -96,11 +120,24 @@ class ProductDetailController extends GetxController {
 
   Future<void> addToCart() async {
     try {
-      AppLoadingOverlayWidget.show();
-
       if (formKey.currentState == null) return;
 
       formKey.currentState?.save();
+
+      final validateProductOptionsResult = validateProductOptions();
+
+      if (validateProductOptionsResult != null) {
+        AppDefaultDialogWidget()
+            .setContent(validateProductOptionsResult)
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.confirm)
+            .setNegativeText(R.strings.close)
+            .buildDialog(Get.context!)
+            .show();
+        return;
+      }
+
+      AppLoadingOverlayWidget.show();
 
       List<String> addons = [];
 

@@ -8,15 +8,21 @@ import 'package:utilities/utilities.dart';
 class RadioButtonGroupWidget extends StatelessWidget {
   final String fieldKey;
   final List<ProductAddonModel> addons;
+  final String? initialValue;
+  final Function? onChanged;
 
   const RadioButtonGroupWidget({
     super.key,
     required this.fieldKey,
+    this.initialValue,
     required this.addons,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
+    String? selectedOptionId = initialValue;
+
     return FormBuilderField(
       name: fieldKey,
       builder: (field) {
@@ -37,6 +43,7 @@ class RadioButtonGroupWidget extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         field.didChange(addon.id);
+                        onChanged?.call();
                       },
                       child: Padding(
                         padding: EdgeInsets.only(
@@ -50,8 +57,9 @@ class RadioButtonGroupWidget extends StatelessWidget {
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
                               value: addon.id,
-                              groupValue: field.value,
+                              groupValue: selectedOptionId,
                               onChanged: (value) {
+                                selectedOptionId = value;
                                 field.didChange(value);
                               },
                             ),

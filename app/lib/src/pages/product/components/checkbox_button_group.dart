@@ -8,16 +8,20 @@ import 'package:utilities/utilities.dart';
 class CheckboxButtonGroupWidget extends StatelessWidget {
   final String fieldKey;
   final List<ProductAddonModel> addons;
+  final List<String>? initialValue;
+  final Function? onChanged;
 
   const CheckboxButtonGroupWidget({
     super.key,
     required this.fieldKey,
     required this.addons,
+    this.initialValue,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<String> selectedOptionIds = [];
+    List<String> selectedOptionIds = initialValue ?? [];
 
     return FormBuilderField(
       name: fieldKey,
@@ -39,6 +43,7 @@ class CheckboxButtonGroupWidget extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         field.didChange(selectedOptionIds);
+                        onChanged?.call();
                       },
                       child: Padding(
                         padding: EdgeInsets.only(

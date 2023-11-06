@@ -20,6 +20,7 @@ part './cart/cart_raw.dart';
 part './cart/cart_item_raw.dart';
 
 part './order/order_raw.dart';
+part './order/order_transaction_raw.dart';
 part './order/order_external_payment_info_raw.dart';
 
 abstract class BaseRaw<BM extends BaseModel> {

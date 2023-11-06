@@ -25,8 +25,12 @@ class ConfirmOrderControllerKey {
 
 class ConfirmOrderController extends GetxController {
   final CreateOrderUseCase _createOrderUseCase;
+  final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
 
-  ConfirmOrderController(this._createOrderUseCase);
+  ConfirmOrderController(
+    this._createOrderUseCase,
+    this._updateOrderStatusUseCase,
+  );
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? qrViewController;
@@ -88,15 +92,28 @@ class ConfirmOrderController extends GetxController {
           case AppPaymentMethod.zalopay:
             FlutterZaloPayStatus zaloPayStatus =
                 await FlutterZaloPaySdk.payOrder(
-              zpToken: order.value!.externalPaymentInfo.zpTransToken,
+              zpToken: order
+                  .value!.latestTransaction!.externalPaymentInfo.zpTransToken,
             );
 
-            if (zaloPayStatus == FlutterZaloPayStatus.success) {
+            if (zaloPayStatus == FlutterZaloPayStatus.success ||
+                zaloPayStatus == FlutterZaloPayStatus.processing) {
               Get.offAllNamed(Routes.orderStatus, arguments: order.value!.id);
             } else {
+              await _updateOrderStatusUseCase.executeObject(
+                param: UpdateOrderStatusParam(
+                  orderId: order.value!.id,
+                  status: AppOrderStatusUpdateAction.cancel,
+                ),
+              );
+
               AppDefaultDialogWidget()
                   .setTitle(R.strings.paymentFailed)
                   .setAppDialogType(AppDialogType.error)
+                  .setPositiveText(R.strings.confirm)
+                  .setOnPositive(() {
+                    Get.back();
+                  })
                   .buildDialog(Get.context!)
                   .show();
             }
@@ -108,6 +125,17 @@ class ConfirmOrderController extends GetxController {
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
+    } catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppScreenDialogWidget()
+          .setTitle(R.strings.error)
+          .setAppDialogType(AppDialogType.error)
+          .setPositiveText(R.strings.confirm)
+          .setOnPositive(() {
+            Get.back();
+          })
+          .buildDialog(Get.context!)
+          .show();
     }
   }
 }

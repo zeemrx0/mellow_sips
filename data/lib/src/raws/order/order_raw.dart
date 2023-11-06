@@ -5,12 +5,12 @@ part of '../base_raw.dart';
 class OrderRaw extends BaseRaw {
   final String id;
   final String status;
-  final OrderExternalPaymentInfoRaw externalPaymentInfo;
+  final OrderTransactionRaw? latestTransaction;
 
   OrderRaw({
     required this.id,
     required this.status,
-    required this.externalPaymentInfo,
+    required this.latestTransaction,
   });
 
   factory OrderRaw.fromJson(Map<String, dynamic> json) =>
@@ -23,7 +23,7 @@ class OrderRaw extends BaseRaw {
     return OrderModel(
       id: id,
       status: status,
-      externalPaymentInfo: externalPaymentInfo.toModel() as OrderExternalPaymentInfoModel,
+      latestTransaction: latestTransaction?.toModel() as OrderTransactionModel?,
     );
   }
 }

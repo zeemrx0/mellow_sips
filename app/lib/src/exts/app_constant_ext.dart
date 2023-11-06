@@ -12,3 +12,7 @@ class AppPaymentMethod {
   static const String zalopay = 'ZALO_PAY';
   static const String cash = 'CASH';
 }
+
+class AppOrderStatusUpdateAction {
+  static const String cancel = 'cancel';
+}

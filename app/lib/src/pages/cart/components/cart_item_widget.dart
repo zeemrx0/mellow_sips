@@ -91,7 +91,7 @@ class CartItemWidget extends GetView<CartController> {
             vertical: AppThemeExt.of.majorPaddingScale(4),
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.of.whiteColor,
             borderRadius: BorderRadius.circular(AppThemeExt.of.majorScale(8)),
             boxShadow: const [
               BoxShadow(
@@ -161,7 +161,7 @@ class CartItemWidget extends GetView<CartController> {
                       child: Center(
                           child: Icon(
                         Icons.remove_rounded,
-                        color: Colors.white,
+                        color: AppColors.of.whiteColor,
                         size: AppThemeExt.of.majorScale(4),
                       )),
                     ),
@@ -187,7 +187,7 @@ class CartItemWidget extends GetView<CartController> {
                       child: Center(
                         child: Icon(
                           Icons.add_rounded,
-                          color: Colors.white,
+                          color: AppColors.of.whiteColor,
                           size: AppThemeExt.of.majorScale(4),
                         ),
                       ),

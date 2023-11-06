@@ -10,7 +10,7 @@ class CartPage extends GetView<CartController> {
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
-        .setBackgroundColor(Colors.white)
+        .setBackgroundColor(AppColors.of.backgroundColor)
         .build(context);
   }
 
