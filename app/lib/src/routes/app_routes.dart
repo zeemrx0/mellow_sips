@@ -19,6 +19,8 @@ class Routes {
   static const carts = '/carts';
   static const checkout = '/checkout';
 
+  static const orders = '/orders';
   static const orderStatus = '/orderStatus';
   static const confirmOrder = '/confirmOrder';
+  static const orderDetail = '/orderDetail';
 }

@@ -57,7 +57,7 @@
 	"serverError": "Lỗi máy chủ",
 	"logOut": "Đăng xuất",
 	"waitForConfirm": "Chờ nhận đơn",
-  "waitForPayment": "Chờ thanh toán",
+	"waitForPayment": "Chờ thanh toán",
 	"preparing": "Đang chuẩn bị",
 	"completed": "Hoàn thành",
 	"orderStatus": "Trạng thái đơn hàng",
@@ -73,5 +73,13 @@
 	"minimum": "Tối thiểu",
 	"maximum": "Tối đa",
 	"and": "và",
-  "checkout": "Đặt món"
+	"checkout": "Đặt món",
+	"orders": "Đơn hàng",
+	"items": "món",
+	"subtotal": "Tạm tính",
+	"canceled": "Đã hủy",
+	"pending": "Đang chờ thanh toán",
+	"processing": "Đang chuẩn bị",
+	"received": "Đã nhận",
+	"rejected": "Đã từ chối"
 }

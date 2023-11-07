@@ -22,6 +22,7 @@ part './cart/cart_item_raw.dart';
 part './order/order_raw.dart';
 part './order/order_transaction_raw.dart';
 part './order/order_external_payment_info_raw.dart';
+part './order/order_details_raw.dart';
 
 abstract class BaseRaw<BM extends BaseModel> {
   BM toModel();

@@ -45,7 +45,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                   children: [
                     AppTextHeading6Widget()
                         .setText(
-                            'Tạm tính (${controller.cart.value?.numberOfItems ?? 0} phần)')
+                            '${R.strings.subtotal} (${controller.cart.value?.numberOfItems ?? 0} ${R.strings.items})')
                         .build(context),
                     AppTextBody1Widget()
                         .setText(

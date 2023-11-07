@@ -5,11 +5,15 @@ part of '../base_raw.dart';
 class OrderRaw extends BaseRaw {
   final String id;
   final String status;
+  final int finalPrice;
+  final OrderDetailsRaw details;
   final OrderTransactionRaw? latestTransaction;
 
   OrderRaw({
     required this.id,
     required this.status,
+    required this.finalPrice,
+    required this.details,
     required this.latestTransaction,
   });
 
@@ -23,6 +27,8 @@ class OrderRaw extends BaseRaw {
     return OrderModel(
       id: id,
       status: status,
+      finalPrice: finalPrice,
+      details: details.toModel() as OrderDetailsModel,
       latestTransaction: latestTransaction?.toModel() as OrderTransactionModel?,
     );
   }
