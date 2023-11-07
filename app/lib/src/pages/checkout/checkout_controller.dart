@@ -7,6 +7,7 @@ import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';

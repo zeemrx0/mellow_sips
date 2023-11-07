@@ -101,27 +101,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                     AppTextCaption1Widget()
                         .setText(R.strings.paymentMethod)
                         .build(context),
-                    InkWell(
-                      child: Row(
-                        children: [
-                          R.pngs.zaloPay.image(
-                            width: AppThemeExt.of.majorScale(5),
-                            height: AppThemeExt.of.majorScale(5),
-                          ),
-                          SizedBox(
-                            width: AppThemeExt.of.majorScale(1),
-                          ),
-                          AppTextBody2Widget()
-                              .setText(R.strings.zaloPay)
-                              .setTextStyle(
-                                AppTextStyleExt.of.textBody1s?.copyWith(
-                                  fontFamily: R.fontFamily.workSans,
-                                ),
-                              )
-                              .build(context),
-                        ],
-                      ),
-                    )
+                    _paymentMethodSelectionInput(context),
                   ],
                 ),
                 SizedBox(
@@ -188,5 +168,85 @@ class CheckoutPage extends GetView<CheckoutController> {
         ),
       ],
     );
+  }
+
+  Widget _paymentMethodSelectionInput(BuildContext context) {
+    return DropdownButtonHideUnderline(
+      child: Obx(
+        () => DropdownButton2(
+          value: controller.transactionMethod.value,
+          onChanged: (value) {
+            controller.transactionMethod.value = value as String;
+          },
+          items: [
+            DropdownMenuItem(
+              value: AppPaymentMethod.zalopay,
+              child: Row(
+                children: [
+                  R.pngs.zaloPay.image(
+                    width: AppThemeExt.of.majorScale(5),
+                    height: AppThemeExt.of.majorScale(5),
+                  ),
+                  SizedBox(
+                    width: AppThemeExt.of.majorScale(1),
+                  ),
+                  AppTextBody2Widget()
+                      .setText(R.strings.zaloPay)
+                      .setTextStyle(
+                        AppTextStyleExt.of.textBody1s?.copyWith(
+                          fontFamily: R.fontFamily.workSans,
+                        ),
+                      )
+                      .build(context),
+                ],
+              ),
+            ),
+            DropdownMenuItem(
+              value: AppPaymentMethod.cash,
+              child: Row(
+                children: [
+                  R.svgs.icCash.svg(
+                    width: AppThemeExt.of.majorScale(5),
+                    height: AppThemeExt.of.majorScale(5),
+                  ),
+                  SizedBox(
+                    width: AppThemeExt.of.majorScale(1),
+                  ),
+                  AppTextBody2Widget()
+                      .setText(R.strings.cash)
+                      .setTextStyle(
+                        AppTextStyleExt.of.textBody1s?.copyWith(
+                          fontFamily: R.fontFamily.workSans,
+                        ),
+                      )
+                      .build(context),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    // return InkWell(
+    //   child: Row(
+    //     children: [
+    //       R.pngs.zaloPay.image(
+    //         width: AppThemeExt.of.majorScale(5),
+    //         height: AppThemeExt.of.majorScale(5),
+    //       ),
+    //       SizedBox(
+    //         width: AppThemeExt.of.majorScale(1),
+    //       ),
+    //       AppTextBody2Widget()
+    //           .setText(R.strings.zaloPay)
+    //           .setTextStyle(
+    //             AppTextStyleExt.of.textBody1s?.copyWith(
+    //               fontFamily: R.fontFamily.workSans,
+    //             ),
+    //           )
+    //           .build(context),
+    //     ],
+    //   ),
+    // );
   }
 }
