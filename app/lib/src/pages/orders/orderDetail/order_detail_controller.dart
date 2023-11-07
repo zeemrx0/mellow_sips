@@ -54,6 +54,7 @@ class OrderDetailController extends GetxController {
 
     if (zaloPayStatus == FlutterZaloPayStatus.success ||
         zaloPayStatus == FlutterZaloPayStatus.processing) {
+      order.refresh();
     } else {
       AppDefaultDialogWidget()
           .setTitle(R.strings.paymentFailed)
@@ -78,6 +79,8 @@ class OrderDetailController extends GetxController {
         ),
       );
 
+      order.refresh();
+
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
@@ -89,6 +92,8 @@ class OrderDetailController extends GetxController {
     switch (orderStatus) {
       case AppOrderStatus.canceled:
         return R.strings.canceled;
+      case AppOrderStatus.ordered:
+        return R.strings.ordered;
       case AppOrderStatus.completed:
         return R.strings.completed;
       case AppOrderStatus.pending:

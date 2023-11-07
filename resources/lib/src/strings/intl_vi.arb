@@ -82,5 +82,6 @@
 	"processing": "Đang chuẩn bị",
 	"received": "Đã nhận",
 	"rejected": "Đã từ chối",
-  "cancelOrder": "Hủy đặt món"
+	"cancelOrder": "Hủy đặt món",
+	"ordered": "Chờ xác nhận"
 }

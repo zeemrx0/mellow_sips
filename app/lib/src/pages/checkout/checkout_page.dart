@@ -39,8 +39,10 @@ class CheckoutPage extends GetView<CheckoutController> {
           ),
           child: Column(
             children: [
-              OrderCartItemList(
-                cartItems: controller.cart.value?.cartItems ?? [],
+              Obx(
+                () => OrderCartItemList(
+                  cartItems: controller.cart.value?.cartItems ?? [],
+                ),
               ),
               SizedBox(
                 height: AppThemeExt.of.majorScale(4),
