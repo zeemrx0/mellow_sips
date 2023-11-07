@@ -2,10 +2,14 @@ part of 'app_exts.dart';
 
 class AppConstants {
   AppConstants._();
+
+  static const String order = 'order';
+  static const String createdAt = 'createdAt';
+  static const String desc = 'DESC';
 }
 
 class AppRoutesParamKey {
-  static String id = 'id';
+  static const String id = 'id';
 }
 
 class AppPaymentMethod {

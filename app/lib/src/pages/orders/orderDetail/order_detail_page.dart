@@ -21,44 +21,82 @@ class OrderDetailPage extends GetView<OrderDetailController> {
       ),
       child: Obx(
         () => Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            AppTextHeading3Widget()
-                .setText(controller.order.value?.details.store.name)
-                .build(context),
-            SizedBox(
-              height: AppThemeExt.of.majorScale(2),
-            ),
-            AppTextHeading6Widget()
-                .setText(
-                    controller.getOrderStatus(controller.order.value?.status))
-                .setColor(AppColors.of.subTextColor)
-                .build(context),
-            SizedBox(
-              height: AppThemeExt.of.majorScale(2),
-            ),
-            OrderCartItemList(
-              cartItems: controller.order.value?.details.cartItems ?? [],
-            ),
-            SizedBox(
-              height: AppThemeExt.of.majorScale(4),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
+                AppTextHeading3Widget()
+                    .setText(controller.order.value?.details.store.name)
+                    .build(context),
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(2),
+                ),
                 AppTextHeading6Widget()
-                    .setText(
-                        '${R.strings.subtotal} (${controller.order.value?.details.cartItems.length ?? 0} ${R.strings.items})')
+                    .setText(controller
+                        .getOrderStatus(controller.order.value?.status))
+                    .setColor(AppColors.of.subTextColor)
                     .build(context),
-                AppTextBody1Widget()
-                    .setText(
-                        '${NumberExt.withSeparator(controller.order.value?.finalPrice ?? 0)}đ')
-                    .setTextStyle(
-                      AppTextStyleExt.of.textBody1r?.copyWith(
-                        fontFamily: R.fontFamily.workSans,
-                      ),
-                    )
-                    .build(context),
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(2),
+                ),
+                OrderCartItemList(
+                  cartItems: controller.order.value?.details.cartItems ?? [],
+                ),
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(4),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppTextHeading6Widget()
+                        .setText(
+                            '${R.strings.subtotal} (${controller.order.value?.details.cartItems.length ?? 0} ${R.strings.items})')
+                        .build(context),
+                    AppTextBody1Widget()
+                        .setText(
+                            '${NumberExt.withSeparator(controller.order.value?.finalPrice ?? 0)}đ')
+                        .setTextStyle(
+                          AppTextStyleExt.of.textBody1r?.copyWith(
+                            fontFamily: R.fontFamily.workSans,
+                          ),
+                        )
+                        .build(context),
+                  ],
+                ),
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: AppThemeExt.of.majorScale(3),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (controller.order.value?.status == AppOrderStatus.pending)
+                    AppFilledButtonWidget()
+                        .setButtonText(R.strings.pay)
+                        .setOnPressed(() {
+                      controller.payOrder();
+                    }).build(context),
+                  if (controller.order.value?.status ==
+                          AppOrderStatus.pending ||
+                      controller.order.value?.status == AppOrderStatus.ordered)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(2),
+                        ),
+                        AppOutlinedButtonWidget()
+                            .setButtonText(R.strings.cancelOrder)
+                            .setOnPressed(() {
+                          controller.cancelOrder();
+                        }).build(context),
+                      ],
+                    ),
+                ],
+              ),
             ),
           ],
         ),

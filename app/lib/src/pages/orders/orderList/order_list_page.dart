@@ -3,6 +3,10 @@ part of './order_list_controller.dart';
 class OrderListPage extends GetView<OrderListController> {
   const OrderListPage({super.key});
 
+  static void open() {
+    Get.toNamed(Routes.orders);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppMainPageWidget()

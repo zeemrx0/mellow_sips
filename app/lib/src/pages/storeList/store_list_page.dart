@@ -39,6 +39,7 @@ class StoreListPage extends GetView<StoreListController> {
         .setHeight(
           kToolbarHeight + AppThemeExt.of.majorScale(48 / 4),
         )
+        .setCanBack(true)
         .setBottom(
           Padding(
             padding: EdgeInsets.only(

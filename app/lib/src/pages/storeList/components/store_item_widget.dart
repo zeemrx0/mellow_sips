@@ -42,7 +42,7 @@ class StoreItemWidget extends StatelessWidget {
                 clipBehavior: Clip.none,
                 children: [
                   DataImageWidget(
-                    imageData: store.coverImage,
+                    imageData: store.coverImageData,
                     width: AppThemeExt.of.majorScale(72 / 4),
                     height: AppThemeExt.of.majorScale(72 / 4),
                     borderRadius: BorderRadius.circular(

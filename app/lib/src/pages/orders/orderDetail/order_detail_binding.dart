@@ -6,6 +6,7 @@ class OrderDetailBinding implements Bindings {
     Get.lazyPut<OrderDetailController>(
       () => OrderDetailController(
         Get.find(),
+        Get.find(),
       ),
     );
   }

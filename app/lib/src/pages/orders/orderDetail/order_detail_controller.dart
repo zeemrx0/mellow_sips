@@ -1,5 +1,7 @@
 import 'package:app/src/components/features/appBar/app_bar_basic_widget.dart';
 import 'package:app/src/components/features/orderCartItemList/order_cart_item_list.dart';
+import 'package:app/src/components/main/button/app_button_base_builder.dart';
+import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
@@ -7,6 +9,7 @@ import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zalopay_sdk/flutter_zalopay_sdk.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
@@ -16,8 +19,12 @@ part './order_detail_binding.dart';
 
 class OrderDetailController extends GetxController {
   final GetOrderDetailUseCase _getOrderDetailUseCase;
+  final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
 
-  OrderDetailController(this._getOrderDetailUseCase);
+  OrderDetailController(
+    this._getOrderDetailUseCase,
+    this._updateOrderStatusUseCase,
+  );
 
   Rxn<OrderModel> order = Rxn<OrderModel>();
 
@@ -32,6 +39,44 @@ class OrderDetailController extends GetxController {
       );
 
       order.value = result.netData;
+
+      AppLoadingOverlayWidget.dismiss();
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  Future<void> payOrder() async {
+    FlutterZaloPayStatus zaloPayStatus = await FlutterZaloPaySdk.payOrder(
+      zpToken: order.value!.latestTransaction!.externalPaymentInfo.zpTransToken,
+    );
+
+    if (zaloPayStatus == FlutterZaloPayStatus.success ||
+        zaloPayStatus == FlutterZaloPayStatus.processing) {
+    } else {
+      AppDefaultDialogWidget()
+          .setTitle(R.strings.paymentFailed)
+          .setAppDialogType(AppDialogType.error)
+          .setPositiveText(R.strings.confirm)
+          .setOnPositive(() {
+            Get.back();
+          })
+          .buildDialog(Get.context!)
+          .show();
+    }
+  }
+
+  Future<void> cancelOrder() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      await _updateOrderStatusUseCase.executeObject(
+        param: UpdateOrderStatusParam(
+          orderId: order.value!.id,
+          status: AppOrderStatusUpdateAction.cancel,
+        ),
+      );
 
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {
