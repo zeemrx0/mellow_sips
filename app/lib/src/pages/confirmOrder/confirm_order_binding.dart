@@ -6,7 +6,6 @@ class ConfirmOrderBinding extends Bindings {
     Get.lazyPut<ConfirmOrderController>(
       () => ConfirmOrderController(
         Get.find(),
-        Get.find(),
       ),
     );
   }

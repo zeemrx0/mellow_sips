@@ -5,7 +5,7 @@ part of '../base_model.dart';
 class ProductOptionSectionModel extends BaseModel {
   final String id;
   final String name;
-  final int order;
+  final int priority;
   final bool isRequired;
   final int maxAllowedChoices;
   final List<ProductAddonModel> productAddons;
@@ -13,7 +13,7 @@ class ProductOptionSectionModel extends BaseModel {
   ProductOptionSectionModel({
     required this.id,
     required this.name,
-    required this.order,
+    required this.priority,
     required this.isRequired,
     required this.maxAllowedChoices,
     required this.productAddons,

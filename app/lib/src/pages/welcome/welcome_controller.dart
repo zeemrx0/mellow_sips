@@ -31,7 +31,7 @@ class WelcomeController extends GetxController {
 
       if (result.netData?.accessToken != null &&
           result.netData!.accessToken.isNotEmpty) {
-        await Get.offAllNamed(Routes.stores);
+        await Get.offAllNamed(Routes.home);
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();

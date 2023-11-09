@@ -5,7 +5,7 @@ part of '../base_raw.dart';
 class ProductOptionSectionRaw extends BaseRaw {
   final String id;
   final String name;
-  final int order;
+  final int priority;
   final bool isRequired;
   final int maxAllowedChoices;
   final List<ProductAddonRaw> productAddons;
@@ -13,7 +13,7 @@ class ProductOptionSectionRaw extends BaseRaw {
   ProductOptionSectionRaw({
     required this.id,
     required this.name,
-    required this.order,
+    required this.priority,
     required this.isRequired,
     required this.maxAllowedChoices,
     required this.productAddons,
@@ -29,7 +29,7 @@ class ProductOptionSectionRaw extends BaseRaw {
     return ProductOptionSectionModel(
       id: id,
       name: name,
-      order: order,
+      priority: priority,
       isRequired: isRequired,
       maxAllowedChoices: maxAllowedChoices,
       productAddons: productAddons.map((e) => e.toModel() as ProductAddonModel).toList(),

@@ -1,7 +1,7 @@
 part of 'cart_controller.dart';
 
 class CartPage extends GetView<CartController> {
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {

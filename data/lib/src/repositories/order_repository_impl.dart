@@ -21,6 +21,20 @@ class OrderRepositoryImpl extends OrderRepository {
   }
 
   @override
+  Future<AppPaginationListResultModel<OrderModel>> searchOrders({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData =
+          await _orderRemoteDataSource.searchOrders(params: params);
+
+      return remoteData.toAppPaginationListResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<AppObjectResultModel<OrderModel>> createOrder({
     required Map<String, dynamic> params,
   }) async {

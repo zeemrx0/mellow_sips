@@ -40,5 +40,6 @@ class DomainProvider {
     Get.put<GetOrderDetailUseCase>(GetOrderDetailUseCaseImpl(Get.find()));
     Get.put<CreateOrderUseCase>(CreateOrderUseCaseImpl(Get.find()));
     Get.put<UpdateOrderStatusUseCase>(UpdateOrderStatusUseCaseImpl(Get.find()));
+    Get.put<SearchOrdersUseCase>(SearchOrdersUseCaseImpl(Get.find()));
   }
 }

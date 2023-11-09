@@ -5,6 +5,8 @@ import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/pages/orderStatus/order_status_controller.dart';
+import 'package:app/src/pages/orders/orderDetail/order_detail_controller.dart';
+import 'package:app/src/pages/orders/orderList/order_list_controller.dart';
 import 'package:app/src/pages/product/product_detail_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
@@ -90,5 +92,15 @@ class AppPages {
       page: () => const ConfirmOrderPage(),
       binding: ConfirmOrderBinding(),
     ),
+    GetPage(
+      name: Routes.orders,
+      page: () => const OrderListPage(),
+      binding: OrderListBinding(),
+    ),
+    GetPage(
+      name: Routes.orderDetail,
+      page: () => const OrderDetailPage(),
+      binding: OrderDetailBinding(),
+    )
   ];
 }

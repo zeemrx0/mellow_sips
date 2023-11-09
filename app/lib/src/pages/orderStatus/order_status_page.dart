@@ -65,7 +65,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
                 context,
                 title: R.strings.waitForPayment,
                 stepStatus:
-                    controller.order.value?.status == OrderStatusKey.pending
+                    controller.order.value?.status == AppOrderStatus.pending
                         ? StepStatus.inProgress
                         : StepStatus.undone,
               ),
@@ -74,7 +74,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
                 context,
                 title: R.strings.waitForConfirm,
                 stepStatus:
-                    controller.order.value?.status == OrderStatusKey.ordered
+                    controller.order.value?.status == AppOrderStatus.ordered
                         ? StepStatus.inProgress
                         : StepStatus.undone,
               ),
@@ -83,7 +83,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
                 context,
                 title: R.strings.preparing,
                 stepStatus:
-                    controller.order.value?.status == OrderStatusKey.processing
+                    controller.order.value?.status == AppOrderStatus.processing
                         ? StepStatus.inProgress
                         : StepStatus.undone,
               ),
@@ -92,7 +92,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
                 context,
                 title: R.strings.completed,
                 stepStatus:
-                    controller.order.value?.status == OrderStatusKey.completed
+                    controller.order.value?.status == AppOrderStatus.completed
                         ? StepStatus.inProgress
                         : StepStatus.undone,
               ),

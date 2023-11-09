@@ -5,6 +5,10 @@ abstract class OrderRepository {
     required Map<String, dynamic> params,
   });
 
+  Future<AppPaginationListResultModel<OrderModel>> searchOrders({
+    required Map<String, dynamic> params,
+  });
+
   Future<AppObjectResultModel<OrderModel>> createOrder({
     required Map<String, dynamic> params,
   });

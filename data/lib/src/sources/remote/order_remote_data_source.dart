@@ -5,6 +5,10 @@ abstract class OrderRemoteDataSource {
     required Map<String, dynamic> params,
   });
 
+  Future<AppPaginationListResultRaw<OrderRaw>> searchOrders({
+    required Map<String, dynamic> params,
+  });
+
   Future<AppObjectResultRaw<OrderRaw>> createOrder({
     required Map<String, dynamic> params,
   });
@@ -32,6 +36,28 @@ class OrderRemoteDataSourceImpl extends OrderRemoteDataSource {
       );
 
       return response.toObjectRaw((data) => OrderRaw.fromJson(data));
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppPaginationListResultRaw<OrderRaw>> searchOrders({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final response = await _networkService.request(
+        clientRequest: ClientRequest(
+          url: '${ApiProvider.orders}/search',
+          method: HttpMethod.post,
+          body: params,
+          requestType: RequestType.paginationList,
+        ),
+      );
+
+      return response.toPaginationListRaw(
+        (data) => (data as List).map((e) => OrderRaw.fromJson(e)).toList(),
+      );
     } on NetworkException catch (_) {
       rethrow;
     }

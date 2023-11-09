@@ -7,23 +7,11 @@ import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
 part 'order_status_page.dart';
 part 'order_status_binding.dart';
-
-class OrderStatusKey {
-  static String pending = 'PENDING';
-  static String ordered = 'ORDERED';
-  static String canceled = 'CANCELED';
-  static String rejected = 'REJECTED';
-  static String processing = 'PROCESSING';
-  static String completed = 'COMPLETED';
-  static String received = 'RECEIVED';
-  static String declined = 'DECLINED';
-}
 
 class OrderStatusController extends GetxController {
   final GetOrderDetailUseCase _getOrderDetailUseCase;
