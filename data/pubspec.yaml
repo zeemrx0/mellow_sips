@@ -27,6 +27,7 @@ dependencies:
   json_annotation: ^4.8.1
   copy_with_extension: ^5.0.2
   http_parser: ^4.0.2
+  stomp_dart_client: ^1.0.0
 
 dev_dependencies:
   flutter_test:

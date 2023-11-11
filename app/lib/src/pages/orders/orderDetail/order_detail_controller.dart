@@ -104,6 +104,8 @@ class OrderDetailController extends GetxController {
         return R.strings.received;
       case AppOrderStatus.rejected:
         return R.strings.rejected;
+      case AppOrderStatus.expired:
+        return R.strings.expired;
       default:
         return null;
     }

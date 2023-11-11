@@ -13,6 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DataProvider.inject();
   DomainProvider.inject();
+
   runApp(const MyApp());
 }
 

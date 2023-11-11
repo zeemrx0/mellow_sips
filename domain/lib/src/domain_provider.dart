@@ -41,5 +41,10 @@ class DomainProvider {
     Get.put<CreateOrderUseCase>(CreateOrderUseCaseImpl(Get.find()));
     Get.put<UpdateOrderStatusUseCase>(UpdateOrderStatusUseCaseImpl(Get.find()));
     Get.put<SearchOrdersUseCase>(SearchOrdersUseCaseImpl(Get.find()));
+
+    // Notification
+    Get.put<SubscribeNotificationsUseCase>(
+      SubscribeNotificationsUseCaseImpl(Get.find()),
+    );
   }
 }

@@ -9,6 +9,7 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.subscribeNotifications();
     return AppMainPageWidget().setBody(_body(context)).build(context);
   }
 

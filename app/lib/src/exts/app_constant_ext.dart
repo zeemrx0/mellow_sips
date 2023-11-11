@@ -30,4 +30,5 @@ class AppOrderStatus {
   static const String completed = 'COMPLETED';
   static const String received = 'RECEIVED';
   static const String declined = 'DECLINED';
+  static const String expired = 'EXPIRED';
 }

@@ -20,7 +20,7 @@
 				"--dart-define",
 				"flavor=staging",
 				"--dart-define",
-				"apiDomain=http://192.168.31.75:5500/"
+				"apiDomain=http://192.168.31.75:5500"
 			]
 		},
     {
@@ -34,7 +34,7 @@
 				"--dart-define",
 				"flavor=staging",
 				"--dart-define",
-				"apiDomain=https://staging.mellowsipssv.site:8080/api/"
+				"apiDomain=https://staging.mellowsipssv.site:8080"
 			]
 		}
 	]

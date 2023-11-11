@@ -31,6 +31,8 @@ part 'order/create_order_use_case.dart';
 part 'order/update_order_status_use_case.dart';
 part 'order/search_orders_use_case.dart';
 
+part 'notification/subscribe_notifications_use_case.dart';
+
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {
     return Future.value(
