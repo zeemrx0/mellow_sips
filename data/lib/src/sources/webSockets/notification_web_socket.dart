@@ -12,20 +12,46 @@ class NotificationWebSocket {
 
   NotificationWebSocket(this._authLocalDataSource);
 
-  void _initialize() {
+  Future<void> _initialize({
+    Function? onReceiveGlobalNotification,
+    Function? onReceiveUserNotification,
+  }) async {
     if (_stompClient != null) return;
 
+    final tokens = await _authLocalDataSource.getTokens();
+
+    Map<String, String>? header;
+
+    if (tokens.netData?.accessToken != null) {
+      header = {
+        'Authorization': tokens.netData!.accessToken,
+      };
+    }
+
     _stompClient = StompClient(
-      config: StompConfig(
-        useSockJS: true,
+      config: StompConfig.sockJS(
         url: '${BuildConfig.apiDomain}/ws',
-        onConnect: onConnectHandler,
+        stompConnectHeaders: header,
+        webSocketConnectHeaders: header,
+        onConnect: (p0) {
+          onConnectHandler(
+            p0,
+            onReceiveGlobalNotification: onReceiveGlobalNotification,
+            onReceiveUserNotification: onReceiveUserNotification,
+          );
+        },
       ),
     );
   }
 
-  Future<AppObjectResultRaw<EmptyRaw>> connect() async {
-    _initialize();
+  Future<AppObjectResultRaw<EmptyRaw>> connect({
+    Function? onReceiveGlobalNotification,
+    Function? onReceiveUserNotification,
+  }) async {
+    await _initialize(
+      onReceiveGlobalNotification: onReceiveGlobalNotification,
+      onReceiveUserNotification: onReceiveUserNotification,
+    );
     _stompClient?.activate();
 
     return Future.value(
@@ -35,27 +61,23 @@ class NotificationWebSocket {
     );
   }
 
-  void onConnectHandler(StompFrame frame) async {
+  void onConnectHandler(
+    StompFrame frame, {
+    Function? onReceiveGlobalNotification,
+    Function? onReceiveUserNotification,
+  }) async {
     _stompClient?.subscribe(
       destination: ApiProvider.notificationSocket,
-      headers: {},
       callback: (frame) {
-        print(frame.body);
+        onReceiveGlobalNotification?.call(frame);
       },
     );
 
-    final tokens = await _authLocalDataSource.getTokens();
-
-    if (tokens.netData?.accessToken != null) {
-      _stompClient?.subscribe(
-        destination: ApiProvider.userNotificationSocket,
-        headers: {
-          'Authorization': tokens.netData!.accessToken,
-        },
-        callback: (frame) {
-          print(frame.body);
-        },
-      );
-    }
+    _stompClient?.subscribe(
+      destination: ApiProvider.userNotificationSocket,
+      callback: (frame) {
+        onReceiveUserNotification?.call(frame);
+      },
+    );
   }
 }

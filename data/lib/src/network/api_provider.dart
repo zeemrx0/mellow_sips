@@ -26,7 +26,7 @@ class ApiProvider {
 
   // Web Sockets
   static const notificationSocket = '/topic/notifications';
-  static const userNotificationSocket = 'user/topic/notifications';
+  static const userNotificationSocket = '/user/topic/notifications';
 }
 
 class StatusCode extends HttpStatus {

@@ -1,7 +1,7 @@
 part of '../base_use_case.dart';
 
 abstract class SubscribeNotificationsUseCase
-    extends BaseUseCase<BaseParam, EmptyModel> {}
+    extends BaseUseCase<SubscribeNotificationsParam, EmptyModel> {}
 
 class SubscribeNotificationsUseCaseImpl extends SubscribeNotificationsUseCase {
   final NotificationRepository _notificationRepository;
@@ -10,7 +10,10 @@ class SubscribeNotificationsUseCaseImpl extends SubscribeNotificationsUseCase {
 
   @override
   Future<AppObjectResultModel<EmptyModel>> executeObject({
-    BaseParam? param,
+    SubscribeNotificationsParam? param,
   }) =>
-      _notificationRepository.connect();
+      _notificationRepository.connect(
+        onReceiveGlobalNotification: param!.onReceiveGlobalNotification,
+        onReceiveUserNotification: param.onReceiveUserNotification,
+      );
 }

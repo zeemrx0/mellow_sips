@@ -7,9 +7,15 @@ class NotificationRepositoryImpl extends NotificationRepository {
   NotificationRepositoryImpl(this._notificationWebSocket);
 
   @override
-  Future<AppObjectResultModel<EmptyModel>> connect() async {
+  Future<AppObjectResultModel<EmptyModel>> connect({
+    Function? onReceiveGlobalNotification,
+    Function? onReceiveUserNotification,
+  }) async {
     try {
-      final webSocketData = await _notificationWebSocket.connect();
+      final webSocketData = await _notificationWebSocket.connect(
+        onReceiveGlobalNotification: onReceiveGlobalNotification,
+        onReceiveUserNotification: onReceiveUserNotification,
+      );
 
       return webSocketData.toAppObjectResultModel();
     } on NetworkException catch (_) {

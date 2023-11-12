@@ -29,4 +29,6 @@ part 'order/create_order_param.dart';
 part 'order/update_order_status_param.dart';
 part 'order/search_orders_param.dart';
 
+part 'notification/subscribe_notifications_param.dart';
+
 abstract class BaseParam {}
