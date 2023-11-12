@@ -6,6 +6,7 @@ class AppConstants {
   static const String order = 'order';
   static const String createdAt = 'createdAt';
   static const String desc = 'DESC';
+  static const String subject = 'subject';
 }
 
 class AppRoutesParamKey {
@@ -30,4 +31,5 @@ class AppOrderStatus {
   static const String completed = 'COMPLETED';
   static const String received = 'RECEIVED';
   static const String declined = 'DECLINED';
+  static const String expired = 'EXPIRED';
 }

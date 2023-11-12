@@ -1,6 +1,6 @@
 part of './order_detail_controller.dart';
 
-class OrderDetailPage extends GetView<OrderDetailController> {
+class OrderDetailPage extends GetWidget<OrderDetailController> {
   const OrderDetailPage({super.key});
 
   @override

@@ -49,6 +49,16 @@ class AppExceptionExt {
               .show();
         case HttpStatus.badRequest:
         case HttpStatus.internalServerError:
+        case HttpStatus.gone:
+          return AppDefaultDialogWidget()
+              .setTitle(R.strings.error)
+              .setContent(appException?.message ??
+                  R.strings.systemIsCurrentlyErrorPleaseTryAgainLater)
+              .setAppDialogType(AppDialogType.error)
+              .setPositiveText(R.strings.confirm)
+              .setNegativeText(R.strings.close)
+              .buildDialog(Get.context!)
+              .show();
         case HttpStatus.serviceUnavailable:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)

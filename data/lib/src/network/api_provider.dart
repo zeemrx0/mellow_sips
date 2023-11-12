@@ -3,23 +3,30 @@ part of 'network_service.dart';
 class ApiProvider {
   static const test = '/test';
 
-  static const auth = '/auth';
+  // APIs
+  static const api = '/api';
+
+  static const auth = '$api/auth';
   static const login = '$auth/login';
   static const register = '$auth/register';
   static const verifyRegistration = '$auth/verify';
   static const requestOTP = '$auth/resend-confirmation-code';
 
-  static const documents = '/documents';
+  static const documents = '$api/documents';
 
-  static const stores = '/stores';
+  static const stores = '$api/stores';
   static const searchStores = '$stores/customer/search';
 
-  static const products = '/products';
+  static const products = '$api/products';
 
-  static const carts = '/carts';
+  static const carts = '$api/carts';
   static const cartItems = '$carts/items';
 
-  static const orders = '/orders';
+  static const orders = '$api/orders';
+
+  // Web Sockets
+  static const notificationSocket = '/topic/notifications';
+  static const userNotificationSocket = '/user/topic/notifications';
 }
 
 class StatusCode extends HttpStatus {

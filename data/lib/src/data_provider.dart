@@ -3,12 +3,14 @@ import 'package:data/src/network/network_service.dart';
 import 'package:data/src/repositories/auth_repository_impl.dart';
 import 'package:data/src/repositories/cart_repository_impl.dart';
 import 'package:data/src/repositories/document_repository_impl.dart';
+import 'package:data/src/repositories/notification_repository_impl.dart';
 import 'package:data/src/repositories/order_repository_impl.dart';
 import 'package:data/src/repositories/product_repository_impl.dart';
 import 'package:data/src/repositories/store_repository_impl.dart';
 import 'package:data/src/repositories/test_repository_impl.dart';
 import 'package:data/src/sources/local/base_local_data_source.dart';
 import 'package:data/src/sources/remote/base_remote_data_source.dart';
+import 'package:data/src/sources/webSockets/notification_web_socket.dart';
 import 'package:domain/domain.dart';
 import 'package:get/get.dart';
 
@@ -53,6 +55,9 @@ class _DataSourcesProvider {
     Get.lazyPut<OrderRemoteDataSource>(
       () => OrderRemoteDataSourceImpl(Get.find()),
     );
+    Get.lazyPut<NotificationWebSocket>(
+      () => NotificationWebSocket(Get.find()),
+    );
   }
 }
 
@@ -78,6 +83,9 @@ class _RepositoriesProvider {
     );
     Get.lazyPut<OrderRepository>(
       () => OrderRepositoryImpl(Get.find()),
+    );
+    Get.lazyPut<NotificationRepository>(
+      () => NotificationRepositoryImpl(Get.find()),
     );
   }
 }
