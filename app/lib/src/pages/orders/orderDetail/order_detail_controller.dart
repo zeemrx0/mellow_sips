@@ -63,7 +63,7 @@ class OrderDetailController extends GetxController {
 
       if (result.netData != null) {
         FlutterZaloPayStatus zaloPayStatus = await FlutterZaloPaySdk.payOrder(
-          zpToken: result.netData!.externalPaymentInfo.zpTransToken,
+          zpToken: result.netData!.externalPaymentInfo!.zpTransToken,
         );
 
         if (zaloPayStatus == FlutterZaloPayStatus.success ||

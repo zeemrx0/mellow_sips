@@ -80,30 +80,45 @@ class ConfirmOrderController extends GetxController {
         ),
       );
 
+      print("Confirm!! + ${result.netData}");
+
       if (result.netData != null) {
         order.value = result.netData;
 
         switch (initialTransactionMethod) {
           case AppPaymentMethod.cash:
-            Get.offAllNamed(Routes.orderStatus, arguments: order.value!.id);
+            Get.offNamedUntil(
+              Routes.orderDetail,
+              (route) {
+                return route.settings.name == Routes.home;
+              },
+              arguments: order.value!.id,
+            );
             break;
           case AppPaymentMethod.zalopay:
             FlutterZaloPayStatus zaloPayStatus =
                 await FlutterZaloPaySdk.payOrder(
               zpToken: order
-                  .value!.latestTransaction!.externalPaymentInfo.zpTransToken,
+                  .value!.latestTransaction!.externalPaymentInfo!.zpTransToken,
             );
 
             if (zaloPayStatus == FlutterZaloPayStatus.success ||
                 zaloPayStatus == FlutterZaloPayStatus.processing) {
-              Get.offAllNamed(Routes.orderDetail, arguments: order.value!.id);
+              Get.offNamedUntil(
+                Routes.orderDetail,
+                (route) {
+                  return route.settings.name == Routes.home;
+                },
+                arguments: order.value!.id,
+              );
             } else {
               AppDefaultDialogWidget()
                   .setTitle(R.strings.paymentFailed)
                   .setAppDialogType(AppDialogType.error)
                   .setPositiveText(R.strings.confirm)
                   .setOnPositive(() {
-                    Get.offAllNamed(Routes.orderDetail, arguments: order.value!.id);
+                    Get.offAllNamed(Routes.orderDetail,
+                        arguments: order.value!.id);
                   })
                   .buildDialog(Get.context!)
                   .show();
@@ -116,17 +131,6 @@ class ConfirmOrderController extends GetxController {
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
-    } catch (e) {
-      AppLoadingOverlayWidget.dismiss();
-      AppScreenDialogWidget()
-          .setTitle(R.strings.error)
-          .setAppDialogType(AppDialogType.error)
-          .setPositiveText(R.strings.confirm)
-          .setOnPositive(() {
-            Get.back();
-          })
-          .buildDialog(Get.context!)
-          .show();
     }
   }
 }

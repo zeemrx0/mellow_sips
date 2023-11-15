@@ -7,7 +7,7 @@ class OrderTransactionModel extends BaseModel {
   final String? method;
   final String status;
   final String? type;
-  final OrderExternalPaymentInfoModel externalPaymentInfo;
+  final OrderExternalPaymentInfoModel? externalPaymentInfo;
 
   OrderTransactionModel({
     required this.id,
