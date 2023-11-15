@@ -7,6 +7,7 @@ class OrderDetailBinding implements Bindings {
       () => OrderDetailController(
         Get.find(),
         Get.find(),
+        Get.find(),
       ),
     );
   }

@@ -7,7 +7,7 @@ class OrderTransactionRaw extends BaseRaw {
   final String? method;
   final String status;
   final String? type;
-  final OrderExternalPaymentInfoRaw externalPaymentInfo;
+  final OrderExternalPaymentInfoRaw? externalPaymentInfo;
 
   OrderTransactionRaw({
     required this.id,
@@ -27,7 +27,7 @@ class OrderTransactionRaw extends BaseRaw {
     return OrderTransactionModel(
       id: id,
       status: status,
-      externalPaymentInfo: externalPaymentInfo.toModel() as OrderExternalPaymentInfoModel,
+      externalPaymentInfo: externalPaymentInfo?.toModel() as OrderExternalPaymentInfoModel?,
       method: method,
       type: type,
     );

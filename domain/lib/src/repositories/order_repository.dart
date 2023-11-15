@@ -16,4 +16,8 @@ abstract class OrderRepository {
   Future<AppObjectResultModel<EmptyModel>> updateOrderStatus({
     required Map<String, dynamic> params,
   });
+
+  Future<AppObjectResultModel<OrderTransactionModel>> getTransactionByOrderId({
+    required Map<String, dynamic> params,
+  });
 }

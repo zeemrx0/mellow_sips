@@ -20,10 +20,12 @@ part './order_detail_binding.dart';
 class OrderDetailController extends GetxController {
   final GetOrderDetailUseCase _getOrderDetailUseCase;
   final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
+  final GetTransactionByOrderIdUseCase _getTransactionByOrderIdUseCase;
 
   OrderDetailController(
     this._getOrderDetailUseCase,
     this._updateOrderStatusUseCase,
+    this._getTransactionByOrderIdUseCase,
   );
 
   Rxn<OrderModel> order = Rxn<OrderModel>();
@@ -48,23 +50,40 @@ class OrderDetailController extends GetxController {
   }
 
   Future<void> payOrder() async {
-    FlutterZaloPayStatus zaloPayStatus = await FlutterZaloPaySdk.payOrder(
-      zpToken: order.value!.latestTransaction!.externalPaymentInfo.zpTransToken,
-    );
+    try {
+      AppLoadingOverlayWidget.show();
 
-    if (zaloPayStatus == FlutterZaloPayStatus.success ||
-        zaloPayStatus == FlutterZaloPayStatus.processing) {
-      order.refresh();
-    } else {
-      AppDefaultDialogWidget()
-          .setTitle(R.strings.paymentFailed)
-          .setAppDialogType(AppDialogType.error)
-          .setPositiveText(R.strings.confirm)
-          .setOnPositive(() {
-            Get.back();
-          })
-          .buildDialog(Get.context!)
-          .show();
+      final result = await _getTransactionByOrderIdUseCase.executeObject(
+        param: GetTransactionByOrderIdParam(
+          orderId: order.value!.id,
+        ),
+      );
+
+      AppLoadingOverlayWidget.dismiss();
+
+      if (result.netData != null) {
+        FlutterZaloPayStatus zaloPayStatus = await FlutterZaloPaySdk.payOrder(
+          zpToken: result.netData!.externalPaymentInfo!.zpTransToken,
+        );
+
+        if (zaloPayStatus == FlutterZaloPayStatus.success ||
+            zaloPayStatus == FlutterZaloPayStatus.processing) {
+          order.refresh();
+        } else {
+          AppDefaultDialogWidget()
+              .setTitle(R.strings.paymentFailed)
+              .setAppDialogType(AppDialogType.error)
+              .setPositiveText(R.strings.confirm)
+              .setOnPositive(() {
+                Get.back();
+              })
+              .buildDialog(Get.context!)
+              .show();
+        }
+      }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
     }
   }
 

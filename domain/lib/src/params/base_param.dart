@@ -28,6 +28,7 @@ part 'order/get_order_detail_param.dart';
 part 'order/create_order_param.dart';
 part 'order/update_order_status_param.dart';
 part 'order/search_orders_param.dart';
+part 'order/get_transaction_by_order_id_param.dart';
 
 part 'notification/subscribe_notifications_param.dart';
 
