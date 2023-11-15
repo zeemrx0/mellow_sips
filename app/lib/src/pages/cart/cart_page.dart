@@ -15,91 +15,93 @@ class CartPage extends GetView<CartController> {
   }
 
   Widget _body(BuildContext context) {
-    return SafeArea(
-      child: Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Obx(
-                () => Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppThemeExt.of.majorScale(4),
-                  ),
-                  child: Column(
-                    children: controller.carts
-                        .map(
-                          (cart) => Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  AppTextHeading5Widget()
-                                      .setText(cart.store.name)
-                                      .setTextAlign(TextAlign.start)
-                                      .build(
-                                        context,
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Obx(
+                  () => Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppThemeExt.of.majorScale(4),
+                    ),
+                    child: Column(
+                      children: controller.carts
+                          .map(
+                            (cart) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    AppTextHeading5Widget()
+                                        .setText(cart.store.name)
+                                        .setTextAlign(TextAlign.start)
+                                        .build(
+                                          context,
+                                        ),
+                                    InkWell(
+                                      onTap: () {
+                                        controller.deleteCart(cart.id);
+                                      },
+                                      child: R.svgs.icClose.svg(
+                                        width: AppThemeExt.of.majorScale(6),
+                                        height: AppThemeExt.of.majorScale(6),
                                       ),
-                                  InkWell(
-                                    onTap: () {
-                                      controller.deleteCart(cart.id);
-                                    },
-                                    child: R.svgs.icClose.svg(
-                                      width: AppThemeExt.of.majorScale(6),
-                                      height: AppThemeExt.of.majorScale(6),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: AppThemeExt.of.majorScale(4),
-                              ),
-                              ...cart.cartItems
-                                  .map(
-                                    (cartItem) => CartItemWidget(
-                                      cartItem: cartItem,
-                                    ),
-                                  )
-                                  .toList(),
-                              SizedBox(
-                                height: AppThemeExt.of.majorScale(3),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  AppTextHeading5Widget()
-                                      .setText(R.strings.totalPrice)
-                                      .build(context),
-                                  AppTextHeading5Widget()
-                                      .setText(
-                                          '${NumberExt.withSeparator(controller.totalPrice(cart))}đ')
-                                      .setColor(AppColors.of.primaryColor)
-                                      .build(context),
-                                ],
-                              ),
-                              SizedBox(
-                                height: AppThemeExt.of.majorScale(6),
-                              ),
-                              AppFilledButtonWidget()
-                                  .setButtonText(R.strings.pay)
-                                  .setOnPressed(() {
-                                Get.toNamed(Routes.checkout,
-                                    arguments: cart.id);
-                              }).build(context),
-                            ],
-                          ),
-                        )
-                        .toList(),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: AppThemeExt.of.majorScale(4),
+                                ),
+                                ...cart.cartItems
+                                    .map(
+                                      (cartItem) => CartItemWidget(
+                                        cartItem: cartItem,
+                                      ),
+                                    )
+                                    .toList(),
+                                SizedBox(
+                                  height: AppThemeExt.of.majorScale(3),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    AppTextHeading5Widget()
+                                        .setText(R.strings.totalPrice)
+                                        .build(context),
+                                    AppTextHeading5Widget()
+                                        .setText(
+                                            '${NumberExt.withSeparator(controller.totalPrice(cart))}đ')
+                                        .setColor(AppColors.of.primaryColor)
+                                        .build(context),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: AppThemeExt.of.majorScale(6),
+                                ),
+                                AppFilledButtonWidget()
+                                    .setButtonText(R.strings.pay)
+                                    .setOnPressed(() {
+                                  Get.toNamed(Routes.checkout,
+                                      arguments: cart.id);
+                                }).build(context),
+                              ],
+                            ),
+                          )
+                          .toList(),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 
