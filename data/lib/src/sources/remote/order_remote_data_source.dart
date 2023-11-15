@@ -16,6 +16,10 @@ abstract class OrderRemoteDataSource {
   Future<AppObjectResultRaw<EmptyRaw>> updateOrderStatus({
     required Map<String, dynamic> params,
   });
+
+  Future<AppObjectResultRaw<OrderTransactionRaw>> getTransactionByOrderId({
+    required Map<String, dynamic> params,
+  });
 }
 
 class OrderRemoteDataSourceImpl extends OrderRemoteDataSource {
@@ -97,6 +101,24 @@ class OrderRemoteDataSourceImpl extends OrderRemoteDataSource {
       );
 
       return response.toObjectRaw((data) => EmptyRaw());
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultRaw<OrderTransactionRaw>> getTransactionByOrderId({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final response = await _networkService.request(
+        clientRequest: ClientRequest(
+          url: '${ApiProvider.orders}/${params['orderId']}/transactions',
+          method: HttpMethod.post,
+        ),
+      );
+
+      return response.toObjectRaw((data) => OrderTransactionRaw.fromJson(data));
     } on NetworkException catch (_) {
       rethrow;
     }

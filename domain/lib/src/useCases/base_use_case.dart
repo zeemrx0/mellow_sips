@@ -30,6 +30,7 @@ part 'order/get_order_detail_use_case.dart';
 part 'order/create_order_use_case.dart';
 part 'order/update_order_status_use_case.dart';
 part 'order/search_orders_use_case.dart';
+part 'order/get_transaction_by_order_id_use_case.dart';
 
 part 'notification/subscribe_notifications_use_case.dart';
 
