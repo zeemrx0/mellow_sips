@@ -9,7 +9,8 @@ class AddToCartUseCaseImpl extends AddToCartUseCase {
   AddToCartUseCaseImpl(this._cartRepository);
 
   @override
-  Future<AppObjectResultModel<EmptyModel>> executeObject(
-          {AddToCartParam? param}) =>
+  Future<AppObjectResultModel<EmptyModel>> executeObject({
+    AddToCartParam? param,
+  }) =>
       _cartRepository.addToCart(params: param!.toJson());
 }

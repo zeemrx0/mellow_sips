@@ -84,5 +84,6 @@
 	"rejected": "Đã từ chối",
 	"cancelOrder": "Hủy đặt món",
 	"ordered": "Chờ xác nhận",
-	"expired": "Đã hết hạn"
+	"expired": "Đã hết hạn",
+  "update": "Cập nhật"
 }

@@ -18,6 +18,7 @@ class ApiProvider {
   static const searchStores = '$stores/customer/search';
 
   static const products = '$api/products';
+  static const productDetail = '$products/details';
 
   static const carts = '$api/carts';
   static const cartItems = '$carts/items';

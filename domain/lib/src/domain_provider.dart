@@ -35,6 +35,7 @@ class DomainProvider {
     Get.put<GetCartDetailUseCase>(GetCartDetailUseCaseImpl(Get.find()));
     Get.put<DeleteCartUseCase>(DeleteCartUseCaseImpl(Get.find()));
     Get.put<DeleteCartItemUseCase>(DeleteCartItemUseCaseImpl(Get.find()));
+    Get.put<UpdateCartItemUseCase>(UpdateCartItemUseCaseImpl(Get.find()));
 
     // Order
     Get.put<GetOrderDetailUseCase>(GetOrderDetailUseCaseImpl(Get.find()));

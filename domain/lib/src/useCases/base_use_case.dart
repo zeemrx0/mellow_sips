@@ -25,6 +25,7 @@ part './cart/add_to_cart_use_case.dart';
 part './cart/get_cart_detail_use_case.dart';
 part './cart/delete_cart_use_case.dart';
 part './cart/delete_cart_item_use_case.dart';
+part './cart/update_cart_item_use_case.dart';
 
 part 'order/get_order_detail_use_case.dart';
 part 'order/create_order_use_case.dart';

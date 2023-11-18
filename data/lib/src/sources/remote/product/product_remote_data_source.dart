@@ -18,7 +18,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     try {
       final remoteData = await _networkService.request(
         clientRequest: ClientRequest(
-          url: '${ApiProvider.products}/${params['productId']}',
+          url: '${ApiProvider.productDetail}/${params['productId']}',
           method: HttpMethod.get,
         ),
       );

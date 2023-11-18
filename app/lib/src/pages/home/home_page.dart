@@ -19,6 +19,7 @@ class HomePage extends GetView<HomeController> {
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverAppBar(
           expandedHeight: kToolbarHeight + AppThemeExt.of.majorScale(66 / 4),
+          leading: const SizedBox(),
           flexibleSpace: FlexibleSpaceBar(
             background: Padding(
               padding: EdgeInsets.only(

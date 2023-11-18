@@ -61,6 +61,9 @@ class CartPage extends GetView<CartController> {
                                     .map(
                                       (cartItem) => CartItemWidget(
                                         cartItem: cartItem,
+                                        refreshCarts: () {
+                                          controller.getAllCart();
+                                        },
                                       ),
                                     )
                                     .toList(),
