@@ -9,7 +9,8 @@ class DeleteCartUseCaseImpl extends DeleteCartUseCase {
   DeleteCartUseCaseImpl(this._cartRepository);
 
   @override
-  Future<AppObjectResultModel<EmptyModel>> executeObject(
-          {DeleteCartParam? param}) =>
+  Future<AppObjectResultModel<EmptyModel>> executeObject({
+    DeleteCartParam? param,
+  }) =>
       _cartRepository.deleteCart(params: param!.toJson());
 }

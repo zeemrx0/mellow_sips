@@ -8,6 +8,8 @@ class GetAllCartUseCaseImpl extends GetAllCartUseCase {
   GetAllCartUseCaseImpl(this._cartRepository);
 
   @override
-  Future<AppListResultModel<CartModel>> executeList({BaseParam? param}) =>
+  Future<AppListResultModel<CartModel>> executeList({
+    BaseParam? param,
+  }) =>
       _cartRepository.getAllCarts();
 }

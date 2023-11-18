@@ -5,7 +5,14 @@ class ProductDetailPage extends GetView<ProductDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getProductDetail(Get.arguments as String);
+    if (controller.isUpdating()) {
+      // Update cart item
+      controller.getProductDetail(
+          Get.arguments[ProductDetailKey.productId] as String);
+    } else {
+      // Product detail
+      controller.getProductDetail(Get.arguments as String);
+    }
 
     return AppMainPageWidget()
         .setBody(_body(context))
@@ -48,10 +55,11 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                   horizontal: AppThemeExt.of.majorPaddingScale(4),
                   vertical: AppThemeExt.of.majorPaddingScale(5),
                 ),
-                child: FormBuilder(
-                  key: controller.formKey,
-                  child: Obx(
-                    () => Column(
+                child: Obx(
+                  () => FormBuilder(
+                    key: controller.formKey.value,
+                    initialValue: controller.formInitialValue.value,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         _generalInfo(context),
@@ -89,11 +97,12 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                         addons: section.productAddons,
                                         initialValue: controller
                                             .formKey
+                                            .value
                                             .currentState
                                             ?.fields[section.id]
                                             ?.value,
                                         onChanged: () {
-                                          controller.formKey.currentState
+                                          controller.formKey.value.currentState
                                               ?.save();
                                         },
                                       ),
@@ -103,11 +112,12 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                         addons: section.productAddons,
                                         initialValue: controller
                                             .formKey
+                                            .value
                                             .currentState
                                             ?.fields[section.id]
                                             ?.value,
                                         onChanged: () {
-                                          controller.formKey.currentState
+                                          controller.formKey.value.currentState
                                               ?.save();
                                         },
                                       ),
@@ -215,10 +225,16 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                 ),
                 Expanded(
                   child: AppFilledButtonWidget()
-                      .setButtonText(R.strings.add)
+                      .setButtonText(controller.isUpdating()
+                          ? R.strings.update
+                          : R.strings.add)
                       .setOnPressed(
                     () {
-                      controller.addToCart();
+                      if (controller.isUpdating()) {
+                        controller.updateCartItem();
+                      } else {
+                        controller.addToCart();
+                      }
                     },
                   ).build(context),
                 ),

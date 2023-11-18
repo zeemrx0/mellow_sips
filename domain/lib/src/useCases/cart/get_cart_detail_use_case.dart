@@ -9,7 +9,8 @@ class GetCartDetailUseCaseImpl extends GetCartDetailUseCase {
   GetCartDetailUseCaseImpl(this._cartRepository);
 
   @override
-  Future<AppObjectResultModel<CartModel>> executeObject(
-          {GetCartDetailParam? param}) =>
+  Future<AppObjectResultModel<CartModel>> executeObject({
+    GetCartDetailParam? param,
+  }) =>
       _cartRepository.getCartDetail(params: param!.toJson());
 }

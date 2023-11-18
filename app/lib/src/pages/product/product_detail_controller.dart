@@ -23,23 +23,77 @@ part './product_detail_binding.dart';
 
 class ProductDetailKey {
   static String note = 'note';
+  static String productId = 'productId';
+  static String cartItemId = 'cartItemId';
+  static String quantity = 'quantity';
+  static String addons = 'addons';
 }
 
 class ProductDetailController extends GetxController {
-  final formKey = GlobalKey<FormBuilderState>();
+  var formKey = GlobalKey<FormBuilderState>().obs;
 
   final GetProductDetailUseCase _getProductDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
   final AddToCartUseCase _addToCartUseCase;
+  final UpdateCartItemUseCase _updateCartItemUseCase;
 
   ProductDetailController(
     this._getProductDetailUseCase,
     this._getDocumentUseCase,
     this._addToCartUseCase,
+    this._updateCartItemUseCase,
   );
 
   Rxn<ProductModel> product = Rxn<ProductModel>();
   Rxn<int> quantity = Rxn<int>(1);
+  Rx<Map<String, dynamic>> formInitialValue = Rx<Map<String, dynamic>>({});
+
+  Future<void> initialize() {
+    if (isUpdating()) {
+      quantity.value = Get.arguments[ProductDetailKey.quantity];
+
+      formInitialValue.value[ProductDetailKey.note] =
+          Get.arguments[ProductDetailKey.note];
+
+      final argumentAddons =
+          Get.arguments[ProductDetailKey.addons] as List<ProductAddonModel>;
+
+      for (ProductOptionSectionModel section
+          in product.value?.productOptionSections ?? []) {
+        if (section.maxAllowedChoices > 1) {
+          List<String> chosenIds = [];
+
+          for (ProductAddonModel addon in section.productAddons) {
+            String? chosenId = argumentAddons
+                .firstWhereOrNull((element) => element.id == addon.id)
+                ?.id;
+
+            if (chosenId != null) {
+              chosenIds.add(chosenId);
+            }
+          }
+
+          formInitialValue.value[section.id] = chosenIds;
+        } else {
+          for (ProductAddonModel addon in section.productAddons) {
+            String? chosenId = argumentAddons
+                .firstWhereOrNull((element) => element.id == addon.id)
+                ?.id;
+
+            if (chosenId != null) {
+              formInitialValue.value[section.id] = chosenId;
+            }
+
+            break;
+          }
+        }
+      }
+
+      formInitialValue.refresh();
+    }
+
+    return Future.value();
+  }
 
   Future<void> getProductDetail(String productId) async {
     try {
@@ -55,6 +109,10 @@ class ProductDetailController extends GetxController {
 
         product.value = productData;
 
+        if (isUpdating()) {
+          await initialize();
+        }
+
         AppLoadingOverlayWidget.dismiss();
 
         product.value?.coverImageData =
@@ -68,12 +126,16 @@ class ProductDetailController extends GetxController {
     }
   }
 
+  bool isUpdating() {
+    return Get.arguments is! String;
+  }
+
   String? validateProductOptions() {
     String? errorString;
 
     for (ProductOptionSectionModel section
         in product.value?.productOptionSections ?? []) {
-      final options = formKey.currentState?.fields[section.id]?.value;
+      final options = formKey.value.currentState?.fields[section.id]?.value;
 
       if (section.isRequired && options == null) {
         errorString = '${R.strings.pleaseSelect} 1 ${section.name}';
@@ -120,9 +182,9 @@ class ProductDetailController extends GetxController {
 
   Future<void> addToCart() async {
     try {
-      if (formKey.currentState == null) return;
+      if (formKey.value.currentState == null) return;
 
-      formKey.currentState?.save();
+      formKey.value.currentState?.save();
 
       final validateProductOptionsResult = validateProductOptions();
 
@@ -143,12 +205,12 @@ class ProductDetailController extends GetxController {
 
       product.value?.productOptionSections?.forEach((section) {
         if (section.maxAllowedChoices > 1) {
-          final values = formKey.currentState!.fields[section.id]!.value;
+          final values = formKey.value.currentState!.fields[section.id]!.value;
           if (values is List<String>) {
             addons.addAll(values);
           }
         } else {
-          addons.add(formKey.currentState!.fields[section.id]!.value);
+          addons.add(formKey.value.currentState!.fields[section.id]!.value);
         }
       });
 
@@ -158,7 +220,7 @@ class ProductDetailController extends GetxController {
           addons: addons,
           quantity: quantity.value ?? 0,
           note:
-              formKey.currentState!.fields[ProductDetailKey.note]?.value ?? '',
+              formKey.value.currentState!.fields[ProductDetailKey.note]?.value ?? '',
         ),
       );
 
@@ -169,7 +231,60 @@ class ProductDetailController extends GetxController {
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
-      ;
+    }
+  }
+
+  Future<void> updateCartItem() async {
+    try {
+      if (formKey.value.currentState == null) return;
+
+      formKey.value.currentState?.save();
+
+      final validateProductOptionsResult = validateProductOptions();
+
+      if (validateProductOptionsResult != null) {
+        AppDefaultDialogWidget()
+            .setContent(validateProductOptionsResult)
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.confirm)
+            .setNegativeText(R.strings.close)
+            .buildDialog(Get.context!)
+            .show();
+        return;
+      }
+
+      AppLoadingOverlayWidget.show();
+
+      List<String> addons = [];
+
+      product.value?.productOptionSections?.forEach((section) {
+        if (section.maxAllowedChoices > 1) {
+          final values = formKey.value.currentState!.fields[section.id]!.value;
+          if (values is List<String>) {
+            addons.addAll(values);
+          }
+        } else {
+          addons.add(formKey.value.currentState!.fields[section.id]!.value);
+        }
+      });
+
+      final result = await _updateCartItemUseCase.executeObject(
+        param: UpdateCartItemParam(
+          cartItemId: Get.arguments[ProductDetailKey.cartItemId],
+          addons: addons,
+          quantity: quantity.value ?? 0,
+          note:
+              formKey.value.currentState!.fields[ProductDetailKey.note]?.value ?? '',
+        ),
+      );
+
+      if (result.netData != null) {
+        AppLoadingOverlayWidget.dismiss();
+        Get.back(result: true);
+      }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
     }
   }
 }

@@ -1,7 +1,9 @@
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/cart/cart_controller.dart';
+import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -11,10 +13,12 @@ import 'package:utilities/utilities.dart';
 
 class CartItemWidget extends GetView<CartController> {
   final CartItemModel cartItem;
+  final Function refreshCarts;
 
   const CartItemWidget({
     super.key,
     required this.cartItem,
+    required this.refreshCarts,
   });
 
   @override
@@ -33,7 +37,20 @@ class CartItemWidget extends GetView<CartController> {
           children: [
             Expanded(
               child: InkWell(
-                onTap: () {},
+                onTap: () async {
+                  await Get.toNamed(
+                    Routes.productDetail,
+                    arguments: {
+                      CartParamKey.productId: cartItem.product.id,
+                      CartParamKey.cartItemId: cartItem.id,
+                      CartParamKey.quantity: cartItem.quantity,
+                      CartParamKey.note: cartItem.note,
+                      CartParamKey.addons: cartItem.addons,
+                    },
+                  );
+
+                  refreshCarts();
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: AppThemeExt.of.majorPaddingScale(4),

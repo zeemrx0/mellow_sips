@@ -9,6 +9,15 @@ class AppConstants {
   static const String subject = 'subject';
 }
 
+class CartParamKey {
+  static const String cartId = 'cartId';
+  static const String cartItemId = 'cartItemId';
+  static const String productId = 'productId';
+  static const String quantity = 'quantity';
+  static const String note = 'note';
+  static const String addons = 'addons';
+}
+
 class AppRoutesParamKey {
   static const String id = 'id';
 }
