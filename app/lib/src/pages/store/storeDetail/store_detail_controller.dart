@@ -59,7 +59,10 @@ class StoreDetailController extends GetxController {
         AppLoadingOverlayWidget.dismiss();
       }
 
-      store.value?.coverImageData = await getImage(store.value?.coverImage);
+      store.value?.coverImageData = await AppImageExt.getImage(
+        _getDocumentUseCase,
+        store.value?.coverImage,
+      );
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
@@ -88,7 +91,10 @@ class StoreDetailController extends GetxController {
 
       for (MenuSectionModel section in menu.value?.menuSections ?? []) {
         for (ProductModel product in section.products) {
-          product.coverImageData = await getImage(product.coverImage);
+          product.coverImageData = await AppImageExt.getImage(
+            _getDocumentUseCase,
+            product.coverImage,
+          );
           menu.refresh();
         }
       }
@@ -119,19 +125,5 @@ class StoreDetailController extends GetxController {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
     }
-  }
-
-  Future<String?> getImage(String? imageId) async {
-    if (imageId == null) return null;
-
-    final splitId = imageId.split('|').last;
-
-    final response = await _getDocumentUseCase.executeObject(
-      param: GetDocumentParam(
-        documentId: splitId,
-      ),
-    );
-
-    return Future.value(response.netData!.content);
   }
 }

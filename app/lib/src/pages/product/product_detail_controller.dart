@@ -115,8 +115,10 @@ class ProductDetailController extends GetxController {
 
         AppLoadingOverlayWidget.dismiss();
 
-        product.value?.coverImageData =
-            await getImage(product.value?.coverImage);
+        product.value?.coverImageData = await AppImageExt.getImage(
+          _getDocumentUseCase,
+          product.value?.coverImage,
+        );
 
         product.refresh();
       }
@@ -166,20 +168,6 @@ class ProductDetailController extends GetxController {
     quantity.refresh();
   }
 
-  Future<String?> getImage(String? imageId) async {
-    if (imageId == null) return null;
-
-    final splitId = imageId.split('|').last;
-
-    final response = await _getDocumentUseCase.executeObject(
-      param: GetDocumentParam(
-        documentId: splitId,
-      ),
-    );
-
-    return Future.value(response.netData!.content);
-  }
-
   Future<void> addToCart() async {
     try {
       if (formKey.value.currentState == null) return;
@@ -219,8 +207,9 @@ class ProductDetailController extends GetxController {
           productId: product.value!.id!,
           addons: addons,
           quantity: quantity.value ?? 0,
-          note:
-              formKey.value.currentState!.fields[ProductDetailKey.note]?.value ?? '',
+          note: formKey
+                  .value.currentState!.fields[ProductDetailKey.note]?.value ??
+              '',
         ),
       );
 
@@ -273,8 +262,9 @@ class ProductDetailController extends GetxController {
           cartItemId: Get.arguments[ProductDetailKey.cartItemId],
           addons: addons,
           quantity: quantity.value ?? 0,
-          note:
-              formKey.value.currentState!.fields[ProductDetailKey.note]?.value ?? '',
+          note: formKey
+                  .value.currentState!.fields[ProductDetailKey.note]?.value ??
+              '',
         ),
       );
 

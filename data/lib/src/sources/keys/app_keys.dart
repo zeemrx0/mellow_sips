@@ -14,3 +14,7 @@ class AppNetworkKey {
 class AppBoxKey {
   static const String user = 'user_box';
 }
+
+class DocumentKey {
+  static const String documentId = 'documentId';
+}
