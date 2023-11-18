@@ -60,8 +60,10 @@ class CartController extends GetxController {
 
       for (var cart in carts) {
         for (var cartItem in cart.cartItems) {
-          cartItem.product.coverImageData =
-              await getImage(cartItem.product.coverImage);
+          cartItem.product.coverImageData = await AppImageExt.getImage(
+            _getDocumentUseCase,
+            cartItem.product.coverImage,
+          );
         }
 
         carts.refresh();
@@ -99,19 +101,5 @@ class CartController extends GetxController {
 
     await getAllCart();
     carts.refresh();
-  }
-
-  Future<String?> getImage(String? imageId) async {
-    if (imageId == null) return null;
-
-    final splitId = imageId.split('|').last;
-
-    final response = await _getDocumentUseCase.executeObject(
-      param: GetDocumentParam(
-        documentId: splitId,
-      ),
-    );
-
-    return Future.value(response.netData!.content);
   }
 }

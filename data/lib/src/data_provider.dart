@@ -43,6 +43,9 @@ class _DataSourcesProvider {
     Get.lazyPut<DocumentRemoteDataSource>(
       () => DocumentRemoteDataSourceImpl(Get.find()),
     );
+    Get.lazyPut<DocumentLocalDataSource>(
+      () => DocumentLocalDataSourceImpl(Get.find()),
+    );
     Get.lazyPut<StoreRemoteDataSource>(
       () => StoreRemoteDataSourceImpl(Get.find()),
     );
@@ -70,7 +73,7 @@ class _RepositoriesProvider {
       () => AuthRepositoryImpl(Get.find(), Get.find()),
     );
     Get.lazyPut<DocumentRepository>(
-      () => DocumentRepositoryImpl(Get.find()),
+      () => DocumentRepositoryImpl(Get.find(), Get.find()),
     );
     Get.lazyPut<StoreRepository>(
       () => StoreRepositoryImpl(Get.find()),

@@ -3,6 +3,7 @@ import 'package:app/src/components/main/listView/app_list_view_controller.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/storeList/components/store_item_widget.dart';
 import 'package:app/src/pages/storeList/components/toogle_chip_widget.dart';
 import 'package:app/src/routes/app_pages.dart';
@@ -49,7 +50,10 @@ class StoreListController extends AppListViewController<StoreModel> {
     final storeListWithImage = await Future.wait(
       storeList.map(
         (store) async {
-          final image = await getImage(store.coverImage);
+          final image = await AppImageExt.getImage(
+            _getDocumentUseCase,
+            store.coverImage,
+          );
           return store.copyWith(coverImageData: image);
         },
       ),
@@ -62,19 +66,5 @@ class StoreListController extends AppListViewController<StoreModel> {
         total: response.total,
       ),
     );
-  }
-
-  Future<String?> getImage(String? imageId) async {
-    if (imageId == null) return null;
-
-    final splitId = imageId.split('|').last;
-
-    final response = await _getDocumentUseCase.executeObject(
-      param: GetDocumentParam(
-        documentId: splitId,
-      ),
-    );
-
-    return Future.value(response.netData!.content);
   }
 }
