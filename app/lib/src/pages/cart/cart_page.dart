@@ -19,6 +19,9 @@ class CartPage extends GetView<CartController> {
       children: [
         Expanded(
           child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(
+              vertical: AppThemeExt.of.majorScale(4),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -37,21 +40,25 @@ class CartPage extends GetView<CartController> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AppTextHeading5Widget()
+                                    AppTextHeading6Widget()
                                         .setText(cart.store.name)
                                         .setTextAlign(TextAlign.start)
+                                        .setColor(AppColors.of.primaryColor)
                                         .build(
                                           context,
                                         ),
-                                    InkWell(
-                                      onTap: () {
-                                        controller.deleteCart(cart.id);
-                                      },
-                                      child: R.svgs.icClose.svg(
-                                        width: AppThemeExt.of.majorScale(6),
-                                        height: AppThemeExt.of.majorScale(6),
-                                      ),
-                                    ),
+                                    AppIconButtonWidget()
+                                        .setOnPressed(() {
+                                          controller.deleteCart(cart.id);
+                                        })
+                                        .setPrefixIcon(
+                                          R.svgs.icClose.svg(
+                                            width: AppThemeExt.of.majorScale(5),
+                                            height:
+                                                AppThemeExt.of.majorScale(5),
+                                          ),
+                                        )
+                                        .build(context),
                                   ],
                                 ),
                                 SizedBox(
@@ -68,16 +75,16 @@ class CartPage extends GetView<CartController> {
                                     )
                                     .toList(),
                                 SizedBox(
-                                  height: AppThemeExt.of.majorScale(3),
+                                  height: AppThemeExt.of.majorScale(2),
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AppTextHeading5Widget()
+                                    AppTextHeading6Widget()
                                         .setText(R.strings.totalPrice)
                                         .build(context),
-                                    AppTextHeading5Widget()
+                                    AppTextHeading6Widget()
                                         .setText(
                                             '${NumberExt.withSeparator(controller.totalPrice(cart))}đ')
                                         .setColor(AppColors.of.primaryColor)
@@ -85,10 +92,10 @@ class CartPage extends GetView<CartController> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: AppThemeExt.of.majorScale(6),
+                                  height: AppThemeExt.of.majorScale(4),
                                 ),
                                 AppFilledButtonWidget()
-                                    .setButtonText(R.strings.pay)
+                                    .setButtonText(R.strings.order)
                                     .setOnPressed(() {
                                   Get.toNamed(Routes.checkout,
                                       arguments: cart.id);
@@ -110,6 +117,7 @@ class CartPage extends GetView<CartController> {
 
   PreferredSizeWidget _appBar(BuildContext context) {
     return AppBarBasicWidget()
+        .setBackgroundColor(AppColors.of.whiteColor)
         .setTitle(
           AppTextBody1Widget()
               .setText(R.strings.cart)
