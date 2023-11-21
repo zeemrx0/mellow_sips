@@ -42,9 +42,18 @@ class ConfirmOrderController extends GetxController {
 
   void onQRViewCreated(QRViewController controller) {
     qrViewController = controller;
-    controller.scannedDataStream.listen((scanData) {
-      qr.value = scanData;
-      print(qr.value?.code);
+    controller.scannedDataStream.listen((scanData) async {
+      if (scanData.code != null &&
+          scanData.code!.startsWith('https://mellowsipssv.site/mobile/')) {
+        qrCode.value = scanData.code!
+            .substring('https://mellowsipssv.site/mobile/'.length);
+
+        createOrder(
+          qrId: qrCode.value,
+        );
+
+        await controller.pauseCamera();
+      }
     });
   }
 
@@ -78,8 +87,8 @@ class ConfirmOrderController extends GetxController {
           initialTransactionMethod: initialTransactionMethod,
           qrCode: qrCode,
           qrId: qrId,
-          vouchers:
-              Get.arguments[ConfirmOrderControllerKey.vouchers] as List<String?>,
+          vouchers: Get.arguments[ConfirmOrderControllerKey.vouchers]
+              as List<String?>,
         ),
       );
 

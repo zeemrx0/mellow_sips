@@ -11,10 +11,10 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
   Widget _body(BuildContext context) {
     return Stack(
       children: [
-        // QRView(
-        //   key: controller.qrKey,
-        //   onQRViewCreated: controller.onQRViewCreated,
-        // ),
+        QRView(
+          key: controller.qrKey,
+          onQRViewCreated: controller.onQRViewCreated,
+        ),
         Padding(
           padding: EdgeInsets.symmetric(
             horizontal: AppThemeExt.of.majorScale(4),
