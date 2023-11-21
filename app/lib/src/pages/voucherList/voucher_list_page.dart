@@ -21,11 +21,23 @@ class VoucherListPage extends GetView<VoucherListController> {
       children: [
         Expanded(
           child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(
+              vertical: AppThemeExt.of.majorPaddingScale(4),
+              horizontal: AppThemeExt.of.majorPaddingScale(4),
+            ),
             child: Column(
               children: controller.vouchers.value.map(
                 (voucher) {
-                  return VoucherWidget(
-                    voucher: voucher,
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      bottom: AppThemeExt.of.majorPaddingScale(3),
+                    ),
+                    child: VoucherWidget(
+                      voucher: voucher,
+                      selectedOptionId: (Get.arguments[VoucherListControllerKey
+                              .selectedVoucher] as VoucherModel?)
+                          ?.id,
+                    ),
                   );
                 },
               ).toList(),

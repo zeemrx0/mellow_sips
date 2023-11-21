@@ -95,7 +95,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                                   .where((voucher) => voucher.canUse)
                                   .toList() ??
                               [],
-                          CheckoutControllerKey.chosenVoucher:
+                          CheckoutControllerKey.selectedVoucher:
                               controller.businessVoucher.value,
                         },
                       )?.then((value) {
@@ -154,7 +154,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                                 .where((voucher) => voucher.canUse)
                                 .toList() ??
                             [],
-                        CheckoutControllerKey.chosenVoucher:
+                        CheckoutControllerKey.selectedVoucher:
                             controller.systemVoucher.value,
                       })?.then((value) {
                         controller.systemVoucher.value = value as VoucherModel?;

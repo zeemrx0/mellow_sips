@@ -13,6 +13,8 @@ part './voucher_list_binding.dart';
 
 class VoucherListControllerKey {
   static const String vouchers = 'vouchers';
+
+  static const selectedVoucher = 'selectedVoucher';
 }
 
 class VoucherListController extends GetxController {

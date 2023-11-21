@@ -21,7 +21,7 @@ class CheckoutControllerKey {
   static const String cartId = 'cartId';
   static const String initialTransactionMethod = 'initialTransactionMethod';
   static const String vouchers = 'vouchers';
-  static const String chosenVoucher = 'chosenVoucher';
+  static const String selectedVoucher = 'selectedVoucher';
 }
 
 class CheckoutController extends GetxController {

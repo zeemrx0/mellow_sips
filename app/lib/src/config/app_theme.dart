@@ -31,6 +31,7 @@ class AppThemeData {
           TextButtonThemeData(style: AppButtonStyle.textButtonStyle),
       outlinedButtonTheme:
           OutlinedButtonThemeData(style: AppButtonStyle.outlinedButtonStyle),
+      unselectedWidgetColor: appColor.grayColor,
     );
   }
 }

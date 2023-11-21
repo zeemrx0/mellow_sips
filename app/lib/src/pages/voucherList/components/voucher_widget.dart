@@ -9,8 +9,13 @@ import 'package:utilities/utilities.dart';
 
 class VoucherWidget extends StatelessWidget {
   final VoucherModel voucher;
+  final String? selectedOptionId;
 
-  const VoucherWidget({super.key, required this.voucher});
+  const VoucherWidget({
+    super.key,
+    required this.voucher,
+    this.selectedOptionId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +26,49 @@ class VoucherWidget extends StatelessWidget {
         );
       },
       child: Container(
-        color: AppColors.of.whiteColor,
+        padding: EdgeInsets.only(
+          right: AppThemeExt.of.majorScale(2),
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.of.whiteColor,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.of.blackColor.withOpacity(0.1),
+              blurRadius: AppThemeExt.of.majorScale(4),
+              offset: Offset(
+                0,
+                AppThemeExt.of.majorScale(1 / 2),
+              ),
+            ),
+          ],
+          borderRadius: BorderRadius.circular(
+            AppThemeExt.of.majorScale(3),
+          ),
+        ),
         child: Row(
           children: [
             Container(
-              width: AppThemeExt.of.majorScale(20),
-              height: AppThemeExt.of.majorScale(20),
+              width: AppThemeExt.of.majorScale(22),
+              height: AppThemeExt.of.majorScale(22),
               alignment: Alignment.center,
-              child: R.pngs.appIcon.image(
+              decoration: BoxDecoration(
+                color: AppColors.of.primaryColor[100],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(
+                    AppThemeExt.of.majorScale(3),
+                  ),
+                  bottomLeft: Radius.circular(
+                    AppThemeExt.of.majorScale(3),
+                  ),
+                ),
+              ),
+              child: R.svgs.logo.svg(
                 width: AppThemeExt.of.majorScale(10),
                 height: AppThemeExt.of.majorScale(10),
               ),
+            ),
+            SizedBox(
+              width: AppThemeExt.of.majorScale(3),
             ),
             Expanded(
               child: Column(
@@ -53,6 +90,14 @@ class VoucherWidget extends StatelessWidget {
                 ],
               ),
             ),
+            Radio(
+              activeColor: AppColors.of.primaryColor,
+              splashRadius: AppThemeExt.of.majorScale(1),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              value: voucher.id,
+              groupValue: selectedOptionId,
+              onChanged: (value) {},
+            ),
           ],
         ),
       ),
@@ -64,10 +109,12 @@ class VoucherWidget extends StatelessWidget {
       return AppTextBody1Widget()
           .setText(
               '${R.strings.discount} ${NumberExt.withSeparator(voucher.value)}đ')
+          .setTextStyle(AppTextStyleExt.of.textBody1s)
           .build(context);
     }
     return AppTextBody1Widget()
         .setText('${R.strings.discount} ${voucher.value}%')
+        .setTextStyle(AppTextStyleExt.of.textBody1s)
         .build(context);
   }
 }

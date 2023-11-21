@@ -89,5 +89,6 @@
 	"mellowSipsVoucher": "Voucher MellowSips",
 	"storeVoucher": "Voucher cửa hàng",
   "discount": "Giảm",
-  "chooseVoucher": "Chọn voucher"
+  "chooseVoucher": "Chọn voucher",
+  "minimumOrder": "Đơn tối thiểu"
 }
