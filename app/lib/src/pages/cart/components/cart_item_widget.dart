@@ -142,7 +142,8 @@ class CartItemWidget extends GetView<CartController> {
                       height: AppThemeExt.of.majorScale(2 / 4),
                     ),
                     AppTextBody2Widget()
-                        .setText(cartItem.product.description)
+                        .setText(cartItem.addons.map((e) => e.name).join(', '))
+                        .setTextOverFlow(TextOverflow.ellipsis)
                         .setColor(AppColors.of.subTextColor)
                         .build(context),
                     SizedBox(
@@ -156,57 +157,6 @@ class CartItemWidget extends GetView<CartController> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: AppThemeExt.of.majorScale(3),
-              ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: AppThemeExt.of.majorScale(6),
-                      height: AppThemeExt.of.majorScale(6),
-                      decoration: ShapeDecoration(
-                        shape: const CircleBorder(),
-                        color: AppColors.of.secondaryColor[400],
-                      ),
-                      child: Center(
-                          child: Icon(
-                        Icons.remove_rounded,
-                        color: AppColors.of.whiteColor,
-                        size: AppThemeExt.of.majorScale(4),
-                      )),
-                    ),
-                  ),
-                  SizedBox(
-                    width: AppThemeExt.of.majorScale(3),
-                  ),
-                  AppTextHeading6Widget()
-                      .setText('${cartItem.quantity}')
-                      .build(context),
-                  SizedBox(
-                    width: AppThemeExt.of.majorScale(3),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: AppThemeExt.of.majorScale(6),
-                      height: AppThemeExt.of.majorScale(6),
-                      decoration: ShapeDecoration(
-                        shape: const CircleBorder(),
-                        color: AppColors.of.secondaryColor[400],
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.add_rounded,
-                          color: AppColors.of.whiteColor,
-                          size: AppThemeExt.of.majorScale(4),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
         ),
