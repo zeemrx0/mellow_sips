@@ -98,7 +98,7 @@ class OrderDetailController extends GetxController {
         ),
       );
 
-      order.refresh();
+      getOrderDetail();
 
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {

@@ -36,36 +36,60 @@ class OrderCartItemList extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              AppTextBody1Widget()
-                  .setText('${cartItem.quantity}×')
-                  .build(context),
-              SizedBox(
-                width: AppThemeExt.of.majorScale(2),
-              ),
-              Column(
-                children: [
-                  AppTextBody1Widget()
-                      .setText(cartItem.product.name)
-                      .build(context),
-                ],
-              ),
-            ],
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppTextBody2Widget()
+                    .setText('${cartItem.quantity}×')
+                    .build(context),
+                SizedBox(
+                  width: AppThemeExt.of.majorScale(3),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppTextBody2Widget()
+                          .setText(cartItem.product.name)
+                          .build(context),
+                      if (cartItem.addons.isNotEmpty)
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: AppThemeExt.of.majorScale(1 / 2),
+                            ),
+                            AppTextCaption1Widget()
+                                .setText(cartItem.addons
+                                    .map((e) => e.name)
+                                    .join(', '))
+                                .setTextOverFlow(TextOverflow.ellipsis)
+                                .setColor(AppColors.of.subTextColor)
+                                .build(context),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: AppThemeExt.of.majorScale(4),
           ),
           Column(
             children: [
               if (cartItem.tempPrice != cartItem.finalPrice)
-                AppTextBody2Widget()
+                AppTextCaption1Widget()
                     .setText('${NumberExt.withSeparator(cartItem.tempPrice)}đ')
                     .setTextStyle(
-                      AppTextStyleExt.of.textBody2r?.copyWith(
+                      AppTextStyleExt.of.textCaption1r?.copyWith(
                         decoration: TextDecoration.lineThrough,
                       ),
                     )
                     .setColor(AppColors.of.subTextColor)
                     .build(context),
-              AppTextBody1Widget()
+              AppTextBody2Widget()
                   .setText('${NumberExt.withSeparator(cartItem.finalPrice)}đ')
                   .build(context),
             ],

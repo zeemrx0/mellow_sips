@@ -172,6 +172,10 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
                         ],
                       ),
               ),
+              SizedBox(
+                height: AppThemeExt.of.majorScale(4),
+              ),
+              R.pngs.qrFrame.image(),
             ],
           ),
         ),
