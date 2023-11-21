@@ -2,7 +2,6 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:resources/resources.dart';
 
 part './app_filled_button_widget.dart';
 

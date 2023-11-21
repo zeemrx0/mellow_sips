@@ -7,12 +7,14 @@ class CreateOrderParam extends BaseParam {
   final String? qrCode;
   final String? qrId;
   final String initialTransactionMethod;
+  final List<String?> vouchers;
 
   CreateOrderParam({
     required this.cartId,
     this.qrCode,
     this.qrId,
     required this.initialTransactionMethod,
+    this.vouchers = const [],
   });
 
   factory CreateOrderParam.fromJson(Map<String, dynamic> json) =>

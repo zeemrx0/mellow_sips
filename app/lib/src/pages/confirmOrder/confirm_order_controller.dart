@@ -21,6 +21,7 @@ class ConfirmOrderControllerKey {
   static const String initialTransactionMethod = 'initialTransactionMethod';
   static const String qrCode = 'qrCode';
   static const String qrId = 'qrId';
+  static const String vouchers = 'vouchers';
 }
 
 class ConfirmOrderController extends GetxController {
@@ -77,10 +78,10 @@ class ConfirmOrderController extends GetxController {
           initialTransactionMethod: initialTransactionMethod,
           qrCode: qrCode,
           qrId: qrId,
+          vouchers:
+              Get.arguments[ConfirmOrderControllerKey.vouchers] as List<String?>,
         ),
       );
-
-      print("Confirm!! + ${result.netData}");
 
       if (result.netData != null) {
         order.value = result.netData;

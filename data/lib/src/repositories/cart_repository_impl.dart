@@ -31,10 +31,25 @@ class CartRepositoryImpl extends CartRepository {
   }
 
   @override
-  Future<AppObjectResultModel<CartModel>> getCartDetail(
-      {required Map<String, dynamic> params}) async {
+  Future<AppObjectResultModel<CartModel>> getCartDetail({
+    required Map<String, dynamic> params,
+  }) async {
     try {
       final remoteData = await _cartRemoteDataSource.getCartDetail(
+        params: params,
+      );
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultModel<VouchersModel>> getCartVouchers({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _cartRemoteDataSource.getCartVouchers(
         params: params,
       );
       return remoteData.toAppObjectResultModel();

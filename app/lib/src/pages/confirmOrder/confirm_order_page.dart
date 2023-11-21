@@ -61,11 +61,7 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
               ),
               AppTextBody2Widget()
                   .setText(R.strings.scanQRCodeOrEnterCodeToConfirm)
-                  .setTextStyle(
-                    AppTextStyleExt.of.textBody2s?.copyWith(
-                      fontFamily: R.fontFamily.workSans,
-                    ),
-                  )
+                  .setTextStyle(AppTextStyleExt.of.textBody2s)
                   .build(context),
               SizedBox(
                 height: AppThemeExt.of.majorScale(2),

@@ -56,11 +56,7 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                     AppTextBody1Widget()
                         .setText(
                             '${NumberExt.withSeparator(controller.order.value?.finalPrice ?? 0)}đ')
-                        .setTextStyle(
-                          AppTextStyleExt.of.textBody1r?.copyWith(
-                            fontFamily: R.fontFamily.workSans,
-                          ),
-                        )
+                        
                         .build(context),
                   ],
                 ),

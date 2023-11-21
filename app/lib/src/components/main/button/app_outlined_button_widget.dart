@@ -62,11 +62,7 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
             style: _buttonStyle(context),
             icon: _prefixIcon!,
             label: AppTextBody1Widget()
-                .setTextStyle(
-                  _textStyle ??
-                      AppTextStyleExt.of.textBody1s
-                          ?.copyWith(fontFamily: R.fontFamily.workSans),
-                )
+                .setTextStyle(_textStyle ?? AppTextStyleExt.of.textBody1s)
                 .setText(_buttonText!)
                 .build(context),
           )
@@ -74,11 +70,7 @@ class AppOutlinedButtonWidget extends AppButtonBaseBuilder {
             onPressed: _isDisabled == true ? null : _onPressed,
             style: _buttonStyle(context),
             child: AppTextBody1Widget()
-                .setTextStyle(
-                  _textStyle ??
-                      AppTextStyleExt.of.textBody1s
-                          ?.copyWith(fontFamily: R.fontFamily.workSans),
-                )
+                .setTextStyle(_textStyle ?? AppTextStyleExt.of.textBody1s)
                 .setText(_buttonText!)
                 .build(context),
           );

@@ -8,7 +8,6 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
 class CartItemWidget extends GetView<CartController> {
@@ -137,11 +136,7 @@ class CartItemWidget extends GetView<CartController> {
                   children: [
                     AppTextBody1Widget()
                         .setText(cartItem.product.name)
-                        .setTextStyle(
-                          AppTextStyleExt.of.textBody1s?.copyWith(
-                            fontFamily: R.fontFamily.workSans,
-                          ),
-                        )
+                        .setTextStyle(AppTextStyleExt.of.textBody1s)
                         .build(context),
                     SizedBox(
                       height: AppThemeExt.of.majorScale(2 / 4),

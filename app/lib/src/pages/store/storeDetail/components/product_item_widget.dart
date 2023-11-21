@@ -2,7 +2,6 @@ import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
 class FoodItemWidget extends StatelessWidget {
@@ -68,11 +67,7 @@ class FoodItemWidget extends StatelessWidget {
                     children: [
                       AppTextBody1Widget()
                           .setText(name)
-                          .setTextStyle(
-                            AppTextStyleExt.of.textBody1s?.copyWith(
-                              fontFamily: R.fontFamily.workSans,
-                            ),
-                          )
+                          .setTextStyle(AppTextStyleExt.of.textBody1s)
                           .build(context),
                       SizedBox(
                         height: AppThemeExt.of.majorScale(2 / 4),
@@ -86,11 +81,7 @@ class FoodItemWidget extends StatelessWidget {
                   AppTextBody2Widget()
                       .setText('${NumberExt.withSeparator(price)}đ')
                       .setColor(AppColors.of.primaryColor)
-                      .setTextStyle(
-                        AppTextStyleExt.of.textBody2s?.copyWith(
-                          fontFamily: R.fontFamily.workSans,
-                        ),
-                      )
+                      .setTextStyle(AppTextStyleExt.of.textBody2s)
                       .build(context),
                 ],
               ),

@@ -113,11 +113,7 @@ class CartPage extends GetView<CartController> {
         .setTitle(
           AppTextBody1Widget()
               .setText(R.strings.cart)
-              .setTextStyle(
-                AppTextStyleExt.of.textBody1s?.copyWith(
-                  fontFamily: R.fontFamily.workSans,
-                ),
-              )
+              .setTextStyle(AppTextStyleExt.of.textBody1s)
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )

@@ -1,14 +1,14 @@
-part of './order_list_controller.dart';
+part of './voucher_list_controller.dart';
 
-class OrderListPage extends GetView<OrderListController> {
-  const OrderListPage({super.key});
-
-  static void open() {
-    Get.toNamed(Routes.orders);
-  }
+class VoucherListPage extends GetView<VoucherListController> {
+  const VoucherListPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    controller.getVouchers();
+
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
@@ -20,11 +20,16 @@ class OrderListPage extends GetView<OrderListController> {
     return Column(
       children: [
         Expanded(
-          child: AppListViewWidget<OrderModel, OrderListController>(
-            padding: EdgeInsets.only(
-              top: AppThemeExt.of.majorPaddingScale(2),
+          child: SingleChildScrollView(
+            child: Column(
+              children: controller.vouchers.value.map(
+                (voucher) {
+                  return VoucherWidget(
+                    voucher: voucher,
+                  );
+                },
+              ).toList(),
             ),
-            childBuilder: _orderItemBuilder,
           ),
         ),
       ],
@@ -35,7 +40,7 @@ class OrderListPage extends GetView<OrderListController> {
     return AppBarBasicWidget()
         .setTitle(
           AppTextBody1Widget()
-              .setText(R.strings.orders)
+              .setText(R.strings.chooseVoucher)
               .setTextStyle(AppTextStyleExt.of.textBody1s)
               .setColor(AppColors.of.primaryColor)
               .build(context),
@@ -43,15 +48,5 @@ class OrderListPage extends GetView<OrderListController> {
         .setBackgroundColor(AppColors.of.whiteColor)
         .setCanBack(true)
         .build(context);
-  }
-
-  Widget _orderItemBuilder(
-    BuildContext context,
-    OrderModel orderModel,
-    int index,
-  ) {
-    return OrderItemWidget(
-      order: orderModel,
-    );
   }
 }

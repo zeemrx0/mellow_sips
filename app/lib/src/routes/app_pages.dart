@@ -13,6 +13,7 @@ import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/pages/store/storeDetail/store_detail_controller.dart';
 import 'package:app/src/pages/storeList/store_list_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
+import 'package:app/src/pages/voucherList/voucher_list_controller.dart';
 import 'package:app/src/pages/welcome/welcome_controller.dart';
 import 'package:get/get.dart';
 
@@ -76,6 +77,11 @@ class AppPages {
       name: Routes.carts,
       page: () => const CartPage(),
       binding: CartBinding(),
+    ),
+    GetPage(
+      name: Routes.vouchers,
+      page: () => const VoucherListPage(),
+      binding: VoucherListBinding(),
     ),
     GetPage(
       name: Routes.checkout,

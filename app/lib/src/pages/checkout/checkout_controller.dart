@@ -20,17 +20,24 @@ part './checkout_binding.dart';
 class CheckoutControllerKey {
   static const String cartId = 'cartId';
   static const String initialTransactionMethod = 'initialTransactionMethod';
+  static const String vouchers = 'vouchers';
+  static const String chosenVoucher = 'chosenVoucher';
 }
 
 class CheckoutController extends GetxController {
   final GetCartDetailUseCase _getCartDetailUseCase;
+  final GetCartVouchersUseCase _getCartVouchersUseCase;
 
   CheckoutController(
     this._getCartDetailUseCase,
+    this._getCartVouchersUseCase,
   );
 
   Rxn<CartModel> cart = Rxn<CartModel>();
+  Rxn<VouchersModel> vouchers = Rxn<VouchersModel>();
   Rx<String> transactionMethod = (AppPaymentMethod.zalopay).obs;
+  Rxn<VoucherModel> businessVoucher = Rxn<VoucherModel>();
+  Rxn<VoucherModel> systemVoucher = Rxn<VoucherModel>();
 
   Future<void> getCart() async {
     try {
@@ -42,6 +49,25 @@ class CheckoutController extends GetxController {
 
       if (result.netData != null) {
         cart.value = result.netData;
+      }
+
+      AppLoadingOverlayWidget.dismiss();
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  Future<void> getCartVouchers() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      final result = await _getCartVouchersUseCase.executeObject(
+        param: GetCartVouchersParam(cartId: Get.arguments as String),
+      );
+
+      if (result.netData != null) {
+        vouchers.value = result.netData;
       }
 
       AppLoadingOverlayWidget.dismiss();

@@ -69,11 +69,7 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
             icon: _prefixIcon!,
             label: AppTextBody1Widget()
                 .setText(_buttonText!)
-                .setTextStyle(
-                  _textStyle ??
-                      AppTextStyleExt.of.textBody1s
-                          ?.copyWith(fontFamily: R.fontFamily.workSans),
-                )
+                .setTextStyle(_textStyle ?? AppTextStyleExt.of.textBody1s)
                 .setColor(AppColors.of.whiteColor)
                 .build(context),
           )
@@ -82,11 +78,7 @@ class AppFilledButtonWidget extends AppButtonBaseBuilder {
             style: _buttonStyle(context),
             child: AppTextBody1Widget()
                 .setText(_buttonText!)
-                .setTextStyle(
-                  _textStyle ??
-                      AppTextStyleExt.of.textBody1s
-                          ?.copyWith(fontFamily: R.fontFamily.workSans),
-                )
+                .setTextStyle(_textStyle ?? AppTextStyleExt.of.textBody1s)
                 .setColor(AppColors.of.whiteColor)
                 .build(context),
           );

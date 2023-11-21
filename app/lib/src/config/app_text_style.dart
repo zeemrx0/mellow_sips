@@ -94,42 +94,36 @@ abstract class _AppTextStyle {
     height: _AppTextHeight.H32_42,
     fontSize: _AppTextSize.T32,
     fontWeight: bold,
-    fontFamily: R.fontFamily.workSans,
   );
 
   static final TextStyle _textHeading2 = TextStyle(
     height: _AppTextHeight.H28_38,
     fontSize: _AppTextSize.T28,
     fontWeight: bold,
-    fontFamily: R.fontFamily.workSans,
   );
 
   static final TextStyle _textHeading3 = TextStyle(
     height: _AppTextHeight.H24_34,
     fontSize: _AppTextSize.T24,
     fontWeight: bold,
-    fontFamily: R.fontFamily.workSans,
   );
 
   static final TextStyle _textHeading4 = TextStyle(
     height: _AppTextHeight.H20_26,
     fontSize: _AppTextSize.T20,
     fontWeight: semiBold,
-    fontFamily: R.fontFamily.workSans,
   );
 
   static final TextStyle _textHeading5 = TextStyle(
     height: _AppTextHeight.H18_24,
     fontSize: _AppTextSize.T18,
     fontWeight: semiBold,
-    fontFamily: R.fontFamily.workSans,
   );
 
   static final TextStyle _textHeading6 = TextStyle(
     height: _AppTextHeight.H16_22,
     fontSize: _AppTextSize.T16,
     fontWeight: semiBold,
-    fontFamily: R.fontFamily.workSans,
   );
 
   static final TextStyle _textBody1 = TextStyle(
@@ -148,13 +142,11 @@ abstract class _AppTextStyle {
     height: _AppTextHeight.H12_16,
     fontSize: _AppTextSize.T12,
     fontWeight: regular,
-    fontFamily: R.fontFamily.workSans,
   );
 
   static final TextStyle _textCaption2 = TextStyle(
     height: _AppTextHeight.H10_14,
     fontSize: _AppTextSize.T10,
     fontWeight: regular,
-    fontFamily: R.fontFamily.workSans,
   );
 }

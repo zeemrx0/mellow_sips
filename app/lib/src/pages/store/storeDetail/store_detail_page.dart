@@ -147,9 +147,7 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                           () => AppTextBody1Widget()
                               .setText('${controller.numberOfCartItems.value}')
                               .setTextStyle(
-                                AppTextStyleExt.of.textBody1s?.copyWith(
-                                  fontFamily: R.fontFamily.workSans,
-                                ),
+                                AppTextStyleExt.of.textBody1s
                               )
                               .build(context),
                         ),
