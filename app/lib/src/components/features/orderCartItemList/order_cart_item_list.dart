@@ -2,7 +2,6 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
 class OrderCartItemList extends StatelessWidget {
@@ -41,11 +40,6 @@ class OrderCartItemList extends StatelessWidget {
             children: [
               AppTextBody1Widget()
                   .setText('${cartItem.quantity}×')
-                  .setTextStyle(
-                    AppTextStyleExt.of.textBody1r?.copyWith(
-                      fontFamily: R.fontFamily.workSans,
-                    ),
-                  )
                   .build(context),
               SizedBox(
                 width: AppThemeExt.of.majorScale(2),
@@ -54,11 +48,6 @@ class OrderCartItemList extends StatelessWidget {
                 children: [
                   AppTextBody1Widget()
                       .setText(cartItem.product.name)
-                      .setTextStyle(
-                        AppTextStyleExt.of.textBody1r?.copyWith(
-                          fontFamily: R.fontFamily.workSans,
-                        ),
-                      )
                       .build(context),
                 ],
               ),
@@ -71,7 +60,6 @@ class OrderCartItemList extends StatelessWidget {
                     .setText('${NumberExt.withSeparator(cartItem.tempPrice)}đ')
                     .setTextStyle(
                       AppTextStyleExt.of.textBody2r?.copyWith(
-                        fontFamily: R.fontFamily.workSans,
                         decoration: TextDecoration.lineThrough,
                       ),
                     )
@@ -79,11 +67,6 @@ class OrderCartItemList extends StatelessWidget {
                     .build(context),
               AppTextBody1Widget()
                   .setText('${NumberExt.withSeparator(cartItem.finalPrice)}đ')
-                  .setTextStyle(
-                    AppTextStyleExt.of.textBody1r?.copyWith(
-                      fontFamily: R.fontFamily.workSans,
-                    ),
-                  )
                   .build(context),
             ],
           ),

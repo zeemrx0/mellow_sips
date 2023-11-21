@@ -66,11 +66,7 @@ class StoreItemWidget extends StatelessWidget {
                       children: [
                         AppTextBody2Widget()
                             .setText(store.name)
-                            .setTextStyle(
-                              AppTextStyleExt.of.textBody2s?.copyWith(
-                                fontFamily: R.fontFamily.workSans,
-                              ),
-                            )
+                            .setTextStyle(AppTextStyleExt.of.textBody2s)
                             .build(context),
                         SizedBox(
                           height: AppThemeExt.of.majorScale(1),

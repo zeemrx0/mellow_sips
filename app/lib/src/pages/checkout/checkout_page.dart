@@ -6,10 +6,12 @@ class CheckoutPage extends GetView<CheckoutController> {
   @override
   Widget build(BuildContext context) {
     controller.getCart();
+    controller.getCartVouchers();
 
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
+        .setBackgroundColor(AppColors.of.backgroundColor)
         .build(context);
   }
 
@@ -18,14 +20,11 @@ class CheckoutPage extends GetView<CheckoutController> {
         .setTitle(
           AppTextBody1Widget()
               .setText(R.strings.order)
-              .setTextStyle(
-                AppTextStyleExt.of.textBody1s?.copyWith(
-                  fontFamily: R.fontFamily.workSans,
-                ),
-              )
+              .setTextStyle(AppTextStyleExt.of.textBody1s)
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )
+        .setBackgroundColor(AppColors.of.whiteColor)
         .setCanBack(true)
         .build(context);
   }
@@ -33,42 +32,214 @@ class CheckoutPage extends GetView<CheckoutController> {
   Widget _body(BuildContext context) {
     return Stack(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppThemeExt.of.majorScale(4),
-          ),
-          child: Column(
-            children: [
-              Obx(
+        Column(
+          children: [
+            SizedBox(
+              height: AppThemeExt.of.majorScale(4),
+            ),
+            Container(
+              color: AppColors.of.whiteColor,
+              padding: EdgeInsets.symmetric(
+                horizontal: AppThemeExt.of.majorPaddingScale(4),
+                vertical: AppThemeExt.of.majorPaddingScale(3),
+              ),
+              child: Obx(
                 () => OrderCartItemList(
                   cartItems: controller.cart.value?.cartItems ?? [],
                 ),
               ),
-              SizedBox(
-                height: AppThemeExt.of.majorScale(4),
+            ),
+            SizedBox(
+              height: AppThemeExt.of.majorScale(4),
+            ),
+            Container(
+              color: AppColors.of.whiteColor,
+              padding: EdgeInsets.symmetric(
+                horizontal: AppThemeExt.of.majorPaddingScale(4),
+                vertical: AppThemeExt.of.majorPaddingScale(3),
               ),
-              Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Obx(
+                () => Column(
                   children: [
-                    AppTextHeading6Widget()
-                        .setText(
-                            '${R.strings.subtotal} (${controller.cart.value?.numberOfItems ?? 0} ${R.strings.items})')
-                        .build(context),
-                    AppTextBody1Widget()
-                        .setText(
-                            '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
-                        .setTextStyle(
-                          AppTextStyleExt.of.textBody1r?.copyWith(
-                            fontFamily: R.fontFamily.workSans,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AppTextHeading6Widget()
+                            .setText(
+                                '${R.strings.subtotal} (${controller.cart.value?.numberOfItems ?? 0} ${R.strings.items})')
+                            .build(context),
+                        AppTextBody1Widget()
+                            .setText(
+                                '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
+                            .build(context),
+                      ],
+                    ),
+                    if (controller.businessVoucher.value != null)
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: AppThemeExt.of.majorScale(2),
                           ),
-                        )
-                        .build(context),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AppTextHeading6Widget()
+                                  .setText(R.strings.storeVoucher)
+                                  .build(context),
+                              AppTextBody1Widget()
+                                  .setText(
+                                      '-${NumberExt.withSeparator(controller.businessVoucher.value!.discountAmount)}đ')
+                                  .build(context),
+                            ],
+                          ),
+                        ],
+                      ),
+                    if (controller.systemVoucher.value != null)
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: AppThemeExt.of.majorScale(2),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AppTextHeading6Widget()
+                                  .setText(R.strings.mellowSipsVoucher)
+                                  .build(context),
+                              AppTextBody1Widget()
+                                  .setText(
+                                      '-${NumberExt.withSeparator(controller.systemVoucher.value!.discountAmount)}đ')
+                                  .build(context),
+                            ],
+                          ),
+                        ],
+                      ),
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+            SizedBox(
+              height: AppThemeExt.of.majorScale(4),
+            ),
+            Container(
+              color: AppColors.of.whiteColor,
+              padding: EdgeInsets.symmetric(
+                horizontal: AppThemeExt.of.majorPaddingScale(4),
+                vertical: AppThemeExt.of.majorPaddingScale(3),
+              ),
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(
+                        Routes.vouchers,
+                        arguments: {
+                          CheckoutControllerKey.vouchers: controller
+                                  .vouchers.value?.BUSINESS
+                                  .where((voucher) => voucher.canUse)
+                                  .toList() ??
+                              [],
+                          CheckoutControllerKey.selectedVoucher:
+                              controller.businessVoucher.value,
+                        },
+                      )?.then((value) {
+                        controller.businessVoucher.value =
+                            value as VoucherModel?;
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            R.svgs.icTag2.svg(
+                              width: AppThemeExt.of.majorScale(4),
+                              height: AppThemeExt.of.majorScale(4),
+                              colorFilter: ColorFilter.mode(
+                                AppColors.of.primaryColor,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                            SizedBox(
+                              width: AppThemeExt.of.majorScale(2),
+                            ),
+                            AppTextBody2Widget()
+                                .setText(R.strings.storeVoucher)
+                                .build(context),
+                          ],
+                        ),
+                        R.svgs.icChevronRight.svg(
+                          width: AppThemeExt.of.majorScale(4),
+                          height: AppThemeExt.of.majorScale(4),
+                          colorFilter: ColorFilter.mode(
+                            AppColors.of.subTextColor,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppThemeExt.of.majorScale(3),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 1,
+                    color: AppColors.of.dividerColor,
+                  ),
+                  SizedBox(
+                    height: AppThemeExt.of.majorScale(3),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.vouchers, arguments: {
+                        CheckoutControllerKey.vouchers: controller
+                                .vouchers.value?.SYSTEM
+                                .where((voucher) => voucher.canUse)
+                                .toList() ??
+                            [],
+                        CheckoutControllerKey.selectedVoucher:
+                            controller.systemVoucher.value,
+                      })?.then((value) {
+                        controller.systemVoucher.value = value as VoucherModel?;
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            R.svgs.icTag2.svg(
+                              width: AppThemeExt.of.majorScale(4),
+                              height: AppThemeExt.of.majorScale(4),
+                              colorFilter: ColorFilter.mode(
+                                AppColors.of.primaryColor,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                            SizedBox(
+                              width: AppThemeExt.of.majorScale(2),
+                            ),
+                            AppTextBody2Widget()
+                                .setText(R.strings.mellowSipsVoucher)
+                                .build(context),
+                          ],
+                        ),
+                        R.svgs.icChevronRight.svg(
+                          width: AppThemeExt.of.majorScale(4),
+                          height: AppThemeExt.of.majorScale(4),
+                          colorFilter: ColorFilter.mode(
+                            AppColors.of.subTextColor,
+                            BlendMode.srcIn,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -139,11 +310,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                           () => AppTextBody1Widget()
                               .setText(
                                   '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
-                              .setTextStyle(
-                                AppTextStyleExt.of.textBody1s?.copyWith(
-                                  fontFamily: R.fontFamily.workSans,
-                                ),
-                              )
+                              .setTextStyle(AppTextStyleExt.of.textBody1s)
                               .build(context),
                         ),
                       ],
@@ -163,6 +330,10 @@ class CheckoutPage extends GetView<CheckoutController> {
                                   controller.cart.value?.id,
                               CheckoutControllerKey.initialTransactionMethod:
                                   controller.transactionMethod.value,
+                              CheckoutControllerKey.vouchers: [
+                                controller.businessVoucher.value?.id,
+                                controller.systemVoucher.value?.id,
+                              ].where((element) => element != null).toList(),
                             },
                           );
                         },
@@ -200,11 +371,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                   ),
                   AppTextBody2Widget()
                       .setText(R.strings.zaloPay)
-                      .setTextStyle(
-                        AppTextStyleExt.of.textBody1s?.copyWith(
-                          fontFamily: R.fontFamily.workSans,
-                        ),
-                      )
+                      .setTextStyle(AppTextStyleExt.of.textBody1s)
                       .build(context),
                 ],
               ),
@@ -222,11 +389,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                   ),
                   AppTextBody2Widget()
                       .setText(R.strings.cash)
-                      .setTextStyle(
-                        AppTextStyleExt.of.textBody1s?.copyWith(
-                          fontFamily: R.fontFamily.workSans,
-                        ),
-                      )
+                      .setTextStyle(AppTextStyleExt.of.textBody1s)
                       .build(context),
                 ],
               ),
@@ -235,26 +398,5 @@ class CheckoutPage extends GetView<CheckoutController> {
         ),
       ),
     );
-    // return InkWell(
-    //   child: Row(
-    //     children: [
-    //       R.pngs.zaloPay.image(
-    //         width: AppThemeExt.of.majorScale(5),
-    //         height: AppThemeExt.of.majorScale(5),
-    //       ),
-    //       SizedBox(
-    //         width: AppThemeExt.of.majorScale(1),
-    //       ),
-    //       AppTextBody2Widget()
-    //           .setText(R.strings.zaloPay)
-    //           .setTextStyle(
-    //             AppTextStyleExt.of.textBody1s?.copyWith(
-    //               fontFamily: R.fontFamily.workSans,
-    //             ),
-    //           )
-    //           .build(context),
-    //     ],
-    //   ),
-    // );
   }
 }

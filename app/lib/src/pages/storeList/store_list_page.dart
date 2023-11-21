@@ -29,12 +29,14 @@ class StoreListPage extends GetView<StoreListController> {
           AppTextHeading6Widget().setText(R.strings.store).build(context),
         )
         .setTrailing(
-          InkWell(
-            child: R.svgs.icSearch.svg(
-              width: AppThemeExt.of.majorScale(6),
-              height: AppThemeExt.of.majorScale(6),
-            ),
-          ),
+          AppIconButtonWidget()
+              .setPrefixIcon(
+                R.svgs.icSearch.svg(
+                  width: AppThemeExt.of.majorScale(6),
+                  height: AppThemeExt.of.majorScale(6),
+                ),
+              )
+              .build(context),
         )
         .setHeight(
           kToolbarHeight + AppThemeExt.of.majorScale(48 / 4),

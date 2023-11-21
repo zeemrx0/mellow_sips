@@ -36,11 +36,7 @@ class OrderListPage extends GetView<OrderListController> {
         .setTitle(
           AppTextBody1Widget()
               .setText(R.strings.orders)
-              .setTextStyle(
-                AppTextStyleExt.of.textBody1s?.copyWith(
-                  fontFamily: R.fontFamily.workSans,
-                ),
-              )
+              .setTextStyle(AppTextStyleExt.of.textBody1s)
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )

@@ -35,11 +35,7 @@ class OrderItemWidget extends StatelessWidget {
               children: [
                 AppTextBody1Widget()
                     .setText(order.details.store.name)
-                    .setTextStyle(
-                      AppTextStyleExt.of.textBody1s?.copyWith(
-                        fontFamily: R.fontFamily.workSans,
-                      ),
-                    )
+                    .setTextStyle(AppTextStyleExt.of.textBody1s)
                     .build(context),
                 SizedBox(
                   height: AppThemeExt.of.majorScale(2),
@@ -48,11 +44,6 @@ class OrderItemWidget extends StatelessWidget {
                   children: [
                     AppTextBody1Widget()
                         .setText(NumberExt.withSeparator(order.finalPrice))
-                        .setTextStyle(
-                          AppTextStyleExt.of.textBody1r?.copyWith(
-                            fontFamily: R.fontFamily.workSans,
-                          ),
-                        )
                         .setColor(AppColors.of.subTextColor)
                         .build(context),
                     Container(
@@ -69,11 +60,6 @@ class OrderItemWidget extends StatelessWidget {
                     AppTextBody1Widget()
                         .setText(
                             '${order.details.cartItems.length} ${R.strings.items}')
-                        .setTextStyle(
-                          AppTextStyleExt.of.textBody1r?.copyWith(
-                            fontFamily: R.fontFamily.workSans,
-                          ),
-                        )
                         .setColor(AppColors.of.subTextColor)
                         .build(context),
                   ],

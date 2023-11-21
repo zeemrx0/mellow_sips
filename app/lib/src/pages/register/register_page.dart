@@ -227,15 +227,18 @@ class RegisterPage extends GetView<RegisterController> {
               width: AppThemeExt.of.majorScale(12),
               height: AppThemeExt.of.majorScale(12),
             ),
-            InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: R.svgs.icClose.svg(
+            AppIconButtonWidget()
+                .setPrefixIcon(
+              R.svgs.icClose.svg(
                 width: AppThemeExt.of.majorScale(6),
                 height: AppThemeExt.of.majorScale(6),
               ),
-            ),
+            )
+                .setOnPressed(
+              () {
+                Get.back();
+              },
+            ).build(context),
           ],
         ),
         SizedBox(

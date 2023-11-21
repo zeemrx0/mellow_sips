@@ -27,13 +27,15 @@ part './cart/delete_cart_use_case.dart';
 part './cart/delete_cart_item_use_case.dart';
 part './cart/update_cart_item_use_case.dart';
 
-part 'order/get_order_detail_use_case.dart';
-part 'order/create_order_use_case.dart';
-part 'order/update_order_status_use_case.dart';
-part 'order/search_orders_use_case.dart';
-part 'order/get_transaction_by_order_id_use_case.dart';
+part './voucher/get_cart_vouchers_use_case.dart';
 
-part 'notification/subscribe_notifications_use_case.dart';
+part './order/get_order_detail_use_case.dart';
+part './order/create_order_use_case.dart';
+part './order/update_order_status_use_case.dart';
+part './order/search_orders_use_case.dart';
+part './order/get_transaction_by_order_id_use_case.dart';
+
+part './notification/subscribe_notifications_use_case.dart';
 
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {

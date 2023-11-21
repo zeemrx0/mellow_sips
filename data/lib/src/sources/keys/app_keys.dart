@@ -18,3 +18,9 @@ class AppBoxKey {
 class DocumentKey {
   static const String documentId = 'documentId';
 }
+
+class CartKey {
+  static const String quantity = 'quantity';
+  static const String note = 'note';
+  static const String addons = 'addons';
+}

@@ -22,7 +22,7 @@ class AppThemeData {
     return ThemeData(
       // Use Material Design version 3
       useMaterial3: true,
-      fontFamily: R.fontFamily.comfortaa,
+      fontFamily: R.fontFamily.workSans,
       package: 'resources',
       textTheme: _AppTextStyle.textTheme(appColor),
       filledButtonTheme:
@@ -31,6 +31,7 @@ class AppThemeData {
           TextButtonThemeData(style: AppButtonStyle.textButtonStyle),
       outlinedButtonTheme:
           OutlinedButtonThemeData(style: AppButtonStyle.outlinedButtonStyle),
+      unselectedWidgetColor: appColor.grayColor,
     );
   }
 }

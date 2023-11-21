@@ -85,5 +85,10 @@
 	"cancelOrder": "Hủy đặt món",
 	"ordered": "Chờ xác nhận",
 	"expired": "Đã hết hạn",
-  "update": "Cập nhật"
+	"update": "Cập nhật",
+	"mellowSipsVoucher": "Voucher MellowSips",
+	"storeVoucher": "Voucher cửa hàng",
+  "discount": "Giảm",
+  "chooseVoucher": "Chọn voucher",
+  "minimumOrder": "Đơn tối thiểu"
 }

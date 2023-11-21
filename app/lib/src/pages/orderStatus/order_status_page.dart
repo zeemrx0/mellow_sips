@@ -24,24 +24,23 @@ class OrderStatusPage extends GetView<OrderStatusController> {
         .setTitle(
           AppTextBody1Widget()
               .setText(R.strings.orderStatus)
-              .setTextStyle(
-                AppTextStyleExt.of.textBody1s?.copyWith(
-                  fontFamily: R.fontFamily.workSans,
-                ),
-              )
+              .setTextStyle(AppTextStyleExt.of.textBody1s)
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )
         .setLeading(
-          InkWell(
-            onTap: () {
-              Get.offAllNamed(Routes.stores);
-            },
-            child: R.svgs.icLongArrowLeft.svg(
+          AppIconButtonWidget()
+              .setPrefixIcon(
+            R.svgs.icLongArrowLeft.svg(
               width: AppThemeExt.of.majorScale(4),
               height: AppThemeExt.of.majorScale(4),
             ),
-          ),
+          )
+              .setOnPressed(
+            () {
+              Get.offAllNamed(Routes.stores);
+            },
+          ).build(context),
         )
         .build(context);
   }
@@ -138,7 +137,6 @@ class OrderStatusPage extends GetView<OrderStatusController> {
               .setText(title)
               .setTextStyle(
                 AppTextStyleExt.of.textBody1r?.copyWith(
-                  fontFamily: R.fontFamily.workSans,
                   height: 1,
                 ),
               )
