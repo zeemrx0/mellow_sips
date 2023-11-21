@@ -58,23 +58,7 @@ class VoucherListPage extends GetView<VoucherListController> {
               .build(context),
         )
         .setBackgroundColor(AppColors.of.whiteColor)
-        .setLeading(
-          AppIconButtonWidget()
-              .setPrefixIcon(
-            R.svgs.icLongArrowLeft.svg(
-              width: AppThemeExt.of.majorScale(4),
-              height: AppThemeExt.of.majorScale(4),
-            ),
-          )
-              .setOnPressed(
-            () {
-              Get.back(
-                result: Get.arguments[VoucherListControllerKey.selectedVoucher]
-                    as VoucherModel?,
-              );
-            },
-          ).build(context),
-        )
+        .setCanBack(true)
         .build(context);
   }
 }

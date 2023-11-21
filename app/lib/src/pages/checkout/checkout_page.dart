@@ -59,17 +59,61 @@ class CheckoutPage extends GetView<CheckoutController> {
                 vertical: AppThemeExt.of.majorPaddingScale(3),
               ),
               child: Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                () => Column(
                   children: [
-                    AppTextHeading6Widget()
-                        .setText(
-                            '${R.strings.subtotal} (${controller.cart.value?.numberOfItems ?? 0} ${R.strings.items})')
-                        .build(context),
-                    AppTextBody1Widget()
-                        .setText(
-                            '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
-                        .build(context),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AppTextHeading6Widget()
+                            .setText(
+                                '${R.strings.subtotal} (${controller.cart.value?.numberOfItems ?? 0} ${R.strings.items})')
+                            .build(context),
+                        AppTextBody1Widget()
+                            .setText(
+                                '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
+                            .build(context),
+                      ],
+                    ),
+                    if (controller.businessVoucher.value != null)
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: AppThemeExt.of.majorScale(2),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AppTextHeading6Widget()
+                                  .setText(R.strings.storeVoucher)
+                                  .build(context),
+                              AppTextBody1Widget()
+                                  .setText(
+                                      '-${NumberExt.withSeparator(controller.businessVoucher.value!.discountAmount)}đ')
+                                  .build(context),
+                            ],
+                          ),
+                        ],
+                      ),
+                    if (controller.systemVoucher.value != null)
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: AppThemeExt.of.majorScale(2),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AppTextHeading6Widget()
+                                  .setText(R.strings.mellowSipsVoucher)
+                                  .build(context),
+                              AppTextBody1Widget()
+                                  .setText(
+                                      '-${NumberExt.withSeparator(controller.systemVoucher.value!.discountAmount)}đ')
+                                  .build(context),
+                            ],
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ),
