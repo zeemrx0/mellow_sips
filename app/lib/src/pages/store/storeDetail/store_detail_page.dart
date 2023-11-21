@@ -146,9 +146,7 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                         Obx(
                           () => AppTextBody1Widget()
                               .setText('${controller.numberOfCartItems.value}')
-                              .setTextStyle(
-                                AppTextStyleExt.of.textBody1s
-                              )
+                              .setTextStyle(AppTextStyleExt.of.textBody1s)
                               .build(context),
                         ),
                       ],
@@ -200,58 +198,54 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
         ),
         child: Row(
           children: [
-            InkWell(
-              onTap: () {
+            AppIconButtonWidget()
+                .setPrefixIcon(
+                  R.svgs.icArrowLongLeft.svg(
+                    width: AppThemeExt.of.majorScale(5),
+                    height: AppThemeExt.of.majorScale(5),
+                    colorFilter: ColorFilter.mode(
+                      AppColors.of.whiteColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                )
+                .setPadding(
+                  EdgeInsets.all(
+                    AppThemeExt.of.majorPaddingScale(6 / 4),
+                  ),
+                )
+                .setBackgroundColor(const Color.fromRGBO(106, 106, 105, 0.7))
+                .setOnPressed(
+              () {
                 Get.back();
               },
-              child: Container(
-                padding: EdgeInsets.all(
-                  AppThemeExt.of.majorPaddingScale(6 / 4),
-                ),
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(106, 106, 105, 0.7),
-                  borderRadius: BorderRadius.circular(
-                    AppThemeExt.of.majorScale(2),
-                  ),
-                ),
-                child: R.svgs.icArrowLongLeft.svg(
-                  width: AppThemeExt.of.majorScale(5),
-                  height: AppThemeExt.of.majorScale(5),
-                  colorFilter: ColorFilter.mode(
-                    AppColors.of.whiteColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            ),
+            ).build(context),
           ],
         ),
       ),
       actions: [
-        InkWell(
-          onTap: () {
+        AppIconButtonWidget()
+            .setPrefixIcon(
+              R.svgs.icHeartOutline.svg(
+                width: AppThemeExt.of.majorScale(5),
+                height: AppThemeExt.of.majorScale(5),
+                colorFilter: ColorFilter.mode(
+                  AppColors.of.whiteColor,
+                  BlendMode.srcIn,
+                ),
+              ),
+            )
+            .setPadding(
+              EdgeInsets.all(
+                AppThemeExt.of.majorPaddingScale(6 / 4),
+              ),
+            )
+            .setBackgroundColor(const Color.fromRGBO(106, 106, 105, 0.7))
+            .setOnPressed(
+          () {
             // TODO: Like
           },
-          child: Container(
-            padding: EdgeInsets.all(
-              AppThemeExt.of.majorPaddingScale(6 / 4),
-            ),
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(106, 106, 105, 0.7),
-              borderRadius: BorderRadius.circular(
-                AppThemeExt.of.majorScale(2),
-              ),
-            ),
-            child: R.svgs.icHeartOutline.svg(
-              width: AppThemeExt.of.majorScale(5),
-              height: AppThemeExt.of.majorScale(5),
-              colorFilter: ColorFilter.mode(
-                AppColors.of.whiteColor,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-        ),
+        ).build(context),
         SizedBox(
           width: AppThemeExt.of.majorScale(4),
         )

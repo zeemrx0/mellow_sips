@@ -29,15 +29,18 @@ class OrderStatusPage extends GetView<OrderStatusController> {
               .build(context),
         )
         .setLeading(
-          InkWell(
-            onTap: () {
-              Get.offAllNamed(Routes.stores);
-            },
-            child: R.svgs.icLongArrowLeft.svg(
+          AppIconButtonWidget()
+              .setPrefixIcon(
+            R.svgs.icLongArrowLeft.svg(
               width: AppThemeExt.of.majorScale(4),
               height: AppThemeExt.of.majorScale(4),
             ),
-          ),
+          )
+              .setOnPressed(
+            () {
+              Get.offAllNamed(Routes.stores);
+            },
+          ).build(context),
         )
         .build(context);
   }

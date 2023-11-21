@@ -11,6 +11,8 @@ part './app_text_button_widget.dart';
 
 part './app_button_app_bar_widget.dart';
 
+part './app_icon_button_widget.dart';
+
 enum AppButtonSize {
   large(size: 'large'),
   medium(size: 'medium'),
@@ -48,6 +50,8 @@ abstract class AppButtonBaseBuilder {
   @protected
   Color? _backgroundColor;
   @protected
+  EdgeInsets? _padding;
+  @protected
   void Function()? _onPressed;
 
   AppButtonBaseBuilder setButtonText(String? buttonText) {
@@ -79,6 +83,10 @@ abstract class AppButtonBaseBuilder {
   }
 
   AppButtonBaseBuilder setBackgroundColor(Color? backgroundColor) {
+    return this;
+  }
+
+  AppButtonBaseBuilder setPadding(EdgeInsets? padding) {
     return this;
   }
 
