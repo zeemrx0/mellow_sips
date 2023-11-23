@@ -8,6 +8,7 @@ import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/home/components/carousel_item_widget.dart';
+import 'package:app/src/pages/home/components/product_section_item.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
@@ -29,7 +30,16 @@ class HomeController extends GetxController {
 
   final PageController pageController = PageController();
 
-  HomeController(this._subscribeNotificationUseCase);
+  final GetStoreMenuUseCase _getStoreMenuUseCase;
+  final GetDocumentUseCase _getDocumentUseCase;
+
+  Rxn<List<ProductModel>> products = Rxn<List<ProductModel>>();
+
+  HomeController(
+    this._subscribeNotificationUseCase,
+    this._getStoreMenuUseCase,
+    this._getDocumentUseCase,
+  );
 
   NotificationDetails _notificationDetails() {
     return const NotificationDetails(
@@ -39,6 +49,37 @@ class HomeController extends GetxController {
         importance: Importance.max,
       ),
     );
+  }
+
+  Future<void> getProducts() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      final result = await _getStoreMenuUseCase.executeObject(
+        param: GetStoreDetailParam(
+          storeId: '0210cb7b-9613-4652-9378-9954a2564de7',
+        ),
+      );
+
+      final menuData = result.netData;
+
+      List<ProductModel> productList = [];
+
+      for (MenuSectionModel section in menuData?.menuSections ?? []) {
+        for (ProductModel product in section.products) {
+          product.coverImageData = await AppImageExt.getImage(
+            _getDocumentUseCase,
+            product.coverImage,
+          );
+          productList.add(product);
+        }
+      }
+
+      products.value = productList;
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
   }
 
   Future<void> subscribeNotifications() async {

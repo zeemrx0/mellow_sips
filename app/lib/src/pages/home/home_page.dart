@@ -10,6 +10,7 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     controller.subscribeNotifications();
+    controller.getProducts();
 
     return AppMainPageWidget().setBody(_body(context)).build(context);
   }
@@ -123,6 +124,10 @@ class HomePage extends GetView<HomeController> {
               height: AppThemeExt.of.majorPaddingScale(6),
             ),
             _categories(context),
+            SizedBox(
+              height: AppThemeExt.of.majorPaddingScale(6),
+            ),
+            _section(context)
           ],
         ),
       ),
@@ -159,7 +164,8 @@ class HomePage extends GetView<HomeController> {
                           decoration: BoxDecoration(
                             color: AppColors.of.whiteColor,
                             borderRadius: BorderRadius.circular(
-                                AppThemeExt.of.majorScale(1)),
+                              AppThemeExt.of.majorScale(1),
+                            ),
                           ),
                         ),
                       ),
@@ -176,7 +182,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -204,7 +210,8 @@ class HomePage extends GetView<HomeController> {
                           decoration: BoxDecoration(
                             color: AppColors.of.whiteColor,
                             borderRadius: BorderRadius.circular(
-                                AppThemeExt.of.majorScale(1)),
+                              AppThemeExt.of.majorScale(1),
+                            ),
                           ),
                         ),
                       ),
@@ -221,7 +228,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -249,7 +256,8 @@ class HomePage extends GetView<HomeController> {
                           decoration: BoxDecoration(
                             color: AppColors.of.whiteColor,
                             borderRadius: BorderRadius.circular(
-                                AppThemeExt.of.majorScale(1)),
+                              AppThemeExt.of.majorScale(1),
+                            ),
                           ),
                         ),
                       ),
@@ -266,7 +274,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -294,7 +302,8 @@ class HomePage extends GetView<HomeController> {
                           decoration: BoxDecoration(
                             color: AppColors.of.whiteColor,
                             borderRadius: BorderRadius.circular(
-                                AppThemeExt.of.majorScale(1)),
+                              AppThemeExt.of.majorScale(1),
+                            ),
                           ),
                         ),
                       ),
@@ -311,7 +320,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -363,7 +372,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -391,7 +400,8 @@ class HomePage extends GetView<HomeController> {
                           decoration: BoxDecoration(
                             color: AppColors.of.whiteColor,
                             borderRadius: BorderRadius.circular(
-                                AppThemeExt.of.majorScale(1)),
+                              AppThemeExt.of.majorScale(1),
+                            ),
                           ),
                         ),
                       ),
@@ -408,7 +418,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -436,7 +446,8 @@ class HomePage extends GetView<HomeController> {
                           decoration: BoxDecoration(
                             color: AppColors.of.whiteColor,
                             borderRadius: BorderRadius.circular(
-                                AppThemeExt.of.majorScale(1)),
+                              AppThemeExt.of.majorScale(1),
+                            ),
                           ),
                         ),
                       ),
@@ -453,7 +464,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -481,7 +492,8 @@ class HomePage extends GetView<HomeController> {
                           decoration: BoxDecoration(
                             color: AppColors.of.whiteColor,
                             borderRadius: BorderRadius.circular(
-                                AppThemeExt.of.majorScale(1)),
+                              AppThemeExt.of.majorScale(1),
+                            ),
                           ),
                         ),
                       ),
@@ -498,7 +510,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText('Gần đây')
+                              .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -512,6 +524,58 @@ class HomePage extends GetView<HomeController> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _section(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppThemeExt.of.majorScale(4),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AppTextBody2Widget()
+                  .setText(R.strings.recommended)
+                  .setTextStyle(AppTextStyleExt.of.textBody2s)
+                  .setColor(AppColors.of.secondaryColor)
+                  .build(context),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(1),
+              ),
+              AppTextBody2Widget()
+                  .setText(R.strings.showMore)
+                  .setColor(AppColors.of.subTextColor)
+                  .build(context),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: AppThemeExt.of.majorScale(2),
+        ),
+        Obx(
+          () => SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: controller.products.value == null
+                  ? []
+                  : controller.products.value!.map((product) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          left: AppThemeExt.of.majorScale(4),
+                        ),
+                        child: ProductSectionItem(product: product),
+                      );
+                    }).toList(),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

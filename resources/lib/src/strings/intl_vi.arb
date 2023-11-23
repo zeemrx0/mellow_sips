@@ -90,5 +90,8 @@
 	"storeVoucher": "Voucher cửa hàng",
   "discount": "Giảm",
   "chooseVoucher": "Chọn voucher",
-  "minimumOrder": "Đơn tối thiểu"
+  "minimumOrder": "Đơn tối thiểu",
+  "recommended": "Đề xuất",
+  "showMore": "Xem thêm",
+  "nearby": "Gần đây"
 }
