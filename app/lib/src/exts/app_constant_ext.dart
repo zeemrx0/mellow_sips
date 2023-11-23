@@ -7,8 +7,10 @@ class AppConstants {
   static const String createdAt = 'createdAt';
   static const String desc = 'DESC';
   static const String subject = 'subject';
+  static const String key = 'key';
   static const String cash = 'CASH';
   static const String percent = 'PERCENT';
+  static const String orderCompleted = 'ORDER_COMPLETED';
 }
 
 class CartParamKey {

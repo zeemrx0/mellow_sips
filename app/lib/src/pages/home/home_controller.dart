@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
+import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
@@ -25,6 +27,8 @@ part './home_binding.dart';
 
 class HomeController extends GetxController {
   final SubscribeNotificationsUseCase _subscribeNotificationUseCase;
+  final UnsubscribeNotificationsUseCase _unsubscribeNotificationsUseCase;
+
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -37,9 +41,16 @@ class HomeController extends GetxController {
 
   HomeController(
     this._subscribeNotificationUseCase,
+    this._unsubscribeNotificationsUseCase,
     this._getStoreMenuUseCase,
     this._getDocumentUseCase,
   );
+
+  @override
+  void dispose() {
+    _unsubscribeNotificationsUseCase.executeObject();
+    super.dispose();
+  }
 
   NotificationDetails _notificationDetails() {
     return const NotificationDetails(
@@ -86,6 +97,34 @@ class HomeController extends GetxController {
     try {
       AppLoadingOverlayWidget.show();
 
+      bool isNotificationEnabled = await _flutterLocalNotificationsPlugin
+              .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin>()
+              ?.areNotificationsEnabled() ??
+          false;
+
+      if (!isNotificationEnabled) {
+        isNotificationEnabled = await _flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                    AndroidFlutterLocalNotificationsPlugin>()
+                ?.requestNotificationsPermission() ??
+            false;
+
+        if (!isNotificationEnabled) {
+          AppDefaultDialogWidget()
+              .setTitle(R.strings.notificationIsNotEnabled)
+              .setContent(R.strings
+                  .PleaseEnableNotificationSoThatWeCanNotifyWhenOrderCompleted)
+              .setAppDialogType(AppDialogType.error)
+              .setPositiveText(R.strings.confirm)
+              .setOnPositive(() async {
+                Get.back();
+              })
+              .buildDialog(Get.context!)
+              .show();
+        }
+      }
+
       _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
           android: AndroidInitializationSettings('mellow_sips'),
@@ -109,6 +148,13 @@ class HomeController extends GetxController {
               '',
               _notificationDetails(),
             );
+
+            if (jsonDecode(frame.body!)[AppConstants.key] ==
+                AppConstants.orderCompleted) {
+              Get.toNamed(
+                Routes.orderCompletedAlert,
+              );
+            }
           },
         ),
       );

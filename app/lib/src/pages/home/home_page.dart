@@ -36,10 +36,16 @@ class HomePage extends GetView<HomeController> {
           floating: true,
           snap: false,
           backgroundColor: AppColors.of.whiteColor,
-          expandedHeight: MediaQuery.of(Get.context!).padding.top +
-              AppThemeExt.of.majorScale(4),
-          collapsedHeight: MediaQuery.of(Get.context!).padding.top +
-              AppThemeExt.of.majorScale(4),
+          expandedHeight: max(
+            kToolbarHeight,
+            MediaQuery.of(Get.context!).padding.top +
+                AppThemeExt.of.majorScale(36 / 4),
+          ),
+          collapsedHeight: max(
+            kToolbarHeight,
+            MediaQuery.of(Get.context!).padding.top +
+                AppThemeExt.of.majorScale(36 / 4),
+          ),
           leading: const SizedBox(),
           flexibleSpace: FlexibleSpaceBar(
             background: Container(
@@ -57,6 +63,7 @@ class HomePage extends GetView<HomeController> {
                     Expanded(
                       child: AppTextFieldWidget()
                           .setFieldKey('search')
+                          .setHintText(R.strings.search)
                           .build(context),
                     ),
                     SizedBox(
@@ -156,7 +163,7 @@ class HomePage extends GetView<HomeController> {
                 },
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
+                  height: AppThemeExt.of.majorScale(78 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -173,9 +180,15 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                          ),
+                          child: R.svgs.icNearby.svg(
+                            width: AppThemeExt.of.majorScale(40 / 4),
+                            height: AppThemeExt.of.majorScale(44 / 4),
+                          ),
                         ),
                       ),
                       Align(
@@ -202,7 +215,7 @@ class HomePage extends GetView<HomeController> {
                 onTap: () {},
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
+                  height: AppThemeExt.of.majorScale(78 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -219,9 +232,15 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                          ),
+                          child: R.svgs.icSalePanel.svg(
+                            width: AppThemeExt.of.majorScale(48 / 4),
+                            height: AppThemeExt.of.majorScale(40 / 4),
+                          ),
                         ),
                       ),
                       Align(
@@ -231,7 +250,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText(R.strings.nearby)
+                              .setText(R.strings.sale)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -248,7 +267,7 @@ class HomePage extends GetView<HomeController> {
                 onTap: () {},
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
+                  height: AppThemeExt.of.majorScale(78 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -265,9 +284,15 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                          ),
+                          child: R.svgs.icTickets.svg(
+                            width: AppThemeExt.of.majorScale(53 / 4),
+                            height: AppThemeExt.of.majorScale(39 / 4),
+                          ),
                         ),
                       ),
                       Align(
@@ -277,7 +302,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText(R.strings.nearby)
+                              .setText(R.strings.x3Discount)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -294,7 +319,7 @@ class HomePage extends GetView<HomeController> {
                 onTap: () {},
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
+                  height: AppThemeExt.of.majorScale(78 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -311,9 +336,15 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                          ),
+                          child: R.svgs.icFreeTag.svg(
+                            width: AppThemeExt.of.majorScale(52 / 4),
+                            height: AppThemeExt.of.majorScale(52 / 4),
+                          ),
                         ),
                       ),
                       Align(
@@ -323,7 +354,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText(R.strings.nearby)
+                              .setText(R.strings.freeDishes)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -346,7 +377,7 @@ class HomePage extends GetView<HomeController> {
                 },
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
+                  height: AppThemeExt.of.majorScale(88 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -363,9 +394,15 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(36 / 4),
+                          ),
+                          child: R.svgs.icFastFood.svg(
+                            width: AppThemeExt.of.majorScale(52 / 4),
+                            height: AppThemeExt.of.majorScale(52 / 4),
+                          ),
                         ),
                       ),
                       Align(
@@ -375,7 +412,60 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText(R.strings.nearby)
+                              .setText(R.strings.fastFood)
+                              .setColor(AppColors.of.primaryColor)
+                              .setTextAlign(TextAlign.center)
+                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
+                              .build(context),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(gapWidth),
+              ),
+              InkWell(
+                onTap: () {},
+                child: SizedBox(
+                  width: AppThemeExt.of.majorScale(itemWidth / 4),
+                  height: AppThemeExt.of.majorScale(88 / 4),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          width: AppThemeExt.of.majorScale(itemWidth / 4),
+                          height: AppThemeExt.of.majorScale(48 / 4),
+                          decoration: BoxDecoration(
+                            color: AppColors.of.whiteColor,
+                            borderRadius: BorderRadius.circular(
+                              AppThemeExt.of.majorScale(1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                          ),
+                          child: R.svgs.icMilkTea.svg(
+                            width: AppThemeExt.of.majorScale(34 / 4),
+                            height: AppThemeExt.of.majorScale(60 / 4),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(1),
+                          ),
+                          child: AppTextCaption2Widget()
+                              .setText(R.strings.milkTea)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -392,7 +482,7 @@ class HomePage extends GetView<HomeController> {
                 onTap: () {},
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
+                  height: AppThemeExt.of.majorScale(88 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -409,9 +499,15 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(24 / 4),
+                          ),
+                          child: R.svgs.icBreakfast.svg(
+                            width: AppThemeExt.of.majorScale(60 / 4),
+                            height: AppThemeExt.of.majorScale(60 / 4),
+                          ),
                         ),
                       ),
                       Align(
@@ -421,7 +517,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText(R.strings.nearby)
+                              .setText(R.strings.rice)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),
@@ -438,7 +534,7 @@ class HomePage extends GetView<HomeController> {
                 onTap: () {},
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
+                  height: AppThemeExt.of.majorScale(88 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -455,9 +551,15 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                          ),
+                          child: R.svgs.icNoodle.svg(
+                            width: AppThemeExt.of.majorScale(59 / 4),
+                            height: AppThemeExt.of.majorScale(59 / 4),
+                          ),
                         ),
                       ),
                       Align(
@@ -467,53 +569,7 @@ class HomePage extends GetView<HomeController> {
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
                           child: AppTextCaption2Widget()
-                              .setText(R.strings.nearby)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: AppThemeExt.of.majorScale(gapWidth),
-              ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(70 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: R.svgs.icNearby.svg(
-                          height: AppThemeExt.of.majorScale(44 / 4),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption2Widget()
-                              .setText(R.strings.nearby)
+                              .setText(R.strings.noodles)
                               .setColor(AppColors.of.primaryColor)
                               .setTextStyle(AppTextStyleExt.of.textCaption2s)
                               .build(context),

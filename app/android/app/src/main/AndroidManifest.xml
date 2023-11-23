@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    
     <application
         android:label="MellowSips"
         android:name="${applicationName}"
@@ -32,6 +34,7 @@
                   android:host="app" />
             </intent-filter>
             
+            <!-- ZaloPay -->
             <meta-data
               android:name="com.vng.zalo.sdk.APP_ID"
               android:value="2554" />

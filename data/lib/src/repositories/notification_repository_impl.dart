@@ -22,4 +22,15 @@ class NotificationRepositoryImpl extends NotificationRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> disconnect() async {
+    try {
+      final webSocketData = await _notificationWebSocket.disconnect();
+
+      return webSocketData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

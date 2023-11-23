@@ -5,4 +5,6 @@ abstract class NotificationRepository {
     Function? onReceiveGlobalNotification,
     Function? onReceiveUserNotification,
   });
+
+  Future<AppObjectResultModel<EmptyModel>> disconnect();
 }

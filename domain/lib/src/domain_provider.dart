@@ -53,5 +53,8 @@ class DomainProvider {
     Get.put<SubscribeNotificationsUseCase>(
       SubscribeNotificationsUseCaseImpl(Get.find()),
     );
+    Get.put<UnsubscribeNotificationsUseCase>(
+      UnsubscribeNotificationsUseCaseImpl(Get.find()),
+    );
   }
 }
