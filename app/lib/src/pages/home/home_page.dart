@@ -76,13 +76,16 @@ class HomePage extends GetView<HomeController> {
                     ),
                     AppIconButtonWidget()
                         .setPrefixIcon(
-                          R.svgs.icList.svg(
-                            width: AppThemeExt.of.majorScale(6),
-                            height: AppThemeExt.of.majorScale(6),
-                          ),
-                        )
-                        .setOnPressed(() {})
-                        .build(context),
+                      R.svgs.icList.svg(
+                        width: AppThemeExt.of.majorScale(6),
+                        height: AppThemeExt.of.majorScale(6),
+                      ),
+                    )
+                        .setOnPressed(
+                      () {
+                        Get.toNamed(Routes.appNavMenu);
+                      },
+                    ).build(context),
                   ],
                 ),
               ),

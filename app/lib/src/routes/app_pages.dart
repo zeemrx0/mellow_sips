@@ -1,3 +1,4 @@
+import 'package:app/src/pages/appMenu/app_nav_menu_controller.dart';
 import 'package:app/src/pages/cart/cart_controller.dart';
 import 'package:app/src/pages/checkout/checkout_controller.dart';
 import 'package:app/src/pages/confirmOrder/confirm_order_controller.dart';
@@ -42,6 +43,11 @@ class AppPages {
       name: Routes.home,
       page: () => const HomePage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.appNavMenu,
+      page: () => const AppNavMenuPage(),
+      binding: AppNavMenuBinding(),
     ),
     GetPage(
       name: Routes.login,
