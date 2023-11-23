@@ -7,9 +7,12 @@ class Routes {
   static const intro = '/intro';
   static const welcome = '/welcome';
   static const home = '/home';
+  static const appNavMenu = '/appNavMenu';
+
   static const login = '/login';
   static const register = '/register';
   static const verifyRegistration = '/verify-registration';
+
   static const stores = '/stores';
   static const storeDetail = '/store-detail';
 
