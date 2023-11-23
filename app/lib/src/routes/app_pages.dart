@@ -6,6 +6,7 @@ import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/pages/orderStatus/order_status_controller.dart';
+import 'package:app/src/pages/orders/orderCompleteAlertPage/order_completed_alert_controller.dart';
 import 'package:app/src/pages/orders/orderDetail/order_detail_controller.dart';
 import 'package:app/src/pages/orders/orderList/order_list_controller.dart';
 import 'package:app/src/pages/product/product_detail_controller.dart';
@@ -49,6 +50,8 @@ class AppPages {
       page: () => const AppNavMenuPage(),
       binding: AppNavMenuBinding(),
     ),
+
+    // Auth
     GetPage(
       name: Routes.login,
       page: () => const LoginPage(),
@@ -64,6 +67,8 @@ class AppPages {
       page: () => const VerifyRegistrationPage(),
       binding: VerifyRegistrationBinding(),
     ),
+
+    // Store
     GetPage(
       name: Routes.stores,
       page: () => const StoreListPage(),
@@ -79,6 +84,8 @@ class AppPages {
       page: () => const ProductDetailPage(),
       binding: ProductDetailBinding(),
     ),
+
+    // Cart
     GetPage(
       name: Routes.carts,
       page: () => const CartPage(),
@@ -94,6 +101,8 @@ class AppPages {
       page: () => const CheckoutPage(),
       binding: CheckoutBinding(),
     ),
+
+    // Order
     GetPage(
       name: Routes.orderStatus,
       page: () => const OrderStatusPage(),
@@ -113,6 +122,11 @@ class AppPages {
       name: Routes.orderDetail,
       page: () => const OrderDetailPage(),
       binding: OrderDetailBinding(),
-    )
+    ),
+    GetPage(
+      name: Routes.orderCompletedAlert,
+      page: () => const OrderCompletedAlertPage(),
+      binding: OrderCompletedAlertBinding(),
+    ),
   ];
 }

@@ -27,4 +27,5 @@ class Routes {
   static const orderStatus = '/orderStatus';
   static const confirmOrder = '/confirmOrder';
   static const orderDetail = '/orderDetail';
+  static const orderCompletedAlert = '/orderCompletedAlert';
 }

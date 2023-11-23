@@ -16,32 +16,48 @@ class NotificationWebSocket {
     Function? onReceiveGlobalNotification,
     Function? onReceiveUserNotification,
   }) async {
-    if (_stompClient != null) return;
+    bool isInitialized = false;
 
-    final tokens = await _authLocalDataSource.getTokens();
+    while (!isInitialized) {
+      try {
+        if (_stompClient != null) return;
 
-    Map<String, String>? header;
+        final tokens = await _authLocalDataSource.getTokens();
 
-    if (tokens.netData?.accessToken != null) {
-      header = {
-        'Authorization': tokens.netData!.accessToken,
-      };
+        Map<String, String>? header;
+
+        if (tokens.netData?.accessToken != null) {
+          header = {
+            'Authorization': tokens.netData!.accessToken,
+          };
+        }
+
+        _stompClient = StompClient(
+          config: StompConfig.sockJS(
+            url: '${BuildConfig.apiDomain}/ws',
+            stompConnectHeaders: header,
+            webSocketConnectHeaders: header,
+            onConnect: (p0) {
+              onConnectHandler(
+                p0,
+                onReceiveGlobalNotification: onReceiveGlobalNotification,
+                onReceiveUserNotification: onReceiveUserNotification,
+              );
+            },
+            onStompError: (p0) {
+              throw Exception(p0);
+            },
+            onWebSocketError: (p0) {
+              throw Exception(p0);
+            },
+          ),
+        );
+
+        isInitialized = true;
+      } catch (e) {
+        print('Notification web socket error: $e');
+      }
     }
-
-    _stompClient = StompClient(
-      config: StompConfig.sockJS(
-        url: '${BuildConfig.apiDomain}/ws',
-        stompConnectHeaders: header,
-        webSocketConnectHeaders: header,
-        onConnect: (p0) {
-          onConnectHandler(
-            p0,
-            onReceiveGlobalNotification: onReceiveGlobalNotification,
-            onReceiveUserNotification: onReceiveUserNotification,
-          );
-        },
-      ),
-    );
   }
 
   Future<AppObjectResultRaw<EmptyRaw>> connect({
@@ -53,6 +69,16 @@ class NotificationWebSocket {
       onReceiveUserNotification: onReceiveUserNotification,
     );
     _stompClient?.activate();
+
+    return Future.value(
+      AppObjectResultRaw(
+        netData: EmptyRaw(),
+      ),
+    );
+  }
+
+  Future<AppObjectResultRaw<EmptyRaw>> disconnect() async {
+    _stompClient?.deactivate();
 
     return Future.value(
       AppObjectResultRaw(
