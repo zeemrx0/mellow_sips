@@ -99,4 +99,18 @@ class CartRepositoryImpl extends CartRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<CartModel>> calculateCartWithVouchers({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _cartRemoteDataSource.calculateCartWithVouchers(
+        params: params,
+      );
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

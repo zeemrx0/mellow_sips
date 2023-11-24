@@ -24,6 +24,7 @@ part './cart/get_cart_detail_param.dart';
 part './cart/delete_cart_param.dart';
 part './cart/delete_cart_item_param.dart';
 part './cart/update_cart_item_param.dart';
+part './cart/calculate_cart_with_vouchers_param.dart';
 
 part './voucher/get_cart_vouchers_param.dart';
 

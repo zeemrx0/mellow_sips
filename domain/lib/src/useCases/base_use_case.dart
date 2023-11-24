@@ -26,6 +26,7 @@ part './cart/get_cart_detail_use_case.dart';
 part './cart/delete_cart_use_case.dart';
 part './cart/delete_cart_item_use_case.dart';
 part './cart/update_cart_item_use_case.dart';
+part './cart/calculate_cart_with_vouchers_use_case.dart';
 
 part './voucher/get_cart_vouchers_use_case.dart';
 

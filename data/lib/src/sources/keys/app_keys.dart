@@ -23,6 +23,7 @@ class CartKey {
   static const String quantity = 'quantity';
   static const String note = 'note';
   static const String addons = 'addons';
+  static const String vouchers = 'vouchers';
 }
 
 class NotificationKey {

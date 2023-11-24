@@ -27,10 +27,12 @@ class CheckoutControllerKey {
 class CheckoutController extends GetxController {
   final GetCartDetailUseCase _getCartDetailUseCase;
   final GetCartVouchersUseCase _getCartVouchersUseCase;
+  final CalculateCartWithVouchersUseCase _calculateCartWithVouchersUseCase;
 
   CheckoutController(
     this._getCartDetailUseCase,
     this._getCartVouchersUseCase,
+    this._calculateCartWithVouchersUseCase,
   );
 
   Rxn<CartModel> cart = Rxn<CartModel>();
@@ -43,12 +45,31 @@ class CheckoutController extends GetxController {
     try {
       AppLoadingOverlayWidget.show();
 
-      final result = await _getCartDetailUseCase.executeObject(
-        param: GetCartDetailParam(cartId: Get.arguments as String),
-      );
+      List<String> voucherList = [];
+      if (businessVoucher.value != null) {
+        voucherList.add(businessVoucher.value!.id);
+      }
+      if (systemVoucher.value != null) {
+        voucherList.add(systemVoucher.value!.id);
+      }
 
-      if (result.netData != null) {
-        cart.value = result.netData;
+      if (voucherList.isEmpty) {
+        final result = await _getCartDetailUseCase.executeObject(
+          param: GetCartDetailParam(cartId: Get.arguments as String),
+        );
+
+        if (result.netData != null) {
+          cart.value = result.netData;
+        }
+      } else {
+        final result = await _calculateCartWithVouchersUseCase.executeObject(
+          param: CalculateCartWithVouchersParam(
+              cartId: Get.arguments as String, vouchers: voucherList),
+        );
+
+        if (result.netData != null) {
+          cart.value = result.netData;
+        }
       }
 
       AppLoadingOverlayWidget.dismiss();

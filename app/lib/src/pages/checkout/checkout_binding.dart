@@ -7,6 +7,7 @@ class CheckoutBinding extends Bindings {
       () => CheckoutController(
         Get.find(),
         Get.find(),
+        Get.find(),
       ),
     );
   }

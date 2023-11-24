@@ -47,7 +47,10 @@ class CheckoutPage extends GetView<CheckoutController> {
                 () => Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    AppTextBody2Widget().setText(R.strings.orders).setTextStyle(AppTextStyleExt.of.textBody2s).build(context),
+                    AppTextBody2Widget()
+                        .setText(R.strings.orders)
+                        .setTextStyle(AppTextStyleExt.of.textBody2s)
+                        .build(context),
                     SizedBox(
                       height: AppThemeExt.of.majorScale(2),
                     ),
@@ -80,7 +83,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                             .build(context),
                         AppTextBody2Widget()
                             .setText(
-                                '${NumberExt.withSeparator(controller.cart.value?.finalPrice ?? 0)}đ')
+                                '${NumberExt.withSeparator(controller.cart.value?.tempPrice ?? 0)}đ')
                             .build(context),
                       ],
                     ),
@@ -155,6 +158,8 @@ class CheckoutPage extends GetView<CheckoutController> {
                       )?.then((value) {
                         controller.businessVoucher.value =
                             value as VoucherModel?;
+
+                        controller.getCart();
                       });
                     },
                     child: Row(
@@ -212,6 +217,8 @@ class CheckoutPage extends GetView<CheckoutController> {
                             controller.systemVoucher.value,
                       })?.then((value) {
                         controller.systemVoucher.value = value as VoucherModel?;
+
+                        controller.getCart();
                       });
                     },
                     child: Row(

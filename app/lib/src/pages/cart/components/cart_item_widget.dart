@@ -8,6 +8,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
 class CartItemWidget extends GetView<CartController> {
@@ -149,11 +150,30 @@ class CartItemWidget extends GetView<CartController> {
                     SizedBox(
                       height: AppThemeExt.of.majorScale(6 / 4),
                     ),
-                    AppTextHeading6Widget()
-                        .setText(
-                            '${NumberExt.withSeparator(cartItem.tempPrice)}đ')
-                        .setColor(AppColors.of.secondaryColor)
-                        .build(context),
+                    Row(
+                      children: [
+                        AppTextBody2Widget()
+                            .setText(
+                                '${NumberExt.withSeparator(cartItem.tempPrice / cartItem.quantity)}đ')
+                            .setTextStyle(AppTextStyleExt.of.textBody2s)
+                            .setColor(AppColors.of.secondaryColor)
+                            .build(context),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: AppThemeExt.of.majorScale(2),
+                          ),
+                          height: AppThemeExt.of.majorScale(3 / 4),
+                          width: AppThemeExt.of.majorScale(3 / 4),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.of.grayColor[500],
+                          ),
+                        ),
+                        AppTextBody2Widget()
+                            .setText('${cartItem.quantity} ${R.strings.items}')
+                            .build(context),
+                      ],
+                    ),
                   ],
                 ),
               ),

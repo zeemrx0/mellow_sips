@@ -60,7 +60,7 @@ class QrScanPage extends GetView<QrScanController> {
                 height: MediaQuery.of(Get.context!).size.height * 0.1,
               ),
               AppTextBody2Widget()
-                  .setText(R.strings.scanQRCodeOrEnterCodeToConfirm)
+                  .setText(R.strings.scanQRCodeToViewMenu)
                   .setTextStyle(AppTextStyleExt.of.textBody2s)
                   .build(context),
               SizedBox(

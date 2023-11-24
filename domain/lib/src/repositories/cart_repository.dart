@@ -26,4 +26,8 @@ abstract class CartRepository {
   Future<AppObjectResultModel<EmptyModel>> updateCartItem({
     required Map<String, dynamic> params,
   });
+
+  Future<AppObjectResultModel<CartModel>> calculateCartWithVouchers({
+    required Map<String, dynamic> params,
+  });
 }

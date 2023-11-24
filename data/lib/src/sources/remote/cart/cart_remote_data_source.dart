@@ -26,6 +26,10 @@ abstract class CartRemoteDataSource {
   Future<AppObjectResultRaw<EmptyRaw>> updateCartItem({
     required Map<String, dynamic> params,
   });
+
+  Future<AppObjectResultRaw<CartRaw>> calculateCartWithVouchers({
+    required Map<String, dynamic> params,
+  });
 }
 
 class CartRemoteDataSourceImpl implements CartRemoteDataSource {
@@ -165,6 +169,28 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
       );
 
       return remoteData.toObjectRaw((data) => EmptyRaw());
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppObjectResultRaw<CartRaw>> calculateCartWithVouchers({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _networkService.request(
+        clientRequest: ClientRequest(
+          url: '${ApiProvider.carts}/${params['cartId']}/calculate',
+          method: HttpMethod.post,
+          requestType: RequestType.object,
+          body: {
+            CartKey.vouchers: params[CartKey.vouchers],
+          },
+        ),
+      );
+
+      return remoteData.toObjectRaw((data) => CartRaw.fromJson(data));
     } on NetworkException catch (_) {
       rethrow;
     }
