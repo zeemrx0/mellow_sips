@@ -7,4 +7,14 @@ abstract class NotificationRepository {
   });
 
   Future<AppObjectResultModel<EmptyModel>> disconnect();
+
+  Future<AppPaginationListResultModel<NotificationModel>> searchNotifications({
+    required Map<String, dynamic> params,
+  });
+
+  Future<AppObjectResultModel<EmptyModel>> markAsRead({
+    required Map<String, dynamic> params,
+  });
+
+  Future<AppObjectResultModel<EmptyModel>> markAllAsRead();
 }

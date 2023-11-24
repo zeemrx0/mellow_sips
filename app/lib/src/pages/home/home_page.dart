@@ -12,7 +12,26 @@ class HomePage extends GetView<HomeController> {
     controller.subscribeNotifications();
     controller.getProducts();
 
-    return AppMainPageWidget().setBody(_body(context)).build(context);
+    return AppMainPageWidget()
+        .setBody(_body(context))
+        .setFloatingActionButton(
+          FloatingActionButton(
+            onPressed: () {
+              Get.toNamed(Routes.qrScan);
+            },
+            backgroundColor: AppColors.of.primaryColor,
+            foregroundColor: AppColors.of.whiteColor,
+            child: R.svgs.icQrCode.svg(
+              width: AppThemeExt.of.majorScale(10),
+              height: AppThemeExt.of.majorScale(10),
+              colorFilter: ColorFilter.mode(
+                AppColors.of.whiteColor,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+        )
+        .build(context);
   }
 
   Widget _body(BuildContext context) {
@@ -71,13 +90,14 @@ class HomePage extends GetView<HomeController> {
                     ),
                     AppIconButtonWidget()
                         .setPrefixIcon(
-                          R.svgs.icBellOutline.svg(
-                            width: AppThemeExt.of.majorScale(6),
-                            height: AppThemeExt.of.majorScale(6),
-                          ),
-                        )
-                        .setOnPressed(() {})
-                        .build(context),
+                      R.svgs.icBellOutline.svg(
+                        width: AppThemeExt.of.majorScale(6),
+                        height: AppThemeExt.of.majorScale(6),
+                      ),
+                    )
+                        .setOnPressed(() {
+                      Get.toNamed(Routes.notifications);
+                    }).build(context),
                     SizedBox(
                       width: AppThemeExt.of.majorScale(3),
                     ),

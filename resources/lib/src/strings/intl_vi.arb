@@ -103,5 +103,9 @@
   "noodles": "Món nước",
 	"search": "Tìm kiếm",
 	"notificationIsNotEnabled": "Thông báo chưa được bật",
-	"PleaseEnableNotificationSoThatWeCanNotifyWhenOrderCompleted": "Vui lòng bật thông báo để chúng tôi có thể thông báo khi đơn hàng hoàn thành"
+	"PleaseEnableNotificationSoThatWeCanNotifyWhenOrderCompleted": "Vui lòng bật thông báo để chúng tôi có thể thông báo khi đơn hàng hoàn thành",
+  "notifications": "Thông báo",
+  "yourOrderIsBeingPrepared": "Đơn hàng của bạn đang được chuẩn bị",
+  "yourOrderHasBeenCompleted": "Đơn hàng của bạn đã hoàn thành",
+  "markAllAsRead": "Đánh dấu tất cả đã đọc"
 }

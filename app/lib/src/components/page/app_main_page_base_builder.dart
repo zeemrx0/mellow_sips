@@ -18,6 +18,8 @@ abstract class AppMainPageBaseBuilder {
   @protected
   bool? _resizeToAvoidBottomInset;
   @protected
+  Widget? _floatingActionButton;
+  @protected
   void Function(bool)? _onEndDrawerChanged;
 
   AppMainPageBaseBuilder setKey(Key? key);
@@ -35,6 +37,8 @@ abstract class AppMainPageBaseBuilder {
 
   AppMainPageBaseBuilder setResizeToAvoidBottomInset(
       bool? resizeToAvoidBottomInset);
+
+  AppMainPageBaseBuilder setFloatingActionButton(Widget? floatingActionButton);
 
   Widget build(BuildContext context);
 }

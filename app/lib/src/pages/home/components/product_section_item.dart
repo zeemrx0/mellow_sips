@@ -5,6 +5,7 @@ import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:utilities/utilities.dart';
 
 class ProductSectionItem extends StatelessWidget {
   final ProductModel product;
@@ -47,7 +48,7 @@ class ProductSectionItem extends StatelessWidget {
               height: AppThemeExt.of.majorScale(1 / 2),
             ),
             AppTextCaption1Widget()
-                .setText(product.description ?? '')
+                .setText(NumberExt.withSeparator(product.price!))
                 .setColor(AppColors.of.subTextColor)
                 .setTextOverFlow(TextOverflow.ellipsis)
                 .build(context),

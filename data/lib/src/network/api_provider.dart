@@ -25,6 +25,9 @@ class ApiProvider {
 
   static const orders = '$api/orders';
 
+  static const notifications = '$api/notifications';
+  static const searchNotifications = '$notifications/search';
+
   // Web Sockets
   static const notificationSocket = '/topic/notifications';
   static const userNotificationSocket = '/user/topic/notifications';

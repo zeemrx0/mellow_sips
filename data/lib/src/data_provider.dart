@@ -61,6 +61,9 @@ class _DataSourcesProvider {
     Get.lazyPut<NotificationWebSocket>(
       () => NotificationWebSocket(Get.find()),
     );
+    Get.lazyPut<NotificationRemoteDataSource>(
+      () => NotificationRemoteDataSourceImpl(Get.find()),
+    );
   }
 }
 
@@ -88,7 +91,7 @@ class _RepositoriesProvider {
       () => OrderRepositoryImpl(Get.find()),
     );
     Get.lazyPut<NotificationRepository>(
-      () => NotificationRepositoryImpl(Get.find()),
+      () => NotificationRepositoryImpl(Get.find(), Get.find()),
     );
   }
 }

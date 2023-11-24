@@ -24,3 +24,7 @@ class CartKey {
   static const String note = 'note';
   static const String addons = 'addons';
 }
+
+class NotificationKey {
+  static const String notificationId = 'notificationId';
+}

@@ -29,6 +29,8 @@ part './order/order_transaction_model.dart';
 part './order/order_external_payment_info_model.dart';
 part './order/order_details_model.dart';
 
+part './notification/notification_model.dart';
+
 abstract class BaseModel {}
 
 class EmptyModel extends BaseModel {}

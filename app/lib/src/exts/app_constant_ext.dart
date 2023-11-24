@@ -46,3 +46,8 @@ class AppOrderStatus {
   static const String declined = 'DECLINED';
   static const String expired = 'EXPIRED';
 }
+
+class NotificationKey {
+  static const String orderCompleted = 'ORDER_COMPLETED';
+  static const String orderProcessing = 'ORDER_PROCESSING';
+}

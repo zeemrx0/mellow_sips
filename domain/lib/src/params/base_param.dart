@@ -33,6 +33,8 @@ part './order/update_order_status_param.dart';
 part './order/search_orders_param.dart';
 part './order/get_transaction_by_order_id_param.dart';
 
-part 'notification/subscribe_notifications_param.dart';
+part './notification/subscribe_notifications_param.dart';
+part './notification/search_notifications_param.dart';
+part './notification/mark_notification_as_read_param.dart';
 
 abstract class BaseParam {}

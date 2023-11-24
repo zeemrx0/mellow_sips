@@ -5,11 +5,13 @@ import 'package:app/src/pages/confirmOrder/confirm_order_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
+import 'package:app/src/pages/notification/notification_controller.dart';
 import 'package:app/src/pages/orderStatus/order_status_controller.dart';
 import 'package:app/src/pages/orders/orderCompleteAlertPage/order_completed_alert_controller.dart';
 import 'package:app/src/pages/orders/orderDetail/order_detail_controller.dart';
 import 'package:app/src/pages/orders/orderList/order_list_controller.dart';
 import 'package:app/src/pages/product/product_detail_controller.dart';
+import 'package:app/src/pages/qrScan/qr_scan_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/pages/store/storeDetail/store_detail_controller.dart';
@@ -49,6 +51,11 @@ class AppPages {
       name: Routes.appNavMenu,
       page: () => const AppNavMenuPage(),
       binding: AppNavMenuBinding(),
+    ),
+    GetPage(
+      name: Routes.qrScan,
+      page: () => const QrScanPage(),
+      binding: QrScanBinding(),
     ),
 
     // Auth
@@ -127,6 +134,13 @@ class AppPages {
       name: Routes.orderCompletedAlert,
       page: () => const OrderCompletedAlertPage(),
       binding: OrderCompletedAlertBinding(),
+    ),
+
+    // Notification
+    GetPage(
+      name: Routes.notifications,
+      page: () => const NotificationPage(),
+      binding: NotificationBinding(),
     ),
   ];
 }

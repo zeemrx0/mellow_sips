@@ -4,12 +4,12 @@ part of '../base_raw.dart';
 @CopyWith()
 class MenuSectionRaw extends BaseRaw {
   final String name;
-  final int order;
+  final int priority;
   final List<ProductRaw> products;
 
   MenuSectionRaw({
     required this.name,
-    required this.order,
+    required this.priority,
     required this.products,
   });
 
@@ -21,7 +21,7 @@ class MenuSectionRaw extends BaseRaw {
   @override
   MenuSectionModel toModel() => MenuSectionModel(
         name: name,
-        order: order,
+        priority: priority,
         products: products.map((e) => e.toModel()).toList(),
       );
 }
