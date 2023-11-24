@@ -29,14 +29,13 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             ),
           ),
         ),
-        CustomScrollView(
-          slivers: [
-            SliverLayoutBuilder(
-              builder: (context, constraints) {
-                return _sliverAppBar(context, constraints);
-              },
-            ),
-            SliverFillRemaining(
+        Expanded(
+          child: ExtendedNestedScrollView(
+            onlyOneScrollInBody: true,
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              _sliverAppBar(context),
+            ],
+            body: Expanded(
               child: Container(
                 decoration: BoxDecoration(
                   color: AppColors.of.whiteColor,
@@ -53,31 +52,36 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                   horizontal: AppThemeExt.of.majorPaddingScale(4),
                   vertical: AppThemeExt.of.majorPaddingScale(5),
                 ),
-                child: Obx(
-                  () => Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _generalInfo(context),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
-                      ),
-                      Container(
-                        color: AppColors.of.dividerColor,
-                        height: 1,
-                      ),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
-                      ),
-                      if (controller.menu.value != null)
-                        ...controller.menu.value!.menuSections.map((section) {
-                          return _foodList(context, section);
-                        }).toList(),
-                    ],
+                child: SingleChildScrollView(
+                  child: Obx(
+                    () => Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _generalInfo(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(3),
+                        ),
+                        Container(
+                          color: AppColors.of.dividerColor,
+                          height: 1,
+                        ),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(3),
+                        ),
+                        if (controller.menu.value != null)
+                          ...controller.menu.value!.menuSections.map((section) {
+                            return _foodList(context, section);
+                          }).toList(),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(60 / 4),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ],
+          ),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -179,19 +183,17 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
     );
   }
 
-  SliverAppBar _sliverAppBar(
-    BuildContext context,
-    SliverConstraints constraints,
-  ) {
+  SliverAppBar _sliverAppBar(BuildContext context) {
     final appBarHeight = AppThemeExt.of.majorScale(112 / 4);
-    final scrollOffset = min(constraints.scrollOffset, appBarHeight);
+    // final scrollOffset = min(offset, appBarHeight);
 
     return SliverAppBar(
       surfaceTintColor: Colors.transparent,
       expandedHeight: appBarHeight,
       pinned: true,
-      backgroundColor:
-          Color.fromRGBO(255, 255, 255, scrollOffset / appBarHeight),
+      // backgroundColor:
+      //     Color.fromRGBO(255, 255, 255, scrollOffset / appBarHeight),
+      backgroundColor: Colors.transparent,
       leading: Container(
         margin: EdgeInsets.only(
           left: AppThemeExt.of.majorPaddingScale(4),
@@ -339,6 +341,9 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             },
           );
         }).toList(),
+        SizedBox(
+          height: AppThemeExt.of.majorScale(6),
+        ),
       ],
     );
   }

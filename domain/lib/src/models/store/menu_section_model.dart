@@ -4,12 +4,12 @@ part of '../base_model.dart';
 @CopyWith()
 class MenuSectionModel extends BaseModel {
   final String name;
-  final int order;
+  final int priority;
   final List<ProductModel> products;
 
   MenuSectionModel({
     required this.name,
-    required this.order,
+    required this.priority,
     required this.products,
   });
 

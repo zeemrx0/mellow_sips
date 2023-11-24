@@ -8,6 +8,7 @@ class Routes {
   static const welcome = '/welcome';
   static const home = '/home';
   static const appNavMenu = '/appNavMenu';
+  static const qrScan = '/qrScan';
 
   static const login = '/login';
   static const register = '/register';
@@ -28,4 +29,6 @@ class Routes {
   static const confirmOrder = '/confirmOrder';
   static const orderDetail = '/orderDetail';
   static const orderCompletedAlert = '/orderCompletedAlert';
+
+  static const notifications = '/notifications';
 }

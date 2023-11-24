@@ -12,7 +12,8 @@ class AppMainPageWidget extends AppMainPageBaseBuilder {
         endDrawer: _endDrawer,
         endDrawerEnableOpenDragGesture: false,
         onEndDrawerChanged: _onEndDrawerChanged,
-        resizeToAvoidBottomInset: _resizeToAvoidBottomInset ?? false ,
+        resizeToAvoidBottomInset: _resizeToAvoidBottomInset ?? false,
+        floatingActionButton: _floatingActionButton,
         body: _body ?? const SizedBox(),
       ),
     );
@@ -59,6 +60,12 @@ class AppMainPageWidget extends AppMainPageBaseBuilder {
   AppMainPageBaseBuilder setResizeToAvoidBottomInset(
       bool? resizeToAvoidBottomInset) {
     _resizeToAvoidBottomInset = resizeToAvoidBottomInset;
+    return this;
+  }
+
+  @override
+  AppMainPageBaseBuilder setFloatingActionButton(Widget? floatingActionButton) {
+    _floatingActionButton = floatingActionButton;
     return this;
   }
 }

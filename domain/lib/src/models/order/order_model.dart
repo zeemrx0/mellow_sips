@@ -8,6 +8,7 @@ class OrderModel extends BaseModel {
   final int finalPrice;
   final OrderDetailsModel details;
   final OrderTransactionModel? latestTransaction;
+  final List<VoucherOrderModel> voucherOrders;
 
   OrderModel({
     required this.id,
@@ -15,6 +16,7 @@ class OrderModel extends BaseModel {
     required this.finalPrice,
     required this.details,
     required this.latestTransaction,
+    required this.voucherOrders,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>

@@ -8,6 +8,7 @@ class CartModel extends BaseModel {
   final List<CartItemModel> cartItems;
   final int numberOfItems;
   final int? finalPrice;
+  final int? tempPrice;
 
   CartModel({
     required this.id,
@@ -15,6 +16,7 @@ class CartModel extends BaseModel {
     this.cartItems = const [],
     this.numberOfItems = 0,
     required this.finalPrice,
+    required this.tempPrice,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>

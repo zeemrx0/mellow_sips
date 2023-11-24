@@ -11,6 +11,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zalopay_sdk/flutter_zalopay_sdk.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
@@ -22,6 +23,9 @@ class OrderDetailController extends GetxController {
   final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
   final GetTransactionByOrderIdUseCase _getTransactionByOrderIdUseCase;
 
+  final RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
   OrderDetailController(
     this._getOrderDetailUseCase,
     this._updateOrderStatusUseCase,
@@ -29,6 +33,8 @@ class OrderDetailController extends GetxController {
   );
 
   Rxn<OrderModel> order = Rxn<OrderModel>();
+  Rxn<VoucherOrderModel> businessVoucherOrder = Rxn<VoucherOrderModel>();
+  Rxn<VoucherOrderModel> systemVoucherOrder = Rxn<VoucherOrderModel>();
 
   Future<void> getOrderDetail() async {
     try {
@@ -41,6 +47,15 @@ class OrderDetailController extends GetxController {
       );
 
       order.value = result.netData;
+      
+      businessVoucherOrder.value =
+          result.netData?.voucherOrders.firstWhereOrNull(
+        (element) => element.source == AppConstants.business,
+      );
+      systemVoucherOrder.value =
+          result.netData?.voucherOrders.firstWhereOrNull(
+        (element) => element.source == AppConstants.system,
+      );
 
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {

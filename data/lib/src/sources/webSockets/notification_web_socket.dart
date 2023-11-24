@@ -16,48 +16,48 @@ class NotificationWebSocket {
     Function? onReceiveGlobalNotification,
     Function? onReceiveUserNotification,
   }) async {
-    bool isInitialized = false;
+    // bool isInitialized = false;
 
-    while (!isInitialized) {
-      try {
-        if (_stompClient != null) return;
+    // while (!isInitialized) {
+    try {
+      if (_stompClient != null) return;
 
-        final tokens = await _authLocalDataSource.getTokens();
+      final tokens = await _authLocalDataSource.getTokens();
 
-        Map<String, String>? header;
+      Map<String, String>? header;
 
-        if (tokens.netData?.accessToken != null) {
-          header = {
-            'Authorization': tokens.netData!.accessToken,
-          };
-        }
-
-        _stompClient = StompClient(
-          config: StompConfig.sockJS(
-            url: '${BuildConfig.apiDomain}/ws',
-            stompConnectHeaders: header,
-            webSocketConnectHeaders: header,
-            onConnect: (p0) {
-              onConnectHandler(
-                p0,
-                onReceiveGlobalNotification: onReceiveGlobalNotification,
-                onReceiveUserNotification: onReceiveUserNotification,
-              );
-            },
-            onStompError: (p0) {
-              throw Exception(p0);
-            },
-            onWebSocketError: (p0) {
-              throw Exception(p0);
-            },
-          ),
-        );
-
-        isInitialized = true;
-      } catch (e) {
-        print('Notification web socket error: $e');
+      if (tokens.netData?.accessToken != null) {
+        header = {
+          'Authorization': tokens.netData!.accessToken,
+        };
       }
+
+      _stompClient = StompClient(
+        config: StompConfig.sockJS(
+          url: '${BuildConfig.apiDomain}/ws',
+          stompConnectHeaders: header,
+          webSocketConnectHeaders: header,
+          onConnect: (p0) {
+            onConnectHandler(
+              p0,
+              onReceiveGlobalNotification: onReceiveGlobalNotification,
+              onReceiveUserNotification: onReceiveUserNotification,
+            );
+          },
+          onStompError: (p0) {
+            throw Exception(p0);
+          },
+          onWebSocketError: (p0) {
+            throw Exception(p0);
+          },
+        ),
+      );
+
+      // isInitialized = true;
+    } catch (e) {
+      print('Notification web socket error: $e');
     }
+    // }
   }
 
   Future<AppObjectResultRaw<EmptyRaw>> connect({

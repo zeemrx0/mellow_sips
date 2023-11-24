@@ -23,11 +23,14 @@ part './cart/cart_item_model.dart';
 
 part './voucher/voucher_model.dart';
 part './voucher/vouchers_model.dart';
+part './voucher/voucher_order_model.dart';
 
 part './order/order_model.dart';
 part './order/order_transaction_model.dart';
 part './order/order_external_payment_info_model.dart';
 part './order/order_details_model.dart';
+
+part './notification/notification_model.dart';
 
 abstract class BaseModel {}
 
