@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
@@ -10,6 +12,7 @@ import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
