@@ -21,6 +21,7 @@ part './cart/cart_item_raw.dart';
 
 part './vouchers/voucher_raw.dart';
 part './vouchers/vouchers_raw.dart';
+part './vouchers/voucher_order_raw.dart';
 
 part './order/order_raw.dart';
 part './order/order_transaction_raw.dart';

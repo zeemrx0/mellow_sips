@@ -96,10 +96,11 @@ class CheckoutPage extends GetView<CheckoutController> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              AppTextHeading6Widget()
+                              AppTextBody2Widget()
                                   .setText(R.strings.storeVoucher)
+                                  .setTextStyle(AppTextStyleExt.of.textBody2s)
                                   .build(context),
-                              AppTextBody1Widget()
+                              AppTextBody2Widget()
                                   .setText(
                                       '-${NumberExt.withSeparator(controller.businessVoucher.value!.discountAmount)}đ')
                                   .build(context),
@@ -116,10 +117,11 @@ class CheckoutPage extends GetView<CheckoutController> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              AppTextHeading6Widget()
+                              AppTextBody2Widget()
                                   .setText(R.strings.mellowSipsVoucher)
+                                  .setTextStyle(AppTextStyleExt.of.textBody2s)
                                   .build(context),
-                              AppTextBody1Widget()
+                              AppTextBody2Widget()
                                   .setText(
                                       '-${NumberExt.withSeparator(controller.systemVoucher.value!.discountAmount)}đ')
                                   .build(context),

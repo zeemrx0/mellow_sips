@@ -55,16 +55,59 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AppTextHeading6Widget()
+                      AppTextBody2Widget()
                           .setText(
                               '${R.strings.subtotal} (${controller.order.value?.details.cartItems.length ?? 0} ${R.strings.items})')
+                          .setTextStyle(AppTextStyleExt.of.textBody2s)
                           .build(context),
-                      AppTextBody1Widget()
+                      AppTextBody2Widget()
                           .setText(
                               '${NumberExt.withSeparator(controller.order.value?.finalPrice ?? 0)}đ')
                           .build(context),
                     ],
                   ),
+                  if (controller.businessVoucherOrder.value != null)
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(2),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppTextBody2Widget()
+                                .setText(R.strings.storeVoucher)
+                                .setTextStyle(AppTextStyleExt.of.textBody2s)
+                                .build(context),
+                            AppTextBody2Widget()
+                                .setText(
+                                    '-${NumberExt.withSeparator(controller.businessVoucherOrder.value!.discountAmount)}đ')
+                                .build(context),
+                          ],
+                        ),
+                      ],
+                    ),
+                  if (controller.systemVoucherOrder.value != null)
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(2),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppTextBody2Widget()
+                                .setText(R.strings.mellowSipsVoucher)
+                                .setTextStyle(AppTextStyleExt.of.textBody2s)
+                                .build(context),
+                            AppTextBody2Widget()
+                                .setText(
+                                    '-${NumberExt.withSeparator(controller.systemVoucherOrder.value!.discountAmount)}đ')
+                                .build(context),
+                          ],
+                        ),
+                      ],
+                    ),
                 ],
               ),
               Padding(

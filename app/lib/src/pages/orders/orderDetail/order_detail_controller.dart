@@ -33,6 +33,8 @@ class OrderDetailController extends GetxController {
   );
 
   Rxn<OrderModel> order = Rxn<OrderModel>();
+  Rxn<VoucherOrderModel> businessVoucherOrder = Rxn<VoucherOrderModel>();
+  Rxn<VoucherOrderModel> systemVoucherOrder = Rxn<VoucherOrderModel>();
 
   Future<void> getOrderDetail() async {
     try {
@@ -45,6 +47,15 @@ class OrderDetailController extends GetxController {
       );
 
       order.value = result.netData;
+      
+      businessVoucherOrder.value =
+          result.netData?.voucherOrders.firstWhereOrNull(
+        (element) => element.source == AppConstants.business,
+      );
+      systemVoucherOrder.value =
+          result.netData?.voucherOrders.firstWhereOrNull(
+        (element) => element.source == AppConstants.system,
+      );
 
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {

@@ -11,6 +11,8 @@ class AppConstants {
   static const String cash = 'CASH';
   static const String percent = 'PERCENT';
   static const String orderCompleted = 'ORDER_COMPLETED';
+  static const String business = 'BUSINESS';
+  static const String system = 'SYSTEM';
 }
 
 class CartParamKey {
