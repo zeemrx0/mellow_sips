@@ -73,6 +73,12 @@ class HomePage extends GetView<HomeController> {
                     Expanded(
                       child: AppTextFieldWidget()
                           .setFieldKey('search')
+                          .setPrefixIcon(
+                            R.svgs.icSearch.svg(
+                              width: AppThemeExt.of.majorScale(6),
+                              height: AppThemeExt.of.majorScale(6),
+                            ),
+                          )
                           .setHintText(R.strings.search)
                           .build(context),
                     ),

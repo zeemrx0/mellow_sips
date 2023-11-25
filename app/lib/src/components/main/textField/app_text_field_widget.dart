@@ -38,6 +38,12 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
   }
 
   @override
+  AppTextFieldWidget setPrefixIcon(Widget? prefixIcon) {
+    _prefixIcon = prefixIcon;
+    return this;
+  }
+
+  @override
   AppTextFieldWidget setSuffixIcon(Widget? suffixIcon) {
     _suffixIcon = suffixIcon;
     return this;
@@ -128,13 +134,26 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
       textInputAction: _textInputAction ?? TextInputAction.next,
       textCapitalization: _textCapitalization ?? TextCapitalization.none,
       decoration: InputDecoration(
+        prefixIcon: _prefixIcon != null
+            ? Padding(
+                padding: EdgeInsets.only(
+                  left: AppThemeExt.of.majorScale(10 / 4),
+                  top: AppThemeExt.of.majorScale(10 / 4),
+                  bottom: AppThemeExt.of.majorScale(10 / 4),
+                ),
+                child: _prefixIcon,
+              )
+            : null,
+        prefixIconConstraints: suffixIconConstraints,
         filled: true,
         fillColor: AppColors.of.whiteColor,
-        prefix: Padding(
-          padding: EdgeInsets.only(
-            left: AppThemeExt.of.majorScale(4),
-          ),
-        ),
+        prefix: _prefixIcon == null
+            ? Padding(
+                padding: EdgeInsets.only(
+                  left: AppThemeExt.of.majorScale(4),
+                ),
+              )
+            : null,
         isDense: true,
         contentPadding: _contentPadding ?? EdgeInsets.zero,
         hintText: _hintText,
@@ -150,7 +169,7 @@ class AppTextFieldWidget extends AppTextFieldBaseBuilder {
         ),
         suffixIconConstraints: suffixIconConstraints,
         suffixIcon: _suffixIcon ??
-            (_hasClearButton
+            (_hasClearButton == true || _hasClearButton == null
                 ? Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: AppThemeExt.of.majorScale(3),
