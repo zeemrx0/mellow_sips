@@ -110,5 +110,7 @@
 	"markAllAsRead": "Đánh dấu tất cả đã đọc",
 	"scanQRCodeToViewMenu": "Quét mã QR để xem menu",
   "orderDetails": "Chi tiết đơn hàng",
-  "back": "Quay lại"
+  "back": "Quay lại",
+  "home": "Trang chủ",
+  "profile": "Hồ sơ"
 }

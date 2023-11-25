@@ -52,6 +52,8 @@ abstract class AppButtonBaseBuilder {
   @protected
   EdgeInsets? _padding;
   @protected
+  BorderRadius? _borderRadius;
+  @protected
   void Function()? _onPressed;
 
   AppButtonBaseBuilder setButtonText(String? buttonText) {
@@ -87,6 +89,10 @@ abstract class AppButtonBaseBuilder {
   }
 
   AppButtonBaseBuilder setPadding(EdgeInsets? padding) {
+    return this;
+  }
+
+  AppButtonBaseBuilder setBorderRadius(BorderRadius? borderRadius) {
     return this;
   }
 

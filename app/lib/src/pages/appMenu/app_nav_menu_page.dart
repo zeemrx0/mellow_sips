@@ -9,6 +9,14 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
         .setAppBar(_appBar(context))
         .setBody(_body(context))
         .setBackgroundColor(AppColors.of.whiteColor)
+        .setBottomNavigationBar(
+            const AppBottomNavigationBarWidget().build(context))
+        .setFloatingActionButtonLocation(
+          FloatingActionButtonLocation.centerDocked,
+        )
+        .setFloatingActionButton(
+          const FloatingAppButton(),
+        )
         .build(context);
   }
 
@@ -17,37 +25,36 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          InkWell(
-            onTap: () {
-              Get.toNamed(Routes.orders);
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppThemeExt.of.majorPaddingScale(4),
-              ),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppThemeExt.of.majorPaddingScale(2),
-                  vertical: AppThemeExt.of.majorPaddingScale(4),
-                ),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: AppColors.of.dividerColor,
-                      width: 1,
-                    ),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    AppTextBody2Widget()
-                        .setText(R.strings.orders)
-                        .build(context),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          // InkWell(
+          //   onTap: () {
+          //   },
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(
+          //       horizontal: AppThemeExt.of.majorPaddingScale(4),
+          //     ),
+          //     child: Container(
+          //       padding: EdgeInsets.symmetric(
+          //         horizontal: AppThemeExt.of.majorPaddingScale(2),
+          //         vertical: AppThemeExt.of.majorPaddingScale(4),
+          //       ),
+          //       decoration: BoxDecoration(
+          //         border: Border(
+          //           bottom: BorderSide(
+          //             color: AppColors.of.dividerColor,
+          //             width: 1,
+          //           ),
+          //         ),
+          //       ),
+          //       child: Row(
+          //         children: [
+          //           AppTextBody2Widget()
+          //               .setText(R.strings.orders)
+          //               .build(context),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Padding(
             padding: EdgeInsets.only(
               top: AppThemeExt.of.majorPaddingScale(4),
@@ -68,7 +75,7 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
   PreferredSizeWidget _appBar(BuildContext context) {
     return AppBarBasicWidget()
         .setBackgroundColor(AppColors.of.whiteColor)
-        .setCanBack(true)
+        .setCanBack(false)
         .build(context);
   }
 }

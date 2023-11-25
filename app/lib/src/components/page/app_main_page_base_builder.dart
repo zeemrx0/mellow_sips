@@ -20,6 +20,10 @@ abstract class AppMainPageBaseBuilder {
   @protected
   Widget? _floatingActionButton;
   @protected
+  FloatingActionButtonLocation? _floatingActionButtonLocation;
+  @protected
+  Widget? _bottomNavigationBar;
+  @protected
   void Function(bool)? _onEndDrawerChanged;
 
   AppMainPageBaseBuilder setKey(Key? key);
@@ -39,6 +43,12 @@ abstract class AppMainPageBaseBuilder {
       bool? resizeToAvoidBottomInset);
 
   AppMainPageBaseBuilder setFloatingActionButton(Widget? floatingActionButton);
+
+  AppMainPageBaseBuilder setFloatingActionButtonLocation(
+    FloatingActionButtonLocation? floatingActionButtonLocation,
+  );
+
+  AppMainPageBaseBuilder setBottomNavigationBar(Widget? bottomNavigationBar);
 
   Widget build(BuildContext context);
 }
