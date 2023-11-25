@@ -30,6 +30,8 @@ abstract class AppTextFieldBaseBuilder {
   @protected
   AutovalidateMode? _autoValidateMode;
   @protected
+  Widget? _prefixIcon;
+  @protected
   Widget? _suffixIcon;
   @protected
   TextInputAction? _textInputAction;
@@ -46,7 +48,7 @@ abstract class AppTextFieldBaseBuilder {
   @protected
   FocusNode? _focusNode;
   @protected
-  bool _hasClearButton = true;
+  bool? _hasClearButton;
   @protected
   void Function(String? value)? _onSubmitted;
   @protected
@@ -85,6 +87,10 @@ abstract class AppTextFieldBaseBuilder {
 
   AppTextFieldBaseBuilder setValidator(
       String? Function(String? value)? validator) {
+    return this;
+  }
+
+  AppTextFieldBaseBuilder setPrefixIcon(Widget? suffixIcon) {
     return this;
   }
 

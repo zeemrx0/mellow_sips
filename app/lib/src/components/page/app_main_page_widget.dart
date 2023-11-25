@@ -14,6 +14,8 @@ class AppMainPageWidget extends AppMainPageBaseBuilder {
         onEndDrawerChanged: _onEndDrawerChanged,
         resizeToAvoidBottomInset: _resizeToAvoidBottomInset ?? false,
         floatingActionButton: _floatingActionButton,
+        floatingActionButtonLocation: _floatingActionButtonLocation,
+        bottomNavigationBar: _bottomNavigationBar,
         body: _body ?? const SizedBox(),
       ),
     );
@@ -66,6 +68,22 @@ class AppMainPageWidget extends AppMainPageBaseBuilder {
   @override
   AppMainPageBaseBuilder setFloatingActionButton(Widget? floatingActionButton) {
     _floatingActionButton = floatingActionButton;
+    return this;
+  }
+
+  @override
+  AppMainPageBaseBuilder setFloatingActionButtonLocation(
+    FloatingActionButtonLocation? floatingActionButtonLocation,
+  ) {
+    _floatingActionButtonLocation = floatingActionButtonLocation;
+    return this;
+  }
+
+  @override
+  AppMainPageBaseBuilder setBottomNavigationBar(
+    Widget? bottomNavigationBar,
+  ) {
+    _bottomNavigationBar = bottomNavigationBar;
     return this;
   }
 }

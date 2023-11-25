@@ -6,6 +6,7 @@ class ProductRaw extends BaseRaw {
   final String? id;
   final String? name;
   final String? description;
+  final String storeId;
   final String? coverImage;
   final int? price;
   final List<String>? categories;
@@ -13,16 +14,17 @@ class ProductRaw extends BaseRaw {
   final bool? isSoldOut;
   final List<ProductOptionSectionRaw>? productOptionSections;
 
-  ProductRaw(
-    this.productOptionSections, {
+  ProductRaw({
     required this.id,
     required this.name,
     required this.description,
+    required this.storeId,
     required this.coverImage,
     required this.price,
     required this.categories,
     required this.tags,
     required this.isSoldOut,
+    this.productOptionSections,
   });
 
   factory ProductRaw.fromJson(Map<String, dynamic> json) =>
@@ -35,6 +37,7 @@ class ProductRaw extends BaseRaw {
         id: id,
         name: name,
         description: description,
+        storeId: storeId,
         coverImage: coverImage,
         price: price,
         categories: categories,

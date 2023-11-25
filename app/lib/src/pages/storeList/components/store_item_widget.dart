@@ -1,6 +1,7 @@
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,12 @@ class StoreItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.storeDetail, arguments: store.id);
+        Get.toNamed(
+          Routes.storeDetail,
+          arguments: {
+            AppConstants.storeId: store.id,
+          },
+        );
       },
       child: Container(
         height: AppThemeExt.of.majorScale(105 / 4),

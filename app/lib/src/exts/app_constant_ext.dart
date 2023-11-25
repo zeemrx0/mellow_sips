@@ -13,6 +13,13 @@ class AppConstants {
   static const String orderCompleted = 'ORDER_COMPLETED';
   static const String business = 'BUSINESS';
   static const String system = 'SYSTEM';
+  static const String metadata = 'metadata';
+  static const String orderId = 'orderId';
+  static const String storeId = 'storeId';
+  static const String productId = 'productId';
+  static const String action = 'action';
+  static const String navigateToProduct = 'NAVIGATE_TO_PRODUCT';
+  static const String isEditing = 'isEditing';
 }
 
 class CartParamKey {

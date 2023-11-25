@@ -9,6 +9,14 @@ class NotificationPage extends GetView<NotificationController> {
         .setAppBar(_appBar(context))
         .setBody(_body(context))
         .setBackgroundColor(AppColors.of.backgroundColor)
+        .setBottomNavigationBar(
+            const AppBottomNavigationBarWidget().build(context))
+        .setFloatingActionButtonLocation(
+          FloatingActionButtonLocation.centerDocked,
+        )
+        .setFloatingActionButton(
+          const FloatingAppButton(),
+        )
         .build(context);
   }
 
@@ -104,7 +112,7 @@ class NotificationPage extends GetView<NotificationController> {
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )
-        .setCanBack(true)
+        .setCanBack(false)
         .build(context);
   }
 }

@@ -26,13 +26,20 @@ class AppIconButtonWidget extends AppButtonBaseBuilder {
   }
 
   @override
+  AppButtonBaseBuilder setBorderRadius(BorderRadius? borderRadius) {
+    _borderRadius = borderRadius;
+    return this;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: _onPressed,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(
-          AppThemeExt.of.majorScale(2),
-        ),
+        borderRadius: _borderRadius ??
+            BorderRadius.circular(
+              AppThemeExt.of.majorScale(2),
+            ),
         child: Container(
           padding: _padding,
           color: _backgroundColor,

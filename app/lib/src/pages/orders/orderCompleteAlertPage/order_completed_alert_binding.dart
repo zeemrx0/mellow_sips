@@ -4,6 +4,9 @@ class OrderCompletedAlertBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<OrderCompletedAlertController>(
-        () => OrderCompletedAlertController());
+      () => OrderCompletedAlertController(
+        Get.find(),
+      ),
+    );
   }
 }

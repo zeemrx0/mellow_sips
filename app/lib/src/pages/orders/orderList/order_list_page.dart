@@ -3,16 +3,20 @@ part of './order_list_controller.dart';
 class OrderListPage extends GetView<OrderListController> {
   const OrderListPage({super.key});
 
-  static void open() {
-    Get.toNamed(Routes.orders);
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
         .setBackgroundColor(AppColors.of.backgroundColor)
+        .setBottomNavigationBar(
+            const AppBottomNavigationBarWidget().build(context))
+        .setFloatingActionButtonLocation(
+          FloatingActionButtonLocation.centerDocked,
+        )
+        .setFloatingActionButton(
+          const FloatingAppButton(),
+        )
         .build(context);
   }
 
@@ -41,7 +45,7 @@ class OrderListPage extends GetView<OrderListController> {
               .build(context),
         )
         .setBackgroundColor(AppColors.of.whiteColor)
-        .setCanBack(true)
+        .setCanBack(false)
         .build(context);
   }
 

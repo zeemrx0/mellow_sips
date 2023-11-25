@@ -14,22 +14,14 @@ class HomePage extends GetView<HomeController> {
 
     return AppMainPageWidget()
         .setBody(_body(context))
+        .setBackgroundColor(AppColors.of.backgroundColor)
+        .setBottomNavigationBar(
+            const AppBottomNavigationBarWidget().build(context))
+        .setFloatingActionButtonLocation(
+          FloatingActionButtonLocation.centerDocked,
+        )
         .setFloatingActionButton(
-          FloatingActionButton(
-            onPressed: () {
-              Get.toNamed(Routes.qrScan);
-            },
-            backgroundColor: AppColors.of.primaryColor,
-            foregroundColor: AppColors.of.whiteColor,
-            child: R.svgs.icQrCode.svg(
-              width: AppThemeExt.of.majorScale(10),
-              height: AppThemeExt.of.majorScale(10),
-              colorFilter: ColorFilter.mode(
-                AppColors.of.whiteColor,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
+          const FloatingAppButton(),
         )
         .build(context);
   }
@@ -82,37 +74,15 @@ class HomePage extends GetView<HomeController> {
                     Expanded(
                       child: AppTextFieldWidget()
                           .setFieldKey('search')
+                          .setPrefixIcon(
+                            R.svgs.icSearch.svg(
+                              width: AppThemeExt.of.majorScale(6),
+                              height: AppThemeExt.of.majorScale(6),
+                            ),
+                          )
                           .setHintText(R.strings.search)
                           .build(context),
                     ),
-                    SizedBox(
-                      width: AppThemeExt.of.majorScale(5),
-                    ),
-                    AppIconButtonWidget()
-                        .setPrefixIcon(
-                      R.svgs.icBellOutline.svg(
-                        width: AppThemeExt.of.majorScale(6),
-                        height: AppThemeExt.of.majorScale(6),
-                      ),
-                    )
-                        .setOnPressed(() {
-                      Get.toNamed(Routes.notifications);
-                    }).build(context),
-                    SizedBox(
-                      width: AppThemeExt.of.majorScale(3),
-                    ),
-                    AppIconButtonWidget()
-                        .setPrefixIcon(
-                      R.svgs.icList.svg(
-                        width: AppThemeExt.of.majorScale(6),
-                        height: AppThemeExt.of.majorScale(6),
-                      ),
-                    )
-                        .setOnPressed(
-                      () {
-                        Get.toNamed(Routes.appNavMenu);
-                      },
-                    ).build(context),
                   ],
                 ),
               ),
@@ -120,45 +90,47 @@ class HomePage extends GetView<HomeController> {
           ),
         ),
       ],
-      body: Container(
-        color: AppColors.of.backgroundColor,
-        child: Column(
-          children: [
-            SizedBox(
-              height: AppThemeExt.of.majorPaddingScale(2),
-            ),
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: SizedBox(
-                width: MediaQuery.of(Get.context!).size.width,
-                child: PageView(
-                  controller: controller.pageController,
-                  children: carouselItems,
+      body: SingleChildScrollView(
+        child: Container(
+          color: AppColors.of.backgroundColor,
+          child: Column(
+            children: [
+              SizedBox(
+                height: AppThemeExt.of.majorPaddingScale(2),
+              ),
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: SizedBox(
+                  width: MediaQuery.of(Get.context!).size.width,
+                  child: PageView(
+                    controller: controller.pageController,
+                    children: carouselItems,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: AppThemeExt.of.majorPaddingScale(3),
-            ),
-            SmoothPageIndicator(
-              controller: controller.pageController,
-              count: carouselItems.length,
-              effect: WormEffect(
-                dotHeight: AppThemeExt.of.majorScale(2),
-                dotWidth: AppThemeExt.of.majorScale(2),
-                dotColor: AppColors.of.disabledColor,
-                activeDotColor: AppColors.of.primaryColor,
+              SizedBox(
+                height: AppThemeExt.of.majorPaddingScale(3),
               ),
-            ),
-            SizedBox(
-              height: AppThemeExt.of.majorPaddingScale(6),
-            ),
-            _categories(context),
-            SizedBox(
-              height: AppThemeExt.of.majorPaddingScale(6),
-            ),
-            _section(context)
-          ],
+              SmoothPageIndicator(
+                controller: controller.pageController,
+                count: carouselItems.length,
+                effect: WormEffect(
+                  dotHeight: AppThemeExt.of.majorScale(2),
+                  dotWidth: AppThemeExt.of.majorScale(2),
+                  dotColor: AppColors.of.disabledColor,
+                  activeDotColor: AppColors.of.primaryColor,
+                ),
+              ),
+              SizedBox(
+                height: AppThemeExt.of.majorPaddingScale(6),
+              ),
+              _categories(context),
+              SizedBox(
+                height: AppThemeExt.of.majorPaddingScale(6),
+              ),
+              _section(context)
+            ],
+          ),
         ),
       ),
     );

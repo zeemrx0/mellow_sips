@@ -41,6 +41,7 @@ class CartItemWidget extends GetView<CartController> {
                   await Get.toNamed(
                     Routes.productDetail,
                     arguments: {
+                      AppConstants.isEditing: true,
                       CartParamKey.productId: cartItem.product.id,
                       CartParamKey.cartItemId: cartItem.id,
                       CartParamKey.quantity: cartItem.quantity,

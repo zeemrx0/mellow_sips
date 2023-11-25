@@ -1,6 +1,7 @@
 import 'package:app/src/components/main/dataImage/data_image_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,12 @@ class ProductSectionItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Get.toNamed(
-          Routes.productDetail,
-          arguments: product.id,
+          Routes.storeDetail,
+          arguments: {
+            AppConstants.storeId: product.storeId,
+            AppConstants.productId: product.id,
+            AppConstants.action: AppConstants.navigateToProduct,
+          },
         );
       },
       child: SizedBox(
