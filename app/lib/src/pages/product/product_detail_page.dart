@@ -5,14 +5,8 @@ class ProductDetailPage extends GetView<ProductDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.isUpdating()) {
-      // Update cart item
-      controller.getProductDetail(
-          Get.arguments[ProductDetailKey.productId] as String);
-    } else {
-      // Product detail
-      controller.getProductDetail(Get.arguments as String);
-    }
+    controller
+        .getProductDetail(Get.arguments[ProductDetailKey.productId] as String);
 
     return AppMainPageWidget()
         .setBody(_body(context))
@@ -91,10 +85,11 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                     SizedBox(
                                       height: AppThemeExt.of.majorScale(2),
                                     ),
-                                    if (section.maxAllowedChoices > 1)
+                                    if (section.productAddons != null &&
+                                        section.maxAllowedChoices > 1)
                                       CheckboxButtonGroupWidget(
                                         fieldKey: section.id,
-                                        addons: section.productAddons,
+                                        addons: section.productAddons!,
                                         initialValue: controller
                                             .formKey
                                             .value
@@ -106,10 +101,11 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                               ?.save();
                                         },
                                       ),
-                                    if (section.maxAllowedChoices <= 1)
+                                    if (section.productAddons != null &&
+                                        section.maxAllowedChoices <= 1)
                                       RadioButtonGroupWidget(
                                         fieldKey: section.id,
-                                        addons: section.productAddons,
+                                        addons: section.productAddons!,
                                         initialValue: controller
                                             .formKey
                                             .value
@@ -225,12 +221,12 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                 ),
                 Expanded(
                   child: AppFilledButtonWidget()
-                      .setButtonText(controller.isUpdating()
+                      .setButtonText(controller.isEditing()
                           ? R.strings.update
                           : R.strings.add)
                       .setOnPressed(
                     () {
-                      if (controller.isUpdating()) {
+                      if (controller.isEditing()) {
                         controller.updateCartItem();
                       } else {
                         controller.addToCart();

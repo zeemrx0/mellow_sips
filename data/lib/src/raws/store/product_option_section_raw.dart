@@ -8,7 +8,7 @@ class ProductOptionSectionRaw extends BaseRaw {
   final int priority;
   final bool isRequired;
   final int maxAllowedChoices;
-  final List<ProductAddonRaw> productAddons;
+  final List<ProductAddonRaw>? productAddons;
 
   ProductOptionSectionRaw({
     required this.id,
@@ -23,7 +23,7 @@ class ProductOptionSectionRaw extends BaseRaw {
       _$ProductOptionSectionRawFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductOptionSectionRawToJson(this);
-  
+
   @override
   BaseModel toModel() {
     return ProductOptionSectionModel(
@@ -32,7 +32,8 @@ class ProductOptionSectionRaw extends BaseRaw {
       priority: priority,
       isRequired: isRequired,
       maxAllowedChoices: maxAllowedChoices,
-      productAddons: productAddons.map((e) => e.toModel() as ProductAddonModel).toList(),
+      productAddons:
+          productAddons?.map((e) => e.toModel() as ProductAddonModel).toList(),
     );
   }
 }

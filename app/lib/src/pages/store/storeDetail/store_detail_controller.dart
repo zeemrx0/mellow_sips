@@ -42,13 +42,15 @@ class StoreDetailController extends GetxController {
     this._getAllCartUseCase,
   );
 
-  Future<void> getStoreDetail() async {
+  Future<void> getStoreDetail(
+    String storeId,
+  ) async {
     try {
       AppLoadingOverlayWidget.show();
 
       final result = await _getStoreDetailUseCase.executeObject(
         param: GetStoreDetailParam(
-          storeId: Get.arguments as String,
+          storeId: storeId,
         ),
       );
 
@@ -59,6 +61,15 @@ class StoreDetailController extends GetxController {
       _isStoreDetailLoad.value = true;
 
       if (_isStoreMenuLoad.value) {
+        if (Get.arguments[AppConstants.action] ==
+            AppConstants.navigateToProduct) {
+          Get.toNamed(
+            Routes.productDetail,
+            arguments: {
+              AppConstants.productId: Get.arguments[AppConstants.productId]
+            },
+          );
+        }
         AppLoadingOverlayWidget.dismiss();
       }
 
@@ -72,13 +83,15 @@ class StoreDetailController extends GetxController {
     }
   }
 
-  Future<void> getStoreMenu() async {
+  Future<void> getStoreMenu(
+    String storeId,
+  ) async {
     try {
       AppLoadingOverlayWidget.show();
 
       final result = await _getStoreMenuUseCase.executeObject(
         param: GetStoreDetailParam(
-          storeId: Get.arguments as String,
+          storeId: storeId,
         ),
       );
 
@@ -89,6 +102,15 @@ class StoreDetailController extends GetxController {
       _isStoreMenuLoad.value = true;
 
       if (_isStoreDetailLoad.value) {
+        if (Get.arguments[AppConstants.action] ==
+            AppConstants.navigateToProduct) {
+          Get.toNamed(
+            Routes.productDetail,
+            arguments: {
+              AppConstants.productId: Get.arguments[AppConstants.productId]
+            },
+          );
+        }
         AppLoadingOverlayWidget.dismiss();
       }
 
@@ -104,7 +126,6 @@ class StoreDetailController extends GetxController {
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
-      ;
     }
   }
 

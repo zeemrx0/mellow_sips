@@ -108,5 +108,7 @@
 	"yourOrderIsBeingPrepared": "Đơn hàng của bạn đang được chuẩn bị",
 	"yourOrderHasBeenCompleted": "Đơn hàng của bạn đã hoàn thành",
 	"markAllAsRead": "Đánh dấu tất cả đã đọc",
-	"scanQRCodeToViewMenu": "Quét mã QR để xem menu"
+	"scanQRCodeToViewMenu": "Quét mã QR để xem menu",
+  "orderDetails": "Chi tiết đơn hàng",
+  "back": "Quay lại"
 }

@@ -5,8 +5,8 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getStoreDetail();
-    controller.getStoreMenu();
+    controller.getStoreDetail(Get.arguments[AppConstants.storeId]);
+    controller.getStoreMenu(Get.arguments[AppConstants.storeId]);
     controller.getNumberOfCartItems();
 
     return AppMainPageWidget()
@@ -71,7 +71,7 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                     ),
                     if (controller.menu.value != null)
                       ...controller.menu.value!.menuSections.map((section) {
-                        return _foodList(context, section);
+                        return _productList(context, section);
                       }).toList(),
                     SizedBox(
                       height: AppThemeExt.of.majorScale(60 / 4),
@@ -314,7 +314,7 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
     );
   }
 
-  Widget _foodList(BuildContext context, MenuSectionModel section) {
+  Widget _productList(BuildContext context, MenuSectionModel section) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -331,13 +331,13 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             description: product.description ?? '',
             price: product.price ?? 0,
             onPressed: () async {
-              final result = await Get.toNamed(
+              await Get.toNamed(
                 Routes.productDetail,
-                arguments: product.id,
+                arguments: {
+                  AppConstants.productId: product.id,
+                },
               );
-              if (result == true) {
-                controller.getNumberOfCartItems();
-              }
+              controller.getNumberOfCartItems();
             },
           );
         }).toList(),

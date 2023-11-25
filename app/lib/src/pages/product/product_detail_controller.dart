@@ -49,21 +49,22 @@ class ProductDetailController extends GetxController {
   Rx<Map<String, dynamic>> formInitialValue = Rx<Map<String, dynamic>>({});
 
   Future<void> initialize() {
-    if (isUpdating()) {
+    if (isEditing()) {
       quantity.value = Get.arguments[ProductDetailKey.quantity];
 
       formInitialValue.value[ProductDetailKey.note] =
           Get.arguments[ProductDetailKey.note];
 
       final argumentAddons =
-          Get.arguments[ProductDetailKey.addons] as List<ProductAddonModel>;
+          Get.arguments[ProductDetailKey.addons] as List<ProductAddonModel>? ??
+              [];
 
       for (ProductOptionSectionModel section
           in product.value?.productOptionSections ?? []) {
         if (section.maxAllowedChoices > 1) {
           List<String> chosenIds = [];
 
-          for (ProductAddonModel addon in section.productAddons) {
+          for (ProductAddonModel addon in section.productAddons ?? []) {
             String? chosenId = argumentAddons
                 .firstWhereOrNull((element) => element.id == addon.id)
                 ?.id;
@@ -75,7 +76,7 @@ class ProductDetailController extends GetxController {
 
           formInitialValue.value[section.id] = chosenIds;
         } else {
-          for (ProductAddonModel addon in section.productAddons) {
+          for (ProductAddonModel addon in section.productAddons ?? []) {
             String? chosenId = argumentAddons
                 .firstWhereOrNull((element) => element.id == addon.id)
                 ?.id;
@@ -109,7 +110,7 @@ class ProductDetailController extends GetxController {
 
         product.value = productData;
 
-        if (isUpdating()) {
+        if (isEditing()) {
           await initialize();
         }
 
@@ -128,8 +129,9 @@ class ProductDetailController extends GetxController {
     }
   }
 
-  bool isUpdating() {
-    return Get.arguments is! String;
+  bool isEditing() {
+    bool? isEditing = Get.arguments[AppConstants.isEditing] as bool?;
+    return isEditing == true;
   }
 
   String? validateProductOptions() {

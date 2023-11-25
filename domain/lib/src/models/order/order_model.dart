@@ -8,7 +8,7 @@ class OrderModel extends BaseModel {
   final int finalPrice;
   final OrderDetailsModel details;
   final OrderTransactionModel? latestTransaction;
-  final List<VoucherOrderModel> voucherOrders;
+  final List<VoucherOrderModel>? voucherOrders;
 
   OrderModel({
     required this.id,

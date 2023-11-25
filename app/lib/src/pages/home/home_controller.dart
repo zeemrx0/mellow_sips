@@ -153,6 +153,8 @@ class HomeController extends GetxController {
                 AppConstants.orderCompleted) {
               Get.toNamed(
                 Routes.orderCompletedAlert,
+                arguments: jsonDecode(frame.body!)[AppConstants.metadata]
+                    [AppConstants.orderId],
               );
             }
           },

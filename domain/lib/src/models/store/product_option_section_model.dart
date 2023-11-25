@@ -8,7 +8,7 @@ class ProductOptionSectionModel extends BaseModel {
   final int priority;
   final bool isRequired;
   final int maxAllowedChoices;
-  final List<ProductAddonModel> productAddons;
+  final List<ProductAddonModel>? productAddons;
 
   ProductOptionSectionModel({
     required this.id,
