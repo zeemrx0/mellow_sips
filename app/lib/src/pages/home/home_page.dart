@@ -14,6 +14,7 @@ class HomePage extends GetView<HomeController> {
 
     return AppMainPageWidget()
         .setBody(_body(context))
+        .setBackgroundColor(AppColors.of.backgroundColor)
         .setBottomNavigationBar(
             const AppBottomNavigationBarWidget().build(context))
         .setFloatingActionButtonLocation(
