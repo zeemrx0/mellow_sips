@@ -23,8 +23,8 @@ class AppExceptionExt {
         case HttpStatus.unauthorized:
           // Force Logout
           return AppDefaultDialogWidget()
-              .setTitle('Dialog Error: ${HttpStatus.unauthorized}')
-              .setContent(appException?.message)
+              .setTitle(R.strings.pleaseLoginToContinue)
+              .setContent(getMessage(appException?.message))
               .setPositiveText(R.strings.confirm)
               .setAppDialogType(AppDialogType.error)
               .setOnPositive(() async {
@@ -35,7 +35,7 @@ class AppExceptionExt {
         case HttpStatus.internalServerError:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.serverError)
-              .setContent(appException?.message)
+              .setContent(getMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.logOut)
               .setOnPositive(() async {
@@ -48,12 +48,18 @@ class AppExceptionExt {
               .buildDialog(Get.context!)
               .show();
         case HttpStatus.badRequest:
-        case HttpStatus.internalServerError:
+          return AppDefaultDialogWidget()
+              .setTitle(R.strings.error)
+              .setContent(getMessage(appException?.message))
+              .setAppDialogType(AppDialogType.error)
+              .setPositiveText(R.strings.confirm)
+              .setNegativeText(R.strings.close)
+              .buildDialog(Get.context!)
+              .show();
         case HttpStatus.gone:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)
-              .setContent(appException?.message ??
-                  R.strings.systemIsCurrentlyErrorPleaseTryAgainLater)
+              .setContent(getMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
@@ -62,8 +68,7 @@ class AppExceptionExt {
         case HttpStatus.serviceUnavailable:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)
-              .setContent(appException?.message ??
-                  R.strings.systemIsCurrentlyErrorPleaseTryAgainLater)
+              .setContent(getMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
@@ -72,16 +77,27 @@ class AppExceptionExt {
         case HttpStatus.gatewayTimeout:
         case HttpStatus.badGateway:
           return AppDefaultDialogWidget()
-              .setTitle('Dialog Error: ${appException?.statusCode}')
-              .setContent(appException?.message)
+              .setTitle(R.strings.error)
+              .setContent(getMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
               .buildDialog(Get.context!)
               .show();
         default:
-          onError?.call(appException!);
-          return;
+          if (onError != null) {
+            onError?.call(appException!);
+            return;
+          }
+
+          return AppDefaultDialogWidget()
+              .setTitle(R.strings.error)
+              .setContent(getMessage(appException?.message))
+              .setAppDialogType(AppDialogType.error)
+              .setPositiveText(R.strings.confirm)
+              .setNegativeText(R.strings.close)
+              .buildDialog(Get.context!)
+              .show();
       }
     }
 
@@ -98,6 +114,19 @@ class AppExceptionExt {
       Get.offAllNamed(Routes.login);
     } on LocalException catch (e) {
       AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  String getMessage(String? message) {
+    switch (message) {
+      case AppMessage.exceededMaxAllowedItemsInCart:
+        return R.strings.pleaseAddMax10Items;
+
+      case AppMessage.qrCodeNotFound:
+        return R.strings.qrCodeInvalid;
+
+      default:
+        return R.strings.systemIsCurrentlyErrorPleaseTryAgainLater;
     }
   }
 }

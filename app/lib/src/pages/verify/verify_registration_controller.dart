@@ -104,7 +104,7 @@ class VerifyRegistrationController extends GetxController {
       }
 
       AppDefaultDialogWidget()
-          .setContent(R.strings.error)
+          .setContent(R.strings.errorOccurredPleaseTryAgain)
           .setAppDialogType(AppDialogType.error)
           .setPositiveText(R.strings.close)
           .buildDialog(Get.context!)

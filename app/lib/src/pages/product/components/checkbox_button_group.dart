@@ -10,6 +10,7 @@ class CheckboxButtonGroupWidget extends StatelessWidget {
   final List<ProductAddonModel> addons;
   final List<String>? initialValue;
   final Function? onChanged;
+  final int? maxAllowedChoices;
 
   const CheckboxButtonGroupWidget({
     super.key,
@@ -17,6 +18,7 @@ class CheckboxButtonGroupWidget extends StatelessWidget {
     required this.addons,
     this.initialValue,
     this.onChanged,
+    this.maxAllowedChoices,
   });
 
   @override
@@ -42,8 +44,11 @@ class CheckboxButtonGroupWidget extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        field.didChange(selectedOptionIds);
-                        onChanged?.call();
+                        if (maxAllowedChoices != null &&
+                            selectedOptionIds.length < maxAllowedChoices!) {
+                          field.didChange(selectedOptionIds);
+                          onChanged?.call();
+                        }
                       },
                       child: Padding(
                         padding: EdgeInsets.only(

@@ -92,7 +92,7 @@ class AppDefaultDialogWidget extends AppDialogBaseBuilder {
               Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: AppThemeExt.of.majorScale(3)),
-                child: AppTextHeading3Widget()
+                child: AppTextHeading6Widget()
                     .setText(_title)
                     .setTextAlign(TextAlign.center)
                     .build(context),
@@ -104,8 +104,13 @@ class AppDefaultDialogWidget extends AppDialogBaseBuilder {
                   .setTextAlign(TextAlign.center)
                   .build(context),
             SizedBox(height: AppThemeExt.of.majorScale(8)),
-            if (_textField != null) _textField!,
-            SizedBox(height: AppThemeExt.of.majorScale(6)),
+            if (_textField != null)
+              Column(
+                children: [
+                  SizedBox(height: AppThemeExt.of.majorScale(6)),
+                  _textField!,
+                ],
+              ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,

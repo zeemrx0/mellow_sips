@@ -96,6 +96,7 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                             .currentState
                                             ?.fields[section.id]
                                             ?.value,
+                                        maxAllowedChoices: section.maxAllowedChoices,
                                         onChanged: () {
                                           controller.formKey.value.currentState
                                               ?.save();

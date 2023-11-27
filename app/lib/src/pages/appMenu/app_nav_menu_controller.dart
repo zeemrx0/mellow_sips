@@ -3,7 +3,6 @@ import 'package:app/src/components/features/bottomNavigationBar/app_bottom_navig
 import 'package:app/src/components/features/floatingAppButton/floating_app_button.dart';
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
-import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';

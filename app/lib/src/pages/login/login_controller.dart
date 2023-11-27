@@ -7,6 +7,7 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_message.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
@@ -19,13 +20,6 @@ import 'package:resources/resources.dart';
 part './login_page.dart';
 
 part './login_binding.dart';
-
-class LoginErrorMessage {
-  LoginErrorMessage._();
-
-  static const String incorrectUsernameOrPassword =
-      'Incorrect username or password';
-}
 
 class LoginKey {
   LoginKey._();
@@ -95,9 +89,9 @@ class LoginController extends GetxController {
 
       if (e.statusCode == HttpStatus.notFound ||
           (e.statusCode == HttpStatus.badRequest &&
-              e.message == LoginErrorMessage.incorrectUsernameOrPassword)) {
+              e.message == AppMessage.incorrectUsernameOrPassword)) {
         AppDefaultDialogWidget()
-            .setContent(R.strings.incorrectUsernameOrPassword)
+            .setTitle(R.strings.incorrectUsernameOrPassword)
             .setAppDialogType(AppDialogType.error)
             .setPositiveText(R.strings.close)
             .buildDialog(Get.context!)
@@ -130,7 +124,7 @@ class LoginController extends GetxController {
       }
 
       AppDefaultDialogWidget()
-          .setContent(R.strings.error)
+          .setContent(R.strings.errorOccurredPleaseTryAgain)
           .setAppDialogType(AppDialogType.error)
           .setPositiveText(R.strings.close)
           .buildDialog(Get.context!)

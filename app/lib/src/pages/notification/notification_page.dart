@@ -27,7 +27,9 @@ class NotificationPage extends GetView<NotificationController> {
   ) {
     return InkWell(
       onTap: () {
-        controller.markAsRead(notification.id);
+        if (!notification.isSeen) {
+          controller.markAsRead(notification.id);
+        }
       },
       child: Container(
         color: notification.isSeen

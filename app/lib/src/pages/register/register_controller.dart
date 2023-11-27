@@ -6,6 +6,8 @@ import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart'
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
+import 'package:app/src/exts/app_message.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
@@ -25,11 +27,6 @@ class RegisterKey {
   static const password = 'password';
   static const confirmPassword = 'confirmPassword';
   static const displayName = 'displayName';
-}
-
-class RegisterErrorMessage {
-  static const incorrectPhoneNumberFormat =
-      "User provider does not allowed for this user type";
 }
 
 class RegisterController extends GetxController {
@@ -92,7 +89,7 @@ class RegisterController extends GetxController {
         return;
       }
 
-      if (e.message == RegisterErrorMessage.incorrectPhoneNumberFormat) {
+      if (e.message == AppMessage.incorrectPhoneNumberFormat) {
         AppDefaultDialogWidget()
             .setContent(R.strings.phoneNumberInvalid)
             .setAppDialogType(AppDialogType.error)
@@ -103,13 +100,7 @@ class RegisterController extends GetxController {
         return;
       }
 
-      AppDefaultDialogWidget()
-          .setContent(R.strings.error)
-          .setAppDialogType(AppDialogType.error)
-          .setPositiveText(R.strings.close)
-          .buildDialog(Get.context!)
-          .show();
-      return;
+      AppExceptionExt(appException: e).detected();
     }
   }
 

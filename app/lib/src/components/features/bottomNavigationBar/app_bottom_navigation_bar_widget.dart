@@ -99,7 +99,7 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
                             BlendMode.srcIn,
                           ),
                         ),
-                  label: R.strings.order,
+                  label: R.strings.orders,
                   isActive: activeRoute == Routes.orders,
                   onPressed: () {
                     Get.offNamed(Routes.orders);

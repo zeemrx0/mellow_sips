@@ -36,16 +36,18 @@ class ProductDetailController extends GetxController {
   final GetDocumentUseCase _getDocumentUseCase;
   final AddToCartUseCase _addToCartUseCase;
   final UpdateCartItemUseCase _updateCartItemUseCase;
+  final DeleteCartItemUseCase _deleteCartItemUseCase;
 
   ProductDetailController(
     this._getProductDetailUseCase,
     this._getDocumentUseCase,
     this._addToCartUseCase,
     this._updateCartItemUseCase,
+    this._deleteCartItemUseCase,
   );
 
   Rxn<ProductModel> product = Rxn<ProductModel>();
-  Rxn<int> quantity = Rxn<int>(1);
+  Rx<int> quantity = Rx<int>(1);
   Rx<Map<String, dynamic>> formInitialValue = Rx<Map<String, dynamic>>({});
 
   Future<void> initialize() {
@@ -157,16 +159,41 @@ class ProductDetailController extends GetxController {
   }
 
   void increaseProductQuantity() {
-    final currentQuantity = quantity.value ?? 0;
+    final currentQuantity = quantity.value;
     quantity.value = currentQuantity + 1;
     quantity.refresh();
   }
 
-  void decreaseProductQuantity() {
-    final currentQuantity = quantity.value ?? 0;
+  Future<void> decreaseProductQuantity() async {
+    if (quantity.value == 1) {
+      if (isEditing()) {
+        AppDefaultDialogWidget()
+            .setTitle(R.strings.removeProductFromCart)
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.confirm)
+            .setOnPositive(() async {
+              await _deleteCartItemUseCase.executeObject(
+                param: DeleteCartItemParam(
+                  cartItemId: Get.arguments[ProductDetailKey.cartItemId],
+                ),
+              );
+
+              Get.back();
+            })
+            .setNegativeText(R.strings.close)
+            .buildDialog(Get.context!)
+            .show();
+      }
+      
+      return;
+    }
+
+    final currentQuantity = quantity.value;
+
     if (currentQuantity > 0) {
       quantity.value = currentQuantity - 1;
     }
+
     quantity.refresh();
   }
 
@@ -208,7 +235,7 @@ class ProductDetailController extends GetxController {
         param: AddToCartParam(
           productId: product.value!.id!,
           addons: addons,
-          quantity: quantity.value ?? 0,
+          quantity: quantity.value,
           note: formKey
                   .value.currentState!.fields[ProductDetailKey.note]?.value ??
               '',
@@ -263,7 +290,7 @@ class ProductDetailController extends GetxController {
         param: UpdateCartItemParam(
           cartItemId: Get.arguments[ProductDetailKey.cartItemId],
           addons: addons,
-          quantity: quantity.value ?? 0,
+          quantity: quantity.value,
           note: formKey
                   .value.currentState!.fields[ProductDetailKey.note]?.value ??
               '',
@@ -272,7 +299,7 @@ class ProductDetailController extends GetxController {
 
       if (result.netData != null) {
         AppLoadingOverlayWidget.dismiss();
-        Get.back(result: true);
+        Get.back();
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();

@@ -9,6 +9,7 @@ class ProductDetailBinding implements Bindings {
         Get.find(),
         Get.find(),
         Get.find(),
+        Get.find(),
       ),
     );
   }
