@@ -144,28 +144,37 @@ class CartItemWidget extends GetView<CartController> {
                       height: AppThemeExt.of.majorScale(2 / 4),
                     ),
                     Row(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                          constraints: BoxConstraints(
-                            maxWidth: AppThemeExt.of.majorScale(40),
+                        if (cartItem.addons.isNotEmpty)
+                          Container(
+                            constraints: BoxConstraints(
+                              maxWidth: AppThemeExt.of.majorScale(40),
+                            ),
+                            child: AppTextBody2Widget()
+                                .setText(cartItem.addons
+                                    .map((e) => e.name)
+                                    .join(', '))
+                                .setTextOverFlow(TextOverflow.ellipsis)
+                                .setColor(AppColors.of.subTextColor)
+                                .build(context),
                           ),
-                          child: AppTextBody2Widget()
-                              .setText(
-                                  cartItem.addons.map((e) => e.name).join(', '))
+                        if (cartItem.addons.isNotEmpty)
+                          AppTextBody2Widget()
+                              .setText('-')
                               .setTextOverFlow(TextOverflow.ellipsis)
                               .setColor(AppColors.of.subTextColor)
                               .build(context),
-                        ),
-                        SizedBox(
-                          width: AppThemeExt.of.majorScale(2),
-                        ),
-                        AppTextBody2Widget()
-                            .setText(cartItem.note.isNotEmpty
-                                ? '- ${cartItem.note}'
-                                : '')
-                            .setTextOverFlow(TextOverflow.ellipsis)
-                            .setColor(AppColors.of.subTextColor)
-                            .build(context),
+                        if (cartItem.note.isNotEmpty)
+                          Expanded(
+                            child: AppTextBody2Widget()
+                                .setText(cartItem.note.isNotEmpty
+                                    ? cartItem.note
+                                    : '')
+                                .setTextOverFlow(TextOverflow.ellipsis)
+                                .setColor(AppColors.of.subTextColor)
+                                .build(context),
+                          ),
                       ],
                     ),
                     SizedBox(
