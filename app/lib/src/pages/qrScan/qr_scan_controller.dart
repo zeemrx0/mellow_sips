@@ -1,6 +1,7 @@
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,9 @@ class QrScanController extends GetxController {
 
           final storeId = url.queryParameters[QrScanControllerKey.storeId];
 
-          Get.offNamed(Routes.storeDetail, arguments: storeId);
+          Get.offNamed(Routes.storeDetail, arguments: {
+            AppConstants.storeId: storeId,
+          });
 
           await controller.pauseCamera();
         }
