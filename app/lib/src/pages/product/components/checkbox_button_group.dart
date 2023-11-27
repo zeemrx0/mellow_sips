@@ -44,46 +44,63 @@ class CheckboxButtonGroupWidget extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
+                        if (addon.isSoldOut) return;
+
                         if (maxAllowedChoices != null &&
                             selectedOptionIds.length < maxAllowedChoices!) {
                           field.didChange(selectedOptionIds);
                           onChanged?.call();
                         }
                       },
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          right: AppThemeExt.of.majorScale(2),
-                        ),
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: selectedOptionIds.contains(addon.id),
-                              activeColor: AppColors.of.primaryColor,
-                              overlayColor:
-                                  MaterialStateProperty.resolveWith<Color?>(
-                                (Set<MaterialState> states) =>
-                                    AppColors.of.grayColor[300],
+                      child: Container(
+                        color: addon.isSoldOut
+                            ? AppColors.of.grayColor[300]
+                            : AppColors.of.whiteColor,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: AppThemeExt.of.majorScale(2),
+                          ),
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: selectedOptionIds.contains(addon.id),
+                                activeColor: AppColors.of.primaryColor,
+                                overlayColor:
+                                    MaterialStateProperty.resolveWith<Color?>(
+                                  (Set<MaterialState> states) =>
+                                      AppColors.of.grayColor[300],
+                                ),
+                                side:
+                                    BorderSide(color: AppColors.of.borderColor),
+                                onChanged: (value) {
+                                  if (addon.isSoldOut) return;
+
+                                  if (maxAllowedChoices != null &&
+                                      selectedOptionIds.length <
+                                          maxAllowedChoices!) {
+                                    field.didChange(selectedOptionIds);
+                                    onChanged?.call();
+                                  }
+                                  
+                                  if (value == true) {
+                                    selectedOptionIds.add(addon.id);
+                                  } else {
+                                    selectedOptionIds.remove(addon.id);
+                                  }
+                                  field.didChange(selectedOptionIds);
+                                },
                               ),
-                              side: BorderSide(color: AppColors.of.borderColor),
-                              onChanged: (value) {
-                                if (value == true) {
-                                  selectedOptionIds.add(addon.id);
-                                } else {
-                                  selectedOptionIds.remove(addon.id);
-                                }
-                                field.didChange(selectedOptionIds);
-                              },
-                            ),
-                            Expanded(
-                              child: AppTextBody2Widget()
-                                  .setText(addon.name)
+                              Expanded(
+                                child: AppTextBody2Widget()
+                                    .setText(addon.name)
+                                    .build(context),
+                              ),
+                              AppTextBody2Widget()
+                                  .setText(
+                                      '${NumberExt.withSeparator(addon.price)}đ')
                                   .build(context),
-                            ),
-                            AppTextBody2Widget()
-                                .setText(
-                                    '${NumberExt.withSeparator(addon.price)}đ')
-                                .build(context),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

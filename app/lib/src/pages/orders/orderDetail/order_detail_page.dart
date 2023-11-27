@@ -16,7 +16,7 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
 
   Widget _body(BuildContext context) {
     return SmartRefresher(
-      controller: controller.refreshController,
+      controller: controller._refreshController,
       enablePullDown: true,
       onRefresh: () async {
         controller.getOrderDetail();

@@ -143,11 +143,31 @@ class CartItemWidget extends GetView<CartController> {
                     SizedBox(
                       height: AppThemeExt.of.majorScale(2 / 4),
                     ),
-                    AppTextBody2Widget()
-                        .setText(cartItem.addons.map((e) => e.name).join(', '))
-                        .setTextOverFlow(TextOverflow.ellipsis)
-                        .setColor(AppColors.of.subTextColor)
-                        .build(context),
+                    Row(
+                      children: [
+                        Container(
+                          constraints: BoxConstraints(
+                            maxWidth: AppThemeExt.of.majorScale(40),
+                          ),
+                          child: AppTextBody2Widget()
+                              .setText(
+                                  cartItem.addons.map((e) => e.name).join(', '))
+                              .setTextOverFlow(TextOverflow.ellipsis)
+                              .setColor(AppColors.of.subTextColor)
+                              .build(context),
+                        ),
+                        SizedBox(
+                          width: AppThemeExt.of.majorScale(2),
+                        ),
+                        AppTextBody2Widget()
+                            .setText(cartItem.note.isNotEmpty
+                                ? '- ${cartItem.note}'
+                                : '')
+                            .setTextOverFlow(TextOverflow.ellipsis)
+                            .setColor(AppColors.of.subTextColor)
+                            .build(context),
+                      ],
+                    ),
                     SizedBox(
                       height: AppThemeExt.of.majorScale(6 / 4),
                     ),

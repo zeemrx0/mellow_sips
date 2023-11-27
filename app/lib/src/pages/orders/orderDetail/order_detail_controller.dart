@@ -23,7 +23,7 @@ class OrderDetailController extends GetxController {
   final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
   final GetTransactionByOrderIdUseCase _getTransactionByOrderIdUseCase;
 
-  final RefreshController refreshController =
+  final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
   OrderDetailController(
@@ -47,7 +47,7 @@ class OrderDetailController extends GetxController {
       );
 
       order.value = result.netData;
-      
+
       businessVoucherOrder.value =
           result.netData?.voucherOrders?.firstWhereOrNull(
         (element) => element.source == AppConstants.business,
@@ -58,6 +58,7 @@ class OrderDetailController extends GetxController {
       );
 
       AppLoadingOverlayWidget.dismiss();
+      _refreshController.refreshToIdle();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
@@ -103,23 +104,32 @@ class OrderDetailController extends GetxController {
   }
 
   Future<void> cancelOrder() async {
-    try {
-      AppLoadingOverlayWidget.show();
+    AppDefaultDialogWidget()
+        .setTitle(R.strings.cancelOrder)
+        .setAppDialogType(AppDialogType.confirm)
+        .setPositiveText(R.strings.confirm)
+        .setOnPositive(() async {
+          try {
+            AppLoadingOverlayWidget.show();
 
-      await _updateOrderStatusUseCase.executeObject(
-        param: UpdateOrderStatusParam(
-          orderId: order.value!.id,
-          status: AppOrderStatusUpdateAction.cancel,
-        ),
-      );
+            await _updateOrderStatusUseCase.executeObject(
+              param: UpdateOrderStatusParam(
+                orderId: order.value!.id,
+                status: AppOrderStatusUpdateAction.cancel,
+              ),
+            );
 
-      getOrderDetail();
+            getOrderDetail();
 
-      AppLoadingOverlayWidget.dismiss();
-    } on AppException catch (e) {
-      AppLoadingOverlayWidget.dismiss();
-      AppExceptionExt(appException: e).detected();
-    }
+            AppLoadingOverlayWidget.dismiss();
+          } on AppException catch (e) {
+            AppLoadingOverlayWidget.dismiss();
+            AppExceptionExt(appException: e).detected();
+          }
+        })
+        .setNegativeText(R.strings.close)
+        .buildDialog(Get.context!)
+        .show();
   }
 
   String? getOrderStatus(String? orderStatus) {
