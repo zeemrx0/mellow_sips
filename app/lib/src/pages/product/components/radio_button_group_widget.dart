@@ -42,37 +42,46 @@ class RadioButtonGroupWidget extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
+                        if (addon.isSoldOut) return;
+
                         field.didChange(addon.id);
                         onChanged?.call();
                       },
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          right: AppThemeExt.of.majorScale(2),
-                        ),
-                        child: Row(
-                          children: [
-                            Radio(
-                              activeColor: AppColors.of.primaryColor,
-                              splashRadius: AppThemeExt.of.majorScale(1),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: addon.id,
-                              groupValue: selectedOptionId,
-                              onChanged: (value) {
-                                selectedOptionId = value;
-                                field.didChange(value);
-                              },
-                            ),
-                            Expanded(
-                              child: AppTextBody2Widget()
-                                  .setText(addon.name)
+                      child: Container(
+                        color: addon.isSoldOut
+                            ? AppColors.of.grayColor[300]
+                            : AppColors.of.whiteColor,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: AppThemeExt.of.majorScale(2),
+                          ),
+                          child: Row(
+                            children: [
+                              Radio(
+                                activeColor: AppColors.of.primaryColor,
+                                splashRadius: AppThemeExt.of.majorScale(1),
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                                value: addon.id,
+                                groupValue: selectedOptionId,
+                                onChanged: (value) {
+                                  if (addon.isSoldOut) return;
+                      
+                                  selectedOptionId = value;
+                                  field.didChange(value);
+                                },
+                              ),
+                              Expanded(
+                                child: AppTextBody2Widget()
+                                    .setText(addon.name)
+                                    .build(context),
+                              ),
+                              AppTextBody2Widget()
+                                  .setText(
+                                      '${NumberExt.withSeparator(addon.price)}đ')
                                   .build(context),
-                            ),
-                            AppTextBody2Widget()
-                                .setText(
-                                    '${NumberExt.withSeparator(addon.price)}đ')
-                                .build(context),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

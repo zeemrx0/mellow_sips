@@ -91,12 +91,9 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                         fieldKey: section.id,
                                         addons: section.productAddons!,
                                         initialValue: controller
-                                            .formKey
-                                            .value
-                                            .currentState
-                                            ?.fields[section.id]
-                                            ?.value,
-                                        maxAllowedChoices: section.maxAllowedChoices,
+                                            .formInitialValue.value[section.id],
+                                        maxAllowedChoices:
+                                            section.maxAllowedChoices,
                                         onChanged: () {
                                           controller.formKey.value.currentState
                                               ?.save();
@@ -108,11 +105,7 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                                         fieldKey: section.id,
                                         addons: section.productAddons!,
                                         initialValue: controller
-                                            .formKey
-                                            .value
-                                            .currentState
-                                            ?.fields[section.id]
-                                            ?.value,
+                                            .formInitialValue.value[section.id],
                                         onChanged: () {
                                           controller.formKey.value.currentState
                                               ?.save();

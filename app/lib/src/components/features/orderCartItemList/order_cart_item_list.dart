@@ -2,6 +2,7 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:resources/resources.dart';
 import 'package:utilities/utilities.dart';
 
 class OrderCartItemList extends StatelessWidget {
@@ -63,6 +64,20 @@ class OrderCartItemList extends StatelessWidget {
                                 .setText(cartItem.addons
                                     .map((e) => e.name)
                                     .join(', '))
+                                .setTextOverFlow(TextOverflow.ellipsis)
+                                .setColor(AppColors.of.subTextColor)
+                                .build(context),
+                          ],
+                        ),
+
+                      if (cartItem.note.isNotEmpty)
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: AppThemeExt.of.majorScale(1 / 2),
+                            ),
+                            AppTextCaption1Widget()
+                                .setText('${R.strings.note}: ${cartItem.note}')
                                 .setTextOverFlow(TextOverflow.ellipsis)
                                 .setColor(AppColors.of.subTextColor)
                                 .build(context),
