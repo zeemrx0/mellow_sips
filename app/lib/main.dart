@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       theme: AppThemeData.lightTheme,
       darkTheme: AppThemeData.darkTheme,
       getPages: AppPages.routes,
-      initialRoute: Routes.welcome,
+      initialRoute: Routes.home,
       initialBinding: AppBinding(),
       smartManagement: SmartManagement.full,
       builder: AppLoadingOverlayWidget.init(),

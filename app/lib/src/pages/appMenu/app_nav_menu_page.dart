@@ -5,6 +5,8 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.checkIsLoggedIn();
+
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
@@ -22,52 +24,32 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
 
   Widget _body(BuildContext context) {
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // InkWell(
-          //   onTap: () {
-          //   },
-          //   child: Padding(
-          //     padding: EdgeInsets.symmetric(
-          //       horizontal: AppThemeExt.of.majorPaddingScale(4),
-          //     ),
-          //     child: Container(
-          //       padding: EdgeInsets.symmetric(
-          //         horizontal: AppThemeExt.of.majorPaddingScale(2),
-          //         vertical: AppThemeExt.of.majorPaddingScale(4),
-          //       ),
-          //       decoration: BoxDecoration(
-          //         border: Border(
-          //           bottom: BorderSide(
-          //             color: AppColors.of.dividerColor,
-          //             width: 1,
-          //           ),
-          //         ),
-          //       ),
-          //       child: Row(
-          //         children: [
-          //           AppTextBody2Widget()
-          //               .setText(R.strings.orders)
-          //               .build(context),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: AppThemeExt.of.majorPaddingScale(4),
-              left: AppThemeExt.of.majorPaddingScale(4),
-              right: AppThemeExt.of.majorPaddingScale(4),
+      child: Obx(
+        () => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: AppThemeExt.of.majorPaddingScale(4),
+                left: AppThemeExt.of.majorPaddingScale(4),
+                right: AppThemeExt.of.majorPaddingScale(4),
+              ),
+              child: AppFilledButtonWidget()
+                  .setButtonText(controller.isLoggedIn.value
+                      ? R.strings.logOut
+                      : R.strings.logIn)
+                  .setOnPressed(
+                () {
+                  if (controller.isLoggedIn.value) {
+                    controller.logOut();
+                  } else {
+                    Get.toNamed(Routes.welcome);
+                  }
+                },
+              ).build(context),
             ),
-            child: AppFilledButtonWidget()
-                .setButtonText(R.strings.logOut)
-                .setOnPressed(() {
-              controller.logOut();
-            }).build(context),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

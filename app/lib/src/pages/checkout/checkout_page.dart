@@ -1,6 +1,6 @@
 part of './checkout_controller.dart';
 
-class CheckoutPage extends GetView<CheckoutController> {
+class CheckoutPage extends GetWidget<CheckoutController> {
   const CheckoutPage({super.key});
 
   @override

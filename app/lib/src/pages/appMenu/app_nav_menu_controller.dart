@@ -16,9 +16,29 @@ part 'app_nav_menu_page.dart';
 part 'app_nav_menu_binding.dart';
 
 class AppNavMenuController extends GetxController {
+  final GetTokensUseCase _getTokensUseCase;
   final LogoutUseCase _logoutUseCase;
 
-  AppNavMenuController(this._logoutUseCase);
+  Rx<bool> isLoggedIn = Rx<bool>(false);
+
+  AppNavMenuController(
+    this._getTokensUseCase,
+    this._logoutUseCase,
+  );
+
+  Future<void> checkIsLoggedIn() async {
+    try {
+      final result = await _getTokensUseCase.executeObject();
+
+      if (result.netData?.accessToken != null &&
+          result.netData!.accessToken.isNotEmpty) {
+        isLoggedIn.value = true;
+      }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
 
   Future<void> logOut() async {
     try {

@@ -20,6 +20,7 @@ class AppConstants {
   static const String action = 'action';
   static const String navigateToProduct = 'NAVIGATE_TO_PRODUCT';
   static const String isEditing = 'isEditing';
+  static const String navigatedFrom = 'navigatedFrom';
 }
 
 class CartParamKey {

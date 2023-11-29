@@ -111,7 +111,12 @@ class AppExceptionExt {
     try {
       final forceLogOutUseCase = Get.find<LogoutUseCase>();
       await forceLogOutUseCase.executeObject();
-      Get.offAllNamed(Routes.login);
+      Get.offNamedUntil(
+        Routes.welcome,
+        (route) {
+          return route.settings.name == Routes.home;
+        },
+      );
     } on LocalException catch (e) {
       AppExceptionExt(appException: e).detected();
     }

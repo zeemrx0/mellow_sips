@@ -75,7 +75,7 @@ class CartPage extends GetView<CartController> {
                                     )
                                     .toList(),
                                 SizedBox(
-                                  height: AppThemeExt.of.majorScale(2),
+                                  height: AppThemeExt.of.majorScale(1),
                                 ),
                                 Row(
                                   mainAxisAlignment:
@@ -92,7 +92,7 @@ class CartPage extends GetView<CartController> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: AppThemeExt.of.majorScale(4),
+                                  height: AppThemeExt.of.majorScale(3),
                                 ),
                                 AppFilledButtonWidget()
                                     .setButtonText(R.strings.order)
@@ -100,6 +100,9 @@ class CartPage extends GetView<CartController> {
                                   Get.toNamed(Routes.checkout,
                                       arguments: cart.id);
                                 }).build(context),
+                                SizedBox(
+                                  height: AppThemeExt.of.majorScale(8),
+                                ),
                               ],
                             ),
                           )

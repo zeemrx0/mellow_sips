@@ -6,6 +6,7 @@ class AppNavMenuBinding extends Bindings {
     Get.lazyPut<AppNavMenuController>(
       () => AppNavMenuController(
         Get.find(),
+        Get.find(),
       ),
     );
   }
