@@ -104,7 +104,8 @@ class OrderCartItemList extends StatelessWidget {
                     .setColor(AppColors.of.subTextColor)
                     .build(context),
               AppTextBody2Widget()
-                  .setText('${NumberExt.withSeparator(cartItem.finalPrice)}đ')
+                  .setText(
+                      '${NumberExt.withSeparator(cartItem.finalPrice / cartItem.quantity)}đ')
                   .build(context),
             ],
           ),

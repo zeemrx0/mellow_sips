@@ -38,100 +38,107 @@ class HomePage extends GetView<HomeController> {
               'https://phuclong.com.vn/uploads/post/7d8a71540edb53-dr_combongaytrannangluong40k_51022_640512thumbnail.png'),
     ];
 
-    return ExtendedNestedScrollView(
-      controller: scrollController,
-      onlyOneScrollInBody: true,
-      headerSliverBuilder: (context, innerBoxIsScrolled) => [
-        SliverAppBar(
-          pinned: true,
-          floating: true,
-          snap: false,
-          backgroundColor: AppColors.of.whiteColor,
-          expandedHeight: max(
-            kToolbarHeight,
-            MediaQuery.of(Get.context!).padding.top +
-                AppThemeExt.of.majorScale(36 / 4),
-          ),
-          collapsedHeight: max(
-            kToolbarHeight,
-            MediaQuery.of(Get.context!).padding.top +
-                AppThemeExt.of.majorScale(36 / 4),
-          ),
-          leading: const SizedBox(),
-          flexibleSpace: FlexibleSpaceBar(
-            background: Container(
-              color: AppColors.of.whiteColor,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(Get.context!).padding.top +
-                      AppThemeExt.of.majorScale(3),
-                  bottom: AppThemeExt.of.majorScale(3),
-                  left: AppThemeExt.of.majorScale(4),
-                  right: AppThemeExt.of.majorScale(4),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: AppTextFieldWidget()
-                          .setFieldKey('search')
-                          .setPrefixIcon(
-                            R.svgs.icSearch.svg(
-                              width: AppThemeExt.of.majorScale(6),
-                              height: AppThemeExt.of.majorScale(6),
+    return SafeArea(
+      child: Column(
+        children: [
+          Expanded(
+            child: ExtendedNestedScrollView(
+              controller: scrollController,
+              onlyOneScrollInBody: true,
+              headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                SliverAppBar(
+                  pinned: true,
+                  floating: true,
+                  snap: false,
+                  backgroundColor: AppColors.of.whiteColor,
+                  expandedHeight: max(
+                    kToolbarHeight,
+                    MediaQuery.of(Get.context!).padding.top +
+                        AppThemeExt.of.majorScale(36 / 4),
+                  ),
+                  collapsedHeight: max(
+                    kToolbarHeight,
+                    MediaQuery.of(Get.context!).padding.top +
+                        AppThemeExt.of.majorScale(36 / 4),
+                  ),
+                  leading: const SizedBox(),
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Container(
+                      color: AppColors.of.whiteColor,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: AppThemeExt.of.majorScale(3),
+                          bottom: AppThemeExt.of.majorScale(3),
+                          left: AppThemeExt.of.majorScale(4),
+                          right: AppThemeExt.of.majorScale(4),
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: AppTextFieldWidget()
+                                  .setFieldKey('search')
+                                  .setPrefixIcon(
+                                    R.svgs.icSearch.svg(
+                                      width: AppThemeExt.of.majorScale(6),
+                                      height: AppThemeExt.of.majorScale(6),
+                                    ),
+                                  )
+                                  .setHintText(R.strings.search)
+                                  .build(context),
                             ),
-                          )
-                          .setHintText(R.strings.search)
-                          .build(context),
+                          ],
+                        ),
+                      ),
                     ),
-                  ],
+                  ),
+                ),
+              ],
+              body: SingleChildScrollView(
+                child: Container(
+                  color: AppColors.of.backgroundColor,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: AppThemeExt.of.majorPaddingScale(2),
+                      ),
+                      AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: SizedBox(
+                          width: MediaQuery.of(Get.context!).size.width,
+                          child: PageView(
+                            controller: controller.pageController,
+                            children: carouselItems,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppThemeExt.of.majorPaddingScale(3),
+                      ),
+                      SmoothPageIndicator(
+                        controller: controller.pageController,
+                        count: carouselItems.length,
+                        effect: WormEffect(
+                          dotHeight: AppThemeExt.of.majorScale(2),
+                          dotWidth: AppThemeExt.of.majorScale(2),
+                          dotColor: AppColors.of.disabledColor,
+                          activeDotColor: AppColors.of.primaryColor,
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppThemeExt.of.majorPaddingScale(6),
+                      ),
+                      _categories(context),
+                      SizedBox(
+                        height: AppThemeExt.of.majorPaddingScale(6),
+                      ),
+                      _section(context)
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
-      body: SingleChildScrollView(
-        child: Container(
-          color: AppColors.of.backgroundColor,
-          child: Column(
-            children: [
-              SizedBox(
-                height: AppThemeExt.of.majorPaddingScale(2),
-              ),
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: SizedBox(
-                  width: MediaQuery.of(Get.context!).size.width,
-                  child: PageView(
-                    controller: controller.pageController,
-                    children: carouselItems,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: AppThemeExt.of.majorPaddingScale(3),
-              ),
-              SmoothPageIndicator(
-                controller: controller.pageController,
-                count: carouselItems.length,
-                effect: WormEffect(
-                  dotHeight: AppThemeExt.of.majorScale(2),
-                  dotWidth: AppThemeExt.of.majorScale(2),
-                  dotColor: AppColors.of.disabledColor,
-                  activeDotColor: AppColors.of.primaryColor,
-                ),
-              ),
-              SizedBox(
-                height: AppThemeExt.of.majorPaddingScale(6),
-              ),
-              _categories(context),
-              SizedBox(
-                height: AppThemeExt.of.majorPaddingScale(6),
-              ),
-              _section(context)
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }

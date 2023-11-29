@@ -144,13 +144,19 @@ class ProductDetailController extends GetxController {
         in product.value?.productOptionSections ?? []) {
       final options = formKey.value.currentState?.fields[section.id]?.value;
 
-      if (section.isRequired && options == null) {
-        errorString = '${R.strings.pleaseSelect} 1 ${section.name}';
+      if (options is String?) {
+        if (options == null || options.isEmpty) {
+          errorString = '${R.strings.pleaseSelect} ${section.name}';
+        }
       }
-      if (options is List<String> &&
-          options.length > section.maxAllowedChoices) {
-        errorString =
-            '${R.strings.pleaseSelectMaximum} ${section.maxAllowedChoices} ${section.name}';
+
+      if (options is List<String>?) {
+        if (options == null || options.isEmpty) {
+          errorString = '${R.strings.pleaseSelect} ${section.name}';
+        } else if (options.length > section.maxAllowedChoices) {
+          errorString =
+              '${R.strings.pleaseSelectMaximum} ${section.maxAllowedChoices} ${section.name}';
+        }
       }
 
       if (errorString != null) return errorString;
