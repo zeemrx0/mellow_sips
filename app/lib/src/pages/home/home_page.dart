@@ -139,7 +139,7 @@ class HomePage extends GetView<HomeController> {
   Widget _categories(BuildContext context) {
     final deviceWidth = MediaQuery.of(Get.context!).size.width;
     final gapWidth = AppThemeExt.of.majorScale(1);
-    final itemWidth = (deviceWidth - 32 - 36 - gapWidth * 3) / 4;
+    final itemWidth = (deviceWidth - 32 - 32) / 3;
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -150,9 +150,7 @@ class HomePage extends GetView<HomeController> {
           Row(
             children: [
               InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.stores);
-                },
+                onTap: () {},
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
                   height: AppThemeExt.of.majorScale(78 / 4),
@@ -168,6 +166,16 @@ class HomePage extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(
                               AppThemeExt.of.majorScale(1),
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: AppThemeExt.of.majorScale(4),
+                                offset: Offset(
+                                  AppThemeExt.of.majorScale(0),
+                                  AppThemeExt.of.majorScale(1),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -175,7 +183,7 @@ class HomePage extends GetView<HomeController> {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                            bottom: AppThemeExt.of.majorScale(28 / 4),
                           ),
                           child: R.svgs.icNearby.svg(
                             width: AppThemeExt.of.majorScale(40 / 4),
@@ -189,10 +197,10 @@ class HomePage extends GetView<HomeController> {
                           padding: EdgeInsets.only(
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
-                          child: AppTextCaption2Widget()
+                          child: AppTextCaption1Widget()
                               .setText(R.strings.nearby)
                               .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
+                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
                               .build(context),
                         ),
                       )
@@ -220,6 +228,16 @@ class HomePage extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(
                               AppThemeExt.of.majorScale(1),
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: AppThemeExt.of.majorScale(4),
+                                offset: Offset(
+                                  AppThemeExt.of.majorScale(0),
+                                  AppThemeExt.of.majorScale(1),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -227,11 +245,11 @@ class HomePage extends GetView<HomeController> {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                            bottom: AppThemeExt.of.majorScale(28 / 4),
                           ),
                           child: R.svgs.icSalePanel.svg(
-                            width: AppThemeExt.of.majorScale(48 / 4),
-                            height: AppThemeExt.of.majorScale(40 / 4),
+                            width: AppThemeExt.of.majorScale(44 / 4),
+                            height: AppThemeExt.of.majorScale(44 / 4),
                           ),
                         ),
                       ),
@@ -241,10 +259,10 @@ class HomePage extends GetView<HomeController> {
                           padding: EdgeInsets.only(
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
-                          child: AppTextCaption2Widget()
+                          child: AppTextCaption1Widget()
                               .setText(R.strings.sale)
                               .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
+                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
                               .build(context),
                         ),
                       )
@@ -272,6 +290,16 @@ class HomePage extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(
                               AppThemeExt.of.majorScale(1),
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: AppThemeExt.of.majorScale(4),
+                                offset: Offset(
+                                  AppThemeExt.of.majorScale(0),
+                                  AppThemeExt.of.majorScale(1),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -279,63 +307,11 @@ class HomePage extends GetView<HomeController> {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                            bottom: AppThemeExt.of.majorScale(28 / 4),
                           ),
-                          child: R.svgs.icTickets.svg(
-                            width: AppThemeExt.of.majorScale(53 / 4),
-                            height: AppThemeExt.of.majorScale(39 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption2Widget()
-                              .setText(R.strings.x3Discount)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: AppThemeExt.of.majorScale(gapWidth),
-              ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(78 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(26 / 4),
-                          ),
-                          child: R.svgs.icFreeTag.svg(
-                            width: AppThemeExt.of.majorScale(52 / 4),
-                            height: AppThemeExt.of.majorScale(52 / 4),
+                          child: R.pngs.icLike.image(
+                            width: AppThemeExt.of.majorScale(48 / 4),
+                            height: AppThemeExt.of.majorScale(48 / 4),
                           ),
                         ),
                       ),
@@ -345,10 +321,10 @@ class HomePage extends GetView<HomeController> {
                           padding: EdgeInsets.only(
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
-                          child: AppTextCaption2Widget()
-                              .setText(R.strings.freeDishes)
+                          child: AppTextCaption1Widget()
+                              .setText(R.strings.recommended)
                               .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
+                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
                               .build(context),
                         ),
                       )
@@ -359,7 +335,7 @@ class HomePage extends GetView<HomeController> {
             ],
           ),
           SizedBox(
-            height: AppThemeExt.of.majorScale(5),
+            height: AppThemeExt.of.majorScale(4),
           ),
           Row(
             children: [
@@ -369,7 +345,7 @@ class HomePage extends GetView<HomeController> {
                 },
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(88 / 4),
+                  height: AppThemeExt.of.majorScale(78 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -382,6 +358,16 @@ class HomePage extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(
                               AppThemeExt.of.majorScale(1),
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: AppThemeExt.of.majorScale(4),
+                                offset: Offset(
+                                  AppThemeExt.of.majorScale(0),
+                                  AppThemeExt.of.majorScale(1),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -389,11 +375,11 @@ class HomePage extends GetView<HomeController> {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(36 / 4),
+                            bottom: AppThemeExt.of.majorScale(28 / 4),
                           ),
-                          child: R.svgs.icFastFood.svg(
-                            width: AppThemeExt.of.majorScale(52 / 4),
-                            height: AppThemeExt.of.majorScale(52 / 4),
+                          child: R.pngs.icCoffee.image(
+                            width: AppThemeExt.of.majorScale(48 / 4),
+                            height: AppThemeExt.of.majorScale(48 / 4),
                           ),
                         ),
                       ),
@@ -403,11 +389,10 @@ class HomePage extends GetView<HomeController> {
                           padding: EdgeInsets.only(
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
-                          child: AppTextCaption2Widget()
-                              .setText(R.strings.fastFood)
+                          child: AppTextCaption1Widget()
+                              .setText(R.strings.coffee)
                               .setColor(AppColors.of.primaryColor)
-                              .setTextAlign(TextAlign.center)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
+                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
                               .build(context),
                         ),
                       )
@@ -422,7 +407,7 @@ class HomePage extends GetView<HomeController> {
                 onTap: () {},
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(88 / 4),
+                  height: AppThemeExt.of.majorScale(78 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -435,6 +420,16 @@ class HomePage extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(
                               AppThemeExt.of.majorScale(1),
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: AppThemeExt.of.majorScale(4),
+                                offset: Offset(
+                                  AppThemeExt.of.majorScale(0),
+                                  AppThemeExt.of.majorScale(1),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -442,11 +437,10 @@ class HomePage extends GetView<HomeController> {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(26 / 4),
+                            bottom: AppThemeExt.of.majorScale(28 / 4),
                           ),
                           child: R.svgs.icMilkTea.svg(
-                            width: AppThemeExt.of.majorScale(34 / 4),
-                            height: AppThemeExt.of.majorScale(60 / 4),
+                            width: AppThemeExt.of.majorScale(56 / 4),
                           ),
                         ),
                       ),
@@ -456,10 +450,10 @@ class HomePage extends GetView<HomeController> {
                           padding: EdgeInsets.only(
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
-                          child: AppTextCaption2Widget()
+                          child: AppTextCaption1Widget()
                               .setText(R.strings.milkTea)
                               .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
+                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
                               .build(context),
                         ),
                       )
@@ -471,10 +465,12 @@ class HomePage extends GetView<HomeController> {
                 width: AppThemeExt.of.majorScale(gapWidth),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.stores);
+                },
                 child: SizedBox(
                   width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(88 / 4),
+                  height: AppThemeExt.of.majorScale(78 / 4),
                   child: Stack(
                     children: [
                       Align(
@@ -487,6 +483,16 @@ class HomePage extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(
                               AppThemeExt.of.majorScale(1),
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: AppThemeExt.of.majorScale(4),
+                                offset: Offset(
+                                  AppThemeExt.of.majorScale(0),
+                                  AppThemeExt.of.majorScale(1),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -494,63 +500,11 @@ class HomePage extends GetView<HomeController> {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(24 / 4),
+                            bottom: AppThemeExt.of.majorScale(28 / 4),
                           ),
-                          child: R.svgs.icBreakfast.svg(
-                            width: AppThemeExt.of.majorScale(60 / 4),
-                            height: AppThemeExt.of.majorScale(60 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption2Widget()
-                              .setText(R.strings.rice)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: AppThemeExt.of.majorScale(gapWidth),
-              ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(88 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(26 / 4),
-                          ),
-                          child: R.svgs.icNoodle.svg(
-                            width: AppThemeExt.of.majorScale(59 / 4),
-                            height: AppThemeExt.of.majorScale(59 / 4),
+                          child: R.pngs.icShop.image(
+                            width: AppThemeExt.of.majorScale(44 / 4),
+                            height: AppThemeExt.of.majorScale(44 / 4),
                           ),
                         ),
                       ),
@@ -560,10 +514,10 @@ class HomePage extends GetView<HomeController> {
                           padding: EdgeInsets.only(
                             bottom: AppThemeExt.of.majorScale(1),
                           ),
-                          child: AppTextCaption2Widget()
-                              .setText(R.strings.noodles)
+                          child: AppTextCaption1Widget()
+                              .setText(R.strings.all)
                               .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption2s)
+                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
                               .build(context),
                         ),
                       )

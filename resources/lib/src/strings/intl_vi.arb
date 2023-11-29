@@ -117,5 +117,7 @@
 	"yourName": "Tên của bạn",
 	"yourOrderHasBeenCompleted": "Đơn hàng của bạn đã hoàn thành",
 	"yourOrderIsBeingPrepared": "Đơn hàng của bạn đang được chuẩn bị",
-	"zaloPay": "ZaloPay"
+	"zaloPay": "ZaloPay",
+  "all": "Tất cả",
+  "coffee": "Cà phê"
 }
