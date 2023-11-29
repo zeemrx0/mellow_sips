@@ -27,8 +27,6 @@ class HomePage extends GetView<HomeController> {
   }
 
   Widget _body(BuildContext context) {
-    final ScrollController scrollController = ScrollController();
-
     final carouselItems = [
       const CarouselItemWidget(
           imageData:
@@ -42,10 +40,8 @@ class HomePage extends GetView<HomeController> {
       child: Column(
         children: [
           Expanded(
-            child: ExtendedNestedScrollView(
-              controller: scrollController,
-              onlyOneScrollInBody: true,
-              headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            child: CustomScrollView(
+              slivers: [
                 SliverAppBar(
                   pinned: true,
                   floating: true,
@@ -92,52 +88,57 @@ class HomePage extends GetView<HomeController> {
                     ),
                   ),
                 ),
-              ],
-              body: SingleChildScrollView(
-                child: Container(
-                  color: AppColors.of.backgroundColor,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: AppThemeExt.of.majorPaddingScale(2),
-                      ),
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: SizedBox(
-                          width: MediaQuery.of(Get.context!).size.width,
-                          child: PageView(
-                            controller: controller.pageController,
-                            children: carouselItems,
+                SliverFillRemaining(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      color: AppColors.of.backgroundColor,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(2),
                           ),
-                        ),
+                          AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: SizedBox(
+                              width: MediaQuery.of(Get.context!).size.width,
+                              child: PageView(
+                                controller: controller.pageController,
+                                children: carouselItems,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(3),
+                          ),
+                          SmoothPageIndicator(
+                            controller: controller.pageController,
+                            count: carouselItems.length,
+                            effect: WormEffect(
+                              dotHeight: AppThemeExt.of.majorScale(2),
+                              dotWidth: AppThemeExt.of.majorScale(2),
+                              dotColor: AppColors.of.disabledColor,
+                              activeDotColor: AppColors.of.primaryColor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(6),
+                          ),
+                          _categories(context),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(6),
+                          ),
+                          _section(context),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(12),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: AppThemeExt.of.majorPaddingScale(3),
-                      ),
-                      SmoothPageIndicator(
-                        controller: controller.pageController,
-                        count: carouselItems.length,
-                        effect: WormEffect(
-                          dotHeight: AppThemeExt.of.majorScale(2),
-                          dotWidth: AppThemeExt.of.majorScale(2),
-                          dotColor: AppColors.of.disabledColor,
-                          activeDotColor: AppColors.of.primaryColor,
-                        ),
-                      ),
-                      SizedBox(
-                        height: AppThemeExt.of.majorPaddingScale(6),
-                      ),
-                      _categories(context),
-                      SizedBox(
-                        height: AppThemeExt.of.majorPaddingScale(6),
-                      ),
-                      _section(context)
-                    ],
+                    ),
                   ),
-                ),
-              ),
+                )
+              ],
             ),
-          ),
+          )
         ],
       ),
     );
