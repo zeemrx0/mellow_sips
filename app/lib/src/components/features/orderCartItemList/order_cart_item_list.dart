@@ -69,7 +69,6 @@ class OrderCartItemList extends StatelessWidget {
                                 .build(context),
                           ],
                         ),
-
                       if (cartItem.note.isNotEmpty)
                         Column(
                           children: [
