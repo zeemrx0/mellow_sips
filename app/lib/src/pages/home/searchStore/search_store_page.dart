@@ -108,8 +108,8 @@ class SearchStorePage extends GetWidget<SearchStoreController> {
                 AppIconButtonWidget()
                     .setPrefixIcon(
                   R.svgs.icLongArrowLeft.svg(
-                    width: AppThemeExt.of.majorScale(5),
-                    height: AppThemeExt.of.majorScale(5),
+                    width: AppThemeExt.of.majorScale(4),
+                    height: AppThemeExt.of.majorScale(4),
                   ),
                 )
                     .setOnPressed(

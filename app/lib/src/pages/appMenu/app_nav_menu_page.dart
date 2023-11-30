@@ -28,26 +28,53 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
         () => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                top: AppThemeExt.of.majorPaddingScale(4),
-                left: AppThemeExt.of.majorPaddingScale(4),
-                right: AppThemeExt.of.majorPaddingScale(4),
+            InkWell(
+              onTap: () {
+                if (!controller.isLoggedIn.value) {
+                  Get.toNamed(Routes.welcome);
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppThemeExt.of.majorPaddingScale(4),
+                ),
+                child: Row(
+                  children: [
+                    R.pngs.profileAvatar.image(
+                      width: AppThemeExt.of.majorScale(20),
+                      height: AppThemeExt.of.majorScale(20),
+                    ),
+                    SizedBox(
+                      width: AppThemeExt.of.majorPaddingScale(4),
+                    ),
+                    AppTextHeading4Widget()
+                        .setText(
+                          controller.isLoggedIn.value
+                              ? 'Huỳnh Quốc Duy'
+                              : R.strings.logIn,
+                        )
+                        .build(context),
+                  ],
+                ),
               ),
-              child: AppFilledButtonWidget()
-                  .setButtonText(controller.isLoggedIn.value
-                      ? R.strings.logOut
-                      : R.strings.logIn)
-                  .setOnPressed(
-                () {
-                  if (controller.isLoggedIn.value) {
-                    controller.logOut();
-                  } else {
-                    Get.toNamed(Routes.welcome);
-                  }
-                },
-              ).build(context),
             ),
+            SizedBox(
+              height: AppThemeExt.of.majorScale(8),
+            ),
+            if (controller.isLoggedIn.value)
+              Padding(
+                padding: EdgeInsets.only(
+                  left: AppThemeExt.of.majorPaddingScale(4),
+                  right: AppThemeExt.of.majorPaddingScale(4),
+                ),
+                child: AppFilledButtonWidget()
+                    .setButtonText(R.strings.logOut)
+                    .setOnPressed(
+                  () {
+                    controller.logOut();
+                  },
+                ).build(context),
+              ),
           ],
         ),
       ),
