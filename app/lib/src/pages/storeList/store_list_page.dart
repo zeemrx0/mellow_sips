@@ -9,6 +9,11 @@ class StoreListPage extends GetView<StoreListController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.keyword.value = Get.arguments?[AppConstants.keyword] ?? '';
+    if (controller.keyword.value.isNotEmpty) {
+      controller.onRefreshCall();
+    }
+
     return AppMainPageWidget()
         .setAppBar(
           _appBar(context),
@@ -31,12 +36,16 @@ class StoreListPage extends GetView<StoreListController> {
         .setTrailing(
           AppIconButtonWidget()
               .setPrefixIcon(
-                R.svgs.icSearch.svg(
-                  width: AppThemeExt.of.majorScale(6),
-                  height: AppThemeExt.of.majorScale(6),
-                ),
-              )
-              .build(context),
+            R.svgs.icSearch.svg(
+              width: AppThemeExt.of.majorScale(6),
+              height: AppThemeExt.of.majorScale(6),
+            ),
+          )
+              .setOnPressed(
+            () {
+              Get.toNamed(Routes.searchStore);
+            },
+          ).build(context),
         )
         .setHeight(
           kToolbarHeight + AppThemeExt.of.majorScale(48 / 4),

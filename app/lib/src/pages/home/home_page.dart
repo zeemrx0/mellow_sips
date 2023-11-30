@@ -36,111 +36,139 @@ class HomePage extends GetView<HomeController> {
               'https://phuclong.com.vn/uploads/post/7d8a71540edb53-dr_combongaytrannangluong40k_51022_640512thumbnail.png'),
     ];
 
-    return SafeArea(
-      child: Column(
-        children: [
-          Expanded(
-            child: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  pinned: true,
-                  floating: true,
-                  snap: false,
-                  backgroundColor: AppColors.of.whiteColor,
-                  expandedHeight: max(
-                    kToolbarHeight,
-                    MediaQuery.of(Get.context!).padding.top +
-                        AppThemeExt.of.majorScale(36 / 4),
-                  ),
-                  collapsedHeight: max(
-                    kToolbarHeight,
-                    MediaQuery.of(Get.context!).padding.top +
-                        AppThemeExt.of.majorScale(36 / 4),
-                  ),
-                  leading: const SizedBox(),
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Container(
-                      color: AppColors.of.whiteColor,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: AppThemeExt.of.majorScale(3),
-                          bottom: AppThemeExt.of.majorScale(3),
-                          left: AppThemeExt.of.majorScale(4),
-                          right: AppThemeExt.of.majorScale(4),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: AppTextFieldWidget()
-                                  .setFieldKey('search')
-                                  .setPrefixIcon(
-                                    R.svgs.icSearch.svg(
-                                      width: AppThemeExt.of.majorScale(6),
-                                      height: AppThemeExt.of.majorScale(6),
-                                    ),
-                                  )
-                                  .setHintText(R.strings.search)
-                                  .build(context),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+    return Column(
+      children: [
+        Expanded(
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                floating: true,
+                snap: false,
+                backgroundColor: AppColors.of.whiteColor,
+                expandedHeight: max(
+                  kToolbarHeight,
+                  MediaQuery.of(Get.context!).padding.top +
+                      AppThemeExt.of.majorScale((42 + 8) / 4),
                 ),
-                SliverFillRemaining(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      color: AppColors.of.backgroundColor,
-                      child: Column(
+                collapsedHeight: max(
+                  kToolbarHeight,
+                  MediaQuery.of(Get.context!).padding.top +
+                      AppThemeExt.of.majorScale((42 + 8) / 4),
+                ),
+                leading: const SizedBox(),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Container(
+                    color: AppColors.of.whiteColor,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(Get.context!).padding.top +
+                            AppThemeExt.of.majorScale(1),
+                        bottom: AppThemeExt.of.majorScale(1),
+                        left: AppThemeExt.of.majorScale(4),
+                        right: AppThemeExt.of.majorScale(4),
+                      ),
+                      child: Row(
                         children: [
-                          SizedBox(
-                            height: AppThemeExt.of.majorPaddingScale(2),
-                          ),
-                          AspectRatio(
-                            aspectRatio: 16 / 9,
-                            child: SizedBox(
-                              width: MediaQuery.of(Get.context!).size.width,
-                              child: PageView(
-                                controller: controller.pageController,
-                                children: carouselItems,
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Get.toNamed(Routes.searchStore);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppThemeExt.of.majorScale(10 / 4),
+                                ),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.of.borderColor,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(
+                                    AppThemeExt.of.majorScale(10 / 4),
+                                  ),
+                                ),
+                                height: AppThemeExt.of.majorScale(44 / 4),
+                                child: Row(children: [
+                                  R.svgs.icSearch.svg(
+                                    width: AppThemeExt.of.majorScale(6),
+                                    height: AppThemeExt.of.majorScale(6),
+                                  ),
+                                  SizedBox(
+                                    width: AppThemeExt.of.majorScale(2),
+                                  ),
+                                  Expanded(
+                                    child: AppTextBody1Widget()
+                                        .setText(R.strings.search)
+                                        .setColor(AppColors.of.subTextColor)
+                                        .setTextAlign(TextAlign.center)
+                                        .build(context),
+                                  ),
+                                  SizedBox(
+                                    width: AppThemeExt.of.majorScale(6),
+                                  ),
+                                ]),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: AppThemeExt.of.majorPaddingScale(3),
-                          ),
-                          SmoothPageIndicator(
-                            controller: controller.pageController,
-                            count: carouselItems.length,
-                            effect: WormEffect(
-                              dotHeight: AppThemeExt.of.majorScale(2),
-                              dotWidth: AppThemeExt.of.majorScale(2),
-                              dotColor: AppColors.of.disabledColor,
-                              activeDotColor: AppColors.of.primaryColor,
-                            ),
-                          ),
-                          SizedBox(
-                            height: AppThemeExt.of.majorPaddingScale(6),
-                          ),
-                          _categories(context),
-                          SizedBox(
-                            height: AppThemeExt.of.majorPaddingScale(6),
-                          ),
-                          _section(context),
-                          SizedBox(
-                            height: AppThemeExt.of.majorPaddingScale(12),
                           ),
                         ],
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+                ),
+              ),
+              SliverFillRemaining(
+                child: SingleChildScrollView(
+                  child: Container(
+                    color: AppColors.of.backgroundColor,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: AppThemeExt.of.majorPaddingScale(2),
+                        ),
+                        AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: SizedBox(
+                            width: MediaQuery.of(Get.context!).size.width,
+                            child: PageView(
+                              controller: controller.pageController,
+                              children: carouselItems,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: AppThemeExt.of.majorPaddingScale(3),
+                        ),
+                        SmoothPageIndicator(
+                          controller: controller.pageController,
+                          count: carouselItems.length,
+                          effect: WormEffect(
+                            dotHeight: AppThemeExt.of.majorScale(2),
+                            dotWidth: AppThemeExt.of.majorScale(2),
+                            dotColor: AppColors.of.disabledColor,
+                            activeDotColor: AppColors.of.primaryColor,
+                          ),
+                        ),
+                        SizedBox(
+                          height: AppThemeExt.of.majorPaddingScale(6),
+                        ),
+                        _categories(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorPaddingScale(6),
+                        ),
+                        _section(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorPaddingScale(12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 

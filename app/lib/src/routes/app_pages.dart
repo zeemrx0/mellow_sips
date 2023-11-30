@@ -3,6 +3,7 @@ import 'package:app/src/pages/cart/cart_controller.dart';
 import 'package:app/src/pages/checkout/checkout_controller.dart';
 import 'package:app/src/pages/confirmOrder/confirm_order_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
+import 'package:app/src/pages/home/searchStore/search_store_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/pages/notification/notification_controller.dart';
@@ -80,6 +81,11 @@ class AppPages {
       name: Routes.stores,
       page: () => const StoreListPage(),
       binding: StoreListBinding(),
+    ),
+    GetPage(
+      name: Routes.searchStore,
+      page: () => const SearchStorePage(),
+      binding: SearchStoreBinding(),
     ),
     GetPage(
       name: Routes.storeDetail,

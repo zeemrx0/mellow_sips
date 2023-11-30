@@ -120,7 +120,7 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                           ).toList() ??
                           []),
                       SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
+                        height: AppThemeExt.of.majorScale(14),
                       ),
                     ],
                   ),
@@ -329,10 +329,15 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
             .setColor(AppColors.of.primaryColor)
             .build(context),
         SizedBox(
-          height: AppThemeExt.of.majorScale(1),
+          height: AppThemeExt.of.majorScale(2),
         ),
+        AppTextBody2Widget()
+            .setText(controller.product.value?.description)
+            .setTextAlign(TextAlign.left)
+            .setColor(AppColors.of.subTextColor)
+            .build(context),
         SizedBox(
-          height: AppThemeExt.of.majorScale(3),
+          height: AppThemeExt.of.majorScale(4),
         ),
       ],
     );

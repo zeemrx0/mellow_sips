@@ -29,7 +29,7 @@ class ProductSectionItem extends StatelessWidget {
       child: SizedBox(
         width: AppThemeExt.of.majorScale(132 / 4),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DataImageWidget(
               borderRadius: BorderRadius.circular(
@@ -40,15 +40,13 @@ class ProductSectionItem extends StatelessWidget {
             SizedBox(
               height: AppThemeExt.of.majorScale(1),
             ),
-            Row(
-              children: [
-                AppTextBody2Widget()
-                    .setText(product.name)
-                    .setTextStyle(AppTextStyleExt.of.textBody2s)
-                    .setColor(AppColors.of.primaryColor)
-                    .build(context),
-              ],
-            ),
+            AppTextBody2Widget()
+                .setText(product.name)
+                .setTextStyle(AppTextStyleExt.of.textBody2s)
+                .setMaxLines(1)
+                .setTextOverFlow(TextOverflow.ellipsis)
+                .setColor(AppColors.of.primaryColor)
+                .build(context),
             SizedBox(
               height: AppThemeExt.of.majorScale(1 / 2),
             ),

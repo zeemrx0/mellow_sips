@@ -15,6 +15,7 @@ class Routes {
   static const verifyRegistration = '/verify-registration';
 
   static const stores = '/stores';
+  static const searchStore = '/searchStore';
   static const storeDetail = '/store-detail';
 
   static const products = '/products';
