@@ -119,6 +119,7 @@ class HomePage extends GetView<HomeController> {
               ),
               SliverFillRemaining(
                 child: SingleChildScrollView(
+                  clipBehavior: Clip.none,
                   child: Container(
                     color: AppColors.of.backgroundColor,
                     child: Column(
@@ -126,13 +127,27 @@ class HomePage extends GetView<HomeController> {
                         SizedBox(
                           height: AppThemeExt.of.majorPaddingScale(2),
                         ),
-                        AspectRatio(
-                          aspectRatio: 16 / 9,
-                          child: SizedBox(
-                            width: MediaQuery.of(Get.context!).size.width,
-                            child: PageView(
-                              controller: controller.pageController,
-                              children: carouselItems,
+                        Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: AppThemeExt.of.majorScale(4),
+                                offset: Offset(
+                                  AppThemeExt.of.majorScale(0),
+                                  AppThemeExt.of.majorScale(1),
+                                ),
+                              ),
+                            ],
+                          ),
+                          child: AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: SizedBox(
+                              width: MediaQuery.of(Get.context!).size.width,
+                              child: PageView(
+                                controller: controller.pageController,
+                                children: carouselItems,
+                              ),
                             ),
                           ),
                         ),
@@ -185,188 +200,38 @@ class HomePage extends GetView<HomeController> {
         children: [
           Row(
             children: [
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(78 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: AppThemeExt.of.majorScale(4),
-                                offset: Offset(
-                                  AppThemeExt.of.majorScale(0),
-                                  AppThemeExt.of.majorScale(1),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(28 / 4),
-                          ),
-                          child: R.svgs.icNearby.svg(
-                            width: AppThemeExt.of.majorScale(40 / 4),
-                            height: AppThemeExt.of.majorScale(44 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption1Widget()
-                              .setText(R.strings.nearby)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
+              _categoryItem(
+                context,
+                itemWidth: itemWidth,
+                icon: R.svgs.icNearby.svg(
+                  width: AppThemeExt.of.majorScale(40 / 4),
+                  height: AppThemeExt.of.majorScale(44 / 4),
                 ),
+                title: R.strings.nearby,
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(gapWidth),
               ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(78 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: AppThemeExt.of.majorScale(4),
-                                offset: Offset(
-                                  AppThemeExt.of.majorScale(0),
-                                  AppThemeExt.of.majorScale(1),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(28 / 4),
-                          ),
-                          child: R.svgs.icSalePanel.svg(
-                            width: AppThemeExt.of.majorScale(44 / 4),
-                            height: AppThemeExt.of.majorScale(44 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption1Widget()
-                              .setText(R.strings.sale)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
+              _categoryItem(
+                context,
+                itemWidth: itemWidth,
+                icon: R.svgs.icSalePanel.svg(
+                  width: AppThemeExt.of.majorScale(44 / 4),
+                  height: AppThemeExt.of.majorScale(44 / 4),
                 ),
+                title: R.strings.sale,
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(gapWidth),
               ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(78 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: AppThemeExt.of.majorScale(4),
-                                offset: Offset(
-                                  AppThemeExt.of.majorScale(0),
-                                  AppThemeExt.of.majorScale(1),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(28 / 4),
-                          ),
-                          child: R.pngs.icLike.image(
-                            width: AppThemeExt.of.majorScale(48 / 4),
-                            height: AppThemeExt.of.majorScale(48 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption1Widget()
-                              .setText(R.strings.recommended)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
+              _categoryItem(
+                context,
+                itemWidth: itemWidth,
+                icon: R.pngs.icLike.image(
+                  width: AppThemeExt.of.majorScale(48 / 4),
+                  height: AppThemeExt.of.majorScale(48 / 4),
                 ),
+                title: R.strings.recommended,
               ),
             ],
           ),
@@ -375,195 +240,111 @@ class HomePage extends GetView<HomeController> {
           ),
           Row(
             children: [
-              InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.stores);
-                },
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(78 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: AppThemeExt.of.majorScale(4),
-                                offset: Offset(
-                                  AppThemeExt.of.majorScale(0),
-                                  AppThemeExt.of.majorScale(1),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(28 / 4),
-                          ),
-                          child: R.pngs.icCoffee.image(
-                            width: AppThemeExt.of.majorScale(48 / 4),
-                            height: AppThemeExt.of.majorScale(48 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption1Widget()
-                              .setText(R.strings.coffee)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
+              _categoryItem(
+                context,
+                itemWidth: itemWidth,
+                icon: R.pngs.icCoffee.image(
+                  width: AppThemeExt.of.majorScale(48 / 4),
+                  height: AppThemeExt.of.majorScale(48 / 4),
                 ),
+                title: R.strings.coffee,
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(gapWidth),
               ),
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(78 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: AppThemeExt.of.majorScale(4),
-                                offset: Offset(
-                                  AppThemeExt.of.majorScale(0),
-                                  AppThemeExt.of.majorScale(1),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(28 / 4),
-                          ),
-                          child: R.svgs.icMilkTea.svg(
-                            width: AppThemeExt.of.majorScale(56 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption1Widget()
-                              .setText(R.strings.milkTea)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
+              _categoryItem(
+                context,
+                itemWidth: itemWidth,
+                icon: R.svgs.icMilkTea.svg(
+                  width: AppThemeExt.of.majorScale(56 / 4),
+                  height: AppThemeExt.of.majorScale(48 / 4),
                 ),
+                title: R.strings.milkTea,
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(gapWidth),
               ),
-              InkWell(
-                onTap: () {
+              _categoryItem(
+                context,
+                itemWidth: itemWidth,
+                icon: R.pngs.icShop.image(
+                  width: AppThemeExt.of.majorScale(44 / 4),
+                  height: AppThemeExt.of.majorScale(44 / 4),
+                ),
+                title: R.strings.all,
+                onPressed: () {
                   Get.toNamed(Routes.stores);
                 },
-                child: SizedBox(
-                  width: AppThemeExt.of.majorScale(itemWidth / 4),
-                  height: AppThemeExt.of.majorScale(78 / 4),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: AppThemeExt.of.majorScale(itemWidth / 4),
-                          height: AppThemeExt.of.majorScale(48 / 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.of.whiteColor,
-                            borderRadius: BorderRadius.circular(
-                              AppThemeExt.of.majorScale(1),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: AppThemeExt.of.majorScale(4),
-                                offset: Offset(
-                                  AppThemeExt.of.majorScale(0),
-                                  AppThemeExt.of.majorScale(1),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(28 / 4),
-                          ),
-                          child: R.pngs.icShop.image(
-                            width: AppThemeExt.of.majorScale(44 / 4),
-                            height: AppThemeExt.of.majorScale(44 / 4),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppThemeExt.of.majorScale(1),
-                          ),
-                          child: AppTextCaption1Widget()
-                              .setText(R.strings.all)
-                              .setColor(AppColors.of.primaryColor)
-                              .setTextStyle(AppTextStyleExt.of.textCaption1s)
-                              .build(context),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
               ),
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _categoryItem(
+    BuildContext context, {
+    required double itemWidth,
+    required Widget icon,
+    required String title,
+    Function()? onPressed,
+  }) {
+    return InkWell(
+      onTap: () {
+        onPressed?.call();
+      },
+      child: SizedBox(
+        width: AppThemeExt.of.majorScale(itemWidth / 4),
+        height: AppThemeExt.of.majorScale(78 / 4),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: AppThemeExt.of.majorScale(itemWidth / 4),
+                height: AppThemeExt.of.majorScale(48 / 4),
+                decoration: BoxDecoration(
+                  color: AppColors.of.whiteColor,
+                  borderRadius: BorderRadius.circular(
+                    AppThemeExt.of.majorScale(1),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.08),
+                      blurRadius: AppThemeExt.of.majorScale(4),
+                      offset: Offset(
+                        AppThemeExt.of.majorScale(0),
+                        AppThemeExt.of.majorScale(1),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                  padding: EdgeInsets.only(
+                    bottom: AppThemeExt.of.majorScale(28 / 4),
+                  ),
+                  child: icon),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: AppThemeExt.of.majorScale(1),
+                ),
+                child: AppTextCaption1Widget()
+                    .setText(title)
+                    .setColor(AppColors.of.primaryColor)
+                    .setTextStyle(AppTextStyleExt.of.textCaption1s)
+                    .build(context),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -595,10 +376,11 @@ class HomePage extends GetView<HomeController> {
           ),
         ),
         SizedBox(
-          height: AppThemeExt.of.majorScale(2),
+          height: AppThemeExt.of.majorScale(3),
         ),
         Obx(
           () => SingleChildScrollView(
+            clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

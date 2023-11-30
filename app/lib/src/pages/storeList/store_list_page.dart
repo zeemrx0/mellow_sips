@@ -43,7 +43,9 @@ class StoreListPage extends GetView<StoreListController> {
           )
               .setOnPressed(
             () {
-              Get.toNamed(Routes.searchStore);
+              Get.toNamed(Routes.searchStore, arguments: {
+                AppConstants.navigatedFrom: Routes.stores,
+              });
             },
           ).build(context),
         )

@@ -28,7 +28,11 @@ class SearchStorePage extends GetWidget<SearchStoreController> {
                             Routes.stores,
                             (route) {
                               count++;
-                              return count == 3;
+                              return Get.arguments?[
+                                          AppConstants.navigatedFrom] ==
+                                      Routes.stores
+                                  ? count == 3
+                                  : count == 2;
                             },
                             arguments: {
                               AppConstants.keyword: item.name,
