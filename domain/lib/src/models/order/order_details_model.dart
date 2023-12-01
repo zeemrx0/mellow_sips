@@ -5,10 +5,14 @@ part of '../base_model.dart';
 class OrderDetailsModel extends BaseModel {
   final StoreModel store;
   final List<CartItemModel> cartItems;
+  final double? tempPrice;
+  final double? finalPrice;
 
   OrderDetailsModel({
     required this.store,
     required this.cartItems,
+    this.tempPrice,
+    this.finalPrice,
   });
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
