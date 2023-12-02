@@ -1,6 +1,6 @@
 part of './checkout_controller.dart';
 
-class CheckoutPage extends GetView<CheckoutController> {
+class CheckoutPage extends GetWidget<CheckoutController> {
   const CheckoutPage({super.key});
 
   @override
@@ -87,48 +87,6 @@ class CheckoutPage extends GetView<CheckoutController> {
                             .build(context),
                       ],
                     ),
-                    if (controller.businessVoucher.value != null)
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: AppThemeExt.of.majorScale(2),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AppTextBody2Widget()
-                                  .setText(R.strings.storeVoucher)
-                                  .setTextStyle(AppTextStyleExt.of.textBody2s)
-                                  .build(context),
-                              AppTextBody2Widget()
-                                  .setText(
-                                      '-${NumberExt.withSeparator(controller.businessVoucher.value!.discountAmount)}đ')
-                                  .build(context),
-                            ],
-                          ),
-                        ],
-                      ),
-                    if (controller.systemVoucher.value != null)
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: AppThemeExt.of.majorScale(2),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AppTextBody2Widget()
-                                  .setText(R.strings.mellowSipsVoucher)
-                                  .setTextStyle(AppTextStyleExt.of.textBody2s)
-                                  .build(context),
-                              AppTextBody2Widget()
-                                  .setText(
-                                      '-${NumberExt.withSeparator(controller.systemVoucher.value!.discountAmount)}đ')
-                                  .build(context),
-                            ],
-                          ),
-                        ],
-                      ),
                   ],
                 ),
               ),
@@ -185,13 +143,29 @@ class CheckoutPage extends GetView<CheckoutController> {
                                 .build(context),
                           ],
                         ),
-                        R.svgs.icChevronRight.svg(
-                          width: AppThemeExt.of.majorScale(4),
-                          height: AppThemeExt.of.majorScale(4),
-                          colorFilter: ColorFilter.mode(
-                            AppColors.of.subTextColor,
-                            BlendMode.srcIn,
-                          ),
+                        Row(
+                          children: [
+                            Obx(
+                              () => controller.businessVoucher.value == null
+                                  ? const SizedBox()
+                                  : AppTextBody2Widget()
+                                      .setText(
+                                          '-${NumberExt.vndDisplay(controller.businessVoucher.value!.discountAmount)}')
+                                      .setColor(AppColors.of.primaryColor)
+                                      .build(context),
+                            ),
+                            SizedBox(
+                              width: AppThemeExt.of.majorScale(1),
+                            ),
+                            R.svgs.icChevronRight.svg(
+                              width: AppThemeExt.of.majorScale(4),
+                              height: AppThemeExt.of.majorScale(4),
+                              colorFilter: ColorFilter.mode(
+                                AppColors.of.subTextColor,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -244,13 +218,29 @@ class CheckoutPage extends GetView<CheckoutController> {
                                 .build(context),
                           ],
                         ),
-                        R.svgs.icChevronRight.svg(
-                          width: AppThemeExt.of.majorScale(4),
-                          height: AppThemeExt.of.majorScale(4),
-                          colorFilter: ColorFilter.mode(
-                            AppColors.of.subTextColor,
-                            BlendMode.srcIn,
-                          ),
+                        Row(
+                          children: [
+                            Obx(
+                              () => controller.systemVoucher.value == null
+                                  ? const SizedBox()
+                                  : AppTextBody2Widget()
+                                      .setText(
+                                          '-${NumberExt.vndDisplay(controller.systemVoucher.value!.discountAmount)}')
+                                      .setColor(AppColors.of.primaryColor)
+                                      .build(context),
+                            ),
+                            SizedBox(
+                              width: AppThemeExt.of.majorScale(1),
+                            ),
+                            R.svgs.icChevronRight.svg(
+                              width: AppThemeExt.of.majorScale(4),
+                              height: AppThemeExt.of.majorScale(4),
+                              colorFilter: ColorFilter.mode(
+                                AppColors.of.subTextColor,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ],
                         )
                       ],
                     ),

@@ -115,8 +115,9 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             child: Row(
               children: [
                 InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.carts);
+                  onTap: () async {
+                    await Get.toNamed(Routes.carts);
+                    controller.getNumberOfCartItems();
                   },
                   child: Container(
                     height: AppThemeExt.of.majorScale(42 / 4),

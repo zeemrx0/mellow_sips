@@ -102,7 +102,7 @@ class StoreDetailController extends GetxController {
       _isStoreMenuLoad.value = true;
 
       if (_isStoreDetailLoad.value) {
-        if (Get.arguments[AppConstants.action] ==
+        if (Get.arguments?[AppConstants.action] ==
             AppConstants.navigateToProduct) {
           Get.toNamed(
             Routes.productDetail,

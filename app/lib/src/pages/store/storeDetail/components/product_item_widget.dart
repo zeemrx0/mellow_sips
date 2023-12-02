@@ -67,6 +67,8 @@ class FoodItemWidget extends StatelessWidget {
                     children: [
                       AppTextBody1Widget()
                           .setText(name)
+                          .setMaxLines(1)
+                          .setTextOverFlow(TextOverflow.ellipsis)
                           .setTextStyle(AppTextStyleExt.of.textBody1s)
                           .build(context),
                       SizedBox(
@@ -74,6 +76,8 @@ class FoodItemWidget extends StatelessWidget {
                       ),
                       AppTextBody2Widget()
                           .setText(description)
+                          .setMaxLines(1)
+                          .setTextOverFlow(TextOverflow.ellipsis)
                           .setColor(AppColors.of.subTextColor)
                           .build(context),
                     ],

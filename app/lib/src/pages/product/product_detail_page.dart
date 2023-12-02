@@ -1,6 +1,6 @@
 part of './product_detail_controller.dart';
 
-class ProductDetailPage extends GetView<ProductDetailController> {
+class ProductDetailPage extends GetWidget<ProductDetailController> {
   const ProductDetailPage({super.key});
 
   @override
@@ -25,107 +25,109 @@ class ProductDetailPage extends GetView<ProductDetailController> {
             imageData: controller.product.value?.coverImageData,
           ),
         ),
-        CustomScrollView(
-          slivers: [
+        ExtendedNestedScrollView(
+          onlyOneScrollInBody: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverLayoutBuilder(
-              builder: (context, constraints) {
-                return _sliverAppBar(context, constraints);
-              },
+              builder: (context, constraints) =>
+                  _sliverAppBar(context, constraints),
             ),
-            SliverFillRemaining(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.of.whiteColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(
-                      AppThemeExt.of.majorScale(6),
-                    ),
-                    topRight: Radius.circular(
-                      AppThemeExt.of.majorScale(6),
-                    ),
-                  ),
+          ],
+          body: Container(
+            decoration: BoxDecoration(
+              color: AppColors.of.whiteColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  AppThemeExt.of.majorScale(6),
                 ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppThemeExt.of.majorPaddingScale(4),
-                  vertical: AppThemeExt.of.majorPaddingScale(5),
+                topRight: Radius.circular(
+                  AppThemeExt.of.majorScale(6),
                 ),
+              ),
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppThemeExt.of.majorPaddingScale(4),
+              vertical: AppThemeExt.of.majorPaddingScale(5),
+            ),
+            child: SingleChildScrollView(
+              child: FormBuilder(
+                key: controller.formKey.value,
+                initialValue: controller.formInitialValue.value,
                 child: Obx(
-                  () => FormBuilder(
-                    key: controller.formKey.value,
-                    initialValue: controller.formInitialValue.value,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        _generalInfo(context),
-                        SizedBox(
-                          height: AppThemeExt.of.majorScale(3),
-                        ),
-                        ...(controller.product.value?.productOptionSections!
-                                .map(
-                              (section) {
-                                return Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        AppTextHeading6Widget()
-                                            .setText(section.name)
-                                            .setTextAlign(TextAlign.left)
-                                            .build(context),
-                                        SizedBox(
-                                          width: AppThemeExt.of.majorScale(2),
-                                        ),
-                                        _productOptionSectionHelpText(
-                                          context,
-                                          section,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: AppThemeExt.of.majorScale(2),
-                                    ),
-                                    if (section.productAddons != null &&
-                                        section.maxAllowedChoices > 1)
-                                      CheckboxButtonGroupWidget(
-                                        fieldKey: section.id,
-                                        addons: section.productAddons!,
-                                        initialValue: controller
-                                            .formInitialValue.value[section.id],
-                                        maxAllowedChoices:
-                                            section.maxAllowedChoices,
-                                        onChanged: () {
-                                          controller.formKey.value.currentState
-                                              ?.save();
-                                        },
+                  () => Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _generalInfo(context),
+                      SizedBox(
+                        height: AppThemeExt.of.majorScale(3),
+                      ),
+                      ...(controller.product.value?.productOptionSections!.map(
+                            (section) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Row(
+                                    children: [
+                                      AppTextHeading6Widget()
+                                          .setText(section.name)
+                                          .setColor(AppColors.of.primaryColor)
+                                          .setTextAlign(TextAlign.left)
+                                          .build(context),
+                                      SizedBox(
+                                        width: AppThemeExt.of.majorScale(2),
                                       ),
-                                    if (section.productAddons != null &&
-                                        section.maxAllowedChoices <= 1)
-                                      RadioButtonGroupWidget(
-                                        fieldKey: section.id,
-                                        addons: section.productAddons!,
-                                        initialValue: controller
-                                            .formInitialValue.value[section.id],
-                                        onChanged: () {
-                                          controller.formKey.value.currentState
-                                              ?.save();
-                                        },
+                                      _productOptionSectionHelpText(
+                                        context,
+                                        section,
                                       ),
-                                  ],
-                                );
-                              },
-                            ).toList() ??
-                            []),
-                        SizedBox(
-                          height: AppThemeExt.of.majorScale(3),
-                        ),
-                      ],
-                    ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: AppThemeExt.of.majorScale(2),
+                                  ),
+                                  if (section.productAddons != null &&
+                                      section.maxAllowedChoices > 1)
+                                    CheckboxButtonGroupWidget(
+                                      fieldKey: section.id,
+                                      addons: section.productAddons!,
+                                      initialValue: controller
+                                          .formInitialValue.value[section.id],
+                                      maxAllowedChoices:
+                                          section.maxAllowedChoices,
+                                      onChanged: () {
+                                        controller.formKey.value.currentState
+                                            ?.save();
+                                      },
+                                    ),
+                                  if (section.productAddons != null &&
+                                      section.maxAllowedChoices <= 1)
+                                    RadioButtonGroupWidget(
+                                      fieldKey: section.id,
+                                      addons: section.productAddons!,
+                                      initialValue: controller
+                                          .formInitialValue.value[section.id],
+                                      onChanged: () {
+                                        controller.formKey.value.currentState
+                                            ?.save();
+                                      },
+                                    ),
+                                  SizedBox(
+                                    height: AppThemeExt.of.majorScale(6),
+                                  ),
+                                ],
+                              );
+                            },
+                          ).toList() ??
+                          []),
+                      SizedBox(
+                        height: AppThemeExt.of.majorScale(14),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-          ],
+          ),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -327,10 +329,15 @@ class ProductDetailPage extends GetView<ProductDetailController> {
             .setColor(AppColors.of.primaryColor)
             .build(context),
         SizedBox(
-          height: AppThemeExt.of.majorScale(1),
+          height: AppThemeExt.of.majorScale(2),
         ),
+        AppTextBody2Widget()
+            .setText(controller.product.value?.description)
+            .setTextAlign(TextAlign.left)
+            .setColor(AppColors.of.subTextColor)
+            .build(context),
         SizedBox(
-          height: AppThemeExt.of.majorScale(3),
+          height: AppThemeExt.of.majorScale(4),
         ),
       ],
     );

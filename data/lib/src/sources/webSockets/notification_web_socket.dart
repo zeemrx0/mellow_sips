@@ -45,10 +45,10 @@ class NotificationWebSocket {
             );
           },
           onStompError: (p0) {
-            throw Exception(p0);
+            // throw Exception(p0);
           },
           onWebSocketError: (p0) {
-            throw Exception(p0);
+            // throw Exception(p0);
           },
         ),
       );

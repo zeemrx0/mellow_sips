@@ -62,7 +62,7 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                           .build(context),
                       AppTextBody2Widget()
                           .setText(
-                              '${NumberExt.withSeparator(controller.order.value?.finalPrice ?? 0)}đ')
+                              '${NumberExt.withSeparator(controller.order.value?.details.tempPrice ?? 0)}đ')
                           .build(context),
                     ],
                   ),
@@ -108,6 +108,22 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                         ),
                       ],
                     ),
+                  SizedBox(
+                    height: AppThemeExt.of.majorScale(2),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppTextBody2Widget()
+                          .setText(R.strings.totalPrice)
+                          .setTextStyle(AppTextStyleExt.of.textBody2s)
+                          .build(context),
+                      AppTextBody2Widget()
+                          .setText(
+                              '${NumberExt.withSeparator(controller.order.value?.finalPrice ?? 0)}đ')
+                          .build(context),
+                    ],
+                  ),
                 ],
               ),
               Padding(

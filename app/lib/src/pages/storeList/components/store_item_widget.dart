@@ -73,6 +73,8 @@ class StoreItemWidget extends StatelessWidget {
                         AppTextBody2Widget()
                             .setText(store.name)
                             .setTextStyle(AppTextStyleExt.of.textBody2s)
+                            .setMaxLines(1)
+                            .setTextOverFlow(TextOverflow.ellipsis)
                             .build(context),
                         SizedBox(
                           height: AppThemeExt.of.majorScale(1),
@@ -80,6 +82,8 @@ class StoreItemWidget extends StatelessWidget {
                         AppTextCaption1Widget()
                             .setText(store.address)
                             .setColor(AppColors.of.grayColor[700])
+                            .setMaxLines(2)
+                            .setTextOverFlow(TextOverflow.ellipsis)
                             .build(context),
                       ],
                     ),

@@ -49,7 +49,7 @@ class RadioButtonGroupWidget extends StatelessWidget {
                       },
                       child: Container(
                         color: addon.isSoldOut
-                            ? AppColors.of.grayColor[300]
+                            ? AppColors.of.grayColor[200]
                             : AppColors.of.whiteColor,
                         child: Padding(
                           padding: EdgeInsets.only(

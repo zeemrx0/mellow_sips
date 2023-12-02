@@ -6,7 +6,7 @@ class NotificationRaw extends BaseRaw {
   final String id;
   final String key;
   final String subject;
-  final Map<String, dynamic> metadata;
+  final Map<String, dynamic>? metadata;
   final bool isSeen;
 
   NotificationRaw({

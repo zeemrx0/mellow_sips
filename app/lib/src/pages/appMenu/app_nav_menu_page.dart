@@ -5,6 +5,8 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.checkIsLoggedIn();
+
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
@@ -22,52 +24,59 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
 
   Widget _body(BuildContext context) {
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // InkWell(
-          //   onTap: () {
-          //   },
-          //   child: Padding(
-          //     padding: EdgeInsets.symmetric(
-          //       horizontal: AppThemeExt.of.majorPaddingScale(4),
-          //     ),
-          //     child: Container(
-          //       padding: EdgeInsets.symmetric(
-          //         horizontal: AppThemeExt.of.majorPaddingScale(2),
-          //         vertical: AppThemeExt.of.majorPaddingScale(4),
-          //       ),
-          //       decoration: BoxDecoration(
-          //         border: Border(
-          //           bottom: BorderSide(
-          //             color: AppColors.of.dividerColor,
-          //             width: 1,
-          //           ),
-          //         ),
-          //       ),
-          //       child: Row(
-          //         children: [
-          //           AppTextBody2Widget()
-          //               .setText(R.strings.orders)
-          //               .build(context),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: AppThemeExt.of.majorPaddingScale(4),
-              left: AppThemeExt.of.majorPaddingScale(4),
-              right: AppThemeExt.of.majorPaddingScale(4),
+      child: Obx(
+        () => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            InkWell(
+              onTap: () {
+                if (!controller.isLoggedIn.value) {
+                  Get.toNamed(Routes.welcome);
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppThemeExt.of.majorPaddingScale(4),
+                ),
+                child: Row(
+                  children: [
+                    R.pngs.profileAvatar.image(
+                      width: AppThemeExt.of.majorScale(20),
+                      height: AppThemeExt.of.majorScale(20),
+                    ),
+                    SizedBox(
+                      width: AppThemeExt.of.majorPaddingScale(4),
+                    ),
+                    AppTextHeading4Widget()
+                        .setText(
+                          controller.isLoggedIn.value
+                              ? 'Huỳnh Quốc Duy'
+                              : R.strings.logIn,
+                        )
+                        .build(context),
+                  ],
+                ),
+              ),
             ),
-            child: AppFilledButtonWidget()
-                .setButtonText(R.strings.logOut)
-                .setOnPressed(() {
-              controller.logOut();
-            }).build(context),
-          ),
-        ],
+            SizedBox(
+              height: AppThemeExt.of.majorScale(8),
+            ),
+            if (controller.isLoggedIn.value)
+              Padding(
+                padding: EdgeInsets.only(
+                  left: AppThemeExt.of.majorPaddingScale(4),
+                  right: AppThemeExt.of.majorPaddingScale(4),
+                ),
+                child: AppFilledButtonWidget()
+                    .setButtonText(R.strings.logOut)
+                    .setOnPressed(
+                  () {
+                    controller.logOut();
+                  },
+                ).build(context),
+              ),
+          ],
+        ),
       ),
     );
   }

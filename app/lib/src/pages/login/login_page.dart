@@ -129,7 +129,7 @@ class LoginPage extends GetView<LoginController> {
                                   bottom: AppThemeExt.of.majorScale(3),
                                 ),
                                 child: AppFilledButtonWidget()
-                                    .setButtonText(R.strings.login)
+                                    .setButtonText(R.strings.logIn)
                                     .setOnPressed(() {
                                   controller.login();
                                 }).build(context),
@@ -191,7 +191,7 @@ class LoginPage extends GetView<LoginController> {
         SizedBox(
           height: AppThemeExt.of.majorScale(1),
         ),
-        AppTextHeading3Widget().setText(R.strings.login).build(context),
+        AppTextHeading3Widget().setText(R.strings.logIn).build(context),
       ],
     );
   }

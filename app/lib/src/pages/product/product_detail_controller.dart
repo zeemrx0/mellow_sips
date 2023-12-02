@@ -12,6 +12,7 @@ import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/product/components/checkbox_button_group.dart';
 import 'package:app/src/pages/product/components/radio_button_group_widget.dart';
 import 'package:domain/domain.dart';
+import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -143,13 +144,19 @@ class ProductDetailController extends GetxController {
         in product.value?.productOptionSections ?? []) {
       final options = formKey.value.currentState?.fields[section.id]?.value;
 
-      if (section.isRequired && options == null) {
-        errorString = '${R.strings.pleaseSelect} 1 ${section.name}';
+      if (options is String?) {
+        if (options == null || options.isEmpty) {
+          errorString = '${R.strings.pleaseSelect} ${section.name}';
+        }
       }
-      if (options is List<String> &&
-          options.length > section.maxAllowedChoices) {
-        errorString =
-            '${R.strings.pleaseSelectMaximum} ${section.maxAllowedChoices} ${section.name}';
+
+      if (options is List<String>?) {
+        if (options == null || options.isEmpty) {
+          errorString = '${R.strings.pleaseSelect} ${section.name}';
+        } else if (options.length > section.maxAllowedChoices) {
+          errorString =
+              '${R.strings.pleaseSelectMaximum} ${section.maxAllowedChoices} ${section.name}';
+        }
       }
 
       if (errorString != null) return errorString;
@@ -184,7 +191,7 @@ class ProductDetailController extends GetxController {
             .buildDialog(Get.context!)
             .show();
       }
-      
+
       return;
     }
 

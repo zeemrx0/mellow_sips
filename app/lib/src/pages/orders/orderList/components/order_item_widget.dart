@@ -43,7 +43,7 @@ class OrderItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     AppTextBody1Widget()
-                        .setText(NumberExt.withSeparator(order.finalPrice))
+                        .setText(NumberExt.withSeparator(order.finalPrice ?? 0))
                         .setColor(AppColors.of.subTextColor)
                         .build(context),
                     Container(

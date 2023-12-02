@@ -35,7 +35,8 @@ class OrderCompletedAlertPage extends GetView<OrderCompletedAlertController> {
                 height: AppThemeExt.of.majorScale(6),
               ),
               AppTextBody1Widget()
-                  .setText(controller.order.value?.details.store.name ?? R.strings.orderDetails)
+                  .setText(controller.order.value?.details.store.name ??
+                      R.strings.orderDetails)
                   .setTextStyle(AppTextStyleExt.of.textBody2s)
                   .build(context),
               OrderCartItemList(
@@ -100,6 +101,22 @@ class OrderCompletedAlertPage extends GetView<OrderCompletedAlertController> {
                     ),
                   ],
                 ),
+              SizedBox(
+                height: AppThemeExt.of.majorScale(4),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppTextBody2Widget()
+                      .setText(R.strings.totalPrice)
+                      .setTextStyle(AppTextStyleExt.of.textBody2s)
+                      .build(context),
+                  AppTextBody2Widget()
+                      .setText(
+                          '${NumberExt.withSeparator(controller.order.value?.finalPrice ?? 0)}đ')
+                      .build(context),
+                ],
+              ),
               SizedBox(
                 height: AppThemeExt.of.majorScale(6),
               ),

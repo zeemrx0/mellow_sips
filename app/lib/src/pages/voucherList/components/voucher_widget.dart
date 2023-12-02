@@ -83,7 +83,7 @@ class VoucherWidget extends StatelessWidget {
                         ),
                         AppTextCaption1Widget()
                             .setText(
-                                '${R.strings.minimum} ${NumberExt.withSeparator(voucher.minOrderAmount!)}đ')
+                                '${R.strings.minimumOrder} ${NumberExt.vndDisplay(voucher.minOrderAmount!)}')
                             .build(context),
                       ],
                     )
@@ -105,15 +105,20 @@ class VoucherWidget extends StatelessWidget {
   }
 
   Widget _valueText(BuildContext context) {
+    String text = '';
     if (voucher.discountType == AppConstants.cash) {
-      return AppTextBody1Widget()
-          .setText(
-              '${R.strings.discount} ${NumberExt.withSeparator(voucher.value)}đ')
-          .setTextStyle(AppTextStyleExt.of.textBody1s)
-          .build(context);
+      text = '${R.strings.discount} ${NumberExt.vndDisplay(voucher.value)}';
+    } else {
+      text = '${R.strings.discount} ${voucher.value}%';
     }
+
+    if (voucher.maxDiscountAmount != null) {
+      text +=
+          ' ${R.strings.maximum} ${NumberExt.vndDisplay(voucher.maxDiscountAmount!)}';
+    }
+
     return AppTextBody1Widget()
-        .setText('${R.strings.discount} ${voucher.value}%')
+        .setText(text)
         .setTextStyle(AppTextStyleExt.of.textBody1s)
         .build(context);
   }

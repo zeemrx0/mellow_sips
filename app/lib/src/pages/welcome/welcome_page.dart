@@ -5,8 +5,6 @@ class WelcomePage extends GetView<WelcomeController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.checkIsLoggedIn();
-    
     return AppMainPageWidget().setBody(_body(context)).build(context);
   }
 
@@ -36,7 +34,7 @@ class WelcomePage extends GetView<WelcomeController> {
             height: AppThemeExt.of.majorScale(8),
           ),
           AppFilledButtonWidget()
-              .setButtonText(R.strings.login)
+              .setButtonText(R.strings.logIn)
               .setOnPressed(() {
             LoginPage.open();
           }).build(context),

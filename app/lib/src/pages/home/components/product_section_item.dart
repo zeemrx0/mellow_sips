@@ -26,37 +26,64 @@ class ProductSectionItem extends StatelessWidget {
           },
         );
       },
-      child: SizedBox(
+      child: Container(
         width: AppThemeExt.of.majorScale(132 / 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            AppThemeExt.of.majorScale(2),
+          ),
+          color: AppColors.of.whiteColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: AppThemeExt.of.majorScale(4),
+              offset: Offset(
+                0,
+                AppThemeExt.of.majorScale(1),
+              ),
+            ),
+          ],
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DataImageWidget(
-              borderRadius: BorderRadius.circular(
-                AppThemeExt.of.majorScale(2),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  AppThemeExt.of.majorScale(2),
+                ),
+                topRight: Radius.circular(
+                  AppThemeExt.of.majorScale(2),
+                ),
               ),
               imageData: product.coverImageData,
             ),
-            SizedBox(
-              height: AppThemeExt.of.majorScale(1),
-            ),
-            Row(
-              children: [
-                AppTextBody2Widget()
-                    .setText(product.name)
-                    .setTextStyle(AppTextStyleExt.of.textBody2s)
-                    .setColor(AppColors.of.primaryColor)
-                    .build(context),
-              ],
-            ),
-            SizedBox(
-              height: AppThemeExt.of.majorScale(1 / 2),
-            ),
-            AppTextCaption1Widget()
-                .setText(NumberExt.withSeparator(product.price!))
-                .setColor(AppColors.of.subTextColor)
-                .setTextOverFlow(TextOverflow.ellipsis)
-                .build(context),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppThemeExt.of.majorScale(2),
+                vertical: AppThemeExt.of.majorScale(2),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppTextBody2Widget()
+                      .setText(product.name)
+                      .setTextStyle(AppTextStyleExt.of.textBody2s)
+                      .setMaxLines(1)
+                      .setTextOverFlow(TextOverflow.ellipsis)
+                      .setColor(AppColors.of.primaryColor)
+                      .build(context),
+                  SizedBox(
+                    height: AppThemeExt.of.majorScale(1 / 2),
+                  ),
+                  AppTextCaption1Widget()
+                      .setText(NumberExt.withSeparator(product.price!))
+                      .setColor(AppColors.of.subTextColor)
+                      .setTextOverFlow(TextOverflow.ellipsis)
+                      .build(context),
+                ],
+              ),
+            )
           ],
         ),
       ),

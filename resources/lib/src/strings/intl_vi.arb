@@ -43,7 +43,7 @@
 	"logInWithFacebook": "Đăng nhập với Facebook",
 	"logInWithGoogle": "Đăng nhập với Google",
 	"logOut": "Đăng xuất",
-	"login": "Đăng nhập",
+	"logIn": "Đăng nhập",
 	"markAllAsRead": "Đánh dấu tất cả đã đọc",
 	"maximum": "Tối đa",
 	"mellowSips": "MellowSips",
@@ -117,5 +117,7 @@
 	"yourName": "Tên của bạn",
 	"yourOrderHasBeenCompleted": "Đơn hàng của bạn đã hoàn thành",
 	"yourOrderIsBeingPrepared": "Đơn hàng của bạn đang được chuẩn bị",
-	"zaloPay": "ZaloPay"
+	"zaloPay": "ZaloPay",
+  "all": "Tất cả",
+  "coffee": "Cà phê"
 }

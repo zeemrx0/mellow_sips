@@ -5,7 +5,8 @@ part of '../base_model.dart';
 class OrderModel extends BaseModel {
   final String id;
   final String status;
-  final int finalPrice;
+  final int? tempPrice;
+  final int? finalPrice;
   final OrderDetailsModel details;
   final OrderTransactionModel? latestTransaction;
   final List<VoucherOrderModel>? voucherOrders;
@@ -13,6 +14,7 @@ class OrderModel extends BaseModel {
   OrderModel({
     required this.id,
     required this.status,
+    required this.tempPrice,
     required this.finalPrice,
     required this.details,
     required this.latestTransaction,
