@@ -43,6 +43,8 @@ class ReviewRemoteDataSourceImpl extends ReviewRemoteDataSource {
         clientRequest: ClientRequest(
           url: '${ApiProvider.stores}/${params['storeId']}/reviews/search',
           method: HttpMethod.post,
+          requestType: RequestType.paginationList,
+          body: params,
         ),
       );
 

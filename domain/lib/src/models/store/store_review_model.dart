@@ -4,11 +4,13 @@ part of '../base_model.dart';
 @CopyWith()
 class StoreReviewModel extends BaseModel {
   final String id;
+  final String? createdBy;
   final int point;
   final String? comment;
 
   StoreReviewModel({
     required this.id,
+    required this.createdBy,
     required this.point,
     required this.comment,
   });

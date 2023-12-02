@@ -9,8 +9,8 @@ class StoreRaw extends BaseRaw {
   final String? type;
   final bool? hasPromotion;
   final bool? isOpen;
-  final double? rating;
   final String? address;
+  final ReviewStatisticRaw? reviewStatistic;
 
   StoreRaw({
     required this.id,
@@ -19,8 +19,8 @@ class StoreRaw extends BaseRaw {
     required this.type,
     required this.hasPromotion,
     required this.isOpen,
-    required this.rating,
     required this.address,
+    required this.reviewStatistic,
   });
 
   @override
@@ -32,8 +32,8 @@ class StoreRaw extends BaseRaw {
       type: type,
       hasPromotion: hasPromotion,
       isWorking: isOpen,
-      rating: rating,
       address: address,
+      reviewStatistic: reviewStatistic?.toModel() as ReviewStatisticModel?,
     );
   }
 

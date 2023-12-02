@@ -16,6 +16,7 @@ part './store/menu_raw.dart';
 part './store/product_option_section_raw.dart';
 part './store/product_addon_raw.dart';
 part './store/store_review_raw.dart';
+part './store/review_statistic_raw.dart';
 
 part './cart/cart_raw.dart';
 part './cart/cart_item_raw.dart';

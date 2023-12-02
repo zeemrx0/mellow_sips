@@ -118,8 +118,11 @@
 	"yourOrderHasBeenCompleted": "Đơn hàng của bạn đã hoàn thành",
 	"yourOrderIsBeingPrepared": "Đơn hàng của bạn đang được chuẩn bị",
 	"zaloPay": "ZaloPay",
-  "all": "Tất cả",
-  "coffee": "Cà phê",
-  "howDoYouRateThisOrder": "Bạn đánh giá đơn hàng này thế nào?",
-  "sendReview": "Gửi đánh giá"
+	"all": "Tất cả",
+	"coffee": "Cà phê",
+	"howDoYouRateThisOrder": "Bạn đánh giá đơn hàng này thế nào?",
+	"sendReview": "Gửi đánh giá",
+	"noReviewsYet": "Chưa có đánh giá nào",
+	"viewReviews": "Xem đánh giá",
+  "reviews": "Đánh giá"
 }

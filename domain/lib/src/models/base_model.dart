@@ -18,6 +18,7 @@ part './store/menu_model.dart';
 part './store/product_option_section_model.dart';
 part './store/product_addon_model.dart';
 part './store/store_review_model.dart';
+part './store/review_statistic_model.dart';
 
 part './cart/cart_model.dart';
 part './cart/cart_item_model.dart';

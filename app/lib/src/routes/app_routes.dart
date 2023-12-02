@@ -32,4 +32,6 @@ class Routes {
   static const orderCompletedAlert = '/orderCompletedAlert';
 
   static const notifications = '/notifications';
+
+  static const storeReviews = '/store-review';
 }

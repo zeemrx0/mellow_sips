@@ -4,11 +4,13 @@ part of '../base_raw.dart';
 @CopyWith()
 class StoreReviewRaw extends BaseRaw {
   final String id;
+  final String? createdBy;
   final int point;
   final String? comment;
 
   StoreReviewRaw({
     required this.id,
+    required this.createdBy,
     required this.point,
     required this.comment,
   });
@@ -22,6 +24,7 @@ class StoreReviewRaw extends BaseRaw {
   BaseModel toModel() {
     return StoreReviewModel(
       id: id,
+      createdBy: createdBy,
       point: point,
       comment: comment,
     );

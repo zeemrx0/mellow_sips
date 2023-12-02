@@ -73,5 +73,8 @@ class DomainProvider {
     Get.put<CreateStoreReviewUseCase>(
       CreateStoreReviewUseCaseImpl(Get.find()),
     );
+    Get.put<SearchStoreReviewsUseCase>(
+      SearchStoreReviewsUseCaseImpl(Get.find()),
+    );
   }
 }

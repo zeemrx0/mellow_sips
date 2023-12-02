@@ -39,5 +39,6 @@ part './notification/search_notifications_param.dart';
 part './notification/mark_notification_as_read_param.dart';
 
 part './review/create_store_review_param.dart';
+part './review/search_store_reviews_param.dart';
 
 abstract class BaseParam {}

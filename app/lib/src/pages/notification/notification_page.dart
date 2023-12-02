@@ -1,7 +1,7 @@
 part of 'notification_controller.dart';
 
 class NotificationPage extends GetView<NotificationController> {
-  const NotificationPage({Key? key}) : super(key: key);
+  const NotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {

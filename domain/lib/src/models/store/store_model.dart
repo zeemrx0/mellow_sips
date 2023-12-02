@@ -10,8 +10,9 @@ class StoreModel extends BaseModel {
   final String? type;
   final bool? hasPromotion;
   final bool? isWorking;
-  final double? rating;
+
   final String? address;
+  final ReviewStatisticModel? reviewStatistic;
 
   StoreModel({
     required this.id,
@@ -21,8 +22,8 @@ class StoreModel extends BaseModel {
     required this.type,
     required this.hasPromotion,
     required this.isWorking,
-    required this.rating,
     required this.address,
+    required this.reviewStatistic,
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) =>

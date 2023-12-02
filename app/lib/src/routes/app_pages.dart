@@ -15,6 +15,7 @@ import 'package:app/src/pages/product/product_detail_controller.dart';
 import 'package:app/src/pages/qrScan/qr_scan_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/home/home_controller.dart';
+import 'package:app/src/pages/review/store_review_controller.dart';
 import 'package:app/src/pages/store/storeDetail/store_detail_controller.dart';
 import 'package:app/src/pages/storeList/store_list_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
@@ -147,6 +148,13 @@ class AppPages {
       name: Routes.notifications,
       page: () => const NotificationPage(),
       binding: NotificationBinding(),
+    ),
+
+    // Review
+    GetPage(
+      name: Routes.storeReviews,
+      page: () => const StoreReviewPage(),
+      binding: StoreReviewBinding(),
     ),
   ];
 }

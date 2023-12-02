@@ -92,30 +92,30 @@ class StoreItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         _rating(context),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: AppThemeExt.of.majorScale(2),
-                          ),
-                          height: AppThemeExt.of.majorScale(3 / 4),
-                          width: AppThemeExt.of.majorScale(3 / 4),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.of.grayColor[500],
-                          ),
-                        ),
-                        _distance(context),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: AppThemeExt.of.majorScale(2),
-                          ),
-                          height: AppThemeExt.of.majorScale(3 / 4),
-                          width: AppThemeExt.of.majorScale(3 / 4),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.of.grayColor[500],
-                          ),
-                        ),
-                        _type(context),
+                        // Container(
+                        //   margin: EdgeInsets.symmetric(
+                        //     horizontal: AppThemeExt.of.majorScale(2),
+                        //   ),
+                        //   height: AppThemeExt.of.majorScale(3 / 4),
+                        //   width: AppThemeExt.of.majorScale(3 / 4),
+                        //   decoration: BoxDecoration(
+                        //     shape: BoxShape.circle,
+                        //     color: AppColors.of.grayColor[500],
+                        //   ),
+                        // ),
+                        // _distance(context),
+                        // Container(
+                        //   margin: EdgeInsets.symmetric(
+                        //     horizontal: AppThemeExt.of.majorScale(2),
+                        //   ),
+                        //   height: AppThemeExt.of.majorScale(3 / 4),
+                        //   width: AppThemeExt.of.majorScale(3 / 4),
+                        //   decoration: BoxDecoration(
+                        //     shape: BoxShape.circle,
+                        //     color: AppColors.of.grayColor[500],
+                        //   ),
+                        // ),
+                        // _categories(context),
                       ],
                     ),
                   ],
@@ -173,18 +173,27 @@ class StoreItemWidget extends StatelessWidget {
           width: AppThemeExt.of.majorScale(1),
         ),
         AppTextCaption1Widget()
-            .setText(store.rating?.toString())
+            .setText(store.reviewStatistic?.averagePoint.toString())
             .build(context),
       ],
     );
   }
 
-  Widget _distance(BuildContext context) {
-    /// TODO: Implement distance calculation
-    return AppTextCaption1Widget().build(context);
-  }
+  // Widget _distance(BuildContext context) {
+  //   /// TODO: Implement distance calculation
+  //   return AppTextCaption1Widget().build(context);
+  // }
 
-  Widget _type(BuildContext context) {
-    return AppTextCaption1Widget().setText(store.type).build(context);
-  }
+  // Widget _categories(BuildContext context) {
+  //   print(store.categories);
+  //   String categories = store.categories.join(', ');
+
+  //   return AppTextCaption1Widget()
+  //       .setText(categories)
+  //       .setMaxLines(1)
+  //       .setTextOverFlow(
+  //         TextOverflow.ellipsis,
+  //       )
+  //       .build(context);
+  // }
 }
