@@ -8,6 +8,7 @@ class OrderDetailBinding implements Bindings {
         Get.find(),
         Get.find(),
         Get.find(),
+        Get.find(),
       ),
     );
   }

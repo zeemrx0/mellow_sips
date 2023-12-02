@@ -12,3 +12,4 @@ part './product/product_remote_data_source.dart';
 part './cart/cart_remote_data_source.dart';
 part './order_remote_data_source.dart';
 part './notification/notification_remote_data_source.dart';
+part './review_remote_data_source.dart';

@@ -8,3 +8,4 @@ part './product_repository.dart';
 part './cart_repository.dart';
 part './order_repository.dart';
 part './notification_repository.dart';
+part './review_repository.dart';

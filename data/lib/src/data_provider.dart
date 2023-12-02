@@ -6,6 +6,7 @@ import 'package:data/src/repositories/document_repository_impl.dart';
 import 'package:data/src/repositories/notification_repository_impl.dart';
 import 'package:data/src/repositories/order_repository_impl.dart';
 import 'package:data/src/repositories/product_repository_impl.dart';
+import 'package:data/src/repositories/review_repository_impl.dart';
 import 'package:data/src/repositories/store_repository_impl.dart';
 import 'package:data/src/repositories/test_repository_impl.dart';
 import 'package:data/src/sources/local/base_local_data_source.dart';
@@ -64,6 +65,9 @@ class _DataSourcesProvider {
     Get.lazyPut<NotificationRemoteDataSource>(
       () => NotificationRemoteDataSourceImpl(Get.find()),
     );
+    Get.lazyPut<ReviewRemoteDataSource>(
+      () => ReviewRemoteDataSourceImpl(Get.find()),
+    );
   }
 }
 
@@ -92,6 +96,9 @@ class _RepositoriesProvider {
     );
     Get.lazyPut<NotificationRepository>(
       () => NotificationRepositoryImpl(Get.find(), Get.find()),
+    );
+    Get.lazyPut<ReviewRepository>(
+      () => ReviewRepositoryImpl(Get.find()),
     );
   }
 }

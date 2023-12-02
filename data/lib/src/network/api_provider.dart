@@ -28,6 +28,8 @@ class ApiProvider {
   static const notifications = '$api/notifications';
   static const searchNotifications = '$notifications/search';
 
+  static const reviews = '$api/reviews';
+
   // Web Sockets
   static const notificationSocket = '/topic/notifications';
   static const userNotificationSocket = '/user/topic/notifications';

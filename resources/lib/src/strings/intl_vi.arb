@@ -119,5 +119,7 @@
 	"yourOrderIsBeingPrepared": "Đơn hàng của bạn đang được chuẩn bị",
 	"zaloPay": "ZaloPay",
   "all": "Tất cả",
-  "coffee": "Cà phê"
+  "coffee": "Cà phê",
+  "howDoYouRateThisOrder": "Bạn đánh giá đơn hàng này thế nào?",
+  "sendReview": "Gửi đánh giá"
 }

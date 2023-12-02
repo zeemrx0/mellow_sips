@@ -124,6 +124,10 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                           .build(context),
                     ],
                   ),
+                  SizedBox(
+                    height: AppThemeExt.of.majorScale(6),
+                  ),
+                  _reviewSection(context),
                 ],
               ),
               Padding(
@@ -172,5 +176,142 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
         .setBackgroundColor(AppColors.of.whiteColor)
         .setCanBack(true)
         .build(context);
+  }
+
+  Widget _reviewSection(BuildContext context) {
+    if (controller.order.value?.status != AppOrderStatus.received) {
+      return const SizedBox();
+    }
+
+    return Padding(
+      padding: EdgeInsets.only(
+        top: AppThemeExt.of.majorScale(4),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          AppTextHeading5Widget()
+              .setText(R.strings.howDoYouRateThisOrder)
+              .setTextAlign(TextAlign.center)
+              .build(context),
+          SizedBox(
+            height: AppThemeExt.of.majorScale(2),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppIconButtonWidget()
+                  .setPrefixIcon(
+                (controller.stars.value ?? -1) >= 1
+                    ? R.svgs.icStarYellow.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    )
+                    : R.svgs.icStarOutline.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    ),
+              )
+                  .setOnPressed(
+                () {
+                  controller.stars.value = 1;
+                },
+              ).build(context),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(2),
+              ),
+              AppIconButtonWidget()
+                  .setPrefixIcon(
+                (controller.stars.value ?? -1) >= 2
+                    ? R.svgs.icStarYellow.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    )
+                    : R.svgs.icStarOutline.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    ),
+              )
+                  .setOnPressed(
+                () {
+                  controller.stars.value = 2;
+                },
+              ).build(context),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(2),
+              ),
+              AppIconButtonWidget()
+                  .setPrefixIcon(
+                (controller.stars.value ?? -1) >= 3
+                    ? R.svgs.icStarYellow.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    )
+                    : R.svgs.icStarOutline.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    ),
+              )
+                  .setOnPressed(
+                () {
+                  controller.stars.value = 3;
+                },
+              ).build(context),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(2),
+              ),
+              AppIconButtonWidget()
+                  .setPrefixIcon(
+                (controller.stars.value ?? -1) >= 4
+                    ? R.svgs.icStarYellow.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    )
+                    : R.svgs.icStarOutline.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    ),
+              )
+                  .setOnPressed(
+                () {
+                  controller.stars.value = 4;
+                },
+              ).build(context),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(2),
+              ),
+              AppIconButtonWidget()
+                  .setPrefixIcon(
+                (controller.stars.value ?? -1) >= 5
+                    ? R.svgs.icStarYellow.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    )
+                    : R.svgs.icStarOutline.svg(
+                      width: AppThemeExt.of.majorScale(8),
+                      height: AppThemeExt.of.majorScale(8),
+                    ),
+              )
+                  .setOnPressed(
+                () {
+                  controller.stars.value = 5;
+                },
+              ).build(context),
+            ],
+          ),
+          SizedBox(
+            height: AppThemeExt.of.majorScale(4),
+          ),
+          AppFilledButtonWidget()
+              .setButtonText(R.strings.sendReview)
+              .setOnPressed(
+                () {
+                  controller.sendReview();
+                },
+              )
+              .build(context),
+        ],
+      ),
+    );
   }
 }

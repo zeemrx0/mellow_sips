@@ -22,6 +22,7 @@ class OrderDetailController extends GetxController {
   final GetOrderDetailUseCase _getOrderDetailUseCase;
   final UpdateOrderStatusUseCase _updateOrderStatusUseCase;
   final GetTransactionByOrderIdUseCase _getTransactionByOrderIdUseCase;
+  final CreateStoreReviewUseCase _createStoreReviewUseCase;
 
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
@@ -30,11 +31,13 @@ class OrderDetailController extends GetxController {
     this._getOrderDetailUseCase,
     this._updateOrderStatusUseCase,
     this._getTransactionByOrderIdUseCase,
+    this._createStoreReviewUseCase,
   );
 
   Rxn<OrderModel> order = Rxn<OrderModel>();
   Rxn<VoucherOrderModel> businessVoucherOrder = Rxn<VoucherOrderModel>();
   Rxn<VoucherOrderModel> systemVoucherOrder = Rxn<VoucherOrderModel>();
+  Rxn<int> stars = Rxn<int>();
 
   Future<void> getOrderDetail() async {
     try {
@@ -130,6 +133,27 @@ class OrderDetailController extends GetxController {
         .setNegativeText(R.strings.close)
         .buildDialog(Get.context!)
         .show();
+  }
+
+  Future<void> sendReview() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      await _createStoreReviewUseCase.executeObject(
+        param: CreateStoreReviewParam(
+          orderId: order.value!.id,
+          point: stars.value ?? 0,
+          comment: '',
+        ),
+      );
+
+      AppLoadingOverlayWidget.dismiss();
+
+      getOrderDetail();
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
   }
 
   String? getOrderStatus(String? orderStatus) {

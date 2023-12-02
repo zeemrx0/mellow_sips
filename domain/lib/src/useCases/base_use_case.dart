@@ -42,6 +42,8 @@ part './notification/search_notifications_use_case.dart';
 part './notification/mark_notification_as_read_use_case.dart';
 part './notification/mark_all_notification_as_read_use_case.dart';
 
+part './review/create_store_review_use_case.dart';
+
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {
     return Future.value(

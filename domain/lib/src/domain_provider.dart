@@ -68,5 +68,10 @@ class DomainProvider {
     Get.put<MarkAllNotificationAsReadUseCase>(
       MarkAllNotificationAsReadUseCaseImpl(Get.find()),
     );
+
+    // Review
+    Get.put<CreateStoreReviewUseCase>(
+      CreateStoreReviewUseCaseImpl(Get.find()),
+    );
   }
 }
