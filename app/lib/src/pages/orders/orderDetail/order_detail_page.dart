@@ -39,9 +39,14 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                     height: AppThemeExt.of.majorScale(2),
                   ),
                   AppTextHeading6Widget()
-                      .setText(controller
-                          .getOrderStatus(controller.order.value?.status))
-                      .setColor(AppColors.of.subTextColor)
+                      .setText(
+                        controller
+                            .getOrderStatus(controller.order.value?.status),
+                      )
+                      .setColor(
+                        controller.getOrderStatusColor(
+                            controller.order.value?.status),
+                      )
                       .build(context),
                   SizedBox(
                     height: AppThemeExt.of.majorScale(2),
@@ -204,13 +209,13 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                   .setPrefixIcon(
                 (controller.stars.value ?? -1) >= 1
                     ? R.svgs.icStarYellow.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    )
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      )
                     : R.svgs.icStarOutline.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    ),
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      ),
               )
                   .setOnPressed(
                 () {
@@ -224,13 +229,13 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                   .setPrefixIcon(
                 (controller.stars.value ?? -1) >= 2
                     ? R.svgs.icStarYellow.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    )
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      )
                     : R.svgs.icStarOutline.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    ),
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      ),
               )
                   .setOnPressed(
                 () {
@@ -244,13 +249,13 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                   .setPrefixIcon(
                 (controller.stars.value ?? -1) >= 3
                     ? R.svgs.icStarYellow.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    )
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      )
                     : R.svgs.icStarOutline.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    ),
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      ),
               )
                   .setOnPressed(
                 () {
@@ -264,13 +269,13 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                   .setPrefixIcon(
                 (controller.stars.value ?? -1) >= 4
                     ? R.svgs.icStarYellow.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    )
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      )
                     : R.svgs.icStarOutline.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    ),
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      ),
               )
                   .setOnPressed(
                 () {
@@ -284,13 +289,13 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
                   .setPrefixIcon(
                 (controller.stars.value ?? -1) >= 5
                     ? R.svgs.icStarYellow.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    )
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      )
                     : R.svgs.icStarOutline.svg(
-                      width: AppThemeExt.of.majorScale(8),
-                      height: AppThemeExt.of.majorScale(8),
-                    ),
+                        width: AppThemeExt.of.majorScale(8),
+                        height: AppThemeExt.of.majorScale(8),
+                      ),
               )
                   .setOnPressed(
                 () {
@@ -305,11 +310,10 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
           AppFilledButtonWidget()
               .setButtonText(R.strings.sendReview)
               .setOnPressed(
-                () {
-                  controller.sendReview();
-                },
-              )
-              .build(context),
+            () {
+              controller.sendReview();
+            },
+          ).build(context),
         ],
       ),
     );

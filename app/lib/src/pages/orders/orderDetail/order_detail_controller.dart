@@ -178,4 +178,27 @@ class OrderDetailController extends GetxController {
         return null;
     }
   }
+
+  Color getOrderStatusColor(String? orderStatus) {
+    switch (orderStatus) {
+      case AppOrderStatus.cancelled:
+        return AppColors.of.redColor[700]!;
+      case AppOrderStatus.ordered:
+        return AppColors.of.orangeColor;
+      case AppOrderStatus.completed:
+        return AppColors.of.greenColor[500]!;
+      case AppOrderStatus.pending:
+        return AppColors.of.blueColor[500]!;
+      case AppOrderStatus.processing:
+        return AppColors.of.blueColor[700]!;
+      case AppOrderStatus.received:
+        return AppColors.of.greenColor[700]!;
+      case AppOrderStatus.rejected:
+        return AppColors.of.redColor[500]!;
+      case AppOrderStatus.expired:
+        return AppColors.of.redColor[600]!;
+      default:
+        return AppColors.of.subTextColor;
+    }
+  }
 }
