@@ -29,6 +29,7 @@ class StoreListController extends AppListViewController<StoreModel> {
   final GetDocumentUseCase _getDocumentUseCase;
 
   Rx<String> keyword = ''.obs;
+  Rx<bool> isOpen = true.obs;
 
   StoreListController(
     this._searchStoresUseCase,
@@ -42,7 +43,7 @@ class StoreListController extends AppListViewController<StoreModel> {
       param: SearchStoresParam(
         criteria: {
           StoreListKey.filter: {
-            StoreListKey.isActive: true,
+            StoreListKey.isActive: isOpen.value,
           },
           StoreListKey.keyword: keyword.value,
         },

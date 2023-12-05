@@ -31,8 +31,8 @@ class AppTabWidgetLv2TextOnly extends AppTabBaseBuilder {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: AppThemeExt.of.majorScale(1),
-          horizontal: AppThemeExt.of.majorScale(2),
+          vertical: AppThemeExt.of.majorScale(2),
+          horizontal: AppThemeExt.of.majorScale(3),
         ),
         child: AppTextCaption1Widget()
             .setText(_text)

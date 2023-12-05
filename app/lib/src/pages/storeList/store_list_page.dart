@@ -58,67 +58,19 @@ class StoreListPage extends GetView<StoreListController> {
             padding: EdgeInsets.only(
               bottom: AppThemeExt.of.majorPaddingScale(3),
             ),
-            child: Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    // TODO: Show the filter page
-                  },
-                  child: Container(
-                    decoration: _unselectedDecoration(),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppThemeExt.of.majorPaddingScale(3),
-                      vertical: AppThemeExt.of.majorPaddingScale(6 / 4),
-                    ),
-                    child: Row(
-                      children: [
-                        AppTextCaption1Widget()
-                            .setText(R.strings.sort)
-                            .setColor(
-                              AppColors.of.grayColor[600]!,
-                            )
-                            .setTextStyle(
-                              AppTextStyleExt.of.textCaption1r,
-                            )
-                            .build(context),
-                        SizedBox(
-                          width: AppThemeExt.of.majorPaddingScale(1),
-                        ),
-                        R.svgs.icCaretDown.svg(
-                          width: AppThemeExt.of.majorScale(4),
-                          height: AppThemeExt.of.majorScale(4),
-                          colorFilter: ColorFilter.mode(
-                            AppColors.of.grayColor[500]!,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ],
-                    ),
+            child: Obx(
+              () => Row(
+                children: [
+                  ToggleChipWidget(
+                    text: R.strings.open,
+                    status: controller.isOpen.value,
+                    onClick: () {
+                      controller.isOpen.value = !controller.isOpen.value;
+                      controller.onRefreshCall();
+                    },
                   ),
-                ),
-                SizedBox(
-                  width: AppThemeExt.of.majorPaddingScale(2),
-                ),
-                ToggleChipWidget()
-                    .setFieldKey(StoreListKey.hasPromo)
-                    .setText(R.strings.promo)
-                    .setOnClick(
-                  () {
-                    // TODO: Load the list of stores with promo
-                  },
-                ).build(context),
-                SizedBox(
-                  width: AppThemeExt.of.majorPaddingScale(2),
-                ),
-                ToggleChipWidget()
-                    .setFieldKey(StoreListKey.isOpen)
-                    .setText(R.strings.open)
-                    .setOnClick(
-                  () {
-                    // TODO: Load the list of stores that are open
-                  },
-                ).build(context),
-              ],
+                ],
+              ),
             ),
           ),
         )
