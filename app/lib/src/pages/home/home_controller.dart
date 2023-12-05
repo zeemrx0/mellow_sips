@@ -46,9 +46,9 @@ class HomeController extends GetxController {
   );
 
   @override
-  void dispose() {
+  void onClose() {
     _unsubscribeNotificationsUseCase.executeObject();
-    super.dispose();
+    super.onClose();
   }
 
   NotificationDetails _notificationDetails() {

@@ -43,7 +43,8 @@ class OrderItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     AppTextBody1Widget()
-                        .setText(NumberExt.withSeparator(order.finalPrice ?? 0))
+                        .setText(
+                            '${NumberExt.withSeparator(order.finalPrice ?? 0)}đ')
                         .setColor(AppColors.of.subTextColor)
                         .build(context),
                     Container(
@@ -58,8 +59,7 @@ class OrderItemWidget extends StatelessWidget {
                       ),
                     ),
                     AppTextBody1Widget()
-                        .setText(
-                            '${order.details.cartItems.length} ${R.strings.items}')
+                        .setText('${getNumberOfCartItems()} ${R.strings.items}')
                         .setColor(AppColors.of.subTextColor)
                         .build(context),
                   ],
@@ -74,5 +74,14 @@ class OrderItemWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  int getNumberOfCartItems() {
+    int numberOfCartItems = 0;
+    for (var cartItem in order.details.cartItems) {
+      numberOfCartItems += cartItem.quantity;
+    }
+
+    return numberOfCartItems;
   }
 }

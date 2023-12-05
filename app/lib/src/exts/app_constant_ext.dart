@@ -22,6 +22,7 @@ class AppConstants {
   static const String isEditing = 'isEditing';
   static const String navigatedFrom = 'navigatedFrom';
   static const String keyword = 'keyword';
+  static const String status = 'status';
 }
 
 class CartParamKey {
@@ -49,7 +50,7 @@ class AppOrderStatusUpdateAction {
 class AppOrderStatus {
   static const String pending = 'PENDING';
   static const String ordered = 'ORDERED';
-  static const String canceled = 'CANCELED';
+  static const String cancelled = 'CANCELED';
   static const String rejected = 'REJECTED';
   static const String processing = 'PROCESSING';
   static const String completed = 'COMPLETED';

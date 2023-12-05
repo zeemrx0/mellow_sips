@@ -158,8 +158,8 @@ class OrderDetailController extends GetxController {
 
   String? getOrderStatus(String? orderStatus) {
     switch (orderStatus) {
-      case AppOrderStatus.canceled:
-        return R.strings.canceled;
+      case AppOrderStatus.cancelled:
+        return R.strings.cancelled;
       case AppOrderStatus.ordered:
         return R.strings.ordered;
       case AppOrderStatus.completed:

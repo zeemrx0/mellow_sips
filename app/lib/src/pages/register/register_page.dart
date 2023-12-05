@@ -152,7 +152,7 @@ class RegisterPage extends GetView<RegisterController> {
                                         .setFieldKey(
                                             RegisterKey.confirmPassword)
                                         .setHintText(R.strings.confirmPassword)
-                                        .setObscureText(controller
+                                        .setObscureText(!controller
                                             .isConfirmPasswordShown.value)
                                         .setMaxLine(1)
                                         .setInputType(TextInputType.text)

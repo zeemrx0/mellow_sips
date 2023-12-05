@@ -8,7 +8,7 @@ class OrderListPage extends GetView<OrderListController> {
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
-        .setBackgroundColor(AppColors.of.backgroundColor)
+        .setBackgroundColor(AppColors.of.whiteColor)
         .setBottomNavigationBar(
             const AppBottomNavigationBarWidget().build(context))
         .setFloatingActionButtonLocation(
@@ -24,13 +24,19 @@ class OrderListPage extends GetView<OrderListController> {
     return Column(
       children: [
         Expanded(
-          child: AppListViewWidget<OrderModel, OrderListController>(
-            padding: EdgeInsets.only(
-              top: AppThemeExt.of.majorPaddingScale(2),
-            ),
-            childBuilder: _orderItemBuilder,
-          ),
-        ),
+            child: AppTabBarTextOnlyLv2Widget().setTabTitleList([
+          R.strings.waitingForConfirm,
+          R.strings.preparing,
+          R.strings.completed,
+          R.strings.received,
+          R.strings.cancelled,
+        ]).setTabViewList([
+          const WaitingForConfirmOrderListView(),
+          const PreparingOrderListView(),
+          const CompletedOrderListView(),
+          const ReceivedOrderListView(),
+          const CancelledOrderListView(),
+        ]).build(context)),
       ],
     );
   }
@@ -47,15 +53,5 @@ class OrderListPage extends GetView<OrderListController> {
         .setBackgroundColor(AppColors.of.whiteColor)
         .setCanBack(false)
         .build(context);
-  }
-
-  Widget _orderItemBuilder(
-    BuildContext context,
-    OrderModel orderModel,
-    int index,
-  ) {
-    return OrderItemWidget(
-      order: orderModel,
-    );
   }
 }

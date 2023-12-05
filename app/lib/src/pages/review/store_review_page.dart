@@ -37,11 +37,26 @@ class StoreReviewPage extends GetView<StoreReviewController> {
             ),
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              R.pngs.profileAvatar.image(
+                width: AppThemeExt.of.majorScale(10),
+                height: AppThemeExt.of.majorScale(10),
+              ),
+              SizedBox(
+                width: AppThemeExt.of.majorScale(4),
+              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    AppTextBody2Widget()
+                        .setText(R.strings.anonymousCustomer)
+                        .setTextStyle(AppTextStyleExt.of.textBody2s)
+                        .build(context),
+                    SizedBox(
+                      height: AppThemeExt.of.majorScale(2),
+                    ),
                     Row(
                       children: [
                         R.svgs.icStarYellow.svg(
@@ -56,12 +71,15 @@ class StoreReviewPage extends GetView<StoreReviewController> {
                             .build(context),
                       ],
                     ),
-                    SizedBox(
-                      height: AppThemeExt.of.majorScale(3),
-                    ),
-                    AppTextBody2Widget()
-                        .setText(storeReview.comment)
-                        .build(context),
+                    if (storeReview.comment != null && storeReview.comment != '')
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: AppThemeExt.of.majorPaddingScale(2),
+                        ),
+                        child: AppTextBody2Widget()
+                            .setText(storeReview.comment)
+                            .build(context),
+                      ),
                   ],
                 ),
               ),
