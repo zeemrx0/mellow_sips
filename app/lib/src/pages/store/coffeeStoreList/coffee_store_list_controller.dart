@@ -1,22 +1,19 @@
 import 'package:app/src/components/features/appBar/app_bar_basic_widget.dart';
 import 'package:app/src/components/features/store/store_item_widget.dart';
-import 'package:app/src/components/features/store/toggle_chip_widget.dart';
-import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/listView/app_list_view_controller.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
-import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
-part './store_list_page.dart';
-part './store_list_binding.dart';
+part 'coffee_store_list_page.dart';
+part 'coffee_store_list_binding.dart';
 
-class StoreListKey {
+class CoffeeStoreListKey {
   static const hasPromo = 'hasPromo';
   static const isOpen = 'isOpen';
   static const filter = 'filter';
@@ -24,33 +21,25 @@ class StoreListKey {
   static const keyword = 'keyword';
 }
 
-class StoreListController extends AppListViewController<StoreModel> {
-  final SearchStoresUseCase _searchStoresUseCase;
+class CoffeeStoreListController extends AppListViewController<StoreModel> {
+  final GetCoffeeStoreListUseCase _getCoffeeStoreListUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
 
   Rx<String> keyword = ''.obs;
   Rx<bool> isOpen = true.obs;
 
-  StoreListController(
-    this._searchStoresUseCase,
+  CoffeeStoreListController(
+    this._getCoffeeStoreListUseCase,
     this._getDocumentUseCase,
   );
 
   @override
   Future<AppPaginationListResultModel<StoreModel>> onCall(
       AppListParam appListParam) async {
-    final response = await _searchStoresUseCase.executePaginationList(
-      param: SearchStoresParam(
-        criteria: {
-          StoreListKey.filter: {
-            StoreListKey.isActive: isOpen.value,
-          },
-          StoreListKey.keyword: keyword.value,
-        },
-        pagination: AppListParam(
-          page: appListParam.page,
-          itemsPerPage: appListParam.itemsPerPage,
-        ).toJson,
+    final response = await _getCoffeeStoreListUseCase.executePaginationList(
+      param: GetCoffeeStoreListParam(
+        page: appListParam.page,
+        itemsPerPage: appListParam.itemsPerPage,
       ),
     );
 

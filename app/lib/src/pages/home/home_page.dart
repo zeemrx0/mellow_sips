@@ -220,6 +220,9 @@ class HomePage extends GetView<HomeController> {
                   height: AppThemeExt.of.majorScale(44 / 4),
                 ),
                 title: R.strings.sale,
+                onPressed: () {
+                  Get.toNamed(Routes.promotingStores);
+                },
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(gapWidth),
@@ -232,6 +235,9 @@ class HomePage extends GetView<HomeController> {
                   height: AppThemeExt.of.majorScale(48 / 4),
                 ),
                 title: R.strings.recommended,
+                onPressed: () {
+                  Get.toNamed(Routes.qualifiedStores);
+                },
               ),
             ],
           ),
@@ -248,6 +254,9 @@ class HomePage extends GetView<HomeController> {
                   height: AppThemeExt.of.majorScale(48 / 4),
                 ),
                 title: R.strings.coffee,
+                onPressed: () {
+                  Get.toNamed(Routes.coffeeStores);
+                },
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(gapWidth),
@@ -260,6 +269,9 @@ class HomePage extends GetView<HomeController> {
                   height: AppThemeExt.of.majorScale(48 / 4),
                 ),
                 title: R.strings.milkTea,
+                onPressed: () {
+                  Get.toNamed(Routes.milkTeaStores);
+                },
               ),
               SizedBox(
                 width: AppThemeExt.of.majorScale(gapWidth),

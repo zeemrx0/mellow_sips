@@ -6,7 +6,14 @@ class Routes {
   static const demo = '/demo';
   static const intro = '/intro';
   static const welcome = '/welcome';
+
+  // Home
   static const home = '/home';
+  static const coffeeStores = '/coffee-stores';
+  static const milkTeaStores = '/milk-tea-stores';
+  static const qualifiedStores = '/qualified-stores';
+  static const promotingStores = '/promoting-stores';  
+
   static const appNavMenu = '/appNavMenu';
   static const qrScan = '/qrScan';
 

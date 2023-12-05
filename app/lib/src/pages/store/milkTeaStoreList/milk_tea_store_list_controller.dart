@@ -1,7 +1,5 @@
 import 'package:app/src/components/features/appBar/app_bar_basic_widget.dart';
 import 'package:app/src/components/features/store/store_item_widget.dart';
-import 'package:app/src/components/features/store/toggle_chip_widget.dart';
-import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/listView/app_list_view_controller.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
@@ -13,10 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
 
-part './store_list_page.dart';
-part './store_list_binding.dart';
+part 'milk_tea_store_list_page.dart';
+part 'milk_tea_store_list_binding.dart';
 
-class StoreListKey {
+class MilkTeaStoreListKey {
   static const hasPromo = 'hasPromo';
   static const isOpen = 'isOpen';
   static const filter = 'filter';
@@ -24,33 +22,25 @@ class StoreListKey {
   static const keyword = 'keyword';
 }
 
-class StoreListController extends AppListViewController<StoreModel> {
-  final SearchStoresUseCase _searchStoresUseCase;
+class MilkTeaStoreListController extends AppListViewController<StoreModel> {
+  final GetMilkTeaStoreListUseCase _getMilkTeaStoreListUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
 
   Rx<String> keyword = ''.obs;
   Rx<bool> isOpen = true.obs;
 
-  StoreListController(
-    this._searchStoresUseCase,
+  MilkTeaStoreListController(
+    this._getMilkTeaStoreListUseCase,
     this._getDocumentUseCase,
   );
 
   @override
   Future<AppPaginationListResultModel<StoreModel>> onCall(
       AppListParam appListParam) async {
-    final response = await _searchStoresUseCase.executePaginationList(
-      param: SearchStoresParam(
-        criteria: {
-          StoreListKey.filter: {
-            StoreListKey.isActive: isOpen.value,
-          },
-          StoreListKey.keyword: keyword.value,
-        },
-        pagination: AppListParam(
-          page: appListParam.page,
-          itemsPerPage: appListParam.itemsPerPage,
-        ).toJson,
+    final response = await _getMilkTeaStoreListUseCase.executePaginationList(
+      param: GetMilkTeaStoreListParam(
+        page: appListParam.page,
+        itemsPerPage: appListParam.itemsPerPage,
       ),
     );
 

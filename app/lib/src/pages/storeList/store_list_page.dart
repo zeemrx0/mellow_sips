@@ -101,15 +101,4 @@ class StoreListPage extends GetView<StoreListController> {
       store: storeModel,
     );
   }
-
-  BoxDecoration _unselectedDecoration() {
-    return BoxDecoration(
-      border: Border.all(
-        color: AppColors.of.grayColor[500]!,
-      ),
-      borderRadius: BorderRadius.circular(
-        AppThemeExt.of.majorScale(1000),
-      ),
-    );
-  }
 }

@@ -30,6 +30,9 @@ class ApiProvider {
 
   static const reviews = '$api/reviews';
 
+  static const dashboard = '$api/dashboard';
+  static const customerDashboard = '$dashboard/customer';
+
   // Web Sockets
   static const notificationSocket = '/topic/notifications';
   static const userNotificationSocket = '/user/topic/notifications';

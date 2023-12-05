@@ -3,6 +3,7 @@ import 'package:data/src/network/network_service.dart';
 import 'package:data/src/repositories/auth_repository_impl.dart';
 import 'package:data/src/repositories/cart_repository_impl.dart';
 import 'package:data/src/repositories/document_repository_impl.dart';
+import 'package:data/src/repositories/home_repository_impl.dart';
 import 'package:data/src/repositories/notification_repository_impl.dart';
 import 'package:data/src/repositories/order_repository_impl.dart';
 import 'package:data/src/repositories/product_repository_impl.dart';
@@ -68,6 +69,9 @@ class _DataSourcesProvider {
     Get.lazyPut<ReviewRemoteDataSource>(
       () => ReviewRemoteDataSourceImpl(Get.find()),
     );
+    Get.lazyPut<HomeRemoteDataSource>(
+      () => HomeRemoteDataSourceImpl(Get.find()),
+    );
   }
 }
 
@@ -99,6 +103,9 @@ class _RepositoriesProvider {
     );
     Get.lazyPut<ReviewRepository>(
       () => ReviewRepositoryImpl(Get.find()),
+    );
+    Get.lazyPut<HomeRepository>(
+      () => HomeRepositoryImpl(Get.find()),
     );
   }
 }

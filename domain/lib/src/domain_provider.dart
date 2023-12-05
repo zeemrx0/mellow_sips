@@ -76,5 +76,19 @@ class DomainProvider {
     Get.put<SearchStoreReviewsUseCase>(
       SearchStoreReviewsUseCaseImpl(Get.find()),
     );
+
+    // Home
+    Get.put<GetCoffeeStoreListUseCase>(
+      GetCoffeeStoreListUseCaseImpl(Get.find()),
+    );
+    Get.put<GetMilkTeaStoreListUseCase>(
+      GetMilkTeaStoreListUseCaseImpl(Get.find()),
+    );
+    Get.put<GetQualifiedStoreListUseCase>(
+      GetQualifiedStoreListUseCaseImpl(Get.find()),
+    );
+    Get.put<GetPromotingStoreListUseCase>(
+      GetPromotingStoreListUseCaseImpl(Get.find()),
+    );
   }
 }
