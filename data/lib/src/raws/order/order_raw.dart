@@ -10,7 +10,7 @@ class OrderRaw extends BaseRaw {
   final OrderDetailsRaw details;
   final OrderTransactionRaw? latestTransaction;
   final List<VoucherOrderRaw>? voucherOrders;
-  final ReviewRaw? review;
+  final StoreReviewRaw? review;
 
   OrderRaw({
     required this.id,
@@ -39,7 +39,7 @@ class OrderRaw extends BaseRaw {
       latestTransaction: latestTransaction?.toModel() as OrderTransactionModel?,
       voucherOrders:
           voucherOrders?.map((e) => e.toModel() as VoucherOrderModel).toList(),
-      review: review?.toModel() as ReviewModel?,
+      review: review?.toModel() as StoreReviewModel?,
     );
   }
 }

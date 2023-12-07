@@ -23,6 +23,7 @@ class AppConstants {
   static const String navigatedFrom = 'navigatedFrom';
   static const String keyword = 'keyword';
   static const String status = 'status';
+  static const String comment = 'comment';
 }
 
 class CartParamKey {

@@ -128,5 +128,6 @@
 	"anonymousCustomer": "Khách hàng ẩn danh",
 	"invalidInput": "Dữ liệu không hợp lệ",
 	"closed": "Đóng cửa",
-	"storeIsNotWorkingPleaseComebackLater": "Cửa hàng chưa hoạt động vui lòng quay lại sau"
+	"storeIsNotWorkingPleaseComebackLater": "Cửa hàng chưa hoạt động vui lòng quay lại sau",
+  "yourReview": "Đánh giá của bạn"
 }

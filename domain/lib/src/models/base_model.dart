@@ -31,7 +31,6 @@ part './order/order_model.dart';
 part './order/order_transaction_model.dart';
 part './order/order_external_payment_info_model.dart';
 part './order/order_details_model.dart';
-part './order/review_model.dart';
 
 part './notification/notification_model.dart';
 

@@ -4,11 +4,13 @@ import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
+import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_zalopay_sdk/flutter_zalopay_sdk.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
@@ -34,10 +36,13 @@ class OrderDetailController extends GetxController {
     this._createStoreReviewUseCase,
   );
 
+  GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
+
   Rxn<OrderModel> order = Rxn<OrderModel>();
   Rxn<VoucherOrderModel> businessVoucherOrder = Rxn<VoucherOrderModel>();
   Rxn<VoucherOrderModel> systemVoucherOrder = Rxn<VoucherOrderModel>();
   Rxn<int> stars = Rxn<int>();
+  Rxn<String> comment = Rxn<String>();
 
   Future<void> getOrderDetail() async {
     try {
@@ -61,6 +66,7 @@ class OrderDetailController extends GetxController {
       );
 
       stars.value = result.netData?.review?.point;
+      comment.value = result.netData?.review?.comment;
 
       AppLoadingOverlayWidget.dismiss();
       _refreshController.refreshToIdle();
@@ -141,11 +147,13 @@ class OrderDetailController extends GetxController {
     try {
       AppLoadingOverlayWidget.show();
 
+      formKey.currentState?.save();
+
       await _createStoreReviewUseCase.executeObject(
         param: CreateStoreReviewParam(
           orderId: order.value!.id,
           point: stars.value ?? 0,
-          comment: '',
+          comment: formKey.currentState?.fields[AppConstants.comment]?.value,
         ),
       );
 

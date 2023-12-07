@@ -10,7 +10,7 @@ class OrderModel extends BaseModel {
   final OrderDetailsModel details;
   final OrderTransactionModel? latestTransaction;
   final List<VoucherOrderModel>? voucherOrders;
-  final ReviewModel? review;
+  final StoreReviewModel? review;
 
   OrderModel({
     required this.id,

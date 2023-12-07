@@ -29,7 +29,6 @@ part './order/order_raw.dart';
 part './order/order_transaction_raw.dart';
 part './order/order_external_payment_info_raw.dart';
 part './order/order_details_raw.dart';
-part './order/review_raw.dart';
 
 part './notification/notification_raw.dart';
 

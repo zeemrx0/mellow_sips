@@ -51,7 +51,8 @@ class StoreReviewPage extends GetView<StoreReviewController> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AppTextBody2Widget()
-                        .setText(R.strings.anonymousCustomer)
+                        .setText(storeReview.createdBy ??
+                            R.strings.anonymousCustomer)
                         .setTextStyle(AppTextStyleExt.of.textBody2s)
                         .build(context),
                     SizedBox(
@@ -71,7 +72,8 @@ class StoreReviewPage extends GetView<StoreReviewController> {
                             .build(context),
                       ],
                     ),
-                    if (storeReview.comment != null && storeReview.comment != '')
+                    if (storeReview.comment != null &&
+                        storeReview.comment != '')
                       Padding(
                         padding: EdgeInsets.only(
                           top: AppThemeExt.of.majorPaddingScale(2),
