@@ -12,4 +12,6 @@ class AppMessage {
       "Exceeded max allowed addon items in section";
 
   static const String qrCodeNotFound = 'QR Code not found';
+
+  static const String storeIsUnavailableNow = 'Store is unavailable now';
 }

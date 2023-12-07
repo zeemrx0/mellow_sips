@@ -163,8 +163,8 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                 Obx(
                   () => Expanded(
                     child: AppFilledButtonWidget()
-                        .setButtonText(R.strings.checkout)
-                        .setIsDisabled(controller.numberOfCartItems.value == 0)
+                        .setButtonText(controller.store.value?.isOpen == true ? R.strings.checkout : R.strings.closed)
+                        .setIsDisabled(controller.numberOfCartItems.value == 0 || controller.store.value?.isOpen == false)
                         .setOnPressed(
                       () {
                         Get.toNamed(

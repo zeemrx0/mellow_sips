@@ -13,8 +13,8 @@ class VoucherRaw extends BaseRaw {
   final int? maxDiscountAmount;
   final int? minOrderAmount;
   final String code;
-  final int discountAmount;
-  final bool canUse;
+  final int? discountAmount;
+  final bool? canUse;
 
   VoucherRaw({
     required this.id,

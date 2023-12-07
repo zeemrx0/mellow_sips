@@ -49,31 +49,7 @@ class StoreListPage extends GetView<StoreListController> {
             },
           ).build(context),
         )
-        .setHeight(
-          kToolbarHeight + AppThemeExt.of.majorScale(48 / 4),
-        )
         .setCanBack(true)
-        .setBottom(
-          Padding(
-            padding: EdgeInsets.only(
-              bottom: AppThemeExt.of.majorPaddingScale(3),
-            ),
-            child: Obx(
-              () => Row(
-                children: [
-                  ToggleChipWidget(
-                    text: R.strings.open,
-                    status: controller.isOpen.value,
-                    onClick: () {
-                      controller.isOpen.value = !controller.isOpen.value;
-                      controller.onRefreshCall();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        )
         .build(context);
   }
 

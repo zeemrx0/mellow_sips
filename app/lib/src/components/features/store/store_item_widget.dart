@@ -55,7 +55,24 @@ class StoreItemWidget extends StatelessWidget {
                       AppThemeExt.of.majorScale(2),
                     ),
                   ),
-                  if (store.hasPromotion ?? false) _promotionTag(context),
+                  if (store.isOpen == false)
+                    Container(
+                      width: AppThemeExt.of.majorScale(72 / 4),
+                      height: AppThemeExt.of.majorScale(72 / 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppThemeExt.of.majorScale(2),
+                        ),
+                        color: AppColors.of.blackColor.withOpacity(0.5),
+                      ),
+                      child: Center(
+                        child: AppTextCaption1Widget()
+                            .setText(R.strings.closed)
+                            .setColor(AppColors.of.whiteColor)
+                            .build(context),
+                      ),
+                    ),
+                  if (store.vouchers.isNotEmpty) _promotionTag(context),
                 ],
               ),
               SizedBox(
@@ -77,7 +94,7 @@ class StoreItemWidget extends StatelessWidget {
                             .setTextOverFlow(TextOverflow.ellipsis)
                             .build(context),
                         SizedBox(
-                          height: AppThemeExt.of.majorScale(1),
+                          height: AppThemeExt.of.majorScale(1 / 2),
                         ),
                         AppTextCaption1Widget()
                             .setText(store.address)
@@ -92,30 +109,6 @@ class StoreItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         _rating(context),
-                        // Container(
-                        //   margin: EdgeInsets.symmetric(
-                        //     horizontal: AppThemeExt.of.majorScale(2),
-                        //   ),
-                        //   height: AppThemeExt.of.majorScale(3 / 4),
-                        //   width: AppThemeExt.of.majorScale(3 / 4),
-                        //   decoration: BoxDecoration(
-                        //     shape: BoxShape.circle,
-                        //     color: AppColors.of.grayColor[500],
-                        //   ),
-                        // ),
-                        // _distance(context),
-                        // Container(
-                        //   margin: EdgeInsets.symmetric(
-                        //     horizontal: AppThemeExt.of.majorScale(2),
-                        //   ),
-                        //   height: AppThemeExt.of.majorScale(3 / 4),
-                        //   width: AppThemeExt.of.majorScale(3 / 4),
-                        //   decoration: BoxDecoration(
-                        //     shape: BoxShape.circle,
-                        //     color: AppColors.of.grayColor[500],
-                        //   ),
-                        // ),
-                        // _categories(context),
                       ],
                     ),
                   ],

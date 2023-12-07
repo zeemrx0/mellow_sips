@@ -129,6 +129,9 @@ class AppExceptionExt {
       case AppMessage.qrCodeNotFound:
         return R.strings.qrCodeInvalid;
 
+      case AppMessage.storeIsUnavailableNow:
+        return R.strings.storeIsNotWorkingPleaseComebackLater;
+
       default:
         return R.strings.systemIsCurrentlyErrorPleaseTryAgainLater;
     }

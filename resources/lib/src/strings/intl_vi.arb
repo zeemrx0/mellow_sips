@@ -124,7 +124,9 @@
 	"sendReview": "Gửi đánh giá",
 	"noReviewsYet": "Chưa có đánh giá nào",
 	"viewReviews": "Xem đánh giá",
-  "reviews": "Đánh giá",
-  "anonymousCustomer": "Khách hàng ẩn danh",
-  "invalidInput": "Dữ liệu không hợp lệ"
+	"reviews": "Đánh giá",
+	"anonymousCustomer": "Khách hàng ẩn danh",
+	"invalidInput": "Dữ liệu không hợp lệ",
+	"closed": "Đóng cửa",
+	"storeIsNotWorkingPleaseComebackLater": "Cửa hàng chưa hoạt động vui lòng quay lại sau"
 }

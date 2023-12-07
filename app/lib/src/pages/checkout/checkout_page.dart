@@ -109,7 +109,7 @@ class CheckoutPage extends GetWidget<CheckoutController> {
                         arguments: {
                           CheckoutControllerKey.vouchers: controller
                                   .vouchers.value?.BUSINESS
-                                  .where((voucher) => voucher.canUse)
+                                  .where((voucher) => voucher.canUse == true)
                                   .toList() ??
                               [],
                           CheckoutControllerKey.selectedVoucher:
@@ -150,7 +150,7 @@ class CheckoutPage extends GetWidget<CheckoutController> {
                                   ? const SizedBox()
                                   : AppTextBody2Widget()
                                       .setText(
-                                          '-${NumberExt.vndDisplay(controller.businessVoucher.value!.discountAmount)}')
+                                          '-${NumberExt.vndDisplay(controller.businessVoucher.value!.discountAmount ?? 0)}')
                                       .setColor(AppColors.of.primaryColor)
                                       .build(context),
                             ),
@@ -186,7 +186,7 @@ class CheckoutPage extends GetWidget<CheckoutController> {
                       Get.toNamed(Routes.vouchers, arguments: {
                         CheckoutControllerKey.vouchers: controller
                                 .vouchers.value?.SYSTEM
-                                .where((voucher) => voucher.canUse)
+                                .where((voucher) => voucher.canUse == true)
                                 .toList() ??
                             [],
                         CheckoutControllerKey.selectedVoucher:
@@ -225,7 +225,7 @@ class CheckoutPage extends GetWidget<CheckoutController> {
                                   ? const SizedBox()
                                   : AppTextBody2Widget()
                                       .setText(
-                                          '-${NumberExt.vndDisplay(controller.systemVoucher.value!.discountAmount)}')
+                                          '-${NumberExt.vndDisplay(controller.systemVoucher.value!.discountAmount ?? 0)}')
                                       .setColor(AppColors.of.primaryColor)
                                       .build(context),
                             ),

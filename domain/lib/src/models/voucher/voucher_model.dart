@@ -13,8 +13,8 @@ class VoucherModel extends BaseModel {
   final int? maxDiscountAmount;
   final int? minOrderAmount;
   final String code;
-  final int discountAmount;
-  final bool canUse;
+  final int? discountAmount;
+  final bool? canUse;
 
   VoucherModel({
     required this.id,
