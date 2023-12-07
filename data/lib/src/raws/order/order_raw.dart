@@ -10,6 +10,7 @@ class OrderRaw extends BaseRaw {
   final OrderDetailsRaw details;
   final OrderTransactionRaw? latestTransaction;
   final List<VoucherOrderRaw>? voucherOrders;
+  final ReviewRaw? review;
 
   OrderRaw({
     required this.id,
@@ -19,6 +20,7 @@ class OrderRaw extends BaseRaw {
     required this.details,
     required this.latestTransaction,
     required this.voucherOrders,
+    required this.review,
   });
 
   factory OrderRaw.fromJson(Map<String, dynamic> json) =>
@@ -37,6 +39,7 @@ class OrderRaw extends BaseRaw {
       latestTransaction: latestTransaction?.toModel() as OrderTransactionModel?,
       voucherOrders:
           voucherOrders?.map((e) => e.toModel() as VoucherOrderModel).toList(),
+      review: review?.toModel() as ReviewModel?,
     );
   }
 }

@@ -60,6 +60,8 @@ class OrderDetailController extends GetxController {
         (element) => element.source == AppConstants.system,
       );
 
+      stars.value = result.netData?.review?.point;
+
       AppLoadingOverlayWidget.dismiss();
       _refreshController.refreshToIdle();
     } on AppException catch (e) {

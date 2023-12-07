@@ -52,9 +52,10 @@ class AppListViewWidget<BM extends BaseModel,
     return data.isEmpty
         ? emptyView ??
             Center(
-              child: AppTextHeading3Widget()
+              child: AppTextHeading6Widget()
                   .setText(R.strings.empty)
                   .setTextAlign(TextAlign.center)
+                  .setColor(AppColors.of.subTextColor)
                   .build(context),
             )
         : ListView.builder(
