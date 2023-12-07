@@ -3,6 +3,7 @@ part of '../base_model.dart';
 @JsonSerializable()
 @CopyWith()
 class NotificationModel extends BaseModel {
+  final DateTime? createdAt;
   final String id;
   final String key;
   final String subject;
@@ -10,6 +11,7 @@ class NotificationModel extends BaseModel {
   final bool isSeen;
 
   NotificationModel({
+    required this.createdAt,
     required this.id,
     required this.key,
     required this.subject,

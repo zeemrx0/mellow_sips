@@ -27,14 +27,20 @@ class NotificationPage extends GetView<NotificationController> {
   ) {
     return InkWell(
       onTap: () {
+        if (notification.metadata != null &&
+            notification.metadata!.containsKey(AppConstants.orderId)) {
+          Get.toNamed(
+            Routes.orderDetail,
+            arguments: notification.metadata![AppConstants.orderId],
+          );
+        }
+
         if (!notification.isSeen) {
           controller.markAsRead(notification.id);
         }
       },
       child: Container(
-        color: notification.isSeen
-            ? AppColors.of.backgroundColor
-            : AppColors.of.whiteColor,
+        color: AppColors.of.whiteColor,
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: AppThemeExt.of.majorPaddingScale(4),
@@ -42,7 +48,7 @@ class NotificationPage extends GetView<NotificationController> {
           child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: AppThemeExt.of.majorPaddingScale(2),
-              vertical: AppThemeExt.of.majorPaddingScale(4),
+              vertical: AppThemeExt.of.majorPaddingScale(10 / 4),
             ),
             decoration: BoxDecoration(
               border: Border(
@@ -54,12 +60,44 @@ class NotificationPage extends GetView<NotificationController> {
             ),
             child: Row(
               children: [
-                AppTextBody2Widget()
-                    .setText(controller.getNotificationSubject(notification))
-                    .setTextStyle(notification.isSeen
-                        ? AppTextStyleExt.of.textBody2r
-                        : AppTextStyleExt.of.textBody2s)
-                    .build(context),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppTextBody2Widget()
+                          .setText(
+                              controller.getNotificationSubject(notification))
+                          .setTextStyle(notification.isSeen
+                              ? AppTextStyleExt.of.textBody2r
+                              : AppTextStyleExt.of.textBody2s)
+                          .build(context),
+                      SizedBox(
+                        height: AppThemeExt.of.majorScale(1),
+                      ),
+                      AppTextCaption1Widget()
+                          .setText(
+                            DateTimeExt.displayDateTime(
+                              dateTime: notification.createdAt,
+                            ),
+                          )
+                          .setColor(AppColors.of.subTextColor)
+                          .build(context),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: AppThemeExt.of.majorScale(2),
+                ),
+                !notification.isSeen
+                    ? Container(
+                        width: AppThemeExt.of.majorScale(6 / 4),
+                        height: AppThemeExt.of.majorScale(6 / 4),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.of.primaryColor[400],
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),
@@ -71,33 +109,12 @@ class NotificationPage extends GetView<NotificationController> {
   Widget _body(BuildContext context) {
     return Column(
       children: [
-        Container(
-          color: AppColors.of.whiteColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              InkWell(
-                onTap: () {
-                  controller.markAllAsRead();
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppThemeExt.of.majorPaddingScale(3),
-                    vertical: AppThemeExt.of.majorPaddingScale(4),
-                  ),
-                  child: AppTextCaption1Widget()
-                      .setText(R.strings.markAllAsRead)
-                      .setTextStyle(AppTextStyleExt.of.textCaption1s)
-                      .setColor(AppColors.of.primaryColor)
-                      .build(context),
-                ),
-              )
-            ],
-          ),
-        ),
         Expanded(
           child: AppListViewWidget<NotificationModel, NotificationController>(
             childBuilder: _buildNotificationItem,
+            padding: EdgeInsets.symmetric(
+              vertical: AppThemeExt.of.majorPaddingScale(2),
+            ),
           ),
         ),
       ],
@@ -113,6 +130,20 @@ class NotificationPage extends GetView<NotificationController> {
               .setTextStyle(AppTextStyleExt.of.textBody1s)
               .setColor(AppColors.of.primaryColor)
               .build(context),
+        )
+        .setTrailing(
+          AppIconButtonWidget()
+              .setPrefixIcon(
+            R.svgs.icCheck.svg(
+              width: AppThemeExt.of.majorScale(6),
+              height: AppThemeExt.of.majorScale(6),
+            ),
+          )
+              .setOnPressed(
+            () {
+              controller.markAllAsRead();
+            },
+          ).build(context),
         )
         .setCanBack(false)
         .build(context);

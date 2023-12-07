@@ -24,7 +24,6 @@ class AppExceptionExt {
           // Force Logout
           return AppDefaultDialogWidget()
               .setTitle(R.strings.pleaseLoginToContinue)
-              .setContent(getMessage(appException?.message))
               .setPositiveText(R.strings.confirm)
               .setAppDialogType(AppDialogType.error)
               .setOnPositive(() async {
