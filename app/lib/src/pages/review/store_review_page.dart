@@ -51,8 +51,9 @@ class StoreReviewPage extends GetView<StoreReviewController> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AppTextBody2Widget()
-                        .setText(storeReview.createdBy ??
-                            R.strings.anonymousCustomer)
+                        .setText(storeReview.createdBy != null
+                            ? '0${storeReview.createdBy!.substring(2,5)}***'
+                            : R.strings.anonymousCustomer)
                         .setTextStyle(AppTextStyleExt.of.textBody2s)
                         .build(context),
                     SizedBox(
