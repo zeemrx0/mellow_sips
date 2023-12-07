@@ -32,6 +32,8 @@ part './order/order_details_raw.dart';
 
 part './notification/notification_raw.dart';
 
+part './profile/profile_raw.dart';
+
 abstract class BaseRaw<BM extends BaseModel> {
   BM toModel();
 }

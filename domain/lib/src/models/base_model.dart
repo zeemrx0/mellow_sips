@@ -9,7 +9,7 @@ part './test_model.dart';
 
 part './tokens_model.dart';
 
-part  './document_model.dart';
+part './document_model.dart';
 
 part './store/store_model.dart';
 part './store/product_model.dart';
@@ -33,6 +33,8 @@ part './order/order_external_payment_info_model.dart';
 part './order/order_details_model.dart';
 
 part './notification/notification_model.dart';
+
+part './profile/profile_model.dart';
 
 abstract class BaseModel {}
 

@@ -38,23 +38,22 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
                 padding: EdgeInsets.symmetric(
                   horizontal: AppThemeExt.of.majorPaddingScale(4),
                 ),
-                child: Row(
-                  children: [
-                    R.pngs.profileAvatar.image(
-                      width: AppThemeExt.of.majorScale(20),
-                      height: AppThemeExt.of.majorScale(20),
-                    ),
-                    SizedBox(
-                      width: AppThemeExt.of.majorPaddingScale(4),
-                    ),
-                    AppTextHeading4Widget()
-                        .setText(
-                          controller.isLoggedIn.value
-                              ? 'Huỳnh Quốc Duy'
-                              : R.strings.logIn,
-                        )
-                        .build(context),
-                  ],
+                child: Obx(
+                  () => Row(
+                    children: [
+                      R.pngs.profileAvatar.image(
+                        width: AppThemeExt.of.majorScale(20),
+                        height: AppThemeExt.of.majorScale(20),
+                      ),
+                      SizedBox(
+                        width: AppThemeExt.of.majorPaddingScale(4),
+                      ),
+                      AppTextHeading4Widget()
+                          .setText(controller.profile.value?.displayName ??
+                              R.strings.logIn)
+                          .build(context),
+                    ],
+                  ),
                 ),
               ),
             ),

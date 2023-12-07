@@ -10,3 +10,4 @@ part './order_repository.dart';
 part './notification_repository.dart';
 part './review_repository.dart';
 part './home_repository.dart';
+part './profile_repository.dart';

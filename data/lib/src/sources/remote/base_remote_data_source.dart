@@ -14,3 +14,4 @@ part './order_remote_data_source.dart';
 part './notification/notification_remote_data_source.dart';
 part './review_remote_data_source.dart';
 part './home_remote_data_source.dart';
+part './profile_remote_data_source.dart';

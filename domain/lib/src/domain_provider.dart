@@ -90,5 +90,10 @@ class DomainProvider {
     Get.put<GetPromotingStoreListUseCase>(
       GetPromotingStoreListUseCaseImpl(Get.find()),
     );
+
+    // Profile
+    Get.put<GetProfileUseCase>(
+      GetProfileUseCaseImpl(Get.find()),
+    );
   }
 }
