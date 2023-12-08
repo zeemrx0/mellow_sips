@@ -163,8 +163,8 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
                 Obx(
                   () => Expanded(
                     child: AppFilledButtonWidget()
-                        .setButtonText(R.strings.checkout)
-                        .setIsDisabled(controller.numberOfCartItems.value == 0)
+                        .setButtonText(controller.store.value?.isOpen == true ? R.strings.checkout : R.strings.closed)
+                        .setIsDisabled(controller.numberOfCartItems.value == 0 || controller.store.value?.isOpen == false)
                         .setOnPressed(
                       () {
                         Get.toNamed(
@@ -226,33 +226,6 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
           ],
         ),
       ),
-      actions: [
-        AppIconButtonWidget()
-            .setPrefixIcon(
-              R.svgs.icHeartOutline.svg(
-                width: AppThemeExt.of.majorScale(5),
-                height: AppThemeExt.of.majorScale(5),
-                colorFilter: ColorFilter.mode(
-                  AppColors.of.whiteColor,
-                  BlendMode.srcIn,
-                ),
-              ),
-            )
-            .setPadding(
-              EdgeInsets.all(
-                AppThemeExt.of.majorPaddingScale(6 / 4),
-              ),
-            )
-            .setBackgroundColor(const Color.fromRGBO(106, 106, 105, 0.7))
-            .setOnPressed(
-          () {
-            // TODO: Like
-          },
-        ).build(context),
-        SizedBox(
-          width: AppThemeExt.of.majorScale(4),
-        )
-      ],
     );
   }
 
@@ -277,19 +250,41 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
           height: AppThemeExt.of.majorScale(3),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            R.svgs.icStarYellow.svg(
-              width: AppThemeExt.of.majorScale(4),
-              height: AppThemeExt.of.majorScale(4),
+            Row(
+              children: [
+                R.svgs.icStarYellow.svg(
+                  width: AppThemeExt.of.majorScale(4),
+                  height: AppThemeExt.of.majorScale(4),
+                ),
+                SizedBox(
+                  width: AppThemeExt.of.majorScale(2),
+                ),
+                AppTextCaption1Widget()
+                    .setText(controller
+                                .store.value?.reviewStatistic?.averagePoint !=
+                            null
+                        ? '${controller.store.value?.reviewStatistic?.averagePoint}'
+                        : R.strings.noReviewsYet)
+                    .build(context),
+              ],
             ),
-            SizedBox(
-              width: AppThemeExt.of.majorScale(2),
+            InkWell(
+              onTap: () async {
+                await Get.toNamed(
+                  Routes.storeReviews,
+                  arguments: {
+                    AppConstants.storeId: controller.store.value?.id,
+                  },
+                );
+              },
+              child: AppTextCaption1Widget()
+                  .setText(R.strings.viewReviews)
+                  .setColor(AppColors.of.primaryColor)
+                  .setTextStyle(AppTextStyleExt.of.textCaption1s)
+                  .build(context),
             ),
-            AppTextCaption1Widget()
-                .setText(controller.store.value?.rating != null
-                    ? '${controller.store.value?.rating}'
-                    : null)
-                .build(context),
           ],
         ),
         SizedBox(

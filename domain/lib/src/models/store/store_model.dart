@@ -8,10 +8,10 @@ class StoreModel extends BaseModel {
   String? coverImageData;
   final String? name;
   final String? type;
-  final bool? hasPromotion;
-  final bool? isWorking;
-  final double? rating;
+  final bool? isOpen;
   final String? address;
+  final ReviewStatisticModel? reviewStatistic;
+  final List<VoucherModel> vouchers;
 
   StoreModel({
     required this.id,
@@ -19,10 +19,10 @@ class StoreModel extends BaseModel {
     this.coverImageData,
     required this.name,
     required this.type,
-    required this.hasPromotion,
-    required this.isWorking,
-    required this.rating,
+    required this.isOpen,
     required this.address,
+    required this.reviewStatistic,
+    this.vouchers = const [],
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) =>

@@ -38,4 +38,12 @@ part './notification/subscribe_notifications_param.dart';
 part './notification/search_notifications_param.dart';
 part './notification/mark_notification_as_read_param.dart';
 
+part './review/create_store_review_param.dart';
+part './review/search_store_reviews_param.dart';
+
+part 'home/get_milk_tea_store_list_param.dart';
+part 'home/get_coffee_store_list_param.dart';
+part 'home/get_promoting_store_list_param.dart';
+part 'home/get_qualified_store_list_param.dart';
+
 abstract class BaseParam {}

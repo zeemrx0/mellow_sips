@@ -68,5 +68,32 @@ class DomainProvider {
     Get.put<MarkAllNotificationAsReadUseCase>(
       MarkAllNotificationAsReadUseCaseImpl(Get.find()),
     );
+
+    // Review
+    Get.put<CreateStoreReviewUseCase>(
+      CreateStoreReviewUseCaseImpl(Get.find()),
+    );
+    Get.put<SearchStoreReviewsUseCase>(
+      SearchStoreReviewsUseCaseImpl(Get.find()),
+    );
+
+    // Home
+    Get.put<GetCoffeeStoreListUseCase>(
+      GetCoffeeStoreListUseCaseImpl(Get.find()),
+    );
+    Get.put<GetMilkTeaStoreListUseCase>(
+      GetMilkTeaStoreListUseCaseImpl(Get.find()),
+    );
+    Get.put<GetQualifiedStoreListUseCase>(
+      GetQualifiedStoreListUseCaseImpl(Get.find()),
+    );
+    Get.put<GetPromotingStoreListUseCase>(
+      GetPromotingStoreListUseCaseImpl(Get.find()),
+    );
+
+    // Profile
+    Get.put<GetProfileUseCase>(
+      GetProfileUseCaseImpl(Get.find()),
+    );
   }
 }

@@ -3,6 +3,7 @@ part of '../base_raw.dart';
 @JsonSerializable()
 @CopyWith()
 class NotificationRaw extends BaseRaw {
+  final DateTime? createdAt;
   final String id;
   final String key;
   final String subject;
@@ -10,6 +11,7 @@ class NotificationRaw extends BaseRaw {
   final bool isSeen;
 
   NotificationRaw({
+    required this.createdAt,
     required this.id,
     required this.key,
     required this.subject,
@@ -25,6 +27,7 @@ class NotificationRaw extends BaseRaw {
   @override
   BaseModel toModel() {
     return NotificationModel(
+      createdAt: createdAt,
       id: id,
       key: key,
       subject: subject,

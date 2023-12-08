@@ -19,12 +19,15 @@ part 'app_nav_menu_binding.dart';
 class AppNavMenuController extends GetxController {
   final GetTokensUseCase _getTokensUseCase;
   final LogoutUseCase _logoutUseCase;
+  final GetProfileUseCase _getProfileUseCase;
 
   Rx<bool> isLoggedIn = Rx<bool>(false);
+  Rxn<ProfileModel> profile = Rxn<ProfileModel>(null);
 
   AppNavMenuController(
     this._getTokensUseCase,
     this._logoutUseCase,
+    this._getProfileUseCase,
   );
 
   Future<void> checkIsLoggedIn() async {
@@ -34,7 +37,25 @@ class AppNavMenuController extends GetxController {
       if (result.netData?.accessToken != null &&
           result.netData!.accessToken.isNotEmpty) {
         isLoggedIn.value = true;
+        getProfile();
       }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  Future<void> getProfile() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      final result = await _getProfileUseCase.executeObject();
+
+      profile.value = result.netData;
+
+      AppLoadingOverlayWidget.dismiss();
+
+      if (result.netData != null) {}
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
@@ -48,13 +69,6 @@ class AppNavMenuController extends GetxController {
       await _logoutUseCase.executeObject();
 
       isLoggedIn.value = false;
-
-      // Get.offNamedUntil(
-      //   Routes.welcome,
-      //   (route) {
-      //     return route.settings.name == Routes.home;
-      //   },
-      // );
 
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {

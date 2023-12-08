@@ -3,9 +3,12 @@ import 'package:data/src/network/network_service.dart';
 import 'package:data/src/repositories/auth_repository_impl.dart';
 import 'package:data/src/repositories/cart_repository_impl.dart';
 import 'package:data/src/repositories/document_repository_impl.dart';
+import 'package:data/src/repositories/home_repository_impl.dart';
 import 'package:data/src/repositories/notification_repository_impl.dart';
 import 'package:data/src/repositories/order_repository_impl.dart';
 import 'package:data/src/repositories/product_repository_impl.dart';
+import 'package:data/src/repositories/profile_repository_impl.dart';
+import 'package:data/src/repositories/review_repository_impl.dart';
 import 'package:data/src/repositories/store_repository_impl.dart';
 import 'package:data/src/repositories/test_repository_impl.dart';
 import 'package:data/src/sources/local/base_local_data_source.dart';
@@ -64,6 +67,15 @@ class _DataSourcesProvider {
     Get.lazyPut<NotificationRemoteDataSource>(
       () => NotificationRemoteDataSourceImpl(Get.find()),
     );
+    Get.lazyPut<ReviewRemoteDataSource>(
+      () => ReviewRemoteDataSourceImpl(Get.find()),
+    );
+    Get.lazyPut<HomeRemoteDataSource>(
+      () => HomeRemoteDataSourceImpl(Get.find()),
+    );
+    Get.lazyPut<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSourceImpl(Get.find()),
+    );
   }
 }
 
@@ -92,6 +104,15 @@ class _RepositoriesProvider {
     );
     Get.lazyPut<NotificationRepository>(
       () => NotificationRepositoryImpl(Get.find(), Get.find()),
+    );
+    Get.lazyPut<ReviewRepository>(
+      () => ReviewRepositoryImpl(Get.find()),
+    );
+    Get.lazyPut<HomeRepository>(
+      () => HomeRepositoryImpl(Get.find()),
+    );
+    Get.lazyPut<ProfileRepository>(
+      () => ProfileRepositoryImpl(Get.find()),
     );
   }
 }

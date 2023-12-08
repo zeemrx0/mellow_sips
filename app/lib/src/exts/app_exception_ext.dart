@@ -24,7 +24,6 @@ class AppExceptionExt {
           // Force Logout
           return AppDefaultDialogWidget()
               .setTitle(R.strings.pleaseLoginToContinue)
-              .setContent(getMessage(appException?.message))
               .setPositiveText(R.strings.confirm)
               .setAppDialogType(AppDialogType.error)
               .setOnPositive(() async {
@@ -129,6 +128,9 @@ class AppExceptionExt {
 
       case AppMessage.qrCodeNotFound:
         return R.strings.qrCodeInvalid;
+
+      case AppMessage.storeIsUnavailableNow:
+        return R.strings.storeIsNotWorkingPleaseComebackLater;
 
       default:
         return R.strings.systemIsCurrentlyErrorPleaseTryAgainLater;

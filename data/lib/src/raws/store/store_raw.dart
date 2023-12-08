@@ -7,20 +7,20 @@ class StoreRaw extends BaseRaw {
   final String? coverImage;
   final String? name;
   final String? type;
-  final bool? hasPromotion;
   final bool? isOpen;
-  final double? rating;
   final String? address;
+  final ReviewStatisticRaw? reviewStatistic;
+  final List<VoucherModel> vouchers;
 
   StoreRaw({
     required this.id,
     required this.coverImage,
     required this.name,
     required this.type,
-    required this.hasPromotion,
     required this.isOpen,
-    required this.rating,
     required this.address,
+    required this.reviewStatistic,
+     this.vouchers = const [],
   });
 
   @override
@@ -30,10 +30,10 @@ class StoreRaw extends BaseRaw {
       coverImage: coverImage,
       name: name,
       type: type,
-      hasPromotion: hasPromotion,
-      isWorking: isOpen,
-      rating: rating,
+      isOpen: isOpen,
       address: address,
+      reviewStatistic: reviewStatistic?.toModel() as ReviewStatisticModel?,
+      vouchers: vouchers,
     );
   }
 

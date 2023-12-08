@@ -29,3 +29,8 @@ class CartKey {
 class NotificationKey {
   static const String notificationId = 'notificationId';
 }
+
+class AppKey {
+  static const String pagination = 'pagination';
+  static const String criteria = 'criteria';
+}

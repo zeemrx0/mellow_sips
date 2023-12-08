@@ -18,6 +18,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
+import 'package:utilities/utilities.dart';
 
 part './product_detail_page.dart';
 part './product_detail_binding.dart';
@@ -50,6 +51,7 @@ class ProductDetailController extends GetxController {
   Rxn<ProductModel> product = Rxn<ProductModel>();
   Rx<int> quantity = Rx<int>(1);
   Rx<Map<String, dynamic>> formInitialValue = Rx<Map<String, dynamic>>({});
+  Rx<int> price = Rx<int>(0);
 
   Future<void> initialize() {
     if (isEditing()) {
@@ -124,12 +126,46 @@ class ProductDetailController extends GetxController {
           product.value?.coverImage,
         );
 
+        price.value = product.value?.price ?? 0;
+
         product.refresh();
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
     }
+  }
+
+  void calculatePrice() {
+    int total = (product.value?.price ?? 0);
+
+    for (ProductOptionSectionModel section
+        in product.value?.productOptionSections ?? []) {
+      final options = formKey.value.currentState?.fields[section.id]?.value;
+
+      if (options is String?) {
+        if (options != null && options.isNotEmpty) {
+          total += section.productAddons
+                  ?.firstWhereOrNull((element) => element.id == options)
+                  ?.price ??
+              0;
+        }
+      }
+
+      if (options is List<String>?) {
+        if (options != null && options.isNotEmpty) {
+          for (String option in options) {
+            total += section.productAddons
+                    ?.firstWhereOrNull((element) => element.id == option)
+                    ?.price ??
+                0;
+          }
+        }
+      }
+    }
+
+    price.value = total * quantity.value;
+    price.refresh();
   }
 
   bool isEditing() {
@@ -168,6 +204,7 @@ class ProductDetailController extends GetxController {
   void increaseProductQuantity() {
     final currentQuantity = quantity.value;
     quantity.value = currentQuantity + 1;
+    calculatePrice();
     quantity.refresh();
   }
 
@@ -200,6 +237,8 @@ class ProductDetailController extends GetxController {
     if (currentQuantity > 0) {
       quantity.value = currentQuantity - 1;
     }
+
+    calculatePrice();
 
     quantity.refresh();
   }

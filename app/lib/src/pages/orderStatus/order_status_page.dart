@@ -62,7 +62,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
             children: [
               _step(
                 context,
-                title: R.strings.waitForPayment,
+                title: R.strings.waitingForPayment,
                 stepStatus:
                     controller.order.value?.status == AppOrderStatus.pending
                         ? StepStatus.inProgress
@@ -71,7 +71,7 @@ class OrderStatusPage extends GetView<OrderStatusController> {
               _connectionLine(context),
               _step(
                 context,
-                title: R.strings.waitForConfirm,
+                title: R.strings.waitingForConfirm,
                 stepStatus:
                     controller.order.value?.status == AppOrderStatus.ordered
                         ? StepStatus.inProgress

@@ -49,79 +49,7 @@ class StoreListPage extends GetView<StoreListController> {
             },
           ).build(context),
         )
-        .setHeight(
-          kToolbarHeight + AppThemeExt.of.majorScale(48 / 4),
-        )
         .setCanBack(true)
-        .setBottom(
-          Padding(
-            padding: EdgeInsets.only(
-              bottom: AppThemeExt.of.majorPaddingScale(3),
-            ),
-            child: Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    // TODO: Show the filter page
-                  },
-                  child: Container(
-                    decoration: _unselectedDecoration(),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppThemeExt.of.majorPaddingScale(3),
-                      vertical: AppThemeExt.of.majorPaddingScale(6 / 4),
-                    ),
-                    child: Row(
-                      children: [
-                        AppTextCaption1Widget()
-                            .setText(R.strings.sort)
-                            .setColor(
-                              AppColors.of.grayColor[600]!,
-                            )
-                            .setTextStyle(
-                              AppTextStyleExt.of.textCaption1r,
-                            )
-                            .build(context),
-                        SizedBox(
-                          width: AppThemeExt.of.majorPaddingScale(1),
-                        ),
-                        R.svgs.icCaretDown.svg(
-                          width: AppThemeExt.of.majorScale(4),
-                          height: AppThemeExt.of.majorScale(4),
-                          colorFilter: ColorFilter.mode(
-                            AppColors.of.grayColor[500]!,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: AppThemeExt.of.majorPaddingScale(2),
-                ),
-                ToggleChipWidget()
-                    .setFieldKey(StoreListKey.hasPromo)
-                    .setText(R.strings.promo)
-                    .setOnClick(
-                  () {
-                    // TODO: Load the list of stores with promo
-                  },
-                ).build(context),
-                SizedBox(
-                  width: AppThemeExt.of.majorPaddingScale(2),
-                ),
-                ToggleChipWidget()
-                    .setFieldKey(StoreListKey.isOpen)
-                    .setText(R.strings.open)
-                    .setOnClick(
-                  () {
-                    // TODO: Load the list of stores that are open
-                  },
-                ).build(context),
-              ],
-            ),
-          ),
-        )
         .build(context);
   }
 
@@ -147,17 +75,6 @@ class StoreListPage extends GetView<StoreListController> {
   ) {
     return StoreItemWidget(
       store: storeModel,
-    );
-  }
-
-  BoxDecoration _unselectedDecoration() {
-    return BoxDecoration(
-      border: Border.all(
-        color: AppColors.of.grayColor[500]!,
-      ),
-      borderRadius: BorderRadius.circular(
-        AppThemeExt.of.majorScale(1000),
-      ),
     );
   }
 }

@@ -51,6 +51,10 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
             ),
             child: SingleChildScrollView(
               child: FormBuilder(
+                onChanged: () {
+                  controller.formKey.value.currentState?.save();
+                  controller.calculatePrice();
+                },
                 key: controller.formKey.value,
                 initialValue: controller.formInitialValue.value,
                 child: Obx(
@@ -216,19 +220,20 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
                   width: AppThemeExt.of.majorScale(5),
                 ),
                 Expanded(
-                  child: AppFilledButtonWidget()
-                      .setButtonText(controller.isEditing()
-                          ? R.strings.update
-                          : R.strings.add)
-                      .setOnPressed(
-                    () {
-                      if (controller.isEditing()) {
-                        controller.updateCartItem();
-                      } else {
-                        controller.addToCart();
-                      }
-                    },
-                  ).build(context),
+                  child: Obx(
+                    () => AppFilledButtonWidget()
+                        .setButtonText(
+                            '${controller.isEditing() ? R.strings.update : R.strings.add} - ${NumberExt.withSeparator(controller.price.value)}đ')
+                        .setOnPressed(
+                      () {
+                        if (controller.isEditing()) {
+                          controller.updateCartItem();
+                        } else {
+                          controller.addToCart();
+                        }
+                      },
+                    ).build(context),
+                  ),
                 ),
               ],
             ),

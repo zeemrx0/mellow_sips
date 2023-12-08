@@ -15,6 +15,8 @@ part './store/menu_section_raw.dart';
 part './store/menu_raw.dart';
 part './store/product_option_section_raw.dart';
 part './store/product_addon_raw.dart';
+part './store/store_review_raw.dart';
+part './store/review_statistic_raw.dart';
 
 part './cart/cart_raw.dart';
 part './cart/cart_item_raw.dart';
@@ -29,6 +31,8 @@ part './order/order_external_payment_info_raw.dart';
 part './order/order_details_raw.dart';
 
 part './notification/notification_raw.dart';
+
+part './profile/profile_raw.dart';
 
 abstract class BaseRaw<BM extends BaseModel> {
   BM toModel();

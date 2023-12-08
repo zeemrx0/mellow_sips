@@ -7,6 +7,7 @@ class AppNavMenuBinding extends Bindings {
       () => AppNavMenuController(
         Get.find(),
         Get.find(),
+        Get.find(),
       ),
     );
   }

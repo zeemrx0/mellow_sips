@@ -73,26 +73,4 @@ class QrScanPage extends GetView<QrScanController> {
       ],
     );
   }
-
-  Decoration _selectedDecoration() {
-    return BoxDecoration(
-      color: AppColors.of.primaryColor,
-      borderRadius: BorderRadius.circular(
-        AppThemeExt.of.majorScale(1000),
-      ),
-    );
-  }
-
-  Decoration _unselectedDecoration() {
-    return BoxDecoration(
-      color: AppColors.of.whiteColor,
-      borderRadius: BorderRadius.circular(
-        AppThemeExt.of.majorScale(1000),
-      ),
-      border: Border.all(
-        color: AppColors.of.borderColor,
-        width: 1,
-      ),
-    );
-  }
 }
