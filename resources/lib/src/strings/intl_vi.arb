@@ -133,5 +133,6 @@
   "searchWithKeyword": "Tìm kiếm với từ khoá",
   "voucherIsNotAvailable": "Voucher không khả dụng",
   "orChooseVouchersBelow": "Hoặc chọn voucher bên dưới",
-  "reorderFamiliarStores": "Đặt lại quán quen"
+  "reorderFamiliarStores": "Đặt lại quán quen",
+  "pleaseAddProductToCartFirst": "Vui lòng thêm sản phẩm vào giỏ hàng trước"
 }

@@ -116,8 +116,19 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Get.toNamed(Routes.carts);
-                    controller.getNumberOfCartItems();
+                    if (controller.cartId.value == null) {
+                      AppDefaultDialogWidget()
+                          .setTitle(R.strings.pleaseAddProductToCartFirst)
+                          .setAppDialogType(AppDialogType.error)
+                          .setPositiveText(R.strings.confirm)
+                          .buildDialog(Get.context!)
+                          .show();
+                    } else {
+                      await Get.toNamed(Routes.cart, arguments: {
+                        AppConstants.cartId: controller.cartId.value,
+                      });
+                      controller.getNumberOfCartItems();
+                    }
                   },
                   child: Container(
                     height: AppThemeExt.of.majorScale(42 / 4),

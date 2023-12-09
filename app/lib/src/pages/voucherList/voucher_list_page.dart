@@ -31,6 +31,7 @@ class VoucherListPage extends GetView<VoucherListController> {
                 Expanded(
                     child: AppTextFieldWidget()
                         .setFieldKey('voucherCode')
+                        .setHintText(R.strings.enterCode)
                         .build(context)),
                 SizedBox(
                   width: AppThemeExt.of.majorScale(2),
