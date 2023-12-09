@@ -107,13 +107,14 @@ class CheckoutPage extends GetWidget<CheckoutController> {
                       Get.toNamed(
                         Routes.vouchers,
                         arguments: {
-                          CheckoutControllerKey.vouchers: controller
+                          AppConstants.vouchers: controller
                                   .vouchers.value?.BUSINESS
                                   .where((voucher) => voucher.canUse == true)
                                   .toList() ??
                               [],
-                          CheckoutControllerKey.selectedVoucher:
+                          AppConstants.selectedVoucher:
                               controller.businessVoucher.value,
+                          AppConstants.cartId: controller.cart.value?.id,
                         },
                       )?.then((value) {
                         controller.businessVoucher.value =
@@ -184,13 +185,13 @@ class CheckoutPage extends GetWidget<CheckoutController> {
                   InkWell(
                     onTap: () {
                       Get.toNamed(Routes.vouchers, arguments: {
-                        CheckoutControllerKey.vouchers: controller
-                                .vouchers.value?.SYSTEM
+                        AppConstants.vouchers: controller.vouchers.value?.SYSTEM
                                 .where((voucher) => voucher.canUse == true)
                                 .toList() ??
                             [],
-                        CheckoutControllerKey.selectedVoucher:
+                        AppConstants.selectedVoucher:
                             controller.systemVoucher.value,
+                        AppConstants.cartId: controller.cart.value?.id,
                       })?.then((value) {
                         controller.systemVoucher.value = value as VoucherModel?;
 

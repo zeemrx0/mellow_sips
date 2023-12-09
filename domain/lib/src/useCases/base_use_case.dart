@@ -37,7 +37,7 @@ part './order/search_orders_use_case.dart';
 part './order/get_transaction_by_order_id_use_case.dart';
 
 part './notification/subscribe_notifications_use_case.dart';
-part './notification/unsubcribe_notifications_use_case.dart';
+part 'notification/unsubscribe_notifications_use_case.dart';
 part './notification/search_notifications_use_case.dart';
 part './notification/mark_notification_as_read_use_case.dart';
 part './notification/mark_all_notification_as_read_use_case.dart';
@@ -49,6 +49,7 @@ part './home/get_coffee_store_list_use_case.dart';
 part './home/get_milk_tea_store_list_use_case.dart';
 part './home/get_promoting_store_list_use_case.dart';
 part './home/get_qualified_store_list_use_case.dart';
+part './home/get_best_selling_products_use_case.dart';
 
 part './profile/get_profile_use_case.dart';
 

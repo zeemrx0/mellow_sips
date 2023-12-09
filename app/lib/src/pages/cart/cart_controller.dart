@@ -18,56 +18,85 @@ part 'cart_binding.dart';
 part 'cart_page.dart';
 
 class CartController extends GetxController {
-  final GetAllCartUseCase _getAllCartUseCase;
+  // final GetAllCartUseCase _getAllCartUseCase;
   final GetCartDetailUseCase _getCartDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
   final DeleteCartUseCase _deleteCartUseCase;
   final DeleteCartItemUseCase _deleteCartItemUseCase;
 
   CartController(
-    this._getAllCartUseCase,
     this._getCartDetailUseCase,
     this._getDocumentUseCase,
     this._deleteCartUseCase,
     this._deleteCartItemUseCase,
   );
 
-  RxList<CartModel> carts = <CartModel>[].obs;
+  Rxn<CartModel> cart = Rxn<CartModel>();
 
-  Future<void> getAllCart() async {
+  // Future<void> getAllCart() async {
+  //   try {
+  //     AppLoadingOverlayWidget.show();
+
+  //     final result = await _getAllCartUseCase.executeList();
+
+  //     if (result.netData != null) {
+  //       carts.value = <CartModel>[];
+
+  //       for (var cart in result.netData!) {
+  //         final cartResult = await _getCartDetailUseCase.executeObject(
+  //           param: GetCartDetailParam(cartId: cart.id),
+  //         );
+
+  //         if (cartResult.netData != null) {
+  //           final cartData = cartResult.netData as CartModel;
+
+  //           carts.add(cartData);
+  //         }
+  //       }
+  //     }
+
+  //     AppLoadingOverlayWidget.dismiss();
+
+  //     for (var cart in carts) {
+  //       for (var cartItem in cart.cartItems) {
+  //         cartItem.product.coverImageData = await AppImageExt.getImage(
+  //           _getDocumentUseCase,
+  //           cartItem.product.coverImage,
+  //         );
+  //       }
+
+  //       carts.refresh();
+  //     }
+  //   } on AppException catch (e) {
+  //     AppLoadingOverlayWidget.dismiss();
+  //     AppExceptionExt(appException: e).detected();
+  //   }
+  // }
+
+  Future<void> getCart(String cartId) async {
     try {
       AppLoadingOverlayWidget.show();
 
-      final result = await _getAllCartUseCase.executeList();
+      final result = await _getCartDetailUseCase.executeObject(
+        param: GetCartDetailParam(cartId: cartId),
+      );
 
       if (result.netData != null) {
-        carts.value = <CartModel>[];
-
-        for (var cart in result.netData!) {
-          final cartResult = await _getCartDetailUseCase.executeObject(
-            param: GetCartDetailParam(cartId: cart.id),
-          );
-
-          if (cartResult.netData != null) {
-            final cartData = cartResult.netData as CartModel;
-
-            carts.add(cartData);
-          }
-        }
+        cart.value = result.netData;
       }
 
       AppLoadingOverlayWidget.dismiss();
 
-      for (var cart in carts) {
-        for (var cartItem in cart.cartItems) {
+      if (cart.value != null) {
+        for (var cartItem in cart.value!.cartItems) {
           cartItem.product.coverImageData = await AppImageExt.getImage(
             _getDocumentUseCase,
             cartItem.product.coverImage,
           );
         }
-
-        carts.refresh();
       }
+
+      cart.refresh();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
@@ -88,8 +117,7 @@ class CartController extends GetxController {
       ),
     );
 
-    await getAllCart();
-    carts.refresh();
+    await getCart(cartId);
   }
 
   Future<void> deleteCartItem(String cartItemId) async {
@@ -99,7 +127,6 @@ class CartController extends GetxController {
       ),
     );
 
-    await getAllCart();
-    carts.refresh();
+    await getCart(cart.value!.id);
   }
 }

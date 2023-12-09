@@ -19,6 +19,60 @@ class VoucherListPage extends GetView<VoucherListController> {
   Widget _body(BuildContext context) {
     return Column(
       children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppThemeExt.of.majorPaddingScale(4),
+            vertical: AppThemeExt.of.majorPaddingScale(2),
+          ),
+          child: FormBuilder(
+            key: controller.formKey,
+            child: Row(
+              children: [
+                Expanded(
+                    child: AppTextFieldWidget()
+                        .setFieldKey('voucherCode')
+                        .setHintText(R.strings.enterCode)
+                        .build(context)),
+                SizedBox(
+                  width: AppThemeExt.of.majorScale(2),
+                ),
+                InkWell(
+                  onTap: () async {
+                    controller.formKey.currentState?.save();
+
+                    await controller.applyVoucher();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(
+                      AppThemeExt.of.majorScale(10 / 4),
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.of.primaryColor,
+                      borderRadius: BorderRadius.circular(
+                        AppThemeExt.of.majorScale(10 / 4),
+                      ),
+                    ),
+                    child: R.svgs.icChevronRight.svg(
+                      width: AppThemeExt.of.majorScale(22 / 4),
+                      height: AppThemeExt.of.majorScale(22 / 4),
+                      colorFilter: ColorFilter.mode(
+                        AppColors.of.whiteColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          height: AppThemeExt.of.majorScale(2),
+        ),
+        AppTextCaption1Widget()
+            .setText(R.strings.orChooseVouchersBelow)
+            .setColor(AppColors.of.subTextColor)
+            .build(context),
         Expanded(
           child: SingleChildScrollView(
             padding: EdgeInsets.symmetric(

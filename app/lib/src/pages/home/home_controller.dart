@@ -11,6 +11,7 @@ import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/home/components/carousel_item_widget.dart';
 import 'package:app/src/pages/home/components/product_section_item.dart';
+import 'package:app/src/pages/home/components/store_section_item.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -33,17 +34,24 @@ class HomeController extends GetxController {
 
   final PageController pageController = PageController();
 
-  final GetStoreMenuUseCase _getStoreMenuUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
+  final GetBestSellingProductsUseCase _getBestSellingProductsUseCase;
+  final SearchOrdersUseCase _searchOrdersUseCase;
+  final GetTokensUseCase _getTokensUseCase;
 
-  Rxn<List<ProductModel>> products = Rxn<List<ProductModel>>();
+  Rxn<List<ProductModel>> bestSellingProducts = Rxn<List<ProductModel>>();
+  Rxn<List<StoreModel>> orderedStores = Rxn<List<StoreModel>>();
 
   HomeController(
     this._subscribeNotificationUseCase,
     this._unsubscribeNotificationsUseCase,
-    this._getStoreMenuUseCase,
     this._getDocumentUseCase,
+    this._getBestSellingProductsUseCase,
+    this._searchOrdersUseCase,
+    this._getTokensUseCase,
   );
+
+  Rx<bool> isLoggedIn = Rx<bool>(false);
 
   @override
   void onClose() {
@@ -61,31 +69,96 @@ class HomeController extends GetxController {
     );
   }
 
-  Future<void> getProducts() async {
+  Future<void> checkIsLoggedIn() async {
+    try {
+      final result = await _getTokensUseCase.executeObject();
+
+      if (result.netData?.accessToken != null &&
+          result.netData!.accessToken.isNotEmpty) {
+        isLoggedIn.value = true;
+        getOrderedStoreList();
+      }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  Future<void> getOrderedStoreList() async {
     try {
       AppLoadingOverlayWidget.show();
 
-      final result = await _getStoreMenuUseCase.executeObject(
-        param: GetStoreDetailParam(
-          storeId: '0210cb7b-9613-4652-9378-9954a2564de7',
+      final result = await _searchOrdersUseCase.executePaginationList(
+        param: SearchOrdersParam(
+          criteria: {
+            AppConstants.filter: {
+              AppConstants.status: AppOrderStatus.received,
+            },
+            AppConstants.order: {
+              AppConstants.createdAt: AppConstants.desc,
+            },
+          },
+          pagination: AppListParam(
+            page: 1,
+            itemsPerPage: 20,
+          ).toJson,
         ),
       );
 
-      final menuData = result.netData;
+      if (result.netData != null) {
+        List<StoreModel> storeList = [];
 
-      List<ProductModel> productList = [];
+        for (OrderModel order in result.netData!) {
+          final store = storeList.firstWhereOrNull(
+            (element) => element.id == order.details.store.id,
+          );
+          if (store == null) {
+            order.details.store.coverImageData = await AppImageExt.getImage(
+              _getDocumentUseCase,
+              order.details.store.coverImage,
+            );
+            storeList.add(order.details.store);
+          }
+        }
 
-      for (MenuSectionModel section in menuData?.menuSections ?? []) {
-        for (ProductModel product in section.products) {
+        orderedStores.value = storeList;
+      }
+
+      AppLoadingOverlayWidget.dismiss();
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  Future<void> getBestSellingProducts() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      final result = await _getBestSellingProductsUseCase.executePaginationList(
+        param: GetBestSellingProductsParam(pagination: {
+          AppConstants.page: 1,
+          AppConstants.itemsPerPage: 10,
+        }, criteria: {
+          AppConstants.order: AppConstants.desc,
+        }),
+      );
+
+      if (result.netData != null) {
+        List<ProductModel> productList = [];
+
+        for (ProductModel product in result.netData!) {
           product.coverImageData = await AppImageExt.getImage(
             _getDocumentUseCase,
             product.coverImage,
           );
           productList.add(product);
         }
+
+        bestSellingProducts.value = productList;
       }
 
-      products.value = productList;
+      AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();

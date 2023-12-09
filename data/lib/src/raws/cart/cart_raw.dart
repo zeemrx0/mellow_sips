@@ -9,6 +9,7 @@ class CartRaw extends BaseRaw {
   final int? numberOfItems;
   final int? finalPrice;
   final int? tempPrice;
+  final List<VoucherRaw> vouchers;
 
   CartRaw({
     required this.id,
@@ -17,6 +18,7 @@ class CartRaw extends BaseRaw {
     required this.numberOfItems,
     required this.finalPrice,
     required this.tempPrice,
+    this.vouchers = const [],
   });
 
   factory CartRaw.fromJson(Map<String, dynamic> json) =>
@@ -33,6 +35,7 @@ class CartRaw extends BaseRaw {
       numberOfItems: numberOfItems ?? cartItems.length,
       finalPrice: finalPrice,
       tempPrice: tempPrice,
+      vouchers: vouchers.map((e) => e.toModel() as VoucherModel).toList(),
     );
   }
 }

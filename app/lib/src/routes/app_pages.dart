@@ -128,7 +128,7 @@ class AppPages {
 
     // Cart
     GetPage(
-      name: Routes.carts,
+      name: Routes.cart,
       page: () => const CartPage(),
       binding: CartBinding(),
     ),

@@ -16,4 +16,8 @@ abstract class HomeRepository {
   Future<AppPaginationListResultModel<StoreModel>> getQualifiedStoreList({
     required Map<String, dynamic> params,
   });
+
+  Future<AppPaginationListResultModel<ProductModel>> getBestSellingProducts({
+    required Map<String, dynamic> params,
+  });
 }

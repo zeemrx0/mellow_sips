@@ -57,4 +57,17 @@ class HomeRepositoryImpl extends HomeRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppPaginationListResultModel<ProductModel>> getBestSellingProducts({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData =
+          await _homeRemoteDataSource.getBestSellingProducts(params: params);
+      return remoteData.toAppPaginationListResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

@@ -112,7 +112,7 @@ class VoucherWidget extends StatelessWidget {
       text = '${R.strings.discount} ${voucher.value}%';
     }
 
-    if (voucher.maxDiscountAmount != null) {
+    if (voucher.maxDiscountAmount != null && voucher.maxDiscountAmount! > 0) {
       text +=
           ' ${R.strings.maximum} ${NumberExt.vndDisplay(voucher.maxDiscountAmount!)}';
     }

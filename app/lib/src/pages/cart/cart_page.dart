@@ -5,7 +5,9 @@ class CartPage extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.getAllCart();
+    controller.getCart(
+      Get.arguments[AppConstants.cartId] as String,
+    );
 
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
@@ -31,82 +33,83 @@ class CartPage extends GetView<CartController> {
                       horizontal: AppThemeExt.of.majorScale(4),
                     ),
                     child: Column(
-                      children: controller.carts
-                          .map(
-                            (cart) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    AppTextHeading6Widget()
-                                        .setText(cart.store.name)
-                                        .setTextAlign(TextAlign.start)
-                                        .setColor(AppColors.of.primaryColor)
-                                        .build(
-                                          context,
-                                        ),
-                                    AppIconButtonWidget()
-                                        .setOnPressed(() {
-                                          controller.deleteCart(cart.id);
-                                        })
-                                        .setPrefixIcon(
-                                          R.svgs.icClose.svg(
-                                            width: AppThemeExt.of.majorScale(5),
-                                            height:
-                                                AppThemeExt.of.majorScale(5),
-                                          ),
-                                        )
-                                        .build(context),
-                                  ],
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppTextHeading6Widget()
+                                .setText(controller.cart.value?.store.name)
+                                .setTextAlign(TextAlign.start)
+                                .setColor(AppColors.of.primaryColor)
+                                .build(
+                                  context,
                                 ),
-                                SizedBox(
-                                  height: AppThemeExt.of.majorScale(4),
-                                ),
-                                ...cart.cartItems
-                                    .map(
-                                      (cartItem) => CartItemWidget(
-                                        cartItem: cartItem,
-                                        refreshCarts: () {
-                                          controller.getAllCart();
-                                        },
-                                      ),
-                                    )
-                                    .toList(),
-                                SizedBox(
-                                  height: AppThemeExt.of.majorScale(1),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    AppTextHeading6Widget()
-                                        .setText(R.strings.totalPrice)
-                                        .build(context),
-                                    AppTextHeading6Widget()
-                                        .setText(
-                                            '${NumberExt.withSeparator(controller.totalPrice(cart))}đ')
-                                        .setColor(AppColors.of.primaryColor)
-                                        .build(context),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: AppThemeExt.of.majorScale(3),
-                                ),
-                                AppFilledButtonWidget()
-                                    .setButtonText(R.strings.order)
-                                    .setOnPressed(() {
-                                  Get.toNamed(Routes.checkout,
-                                      arguments: cart.id);
-                                }).build(context),
-                                SizedBox(
-                                  height: AppThemeExt.of.majorScale(8),
-                                ),
-                              ],
-                            ),
-                          )
-                          .toList(),
+                            AppIconButtonWidget()
+                                .setOnPressed(
+                                  () {
+                                    if (controller.cart.value != null) {
+                                      controller.deleteCart(
+                                          controller.cart.value!.id);
+                                    }
+                                  },
+                                )
+                                .setPrefixIcon(
+                                  R.svgs.icClose.svg(
+                                    width: AppThemeExt.of.majorScale(5),
+                                    height: AppThemeExt.of.majorScale(5),
+                                  ),
+                                )
+                                .build(context),
+                          ],
+                        ),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(4),
+                        ),
+                        ...(controller.cart.value?.cartItems ?? [])
+                            .map(
+                              (cartItem) => CartItemWidget(
+                                cartItem: cartItem,
+                                refreshCarts: () {
+                                  controller.getCart(
+                                    Get.arguments[AppConstants.cartId]
+                                        as String,
+                                  );
+                                },
+                              ),
+                            )
+                            .toList(),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(1),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppTextHeading6Widget()
+                                .setText(R.strings.totalPrice)
+                                .build(context),
+                            AppTextHeading6Widget()
+                                .setText(
+                                    '${controller.cart.value != null ? NumberExt.withSeparator(controller.totalPrice(controller.cart.value!)) : 0}đ')
+                                .setColor(AppColors.of.primaryColor)
+                                .build(context),
+                          ],
+                        ),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(3),
+                        ),
+                        AppFilledButtonWidget()
+                            .setButtonText(R.strings.order)
+                            .setOnPressed(() {
+                          Get.toNamed(
+                            Routes.checkout,
+                            arguments: controller.cart.value?.id,
+                          );
+                        }).build(context),
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(8),
+                        ),
+                      ],
                     ),
                   ),
                 ),

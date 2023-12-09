@@ -129,5 +129,10 @@
 	"invalidInput": "Dữ liệu không hợp lệ",
 	"closed": "Đóng cửa",
 	"storeIsNotWorkingPleaseComebackLater": "Cửa hàng chưa hoạt động vui lòng quay lại sau",
-  "yourReview": "Đánh giá của bạn"
+  "yourReview": "Đánh giá của bạn",
+  "searchWithKeyword": "Tìm kiếm với từ khoá",
+  "voucherIsNotAvailable": "Voucher không khả dụng",
+  "orChooseVouchersBelow": "Hoặc chọn voucher bên dưới",
+  "reorderFamiliarStores": "Đặt lại quán quen",
+  "pleaseAddProductToCartFirst": "Vui lòng thêm sản phẩm vào giỏ hàng trước"
 }
