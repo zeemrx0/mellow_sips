@@ -10,6 +10,7 @@ class HomeBinding extends Bindings {
         Get.find(),
         Get.find(),
         Get.find(),
+        Get.find(),
       ),
     );
   }

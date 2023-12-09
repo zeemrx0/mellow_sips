@@ -69,6 +69,7 @@ class AppNavMenuController extends GetxController {
       await _logoutUseCase.executeObject();
 
       isLoggedIn.value = false;
+      profile.value = null;
 
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {

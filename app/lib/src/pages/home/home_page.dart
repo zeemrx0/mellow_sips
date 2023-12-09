@@ -11,7 +11,8 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     controller.subscribeNotifications();
     // controller.getProducts();
-    controller.getOrderedStoreList();
+    // controller.getOrderedStoreList();
+    controller.checkIsLoggedIn();
 
     return AppMainPageWidget()
         .setBody(_body(context))
@@ -123,64 +124,67 @@ class HomePage extends GetView<HomeController> {
                   clipBehavior: Clip.none,
                   child: Container(
                     color: AppColors.of.backgroundColor,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: AppThemeExt.of.majorPaddingScale(2),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                blurRadius: AppThemeExt.of.majorScale(4),
-                                offset: Offset(
-                                  AppThemeExt.of.majorScale(0),
-                                  AppThemeExt.of.majorScale(1),
-                                ),
-                              ),
-                            ],
+                    child: Obx(
+                      () => Column(
+                        children: [
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(2),
                           ),
-                          child: AspectRatio(
-                            aspectRatio: 16 / 9,
-                            child: SizedBox(
-                              width: MediaQuery.of(Get.context!).size.width,
-                              child: PageView(
-                                controller: controller.pageController,
-                                children: carouselItems,
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.08),
+                                  blurRadius: AppThemeExt.of.majorScale(4),
+                                  offset: Offset(
+                                    AppThemeExt.of.majorScale(0),
+                                    AppThemeExt.of.majorScale(1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            child: AspectRatio(
+                              aspectRatio: 16 / 9,
+                              child: SizedBox(
+                                width: MediaQuery.of(Get.context!).size.width,
+                                child: PageView(
+                                  controller: controller.pageController,
+                                  children: carouselItems,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: AppThemeExt.of.majorPaddingScale(3),
-                        ),
-                        SmoothPageIndicator(
-                          controller: controller.pageController,
-                          count: carouselItems.length,
-                          effect: WormEffect(
-                            dotHeight: AppThemeExt.of.majorScale(2),
-                            dotWidth: AppThemeExt.of.majorScale(2),
-                            dotColor: AppColors.of.disabledColor,
-                            activeDotColor: AppColors.of.primaryColor,
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(3),
                           ),
-                        ),
-                        SizedBox(
-                          height: AppThemeExt.of.majorPaddingScale(6),
-                        ),
-                        _categories(context),
-                        SizedBox(
-                          height: AppThemeExt.of.majorPaddingScale(6),
-                        ),
-                        _recommendedProductsSection(context),
-                        SizedBox(
-                          height: AppThemeExt.of.majorPaddingScale(6),
-                        ),
-                        _orderedStoresSection(context),
-                        SizedBox(
-                          height: AppThemeExt.of.majorPaddingScale(12),
-                        ),
-                      ],
+                          SmoothPageIndicator(
+                            controller: controller.pageController,
+                            count: carouselItems.length,
+                            effect: WormEffect(
+                              dotHeight: AppThemeExt.of.majorScale(2),
+                              dotWidth: AppThemeExt.of.majorScale(2),
+                              dotColor: AppColors.of.disabledColor,
+                              activeDotColor: AppColors.of.primaryColor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(6),
+                          ),
+                          _categories(context),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(6),
+                          ),
+                          // _recommendedProductsSection(context),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(6),
+                          ),
+                          if (controller.isLoggedIn.value)
+                            _orderedStoresSection(context),
+                          SizedBox(
+                            height: AppThemeExt.of.majorPaddingScale(12),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

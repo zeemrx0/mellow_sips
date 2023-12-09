@@ -37,6 +37,7 @@ class HomeController extends GetxController {
   final GetDocumentUseCase _getDocumentUseCase;
   final GetBestSellingProductsUseCase _getBestSellingProductsUseCase;
   final SearchOrdersUseCase _searchOrdersUseCase;
+  final GetTokensUseCase _getTokensUseCase;
 
   Rxn<List<ProductModel>> bestSellingProducts = Rxn<List<ProductModel>>();
   Rxn<List<StoreModel>> orderedStores = Rxn<List<StoreModel>>();
@@ -47,7 +48,10 @@ class HomeController extends GetxController {
     this._getDocumentUseCase,
     this._getBestSellingProductsUseCase,
     this._searchOrdersUseCase,
+    this._getTokensUseCase,
   );
+
+  Rx<bool> isLoggedIn = Rx<bool>(false);
 
   @override
   void onClose() {
@@ -63,6 +67,21 @@ class HomeController extends GetxController {
         importance: Importance.max,
       ),
     );
+  }
+
+  Future<void> checkIsLoggedIn() async {
+    try {
+      final result = await _getTokensUseCase.executeObject();
+
+      if (result.netData?.accessToken != null &&
+          result.netData!.accessToken.isNotEmpty) {
+        isLoggedIn.value = true;
+        getOrderedStoreList();
+      }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
   }
 
   Future<void> getOrderedStoreList() async {
