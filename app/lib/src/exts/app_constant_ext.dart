@@ -31,6 +31,7 @@ class AppConstants {
   static const String vouchers = 'vouchers';
   static const String cartId = 'cartId';
   static const String selectedVoucher = 'selectedVoucher';
+  static const String filter = 'filter';
 }
 
 class CartParamKey {

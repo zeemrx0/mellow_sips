@@ -11,6 +11,7 @@ import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/home/components/carousel_item_widget.dart';
 import 'package:app/src/pages/home/components/product_section_item.dart';
+import 'package:app/src/pages/home/components/store_section_item.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +36,17 @@ class HomeController extends GetxController {
 
   final GetDocumentUseCase _getDocumentUseCase;
   final GetBestSellingProductsUseCase _getBestSellingProductsUseCase;
+  final SearchOrdersUseCase _searchOrdersUseCase;
 
   Rxn<List<ProductModel>> bestSellingProducts = Rxn<List<ProductModel>>();
+  Rxn<List<StoreModel>> orderedStores = Rxn<List<StoreModel>>();
 
   HomeController(
     this._subscribeNotificationUseCase,
     this._unsubscribeNotificationsUseCase,
     this._getDocumentUseCase,
     this._getBestSellingProductsUseCase,
+    this._searchOrdersUseCase,
   );
 
   @override
@@ -59,6 +63,53 @@ class HomeController extends GetxController {
         importance: Importance.max,
       ),
     );
+  }
+
+  Future<void> getOrderedStoreList() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      final result = await _searchOrdersUseCase.executePaginationList(
+        param: SearchOrdersParam(
+          criteria: {
+            AppConstants.filter: {
+              AppConstants.status: AppOrderStatus.received,
+            },
+            AppConstants.order: {
+              AppConstants.createdAt: AppConstants.desc,
+            },
+          },
+          pagination: AppListParam(
+            page: 1,
+            itemsPerPage: 20,
+          ).toJson,
+        ),
+      );
+
+      if (result.netData != null) {
+        List<StoreModel> storeList = [];
+
+        for (OrderModel order in result.netData!) {
+          final store = storeList.firstWhereOrNull(
+            (element) => element.id == order.details.store.id,
+          );
+          if (store == null) {
+            order.details.store.coverImageData = await AppImageExt.getImage(
+              _getDocumentUseCase,
+              order.details.store.coverImage,
+            );
+            storeList.add(order.details.store);
+          }
+        }
+
+        orderedStores.value = storeList;
+      }
+
+      AppLoadingOverlayWidget.dismiss();
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
   }
 
   Future<void> getBestSellingProducts() async {

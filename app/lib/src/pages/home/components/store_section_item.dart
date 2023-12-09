@@ -6,12 +6,11 @@ import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:utilities/utilities.dart';
 
-class ProductSectionItem extends StatelessWidget {
-  final ProductModel product;
+class StoreSectionItem extends StatelessWidget {
+  final StoreModel store;
 
-  const ProductSectionItem({super.key, required this.product});
+  const StoreSectionItem({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +19,7 @@ class ProductSectionItem extends StatelessWidget {
         Get.toNamed(
           Routes.storeDetail,
           arguments: {
-            AppConstants.storeId: product.storeId,
-            AppConstants.productId: product.id,
-            AppConstants.action: AppConstants.navigateToProduct,
+            AppConstants.storeId: store.id,
           },
         );
       },
@@ -56,7 +53,7 @@ class ProductSectionItem extends StatelessWidget {
                   AppThemeExt.of.majorScale(2),
                 ),
               ),
-              imageData: product.coverImageData,
+              imageData: store.coverImageData,
               width: AppThemeExt.of.majorScale(132 / 4),
               height: AppThemeExt.of.majorScale(132 / 4),
             ),
@@ -69,19 +66,11 @@ class ProductSectionItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppTextBody2Widget()
-                      .setText(product.name)
+                      .setText(store.name)
                       .setTextStyle(AppTextStyleExt.of.textBody2s)
-                      .setMaxLines(1)
+                      .setMaxLines(2)
                       .setTextOverFlow(TextOverflow.ellipsis)
                       .setColor(AppColors.of.primaryColor)
-                      .build(context),
-                  SizedBox(
-                    height: AppThemeExt.of.majorScale(1 / 2),
-                  ),
-                  AppTextCaption1Widget()
-                      .setText(NumberExt.withSeparator(product.price!))
-                      .setColor(AppColors.of.subTextColor)
-                      .setTextOverFlow(TextOverflow.ellipsis)
                       .build(context),
                 ],
               ),
