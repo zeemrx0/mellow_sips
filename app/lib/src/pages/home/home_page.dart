@@ -397,9 +397,9 @@ class HomePage extends GetView<HomeController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
-              children: controller.products.value == null
+              children: controller.bestSellingProducts.value == null
                   ? []
-                  : controller.products.value!.map((product) {
+                  : controller.bestSellingProducts.value!.map((product) {
                       return Padding(
                         padding: EdgeInsets.only(
                           left: AppThemeExt.of.majorScale(4),

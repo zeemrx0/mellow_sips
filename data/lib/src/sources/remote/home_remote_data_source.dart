@@ -16,6 +16,10 @@ abstract class HomeRemoteDataSource {
   Future<AppPaginationListResultRaw<StoreRaw>> getQualifiedStoreList({
     required Map<String, dynamic> params,
   });
+
+  Future<AppPaginationListResultRaw<ProductRaw>> getBestSellingProducts({
+    required Map<String, dynamic> params,
+  });
 }
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -102,6 +106,27 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
 
       return remoteData.toPaginationListRaw((data) =>
           (data as List).map((item) => StoreRaw.fromJson(item)).toList());
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<AppPaginationListResultRaw<ProductRaw>> getBestSellingProducts({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _networkService.request(
+        clientRequest: ClientRequest(
+          url: '${ApiProvider.customerDashboard}/favorite',
+          method: HttpMethod.post,
+          body: params,
+          requestType: RequestType.paginationList,
+        ),
+      );
+
+      return remoteData.toPaginationListRaw((data) =>
+          (data as List).map((item) => ProductRaw.fromJson(item)).toList());
     } on NetworkException catch (_) {
       rethrow;
     }

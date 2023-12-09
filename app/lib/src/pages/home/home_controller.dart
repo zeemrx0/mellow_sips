@@ -33,16 +33,16 @@ class HomeController extends GetxController {
 
   final PageController pageController = PageController();
 
-  final GetStoreMenuUseCase _getStoreMenuUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
+  final GetBestSellingProductsUseCase _getBestSellingProductsUseCase;
 
-  Rxn<List<ProductModel>> products = Rxn<List<ProductModel>>();
+  Rxn<List<ProductModel>> bestSellingProducts = Rxn<List<ProductModel>>();
 
   HomeController(
     this._subscribeNotificationUseCase,
     this._unsubscribeNotificationsUseCase,
-    this._getStoreMenuUseCase,
     this._getDocumentUseCase,
+    this._getBestSellingProductsUseCase,
   );
 
   @override
@@ -61,31 +61,34 @@ class HomeController extends GetxController {
     );
   }
 
-  Future<void> getProducts() async {
+  Future<void> getBestSellingProducts() async {
     try {
       AppLoadingOverlayWidget.show();
 
-      final result = await _getStoreMenuUseCase.executeObject(
-        param: GetStoreDetailParam(
-          storeId: '0210cb7b-9613-4652-9378-9954a2564de7',
-        ),
+      final result = await _getBestSellingProductsUseCase.executePaginationList(
+        param: GetBestSellingProductsParam(pagination: {
+          AppConstants.page: 1,
+          AppConstants.itemsPerPage: 10,
+        }, criteria: {
+          AppConstants.order: AppConstants.desc,
+        }),
       );
 
-      final menuData = result.netData;
+      if (result.netData != null) {
+        List<ProductModel> productList = [];
 
-      List<ProductModel> productList = [];
-
-      for (MenuSectionModel section in menuData?.menuSections ?? []) {
-        for (ProductModel product in section.products) {
+        for (ProductModel product in result.netData!) {
           product.coverImageData = await AppImageExt.getImage(
             _getDocumentUseCase,
             product.coverImage,
           );
           productList.add(product);
         }
+
+        bestSellingProducts.value = productList;
       }
 
-      products.value = productList;
+      AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();

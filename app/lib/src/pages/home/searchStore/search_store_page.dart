@@ -15,6 +15,61 @@ class SearchStorePage extends GetWidget<SearchStoreController> {
     return CustomScrollView(
       slivers: [
         _appBar(context),
+        Obx(
+          () => SliverToBoxAdapter(
+            child: controller.keyword.value.isEmpty
+                ? const SizedBox()
+                : InkWell(
+                    onTap: () {
+                      int count = 0;
+                      Get.offNamedUntil(
+                        Routes.stores,
+                        (route) {
+                          count++;
+                          return Get.arguments?[AppConstants.navigatedFrom] ==
+                                  Routes.stores
+                              ? count == 3
+                              : count == 2;
+                        },
+                        arguments: {
+                          AppConstants.keyword: controller.keyword.value,
+                        },
+                      );
+                    },
+                    child: Container(
+                      color: AppColors.of.whiteColor,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppThemeExt.of.majorPaddingScale(4),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppThemeExt.of.majorPaddingScale(2),
+                            vertical: AppThemeExt.of.majorPaddingScale(4),
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: AppColors.of.dividerColor,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              AppTextBody2Widget()
+                                  .setText(
+                                      '${R.strings.searchWithKeyword} ${controller.keyword.value}')
+                                  .setColor(AppColors.of.primaryColor)
+                                  .build(context),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+          ),
+        ),
         SliverFillRemaining(
           child: SingleChildScrollView(
             child: Obx(
@@ -74,7 +129,7 @@ class SearchStorePage extends GetWidget<SearchStoreController> {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

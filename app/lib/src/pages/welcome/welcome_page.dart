@@ -39,7 +39,7 @@ class WelcomePage extends GetView<WelcomeController> {
             LoginPage.open();
           }).build(context),
           SizedBox(
-            height: AppThemeExt.of.majorScale(4),
+            height: AppThemeExt.of.majorScale(3),
           ),
           AppOutlinedButtonWidget()
               .setButtonText(R.strings.register)

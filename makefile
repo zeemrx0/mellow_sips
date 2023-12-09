@@ -10,6 +10,10 @@ pre-bootstrap:
 pub-get:
 	@melos bootstrap
 
+build-init: 
+	@melos gen-app-icon
+	@melos gen-splash $(flavor)
+
 build-runner: 
 	@melos build-domain
 	@melos build-data

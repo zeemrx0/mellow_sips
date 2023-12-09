@@ -24,6 +24,13 @@ class AppConstants {
   static const String keyword = 'keyword';
   static const String status = 'status';
   static const String comment = 'comment';
+  static const String pagination = 'pagination';
+  static const String criteria = 'criteria';
+  static const String page = 'page';
+  static const String itemsPerPage = 'itemsPerPage';
+  static const String vouchers = 'vouchers';
+  static const String cartId = 'cartId';
+  static const String selectedVoucher = 'selectedVoucher';
 }
 
 class CartParamKey {
