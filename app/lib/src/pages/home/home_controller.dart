@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:app/src/components/features/bottomNavigationBar/app_bottom_navigation_bar_widget.dart';
 import 'package:app/src/components/features/floatingAppButton/floating_app_button.dart';
+import 'package:app/src/components/main/button/app_button_base_builder.dart';
 import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/overlay/app_loading_overlay_widget.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
@@ -38,9 +39,11 @@ class HomeController extends GetxController {
   final GetBestSellingProductsUseCase _getBestSellingProductsUseCase;
   final SearchOrdersUseCase _searchOrdersUseCase;
   final GetTokensUseCase _getTokensUseCase;
+  final GetAllCartUseCase _getAllCartUseCase;
 
   Rxn<List<ProductModel>> bestSellingProducts = Rxn<List<ProductModel>>();
   Rxn<List<StoreModel>> orderedStores = Rxn<List<StoreModel>>();
+  Rxn<List<CartModel>> carts = Rxn<List<CartModel>>();
 
   HomeController(
     this._subscribeNotificationUseCase,
@@ -49,6 +52,7 @@ class HomeController extends GetxController {
     this._getBestSellingProductsUseCase,
     this._searchOrdersUseCase,
     this._getTokensUseCase,
+    this._getAllCartUseCase,
   );
 
   Rx<bool> isLoggedIn = Rx<bool>(false);
@@ -78,6 +82,23 @@ class HomeController extends GetxController {
         isLoggedIn.value = true;
         getOrderedStoreList();
       }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  Future<void> getAllCart() async {
+    try {
+      AppLoadingOverlayWidget.show();
+
+      final result = await _getAllCartUseCase.executeList();
+
+      if (result.netData != null) {
+        carts.value = result.netData;
+      }
+
+      AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();

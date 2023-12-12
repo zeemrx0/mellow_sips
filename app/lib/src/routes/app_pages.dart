@@ -1,5 +1,6 @@
 import 'package:app/src/pages/appMenu/app_nav_menu_controller.dart';
 import 'package:app/src/pages/cart/cart_controller.dart';
+import 'package:app/src/pages/carts/cart_list_controller.dart';
 import 'package:app/src/pages/checkout/checkout_controller.dart';
 import 'package:app/src/pages/confirmOrder/confirm_order_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
@@ -127,6 +128,11 @@ class AppPages {
     ),
 
     // Cart
+    GetPage(
+      name: Routes.carts,
+      page: () => const CartListPage(),
+      binding: CartListBinding(),
+    ),
     GetPage(
       name: Routes.cart,
       page: () => const CartPage(),
