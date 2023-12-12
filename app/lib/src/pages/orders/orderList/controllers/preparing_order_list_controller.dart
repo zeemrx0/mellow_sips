@@ -16,7 +16,7 @@ class PreparingOrderListController extends AppListViewController<OrderModel> {
       param: SearchOrdersParam(
         criteria: {
           OrderListKey.filter: {
-            AppConstants.status: AppOrderStatus.completed,
+            AppConstants.status: AppOrderStatus.processing,
           },
           AppConstants.order: {
             AppConstants.createdAt: AppConstants.desc,

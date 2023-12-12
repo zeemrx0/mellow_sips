@@ -255,7 +255,6 @@ class ProductDetailController extends GetxController {
         AppDefaultDialogWidget()
             .setContent(validateProductOptionsResult)
             .setAppDialogType(AppDialogType.error)
-            .setPositiveText(R.strings.confirm)
             .setNegativeText(R.strings.close)
             .buildDialog(Get.context!)
             .show();
@@ -310,7 +309,6 @@ class ProductDetailController extends GetxController {
         AppDefaultDialogWidget()
             .setContent(validateProductOptionsResult)
             .setAppDialogType(AppDialogType.error)
-            .setPositiveText(R.strings.confirm)
             .setNegativeText(R.strings.close)
             .buildDialog(Get.context!)
             .show();

@@ -16,7 +16,7 @@ class CancelledOrderListController extends AppListViewController<OrderModel> {
       param: SearchOrdersParam(
         criteria: {
           OrderListKey.filter: {
-            AppConstants.status: AppOrderStatus.completed,
+            AppConstants.status: AppOrderStatus.cancelled,
           },
           AppConstants.order: {
             AppConstants.createdAt: AppConstants.desc,
