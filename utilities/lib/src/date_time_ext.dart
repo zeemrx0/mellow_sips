@@ -6,7 +6,7 @@ class DateTimeExt {
   static const int weekStartDay = DateTime.saturday;
 
   static const String ddMMyyyy = 'dd/MM/yyy';
-  static const String ddMMyyyyHHmm = 'dd/MM/yyy';
+  static const String ddMMyyyyHHmm = 'dd/MM/yyy HH:mm';
   static const String hm = 'HH:mm';
 
   static String displayDate(
