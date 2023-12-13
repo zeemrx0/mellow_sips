@@ -99,5 +99,8 @@ class DomainProvider {
     Get.put<GetProfileUseCase>(
       GetProfileUseCaseImpl(Get.find()),
     );
+    Get.put<UpdateProfileUseCase>(
+      UpdateProfileUseCaseImpl(Get.find()),
+    );
   }
 }

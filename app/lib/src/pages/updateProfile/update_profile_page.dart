@@ -5,6 +5,8 @@ class UpdateProfilePage extends GetView<UpdateProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getProfile();
+
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
@@ -13,12 +15,66 @@ class UpdateProfilePage extends GetView<UpdateProfileController> {
   }
 
   Widget _body(BuildContext context) {
+    final bottomPadding = MediaQuery.of(Get.context!).padding.bottom;
+
     return Column(
       children: [
         SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [],
+          padding: EdgeInsets.symmetric(
+            horizontal: AppThemeExt.of.majorScale(4),
+          ),
+          child: FormBuilder(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(4),
+                ),
+                // Phone number field
+                AppTextHeading6Widget()
+                    .setText(R.strings.phoneNumber)
+                    .build(context),
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(2),
+                ),
+                AppTextFieldWidget()
+                    .setFieldKey(RegisterKey.phoneNumber)
+                    .setHintText(R.strings.phoneNumber)
+                    .setInputType(TextInputType.phone)
+                    .setValidator(controller.validatePhoneNumber)
+                    .build(context),
+
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(3),
+                ),
+
+                // Name field
+                AppTextHeading6Widget()
+                    .setText(R.strings.yourName)
+                    .build(context),
+                SizedBox(
+                  height: AppThemeExt.of.majorScale(2),
+                ),
+                AppTextFieldWidget()
+                    .setFieldKey(RegisterKey.displayName)
+                    .setHintText(R.strings.yourName)
+                    .setInputType(TextInputType.text)
+                    .build(context),
+
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: AppThemeExt.of.majorScale(4),
+                    bottom: bottomPadding + AppThemeExt.of.majorScale(3),
+                  ),
+                  child: AppFilledButtonWidget()
+                      .setButtonText(R.strings.update)
+                      .setOnPressed(() {
+                    controller.updateProfile();
+                  }).build(context),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -35,7 +91,7 @@ class UpdateProfilePage extends GetView<UpdateProfileController> {
               .setColor(AppColors.of.primaryColor)
               .build(context),
         )
-        .setCanBack(false)
+        .setCanBack(true)
         .build(context);
   }
 }

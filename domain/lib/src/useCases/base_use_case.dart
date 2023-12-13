@@ -53,6 +53,7 @@ part './home/get_qualified_store_list_use_case.dart';
 part './home/get_best_selling_products_use_case.dart';
 
 part './profile/get_profile_use_case.dart';
+part './profile/update_profile_use_case.dart';
 
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {

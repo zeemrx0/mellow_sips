@@ -48,4 +48,6 @@ part './home/get_promoting_store_list_param.dart';
 part './home/get_qualified_store_list_param.dart';
 part './home/get_best_selling_products_param.dart';
 
+part './profile/update_profile_param.dart';
+
 abstract class BaseParam {}

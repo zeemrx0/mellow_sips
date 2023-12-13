@@ -31,6 +31,9 @@ class ChangePasswordPage extends GetView<ChangePasswordController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(
+                          height: AppThemeExt.of.majorScale(4),
+                        ),
                         // Old Password field
                         AppTextHeading6Widget()
                             .setText(R.strings.oldPassword)

@@ -18,4 +18,18 @@ class ProfileRepositoryImpl extends ProfileRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> updateProfile({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData =
+          await _profileRemoteDataSource.updateProfile(params: params);
+
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }

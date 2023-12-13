@@ -4,7 +4,10 @@ class UpdateProfileBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<UpdateProfileController>(
-      () => UpdateProfileController(),
+      () => UpdateProfileController(
+        Get.find(),
+        Get.find(),
+      ),
     );
   }
 }

@@ -141,5 +141,6 @@
   "newPassword": "Mật khẩu mới",
   "confirmNewPassword": "Xác nhận mật khẩu mới",
   "incorrectOldPassword": "Mật khẩu cũ không chính xác",
-  "changedPasswordSuccessfully": "Đổi mật khẩu thành công"
+  "changedPasswordSuccessfully": "Đổi mật khẩu thành công",
+  "updatedProfileSuccessfully": "Cập nhật thông tin thành công"
 }
