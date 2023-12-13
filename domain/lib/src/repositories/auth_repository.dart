@@ -20,4 +20,8 @@ abstract class AuthRepository {
   Future<AppObjectResultModel<EmptyModel>> logOut();
 
   Future<AppObjectResultModel<TokensModel>> getTokens();
+
+  Future<AppObjectResultModel<EmptyModel>> changePassword({
+    required Map<String, dynamic> params,
+  });
 }

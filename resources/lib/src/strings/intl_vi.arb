@@ -129,10 +129,17 @@
 	"invalidInput": "Dữ liệu không hợp lệ",
 	"closed": "Đóng cửa",
 	"storeIsNotWorkingPleaseComebackLater": "Cửa hàng chưa hoạt động vui lòng quay lại sau",
-  "yourReview": "Đánh giá của bạn",
-  "searchWithKeyword": "Tìm kiếm với từ khoá",
-  "voucherIsNotAvailable": "Voucher không khả dụng",
-  "orChooseVouchersBelow": "Hoặc chọn voucher bên dưới",
-  "reorderFamiliarStores": "Đặt lại quán quen",
-  "pleaseAddProductToCartFirst": "Vui lòng thêm sản phẩm vào giỏ hàng trước"
+	"yourReview": "Đánh giá của bạn",
+	"searchWithKeyword": "Tìm kiếm với từ khoá",
+	"voucherIsNotAvailable": "Voucher không khả dụng",
+	"orChooseVouchersBelow": "Hoặc chọn voucher bên dưới",
+	"reorderFamiliarStores": "Đặt lại quán quen",
+	"pleaseAddProductToCartFirst": "Vui lòng thêm sản phẩm vào giỏ hàng trước",
+	"updateProfile": "Cập nhật thông tin",
+  "changePassword": "Đổi mật khẩu",
+  "oldPassword": "Mật khẩu cũ",
+  "newPassword": "Mật khẩu mới",
+  "confirmNewPassword": "Xác nhận mật khẩu mới",
+  "incorrectOldPassword": "Mật khẩu cũ không chính xác",
+  "changedPasswordSuccessfully": "Đổi mật khẩu thành công"
 }

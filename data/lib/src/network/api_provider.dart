@@ -10,6 +10,8 @@ class ApiProvider {
   static const login = '$auth/login';
   static const register = '$auth/register';
   static const verifyRegistration = '$auth/verify';
+  static const changePassword = '$auth/reset-password';
+
   static const profile = '$auth/me/profile';
 
   static const requestOTP = '$auth/resend-confirmation-code';
@@ -34,7 +36,6 @@ class ApiProvider {
 
   static const dashboard = '$api/dashboard';
   static const customerDashboard = '$dashboard/customer';
-
 
   // Web Sockets
   static const notificationSocket = '/topic/notifications';

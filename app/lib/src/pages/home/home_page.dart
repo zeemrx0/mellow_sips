@@ -8,7 +8,6 @@ class HomePage extends GetView<HomeController> {
     controller.subscribeNotifications();
     controller.getBestSellingProducts();
     controller.checkIsLoggedIn();
-    controller.getAllCart();
 
     return AppMainPageWidget()
         .setBody(_body(context))
@@ -486,6 +485,9 @@ class HomePage extends GetView<HomeController> {
           () => SingleChildScrollView(
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(
+              right: AppThemeExt.of.majorScale(4),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,

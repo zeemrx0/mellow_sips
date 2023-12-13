@@ -16,6 +16,7 @@ class DomainProvider {
     Get.put<RequestOtpUseCase>(RequestOtpUseCaseImpl(Get.find()));
     Get.put<LogoutUseCase>(LogoutUseCaseImpl(Get.find()));
     Get.put<GetTokensUseCase>(GetTokensUseCaseImpl(Get.find()));
+    Get.put<ChangePasswordUseCase>(ChangePasswordUseCaseImpl(Get.find()));
 
     // Document
     Get.put<GetDocumentUseCase>(GetDocumentUseCaseImpl(Get.find()));

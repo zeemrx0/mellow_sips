@@ -10,6 +10,7 @@ part './auth/verify_registration_use_case.dart';
 part './auth/request_otp_use_case.dart';
 part './auth/logout_use_case.dart';
 part './auth/get_tokens_use_case.dart';
+part './auth/change_password_use_case.dart';
 
 part './document/get_document_use_case.dart';
 

@@ -1,6 +1,7 @@
 import 'package:app/src/pages/appMenu/app_nav_menu_controller.dart';
 import 'package:app/src/pages/cart/cart_controller.dart';
 import 'package:app/src/pages/carts/cart_list_controller.dart';
+import 'package:app/src/pages/changePassword/change_password_controller.dart';
 import 'package:app/src/pages/checkout/checkout_controller.dart';
 import 'package:app/src/pages/confirmOrder/confirm_order_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
@@ -23,6 +24,7 @@ import 'package:app/src/pages/store/promotingStoreList/promoting_store_list_cont
 import 'package:app/src/pages/store/qualifiedStoreList/qualified_store_list_controller.dart';
 import 'package:app/src/pages/store/storeDetail/store_detail_controller.dart';
 import 'package:app/src/pages/storeList/store_list_controller.dart';
+import 'package:app/src/pages/updateProfile/update_profile_controller.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/pages/voucherList/voucher_list_controller.dart';
 import 'package:app/src/pages/welcome/welcome_controller.dart';
@@ -54,6 +56,16 @@ class AppPages {
       name: Routes.appNavMenu,
       page: () => const AppNavMenuPage(),
       binding: AppNavMenuBinding(),
+    ),
+    GetPage(
+      name: Routes.updateProfile,
+      page: () => const UpdateProfilePage(),
+      binding: UpdateProfileBinding(),
+    ),
+    GetPage(
+      name: Routes.changePassword,
+      page: () => const ChangePasswordPage(),
+      binding: ChangePasswordBinding(),
     ),
     GetPage(
       name: Routes.qrScan,

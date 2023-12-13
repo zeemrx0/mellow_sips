@@ -81,6 +81,7 @@ class HomeController extends GetxController {
           result.netData!.accessToken.isNotEmpty) {
         isLoggedIn.value = true;
         getOrderedStoreList();
+        getAllCart();
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();

@@ -15,6 +15,8 @@ class Routes {
   static const promotingStores = '/promoting-stores';  
 
   static const appNavMenu = '/appNavMenu';
+  static const updateProfile = '/updateProfile';
+  static const changePassword = '/changePassword';
   static const qrScan = '/qrScan';
 
   static const login = '/login';
