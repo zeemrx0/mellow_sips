@@ -134,6 +134,8 @@ class StoreDetailController extends GetxController {
   Future<void> getNumberOfCartItems() async {
     try {
       AppLoadingOverlayWidget.show();
+      numberOfCartItems.value = 0;
+      cartId.value = null;
       final result = await _getAllCartUseCase.executeList();
 
       if (result.netData != null) {

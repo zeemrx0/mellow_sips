@@ -25,12 +25,26 @@ class HomePage extends GetView<HomeController> {
 
   Widget _body(BuildContext context) {
     final carouselItems = [
-      const CarouselItemWidget(
-          imageData:
-              'https://phuclong.com.vn/uploads/post/7d8a71540edb53-dr_combongaytrannangluong40k_51022_640512thumbnail.png'),
-      const CarouselItemWidget(
-          imageData:
-              'https://phuclong.com.vn/uploads/post/7d8a71540edb53-dr_combongaytrannangluong40k_51022_640512thumbnail.png'),
+      CarouselItemWidget(
+        image: R.pngs.carousel1.image(
+          fit: BoxFit.cover,
+        ),
+      ),
+      CarouselItemWidget(
+        image: R.pngs.carousel2.image(
+          fit: BoxFit.cover,
+        ),
+      ),
+      CarouselItemWidget(
+        image: R.pngs.carousel3.image(
+          fit: BoxFit.cover,
+        ),
+      ),
+      CarouselItemWidget(
+        image: R.pngs.carousel4.image(
+          fit: BoxFit.cover,
+        ),
+      ),
     ];
 
     return Stack(
@@ -174,11 +188,17 @@ class HomePage extends GetView<HomeController> {
                               SizedBox(
                                 height: AppThemeExt.of.majorPaddingScale(6),
                               ),
-                              _recommendedProductsSection(context),
+                              if (controller.bestSellingProducts.value !=
+                                      null &&
+                                  controller
+                                      .bestSellingProducts.value!.isNotEmpty)
+                                _recommendedProductsSection(context),
                               SizedBox(
                                 height: AppThemeExt.of.majorPaddingScale(6),
                               ),
-                              if (controller.isLoggedIn.value)
+                              if (controller.isLoggedIn.value &&
+                                  controller.orderedStores.value != null &&
+                                  controller.orderedStores.value!.isNotEmpty)
                                 _orderedStoresSection(context),
                               SizedBox(
                                 height: AppThemeExt.of.majorPaddingScale(12),

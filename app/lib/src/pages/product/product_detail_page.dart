@@ -287,33 +287,6 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
           ],
         ),
       ),
-      actions: [
-        AppIconButtonWidget()
-            .setPrefixIcon(
-              R.svgs.icHeartOutline.svg(
-                width: AppThemeExt.of.majorScale(5),
-                height: AppThemeExt.of.majorScale(5),
-                colorFilter: ColorFilter.mode(
-                  AppColors.of.whiteColor,
-                  BlendMode.srcIn,
-                ),
-              ),
-            )
-            .setPadding(
-              EdgeInsets.all(
-                AppThemeExt.of.majorPaddingScale(6 / 4),
-              ),
-            )
-            .setBackgroundColor(const Color.fromRGBO(106, 106, 105, 0.7))
-            .setOnPressed(
-          () {
-            // TODO: Like
-          },
-        ).build(context),
-        SizedBox(
-          width: AppThemeExt.of.majorScale(4),
-        )
-      ],
     );
   }
 

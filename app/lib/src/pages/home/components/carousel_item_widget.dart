@@ -2,9 +2,9 @@ import 'package:app/src/config/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CarouselItemWidget extends StatelessWidget {
-  final String? imageData;
+  final Widget? image;
 
-  const CarouselItemWidget({super.key, required this.imageData});
+  const CarouselItemWidget({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,7 @@ class CarouselItemWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           AppThemeExt.of.majorScale(4),
         ),
-        child: Image.network(
-          imageData!,
-          fit: BoxFit.cover,
-        ),
+        child: image,
       ),
     );
   }

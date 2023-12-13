@@ -125,11 +125,7 @@ class ChangePasswordController extends GetxController {
     final formData = formKey.currentState!.value;
     final password = formData[ChangePasswordKey.newPassword];
 
-    print('password: $password');
-    print('confirmPassword: $confirmPassword');
-
     if (confirmPassword != password) {
-      print(password != confirmPassword);
       return R.strings.confirmPasswordDoesNotMatch;
     }
 

@@ -77,11 +77,9 @@ class IntroPage extends GetView<IntroController> {
               AppTextButtonWidget()
                   .setButtonText(R.strings.skip)
                   .setOnPressed(() {
-                // TODO: Go to welcome page
               }).build(context),
               InkWell(
                 onTap: () {
-                  // TODO: Go to next page
                 },
                 child: CircleAvatar(
                   radius: AppThemeExt.of.majorScale(5),

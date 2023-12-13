@@ -154,11 +154,4 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
       ),
     );
   }
-
-  PreferredSizeWidget _appBar(BuildContext context) {
-    return AppBarBasicWidget()
-        .setBackgroundColor(AppColors.of.whiteColor)
-        .setCanBack(false)
-        .build(context);
-  }
 }
