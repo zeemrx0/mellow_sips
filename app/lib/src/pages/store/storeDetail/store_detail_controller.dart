@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
+import 'package:utilities/utilities.dart';
 
 part './store_detail_page.dart';
 part './store_detail_binding.dart';
@@ -150,5 +151,21 @@ class StoreDetailController extends GetxController {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
     }
+  }
+
+  String voucherText(VoucherModel voucher) {
+    String text = '';
+    if (voucher.discountType == AppConstants.cash) {
+      text = '${R.strings.discount} ${NumberExt.vndDisplay(voucher.value)}';
+    } else {
+      text = '${R.strings.discount} ${voucher.value}%';
+    }
+
+    if (voucher.maxDiscountAmount != null && voucher.maxDiscountAmount! > 0) {
+      text +=
+          ' ${R.strings.maximum} ${NumberExt.vndDisplay(voucher.maxDiscountAmount!)}';
+    }
+
+    return text;
   }
 }

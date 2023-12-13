@@ -302,25 +302,7 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
             ),
           ],
         ),
-        SizedBox(
-          height: AppThemeExt.of.majorScale(2),
-        ),
-        Row(
-          children: [
-            R.svgs.icTag.svg(
-              width: AppThemeExt.of.majorScale(4),
-              height: AppThemeExt.of.majorScale(4),
-              colorFilter: ColorFilter.mode(
-                AppColors.of.primaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            SizedBox(
-              width: AppThemeExt.of.majorScale(2),
-            ),
-            AppTextCaption1Widget().setText('Ưu đãi đến 45k').build(context),
-          ],
-        ),
+        _voucherList(context),
       ],
     );
   }
@@ -356,6 +338,41 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
           height: AppThemeExt.of.majorScale(6),
         ),
       ],
+    );
+  }
+
+  Widget _voucherList(BuildContext context) {
+    return Column(
+      children: controller.store.value?.vouchers
+              .sublist(0, min(controller.store.value?.vouchers.length ?? 0, 3))
+              .map(
+            (voucher) {
+              return Padding(
+                padding: EdgeInsets.only(
+                  top: AppThemeExt.of.majorScale(2),
+                ),
+                child: Row(
+                  children: [
+                    R.svgs.icTag.svg(
+                      width: AppThemeExt.of.majorScale(4),
+                      height: AppThemeExt.of.majorScale(4),
+                      colorFilter: ColorFilter.mode(
+                        AppColors.of.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    SizedBox(
+                      width: AppThemeExt.of.majorScale(2),
+                    ),
+                    AppTextCaption1Widget()
+                        .setText(controller.voucherText(voucher))
+                        .build(context),
+                  ],
+                ),
+              );
+            },
+          ).toList() ??
+          [],
     );
   }
 }
