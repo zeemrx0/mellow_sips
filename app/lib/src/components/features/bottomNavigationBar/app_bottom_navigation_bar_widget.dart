@@ -177,9 +177,7 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: SizedBox(
-        width: (MediaQuery.of(Get.context!).size.width -
-                AppThemeExt.of.majorScale(20)) /
-            4,
+        width: AppThemeExt.of.majorScale(16),
         child: Column(
           children: [
             icon,
