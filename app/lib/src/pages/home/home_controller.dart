@@ -26,7 +26,7 @@ part './home_page.dart';
 
 part './home_binding.dart';
 
-class HomeController extends GetxController {
+class HomeController extends FullLifeCycleController with FullLifeCycleMixin {
   final SubscribeNotificationsUseCase _subscribeNotificationUseCase;
   final UnsubscribeNotificationsUseCase _unsubscribeNotificationsUseCase;
 
@@ -58,11 +58,18 @@ class HomeController extends GetxController {
   Rx<bool> isLoggedIn = Rx<bool>(false);
 
   @override
-  void onClose() {
-    print('unsubscribeNotifications');
+  void onDetached() {
     _unsubscribeNotificationsUseCase.executeObject();
-    super.onClose();
   }
+
+  @override
+  void onInactive() {}
+
+  @override
+  void onPaused() {}
+
+  @override
+  void onResumed() {}
 
   NotificationDetails _notificationDetails() {
     return const NotificationDetails(
