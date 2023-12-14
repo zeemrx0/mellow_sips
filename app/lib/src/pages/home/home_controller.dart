@@ -59,6 +59,7 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {
+    print('unsubscribeNotifications');
     _unsubscribeNotificationsUseCase.executeObject();
     super.onClose();
   }
@@ -188,6 +189,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> subscribeNotifications() async {
+    print('subscribeNotifications');
     try {
       AppLoadingOverlayWidget.show();
 

@@ -26,6 +26,7 @@ class StoreDetailController extends GetxController {
   final GetStoreDetailUseCase _getStoreDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
   final GetAllCartUseCase _getAllCartUseCase;
+  final GetTokensUseCase _getTokensUseCase;
 
   // final ScrollController scrollController = ScrollController();
 
@@ -36,12 +37,14 @@ class StoreDetailController extends GetxController {
   Rxn<MenuModel> menu = Rxn<MenuModel>();
   Rx<int> numberOfCartItems = 0.obs;
   Rxn<String> cartId = Rxn<String>();
+  Rx<bool> isLoggedIn = Rx<bool>(false);
 
   StoreDetailController(
     this._getStoreMenuUseCase,
     this._getStoreDetailUseCase,
     this._getDocumentUseCase,
     this._getAllCartUseCase,
+    this._getTokensUseCase,
   );
 
   Future<void> getStoreDetail(
@@ -124,6 +127,21 @@ class StoreDetailController extends GetxController {
           );
           menu.refresh();
         }
+      }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
+  Future<void> checkIsLoggedIn() async {
+    try {
+      final result = await _getTokensUseCase.executeObject();
+
+      if (result.netData?.accessToken != null &&
+          result.netData!.accessToken.isNotEmpty) {
+        isLoggedIn.value = true;
+        getNumberOfCartItems();
       }
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
