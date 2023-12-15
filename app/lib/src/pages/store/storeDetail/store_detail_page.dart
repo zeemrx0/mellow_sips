@@ -7,6 +7,7 @@ class StoreDetailPage extends GetWidget<StoreDetailController> {
   Widget build(BuildContext context) {
     controller.getStoreDetail(Get.arguments[AppConstants.storeId]);
     controller.getStoreMenu(Get.arguments[AppConstants.storeId]);
+    controller.checkIsLoggedIn();
 
     return AppMainPageWidget()
         .setBody(_body(context))

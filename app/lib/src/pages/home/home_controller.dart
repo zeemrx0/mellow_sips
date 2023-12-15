@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:app/src/components/features/bottomNavigationBar/app_bottom_navigation_bar_widget.dart';
 import 'package:app/src/components/features/floatingAppButton/floating_app_button.dart';

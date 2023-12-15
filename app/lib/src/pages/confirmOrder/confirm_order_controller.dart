@@ -98,8 +98,23 @@ class ConfirmOrderController extends GetxController {
       if (result.netData != null) {
         order.value = result.netData;
 
-        switch (initialTransactionMethod) {
-          case AppPaymentMethod.cash:
+        if (initialTransactionMethod == AppPaymentMethod.cash ||
+            order.value?.finalPrice == 0) {
+          Get.offNamedUntil(
+            Routes.orderDetail,
+            (route) {
+              return route.settings.name == Routes.home;
+            },
+            arguments: order.value!.id,
+          );
+        } else if (initialTransactionMethod == AppPaymentMethod.zalopay) {
+          FlutterZaloPayStatus zaloPayStatus = await FlutterZaloPaySdk.payOrder(
+            zpToken: order
+                .value!.latestTransaction!.externalPaymentInfo!.zpTransToken,
+          );
+
+          if (zaloPayStatus == FlutterZaloPayStatus.success ||
+              zaloPayStatus == FlutterZaloPayStatus.processing) {
             Get.offNamedUntil(
               Routes.orderDetail,
               (route) {
@@ -107,36 +122,18 @@ class ConfirmOrderController extends GetxController {
               },
               arguments: order.value!.id,
             );
-            break;
-          case AppPaymentMethod.zalopay:
-            FlutterZaloPayStatus zaloPayStatus =
-                await FlutterZaloPaySdk.payOrder(
-              zpToken: order
-                  .value!.latestTransaction!.externalPaymentInfo!.zpTransToken,
-            );
-
-            if (zaloPayStatus == FlutterZaloPayStatus.success ||
-                zaloPayStatus == FlutterZaloPayStatus.processing) {
-              Get.offNamedUntil(
-                Routes.orderDetail,
-                (route) {
-                  return route.settings.name == Routes.home;
-                },
-                arguments: order.value!.id,
-              );
-            } else {
-              AppDefaultDialogWidget()
-                  .setTitle(R.strings.paymentFailed)
-                  .setAppDialogType(AppDialogType.error)
-                  .setPositiveText(R.strings.confirm)
-                  .setOnPositive(() {
-                    Get.offAllNamed(Routes.orderDetail,
-                        arguments: order.value!.id);
-                  })
-                  .buildDialog(Get.context!)
-                  .show();
-            }
-            break;
+          } else {
+            AppDefaultDialogWidget()
+                .setTitle(R.strings.paymentFailed)
+                .setAppDialogType(AppDialogType.error)
+                .setPositiveText(R.strings.confirm)
+                .setOnPositive(() {
+                  Get.offAllNamed(Routes.orderDetail,
+                      arguments: order.value!.id);
+                })
+                .buildDialog(Get.context!)
+                .show();
+          }
         }
       }
 

@@ -64,7 +64,7 @@ class HomePage extends GetView<HomeController> {
                   Expanded(
                     child: InkWell(
                       onTap: () async {
-                        Get.toNamed(Routes.searchStore);
+                        await Get.toNamed(Routes.searchStore);
                         controller.getAllCart();
                       },
                       child: Container(
@@ -228,8 +228,8 @@ class HomePage extends GetView<HomeController> {
                                       ),
                                     )
                                     .setOnPressed(
-                                  () {
-                                    Get.toNamed(Routes.carts);
+                                  () async {
+                                    await Get.toNamed(Routes.carts);
                                     controller.getAllCart();
                                   },
                                 ).build(context),
@@ -263,82 +263,6 @@ class HomePage extends GetView<HomeController> {
               ],
             ),
           ),
-          // Obx(
-          //   () => controller.carts.value == null ||
-          //           controller.carts.value!.isEmpty
-          //       ? const SizedBox()
-          //       : Align(
-          //           alignment: Alignment.bottomRight,
-          //           child: Stack(
-          //             clipBehavior: Clip.none,
-          //             children: [
-          //               Container(
-          //                 margin: EdgeInsets.only(
-          //                   bottom: AppThemeExt.of.majorScale(3),
-          //                   right: AppThemeExt.of.majorScale(3),
-          //                 ),
-          //                 decoration: BoxDecoration(
-          //                   boxShadow: [
-          //                     BoxShadow(
-          //                       color: Colors.black.withOpacity(0.08),
-          //                       blurRadius: AppThemeExt.of.majorScale(4),
-          //                       offset: Offset(
-          //                         AppThemeExt.of.majorScale(0),
-          //                         AppThemeExt.of.majorScale(1),
-          //                       ),
-          //                     ),
-          //                   ],
-          //                 ),
-          //                 child: AppIconButtonWidget()
-          //                     .setBackgroundColor(AppColors.of.whiteColor)
-          //                     .setPadding(
-          //                       EdgeInsets.symmetric(
-          //                         horizontal: AppThemeExt.of.majorScale(14 / 4),
-          //                         vertical: AppThemeExt.of.majorScale(14 / 4),
-          //                       ),
-          //                     )
-          //                     .setPrefixIcon(
-          //                       R.svgs.icCartSolid.svg(
-          //                         width: AppThemeExt.of.majorScale(6),
-          //                         height: AppThemeExt.of.majorScale(6),
-          //                         colorFilter: ColorFilter.mode(
-          //                           AppColors.of.grayColor[900]!,
-          //                           BlendMode.srcIn,
-          //                         ),
-          //                       ),
-          //                     )
-          //                     .setOnPressed(
-          //                   () {
-          //                     Get.toNamed(Routes.carts);
-          //                     controller.getAllCart();
-          //                   },
-          //                 ).build(context),
-          //               ),
-          //               Positioned(
-          //                 top: -AppThemeExt.of.majorScale(1 / 2),
-          //                 right: AppThemeExt.of.majorScale(2),
-          //                 child: Container(
-          //                   width: AppThemeExt.of.majorScale(4),
-          //                   height: AppThemeExt.of.majorScale(4),
-          //                   decoration: BoxDecoration(
-          //                     shape: BoxShape.circle,
-          //                     color: AppColors.of.primaryColor,
-          //                   ),
-          //                   child: Align(
-          //                     alignment: Alignment.center,
-          //                     child: AppTextCaption2Widget()
-          //                         .setText('${controller.carts.value!.length}')
-          //                         .setTextStyle(
-          //                             AppTextStyleExt.of.textCaption2s)
-          //                         .setColor(AppColors.of.whiteColor)
-          //                         .build(context),
-          //                   ),
-          //                 ),
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          // ),
         ],
       ),
     );
