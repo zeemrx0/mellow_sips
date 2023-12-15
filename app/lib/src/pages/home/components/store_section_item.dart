@@ -25,6 +25,9 @@ class StoreSectionItem extends StatelessWidget {
       },
       child: Container(
         width: AppThemeExt.of.majorScale(132 / 4),
+        constraints: BoxConstraints(
+          minHeight: AppThemeExt.of.majorScale(188 / 4),
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
             AppThemeExt.of.majorScale(2),
