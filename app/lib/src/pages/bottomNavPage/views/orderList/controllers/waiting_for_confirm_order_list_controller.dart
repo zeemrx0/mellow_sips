@@ -1,12 +1,12 @@
 import 'package:app/src/components/main/listView/app_list_view_controller.dart';
 import 'package:app/src/exts/app_exts.dart';
-import 'package:app/src/pages/orders/orderList/order_list_controller.dart';
+import 'package:app/src/pages/bottomNavPage/views/orderList/order_list_controller.dart';
 import 'package:domain/domain.dart';
 
-class CancelledOrderListController extends AppListViewController<OrderModel> {
+class WaitingForConfirmOrderListController extends AppListViewController<OrderModel> {
   final SearchOrdersUseCase _searchOrdersUseCase;
 
-  CancelledOrderListController(this._searchOrdersUseCase);
+  WaitingForConfirmOrderListController(this._searchOrdersUseCase);
 
   @override
   Future<AppPaginationListResultModel<OrderModel>> onCall(
@@ -16,7 +16,7 @@ class CancelledOrderListController extends AppListViewController<OrderModel> {
       param: SearchOrdersParam(
         criteria: {
           OrderListKey.filter: {
-            AppConstants.status: AppOrderStatus.cancelled,
+            AppConstants.status: AppOrderStatus.ordered,
           },
           AppConstants.order: {
             AppConstants.createdAt: AppConstants.desc,

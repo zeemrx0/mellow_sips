@@ -36,7 +36,7 @@ class WelcomePage extends GetView<WelcomeController> {
           AppFilledButtonWidget()
               .setButtonText(R.strings.logIn)
               .setOnPressed(() {
-            LoginPage.open();
+            Get.toNamed(Routes.login);
           }).build(context),
           SizedBox(
             height: AppThemeExt.of.majorScale(3),

@@ -5,25 +5,9 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.subscribeNotifications();
     controller.getBestSellingProducts();
     controller.checkIsLoggedIn();
 
-    return AppMainPageWidget()
-        .setBody(_body(context))
-        .setBackgroundColor(AppColors.of.whiteColor)
-        .setBottomNavigationBar(
-            const AppBottomNavigationBarWidget().build(context))
-        .setFloatingActionButtonLocation(
-          FloatingActionButtonLocation.centerDocked,
-        )
-        .setFloatingActionButton(
-          const FloatingAppButton(),
-        )
-        .build(context);
-  }
-
-  Widget _body(BuildContext context) {
     final carouselItems = [
       CarouselItemWidget(
         image: R.pngs.carousel1.image(
@@ -65,7 +49,9 @@ class HomePage extends GetView<HomeController> {
                     child: InkWell(
                       onTap: () async {
                         await Get.toNamed(Routes.searchStore);
-                        controller.getAllCart();
+                        if (controller.isLoggedIn.value == true) {
+                          controller.getAllCart();
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -230,7 +216,10 @@ class HomePage extends GetView<HomeController> {
                                     .setOnPressed(
                                   () async {
                                     await Get.toNamed(Routes.carts);
-                                    controller.getAllCart();
+
+                                    if (controller.isLoggedIn.value == true) {
+                                      controller.getAllCart();
+                                    }
                                   },
                                 ).build(context),
                               ),
@@ -303,7 +292,9 @@ class HomePage extends GetView<HomeController> {
                 title: R.strings.sale,
                 onPressed: () async {
                   await Get.toNamed(Routes.promotingStores);
-                  controller.getAllCart();
+                  if (controller.isLoggedIn.value == true) {
+                    controller.getAllCart();
+                  }
                 },
               ),
               SizedBox(
@@ -319,7 +310,9 @@ class HomePage extends GetView<HomeController> {
                 title: R.strings.recommended,
                 onPressed: () async {
                   await Get.toNamed(Routes.qualifiedStores);
-                  controller.getAllCart();
+                  if (controller.isLoggedIn.value == true) {
+                    controller.getAllCart();
+                  }
                 },
               ),
             ],
@@ -339,7 +332,9 @@ class HomePage extends GetView<HomeController> {
                 title: R.strings.coffee,
                 onPressed: () async {
                   await Get.toNamed(Routes.coffeeStores);
-                  controller.getAllCart();
+                  if (controller.isLoggedIn.value == true) {
+                    controller.getAllCart();
+                  }
                 },
               ),
               SizedBox(
@@ -355,7 +350,9 @@ class HomePage extends GetView<HomeController> {
                 title: R.strings.milkTea,
                 onPressed: () async {
                   await Get.toNamed(Routes.milkTeaStores);
-                  controller.getAllCart();
+                  if (controller.isLoggedIn.value == true) {
+                    controller.getAllCart();
+                  }
                 },
               ),
               SizedBox(
@@ -371,7 +368,9 @@ class HomePage extends GetView<HomeController> {
                 title: R.strings.all,
                 onPressed: () async {
                   await Get.toNamed(Routes.stores);
-                  controller.getAllCart();
+                  if (controller.isLoggedIn.value == true) {
+                    controller.getAllCart();
+                  }
                 },
               ),
             ],

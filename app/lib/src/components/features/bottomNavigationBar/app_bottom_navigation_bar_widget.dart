@@ -1,20 +1,17 @@
-import 'package:app/src/components/main/text/app_text_base_builder.dart';
-import 'package:app/src/config/app_theme.dart';
-import 'package:app/src/routes/app_pages.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:resources/resources.dart';
+part of './app_bottom_navigation_bar_controller.dart';
 
-class AppBottomNavigationBarWidget extends StatelessWidget {
+class AppBottomNavigationBarWidget
+    extends GetView<AppBottomNavigationBarController> {
+  final PageController pageController;
+
   const AppBottomNavigationBarWidget({
     super.key,
+    required this.pageController,
   });
 
   @override
   Widget build(BuildContext context) {
     final iconSize = AppThemeExt.of.majorScale(6);
-
-    final activeRoute = Get.currentRoute;
 
     return Container(
       height: AppThemeExt.of.majorScale(48 / 4),
@@ -35,54 +32,26 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: BottomAppBar(
-        padding: EdgeInsets.zero,
-        color: AppColors.of.whiteColor,
-        surfaceTintColor: AppColors.of.whiteColor,
-        shape: const CircularNotchedRectangle(),
-        notchMargin: AppThemeExt.of.majorScale(2),
-        clipBehavior: Clip.hardEdge,
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: AppThemeExt.of.majorScale(6 / 4),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              _bottomNavigationItem(
-                context,
-                icon: activeRoute == Routes.home
-                    ? R.svgs.icHome.svg(
-                        width: iconSize,
-                        height: iconSize,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.of.primaryColor,
-                          BlendMode.srcIn,
-                        ),
-                      )
-                    : R.svgs.icHomeOutline.svg(
-                        width: iconSize,
-                        height: iconSize,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.of.disabledColor,
-                          BlendMode.srcIn,
-                        ),
-                      ),
-                label: R.strings.home,
-                isActive: activeRoute == Routes.home,
-                onPressed: () {
-                  Get.offNamed(Routes.home);
-                },
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  right: AppThemeExt.of.majorScale(10),
-                ),
-                child: _bottomNavigationItem(
+      child: Obx(
+        () => BottomAppBar(
+          padding: EdgeInsets.zero,
+          color: AppColors.of.whiteColor,
+          surfaceTintColor: AppColors.of.whiteColor,
+          shape: const CircularNotchedRectangle(),
+          notchMargin: AppThemeExt.of.majorScale(2),
+          clipBehavior: Clip.hardEdge,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: AppThemeExt.of.majorScale(6 / 4),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                _bottomNavigationItem(
                   context,
-                  icon: activeRoute == Routes.orders
-                      ? R.svgs.icOrder.svg(
+                  icon: controller.page.value == 0
+                      ? R.svgs.icHome.svg(
                           width: iconSize,
                           height: iconSize,
                           colorFilter: ColorFilter.mode(
@@ -90,7 +59,7 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
                             BlendMode.srcIn,
                           ),
                         )
-                      : R.svgs.icOrderOutline.svg(
+                      : R.svgs.icHomeOutline.svg(
                           width: iconSize,
                           height: iconSize,
                           colorFilter: ColorFilter.mode(
@@ -98,21 +67,79 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
                             BlendMode.srcIn,
                           ),
                         ),
-                  label: R.strings.orders,
-                  isActive: activeRoute == Routes.orders,
+                  label: R.strings.home,
+                  isActive: controller.page.value == 0,
                   onPressed: () {
-                    Get.offNamed(Routes.orders);
+                    pageController.jumpToPage(0);
+                    controller.page.value = 0;
                   },
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: AppThemeExt.of.majorScale(10),
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: AppThemeExt.of.majorScale(10),
+                  ),
+                  child: _bottomNavigationItem(
+                    context,
+                    icon: controller.page.value == 1
+                        ? R.svgs.icOrder.svg(
+                            width: iconSize,
+                            height: iconSize,
+                            colorFilter: ColorFilter.mode(
+                              AppColors.of.primaryColor,
+                              BlendMode.srcIn,
+                            ),
+                          )
+                        : R.svgs.icOrderOutline.svg(
+                            width: iconSize,
+                            height: iconSize,
+                            colorFilter: ColorFilter.mode(
+                              AppColors.of.disabledColor,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                    label: R.strings.orders,
+                    isActive: controller.page.value == 1,
+                    onPressed: () {
+                      pageController.jumpToPage(1);
+                      controller.page.value = 1;
+                    },
+                  ),
                 ),
-                child: _bottomNavigationItem(
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: AppThemeExt.of.majorScale(10),
+                  ),
+                  child: _bottomNavigationItem(
+                    context,
+                    icon: controller.page.value == 2
+                        ? R.svgs.icBell.svg(
+                            width: iconSize,
+                            height: iconSize,
+                            colorFilter: ColorFilter.mode(
+                              AppColors.of.primaryColor,
+                              BlendMode.srcIn,
+                            ),
+                          )
+                        : R.svgs.icBellOutline.svg(
+                            width: iconSize,
+                            height: iconSize,
+                            colorFilter: ColorFilter.mode(
+                              AppColors.of.disabledColor,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                    label: R.strings.notifications,
+                    isActive: controller.page.value == 2,
+                    onPressed: () {
+                      pageController.jumpToPage(2);
+                      controller.page.value = 2;
+                    },
+                  ),
+                ),
+                _bottomNavigationItem(
                   context,
-                  icon: activeRoute == Routes.notifications
-                      ? R.svgs.icBell.svg(
+                  icon: controller.page.value == 3
+                      ? R.svgs.icPerson.svg(
                           width: iconSize,
                           height: iconSize,
                           colorFilter: ColorFilter.mode(
@@ -120,7 +147,7 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
                             BlendMode.srcIn,
                           ),
                         )
-                      : R.svgs.icBellOutline.svg(
+                      : R.svgs.icPersonOutline.svg(
                           width: iconSize,
                           height: iconSize,
                           colorFilter: ColorFilter.mode(
@@ -128,39 +155,15 @@ class AppBottomNavigationBarWidget extends StatelessWidget {
                             BlendMode.srcIn,
                           ),
                         ),
-                  label: R.strings.notifications,
-                  isActive: activeRoute == Routes.notifications,
+                  label: R.strings.profile,
+                  isActive: controller.page.value == 3,
                   onPressed: () {
-                    Get.offNamed(Routes.notifications);
+                    pageController.jumpToPage(3);
+                    controller.page.value = 3;
                   },
                 ),
-              ),
-              _bottomNavigationItem(
-                context,
-                icon: activeRoute == Routes.appNavMenu
-                    ? R.svgs.icPerson.svg(
-                        width: iconSize,
-                        height: iconSize,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.of.primaryColor,
-                          BlendMode.srcIn,
-                        ),
-                      )
-                    : R.svgs.icPersonOutline.svg(
-                        width: iconSize,
-                        height: iconSize,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.of.disabledColor,
-                          BlendMode.srcIn,
-                        ),
-                      ),
-                label: R.strings.profile,
-                isActive: activeRoute == Routes.appNavMenu,
-                onPressed: () {
-                  Get.offNamed(Routes.appNavMenu);
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

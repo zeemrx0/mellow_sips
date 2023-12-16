@@ -5,7 +5,6 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
-import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +76,7 @@ class VerifyRegistrationController extends GetxController {
             .setAppDialogType(AppDialogType.success)
             .setPositiveText(R.strings.goToLoginPage)
             .setOnPositive(() {
-              LoginPage.open();
+              Get.toNamed(Routes.login);
             })
             .buildDialog(Get.context!)
             .show();

@@ -7,6 +7,8 @@ class Routes {
   static const intro = '/intro';
   static const welcome = '/welcome';
 
+  static const bottomNav = '/bottomNav';
+
   // Home
   static const home = '/home';
   static const coffeeStores = '/coffee-stores';

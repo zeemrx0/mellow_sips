@@ -10,14 +10,6 @@ class AppNavMenuPage extends GetView<AppNavMenuController> {
     return AppMainPageWidget()
         .setBody(_body(context))
         .setBackgroundColor(AppColors.of.whiteColor)
-        .setBottomNavigationBar(
-            const AppBottomNavigationBarWidget().build(context))
-        .setFloatingActionButtonLocation(
-          FloatingActionButtonLocation.centerDocked,
-        )
-        .setFloatingActionButton(
-          const FloatingAppButton(),
-        )
         .build(context);
   }
 

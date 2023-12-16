@@ -1,22 +1,19 @@
-import 'package:app/src/pages/appMenu/app_nav_menu_controller.dart';
+import 'package:app/src/pages/bottomNavPage/bottom_nav_controller.dart';
+import 'package:app/src/pages/bottomNavPage/views/home/searchStore/search_store_controller.dart';
 import 'package:app/src/pages/cart/cart_controller.dart';
 import 'package:app/src/pages/carts/cart_list_controller.dart';
 import 'package:app/src/pages/changePassword/change_password_controller.dart';
 import 'package:app/src/pages/checkout/checkout_controller.dart';
 import 'package:app/src/pages/confirmOrder/confirm_order_controller.dart';
 import 'package:app/src/pages/demo/demo_controller.dart';
-import 'package:app/src/pages/home/searchStore/search_store_controller.dart';
 import 'package:app/src/pages/intro/intro_controller.dart';
 import 'package:app/src/pages/login/login_controller.dart';
-import 'package:app/src/pages/notification/notification_controller.dart';
 import 'package:app/src/pages/orderStatus/order_status_controller.dart';
 import 'package:app/src/pages/orders/orderCompleteAlertPage/order_completed_alert_controller.dart';
 import 'package:app/src/pages/orders/orderDetail/order_detail_controller.dart';
-import 'package:app/src/pages/orders/orderList/order_list_controller.dart';
 import 'package:app/src/pages/product/product_detail_controller.dart';
 import 'package:app/src/pages/qrScan/qr_scan_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
-import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/pages/review/store_review_controller.dart';
 import 'package:app/src/pages/store/coffeeStoreList/coffee_store_list_controller.dart';
 import 'package:app/src/pages/store/milkTeaStoreList/milk_tea_store_list_controller.dart';
@@ -51,12 +48,17 @@ class AppPages {
       page: () => const WelcomePage(),
       binding: WelcomeBinding(),
     ),
-
     GetPage(
-      name: Routes.appNavMenu,
-      page: () => const AppNavMenuPage(),
-      binding: AppNavMenuBinding(),
+      name: Routes.bottomNav,
+      page: () => const BottomNavPage(),
+      binding: BottomNavBinding(),
     ),
+
+    // GetPage(
+    //   name: Routes.appNavMenu,
+    //   page: () => const AppNavMenuPage(),
+    //   binding: AppNavMenuBinding(),
+    // ),
     GetPage(
       name: Routes.updateProfile,
       page: () => const UpdateProfilePage(),
@@ -74,11 +76,11 @@ class AppPages {
     ),
 
     // Home
-    GetPage(
-      name: Routes.home,
-      page: () => const HomePage(),
-      binding: HomeBinding(),
-    ),
+    // GetPage(
+    //   name: Routes.home,
+    //   page: () => const HomePage(),
+    //   binding: HomeBinding(),
+    // ),
     GetPage(
       name: Routes.coffeeStores,
       page: () => const CoffeeStoreListPage(),
@@ -172,11 +174,11 @@ class AppPages {
       page: () => const ConfirmOrderPage(),
       binding: ConfirmOrderBinding(),
     ),
-    GetPage(
-      name: Routes.orders,
-      page: () => const OrderListPage(),
-      binding: OrderListBinding(),
-    ),
+    // GetPage(
+    //   name: Routes.orders,
+    //   page: () => const OrderListPage(),
+    //   binding: OrderListBinding(),
+    // ),
     GetPage(
       name: Routes.orderDetail,
       page: () => const OrderDetailPage(),
@@ -189,11 +191,11 @@ class AppPages {
     ),
 
     // Notification
-    GetPage(
-      name: Routes.notifications,
-      page: () => const NotificationPage(),
-      binding: NotificationBinding(),
-    ),
+    // GetPage(
+    //   name: Routes.notifications,
+    //   page: () => const NotificationPage(),
+    //   binding: NotificationBinding(),
+    // ),
 
     // Review
     GetPage(

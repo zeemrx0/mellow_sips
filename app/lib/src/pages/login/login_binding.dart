@@ -7,6 +7,8 @@ class LoginBinding extends Bindings {
       () => LoginController(
         Get.find(),
         Get.find(),
+        Get.find(),
+        Get.find(),
       ),
     );
   }

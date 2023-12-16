@@ -5,19 +5,19 @@ class NotificationPage extends GetView<NotificationController> {
 
   @override
   Widget build(BuildContext context) {
-    return AppMainPageWidget()
-        .setAppBar(_appBar(context))
-        .setBody(_body(context))
-        .setBackgroundColor(AppColors.of.backgroundColor)
-        .setBottomNavigationBar(
-            const AppBottomNavigationBarWidget().build(context))
-        .setFloatingActionButtonLocation(
-          FloatingActionButtonLocation.centerDocked,
-        )
-        .setFloatingActionButton(
-          const FloatingAppButton(),
-        )
-        .build(context);
+    return Column(
+      children: [
+        _appBar(context),
+        Expanded(
+          child: AppListViewWidget<NotificationModel, NotificationController>(
+            childBuilder: _buildNotificationItem,
+            padding: EdgeInsets.symmetric(
+              vertical: AppThemeExt.of.majorPaddingScale(2),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildNotificationItem(
@@ -108,21 +108,6 @@ class NotificationPage extends GetView<NotificationController> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _body(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: AppListViewWidget<NotificationModel, NotificationController>(
-            childBuilder: _buildNotificationItem,
-            padding: EdgeInsets.symmetric(
-              vertical: AppThemeExt.of.majorPaddingScale(2),
-            ),
-          ),
-        ),
-      ],
     );
   }
 

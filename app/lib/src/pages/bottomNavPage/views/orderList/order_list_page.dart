@@ -5,24 +5,9 @@ class OrderListPage extends GetView<OrderListController> {
 
   @override
   Widget build(BuildContext context) {
-    return AppMainPageWidget()
-        .setAppBar(_appBar(context))
-        .setBody(_body(context))
-        .setBackgroundColor(AppColors.of.whiteColor)
-        .setBottomNavigationBar(
-            const AppBottomNavigationBarWidget().build(context))
-        .setFloatingActionButtonLocation(
-          FloatingActionButtonLocation.centerDocked,
-        )
-        .setFloatingActionButton(
-          const FloatingAppButton(),
-        )
-        .build(context);
-  }
-
-  Widget _body(BuildContext context) {
     return Column(
       children: [
+        _appBar(context),
         Expanded(
             child: AppTabBarTextOnlyLv2Widget().setTabTitleList([
           R.strings.waitingForConfirm,

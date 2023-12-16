@@ -1,6 +1,6 @@
 import 'package:app/src/components/main/listView/app_list_view_controller.dart';
 import 'package:app/src/exts/app_exts.dart';
-import 'package:app/src/pages/orders/orderList/order_list_controller.dart';
+import 'package:app/src/pages/bottomNavPage/views/orderList/order_list_controller.dart';
 import 'package:domain/domain.dart';
 
 class ReceivedOrderListController extends AppListViewController<OrderModel> {

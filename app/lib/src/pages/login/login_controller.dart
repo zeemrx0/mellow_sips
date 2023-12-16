@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/src/components/main/button/app_button_base_builder.dart';
@@ -7,6 +8,7 @@ import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/main/textField/app_text_field_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
+import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/exts/app_message.dart';
 import 'package:app/src/pages/verify/verify_registration_controller.dart';
 import 'package:app/src/routes/app_pages.dart';
@@ -14,8 +16,10 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
+import 'package:stomp_dart_client/stomp_frame.dart';
 
 part './login_page.dart';
 
@@ -31,10 +35,17 @@ class LoginKey {
 class LoginController extends GetxController {
   final LoginUseCase _loginUseCase;
   final RequestOtpUseCase _requestOtpUseCase;
+  final SubscribeNotificationsUseCase _subscribeNotificationUseCase;
+  final UnsubscribeNotificationsUseCase _unsubscribeNotificationsUseCase;
+
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   LoginController(
     this._loginUseCase,
     this._requestOtpUseCase,
+    this._subscribeNotificationUseCase,
+    this._unsubscribeNotificationsUseCase,
   );
 
   final loginFormKey = GlobalKey<FormBuilderState>();
@@ -62,6 +73,58 @@ class LoginController extends GetxController {
     FocusScope.of(Get.context!).requestFocus(passwordFocusNode);
   }
 
+  // NotificationDetails _notificationDetails() {
+  //   return const NotificationDetails(
+  //     android: AndroidNotificationDetails(
+  //       'channelId',
+  //       'channelName',
+  //       importance: Importance.max,
+  //     ),
+  //   );
+  // }
+
+  // Future<void> subscribeNotifications() async {
+  //   print('subscribeNotifications');
+  //   try {
+  //     AppLoadingOverlayWidget.show();
+
+  //     await _subscribeNotificationUseCase.executeObject(
+  //       param: SubscribeNotificationsParam(
+  //         onReceiveGlobalNotification: (StompFrame frame) {
+  //           _flutterLocalNotificationsPlugin.show(
+  //             0,
+  //             jsonDecode(frame.body!)[AppConstants.subject],
+  //             '',
+  //             _notificationDetails(),
+  //           );
+  //         },
+  //         onReceiveUserNotification: (StompFrame frame) {
+  //           _flutterLocalNotificationsPlugin.show(
+  //             0,
+  //             jsonDecode(frame.body!)[AppConstants.subject],
+  //             '',
+  //             _notificationDetails(),
+  //           );
+
+  //           if (jsonDecode(frame.body!)[AppConstants.key] ==
+  //               AppConstants.orderCompleted) {
+  //             Get.toNamed(
+  //               Routes.orderCompletedAlert,
+  //               arguments: jsonDecode(frame.body!)[AppConstants.metadata]
+  //                   [AppConstants.orderId],
+  //             );
+  //           }
+  //         },
+  //       ),
+  //     );
+
+  //     AppLoadingOverlayWidget.dismiss();
+  //   } on AppException catch (e) {
+  //     AppLoadingOverlayWidget.dismiss();
+  //     AppExceptionExt(appException: e).detected();
+  //   }
+  // }
+
   Future<void> login() async {
     try {
       if (loginFormKey.currentState!.saveAndValidate()) {
@@ -81,7 +144,7 @@ class LoginController extends GetxController {
         AppLoadingOverlayWidget.dismiss();
 
         if (result.netData != null) {
-          Get.offAllNamed(Routes.home);
+          Get.offAllNamed(Routes.bottomNav);
         }
       }
     } on AppException catch (e) {
