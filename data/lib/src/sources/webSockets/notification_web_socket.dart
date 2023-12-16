@@ -47,6 +47,8 @@ class NotificationWebSocket {
           },
         ),
       );
+
+      print('sub auth');
     } else {
       _stompClient = StompClient(
         config: StompConfig(
@@ -67,6 +69,8 @@ class NotificationWebSocket {
           },
         ),
       );
+
+      print('sub no auth');
     }
   }
 

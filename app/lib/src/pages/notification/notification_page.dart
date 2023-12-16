@@ -77,7 +77,12 @@ class NotificationPage extends GetView<NotificationController> {
                       AppTextCaption1Widget()
                           .setText(
                             DateTimeExt.displayDateTime(
-                              dateTime: notification.createdAt,
+                              dateTime: notification.createdAt
+                                      .toString()
+                                      .endsWith('Z')
+                                  ? notification.createdAt!
+                                      .add(const Duration(hours: 7))
+                                  : notification.createdAt!,
                             ),
                           )
                           .setColor(AppColors.of.subTextColor)
