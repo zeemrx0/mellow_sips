@@ -103,7 +103,7 @@ class ConfirmOrderController extends GetxController {
           Get.offNamedUntil(
             Routes.orderDetail,
             (route) {
-              return route.settings.name == Routes.home;
+              return route.settings.name == Routes.bottomNav;
             },
             arguments: order.value!.id,
           );
@@ -118,7 +118,7 @@ class ConfirmOrderController extends GetxController {
             Get.offNamedUntil(
               Routes.orderDetail,
               (route) {
-                return route.settings.name == Routes.home;
+                return route.settings.name == Routes.bottomNav;
               },
               arguments: order.value!.id,
             );
