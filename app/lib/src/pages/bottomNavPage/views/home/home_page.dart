@@ -261,6 +261,7 @@ class HomePage extends GetView<HomeController> {
     final deviceWidth = MediaQuery.of(Get.context!).size.width;
     final gapWidth = AppThemeExt.of.majorScale(1);
     final itemWidth = (deviceWidth - 32 - 32) / 3;
+    final itemWidth2 = (deviceWidth - 32 - 16) / 2;
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -272,19 +273,7 @@ class HomePage extends GetView<HomeController> {
             children: [
               _categoryItem(
                 context,
-                itemWidth: itemWidth,
-                icon: R.svgs.icNearby.svg(
-                  width: AppThemeExt.of.majorScale(40 / 4),
-                  height: AppThemeExt.of.majorScale(44 / 4),
-                ),
-                title: R.strings.nearby,
-              ),
-              SizedBox(
-                width: AppThemeExt.of.majorScale(gapWidth),
-              ),
-              _categoryItem(
-                context,
-                itemWidth: itemWidth,
+                itemWidth: itemWidth2,
                 icon: R.svgs.icSalePanel.svg(
                   width: AppThemeExt.of.majorScale(44 / 4),
                   height: AppThemeExt.of.majorScale(44 / 4),
@@ -302,7 +291,7 @@ class HomePage extends GetView<HomeController> {
               ),
               _categoryItem(
                 context,
-                itemWidth: itemWidth,
+                itemWidth: itemWidth2,
                 icon: R.pngs.icLike.image(
                   width: AppThemeExt.of.majorScale(48 / 4),
                   height: AppThemeExt.of.majorScale(48 / 4),
@@ -318,7 +307,7 @@ class HomePage extends GetView<HomeController> {
             ],
           ),
           SizedBox(
-            height: AppThemeExt.of.majorScale(4),
+            height: AppThemeExt.of.majorScale(3),
           ),
           Row(
             children: [

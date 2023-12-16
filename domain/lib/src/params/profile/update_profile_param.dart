@@ -3,12 +3,12 @@ part of '../base_param.dart';
 @JsonSerializable()
 @CopyWith()
 class UpdateProfileParam extends BaseParam {
-  final String displayName;
-  final String phone;
+  final String? displayName;
+  final String? phone;
 
   UpdateProfileParam({
-    required this.displayName,
-    required this.phone,
+    this.displayName,
+    this.phone,
   });
 
   factory UpdateProfileParam.fromJson(Map<String, dynamic> json) =>

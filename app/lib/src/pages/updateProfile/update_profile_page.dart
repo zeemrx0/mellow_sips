@@ -31,23 +31,6 @@ class UpdateProfilePage extends GetView<UpdateProfileController> {
                 SizedBox(
                   height: AppThemeExt.of.majorScale(4),
                 ),
-                // Phone number field
-                AppTextHeading6Widget()
-                    .setText(R.strings.phoneNumber)
-                    .build(context),
-                SizedBox(
-                  height: AppThemeExt.of.majorScale(2),
-                ),
-                AppTextFieldWidget()
-                    .setFieldKey(RegisterKey.phoneNumber)
-                    .setHintText(R.strings.phoneNumber)
-                    .setInputType(TextInputType.phone)
-                    .setValidator(controller.validatePhoneNumber)
-                    .build(context),
-
-                SizedBox(
-                  height: AppThemeExt.of.majorScale(3),
-                ),
 
                 // Name field
                 AppTextHeading6Widget()

@@ -59,15 +59,12 @@ class UpdateProfileController extends GetxController {
     try {
       if (formKey.currentState!.saveAndValidate()) {
         final formData = formKey.currentState!.value;
-        final phoneNumber =
-            '84${(formData[RegisterKey.phoneNumber] as String).substring(1)}';
 
         AppLoadingOverlayWidget.show();
 
         await _updateProfileUseCase.executeObject(
           param: UpdateProfileParam(
             displayName: formData[RegisterKey.displayName],
-            phone: phoneNumber,
           ),
         );
 
