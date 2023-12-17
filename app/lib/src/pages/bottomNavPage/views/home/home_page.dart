@@ -444,19 +444,12 @@ class HomePage extends GetView<HomeController> {
             horizontal: AppThemeExt.of.majorScale(4),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AppTextBody2Widget()
                   .setText(R.strings.recommended)
                   .setTextStyle(AppTextStyleExt.of.textBody2s)
                   .setColor(AppColors.of.secondaryColor)
-                  .build(context),
-              SizedBox(
-                width: AppThemeExt.of.majorScale(1),
-              ),
-              AppTextBody2Widget()
-                  .setText(R.strings.showMore)
-                  .setColor(AppColors.of.subTextColor)
                   .build(context),
             ],
           ),
