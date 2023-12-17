@@ -81,7 +81,7 @@
 	"processing": "Đang chuẩn bị",
 	"profile": "Hồ sơ",
 	"promo": "Ưu đãi",
-	"qrCodeInvalid": "Mã QR không hợp lệ",
+	"qrCodeOrSeatCodeInvalid": "Mã QR hoặc mã chỗ ngồi không hợp lệ",
 	"received": "Đã nhận",
 	"recommended": "Đề xuất",
 	"register": "Đăng kí",
@@ -142,5 +142,8 @@
   "confirmNewPassword": "Xác nhận mật khẩu mới",
   "incorrectOldPassword": "Mật khẩu cũ không chính xác",
   "changedPasswordSuccessfully": "Đổi mật khẩu thành công",
-  "updatedProfileSuccessfully": "Cập nhật thông tin thành công"
+  "updatedProfileSuccessfully": "Cập nhật thông tin thành công",
+  "pleaseEnableCameraToScanQrCode": "Vui lòng bật camera để quét mã QR",
+  "cameraIsNotEnabled": "Camera chưa được bật",
+  "qrCodeDoesNotBelongToThisStore": "Mã QR không thuộc quán này"
 }

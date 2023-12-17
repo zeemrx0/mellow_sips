@@ -5,11 +5,13 @@ import 'package:app/src/components/main/textField/app_text_field_base_builder.da
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
+import 'package:app/src/exts/app_message.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zalopay_sdk/flutter_zalopay_sdk.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:resources/resources.dart';
 
@@ -40,8 +42,23 @@ class ConfirmOrderController extends GetxController {
   Rxn<OrderModel> order = Rxn<OrderModel>();
   RxString qrCode = ''.obs;
 
-  void onQRViewCreated(QRViewController controller) {
+  void onQRViewCreated(QRViewController controller) async {
     qrViewController = controller;
+
+    PermissionStatus status = await Permission.camera.status;
+    if (status.isDenied) {
+      AppDefaultDialogWidget()
+          .setTitle(R.strings.cameraIsNotEnabled)
+          .setContent(R.strings.pleaseEnableCameraToScanQrCode)
+          .setAppDialogType(AppDialogType.error)
+          .setPositiveText(R.strings.confirm)
+          .setOnPositive(() async {
+            Get.back();
+          })
+          .buildDialog(Get.context!)
+          .show();
+    }
+
     controller.scannedDataStream.listen(
       (scanData) async {
         if (scanData.code != null &&
@@ -140,6 +157,23 @@ class ConfirmOrderController extends GetxController {
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
+
+      if (e.message == AppMessage.qrCodeNotFound ||
+          e.message == AppMessage.storeIsUnavailableNow ||
+          e.message == AppMessage.qrCodeDoesNotBelongToThisStore) {
+        AppDefaultDialogWidget()
+            .setTitle(AppMessage.getErrorMessage(e.message))
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.close)
+            .setOnPositive(() {
+              qrViewController?.resumeCamera();
+            })
+            .buildDialog(Get.context!)
+            .show();
+
+        return;
+      }
+
       AppExceptionExt(appException: e).detected();
     }
   }
