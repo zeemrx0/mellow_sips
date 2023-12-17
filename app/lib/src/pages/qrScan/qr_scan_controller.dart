@@ -1,4 +1,3 @@
-import 'package:app/src/components/main/dialog/app_dialog_base_builder.dart';
 import 'package:app/src/components/main/text/app_text_base_builder.dart';
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
@@ -8,7 +7,6 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:resources/resources.dart';
 
@@ -32,21 +30,6 @@ class QrScanController extends GetxController {
 
   void onQRViewCreated(QRViewController controller) async {
     qrViewController = controller;
-
-    PermissionStatus status = await Permission.camera.status;
-
-    if (status.isDenied) {
-      AppDefaultDialogWidget()
-          .setTitle(R.strings.cameraIsNotEnabled)
-          .setContent(R.strings.pleaseEnableCameraToScanQrCode)
-          .setAppDialogType(AppDialogType.error)
-          .setPositiveText(R.strings.confirm)
-          .setOnPositive(() async {
-            Get.back();
-          })
-          .buildDialog(Get.context!)
-          .show();
-    }
 
     controller.scannedDataStream.listen(
       (scanData) async {
