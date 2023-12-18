@@ -12,7 +12,6 @@ import 'package:app/src/exts/app_exts.dart';
 import 'package:app/src/pages/product/components/checkbox_button_group.dart';
 import 'package:app/src/pages/product/components/radio_button_group_widget.dart';
 import 'package:domain/domain.dart';
-import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -255,7 +254,6 @@ class ProductDetailController extends GetxController {
         AppDefaultDialogWidget()
             .setContent(validateProductOptionsResult)
             .setAppDialogType(AppDialogType.error)
-            .setPositiveText(R.strings.confirm)
             .setNegativeText(R.strings.close)
             .buildDialog(Get.context!)
             .show();
@@ -310,7 +308,6 @@ class ProductDetailController extends GetxController {
         AppDefaultDialogWidget()
             .setContent(validateProductOptionsResult)
             .setAppDialogType(AppDialogType.error)
-            .setPositiveText(R.strings.confirm)
             .setNegativeText(R.strings.close)
             .buildDialog(Get.context!)
             .show();

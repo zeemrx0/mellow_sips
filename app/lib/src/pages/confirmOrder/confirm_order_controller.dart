@@ -5,6 +5,7 @@ import 'package:app/src/components/main/textField/app_text_field_base_builder.da
 import 'package:app/src/components/page/app_main_page_base_builder.dart';
 import 'package:app/src/config/app_theme.dart';
 import 'package:app/src/exts/app_exts.dart';
+import 'package:app/src/exts/app_message.dart';
 import 'package:app/src/routes/app_pages.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -40,8 +41,9 @@ class ConfirmOrderController extends GetxController {
   Rxn<OrderModel> order = Rxn<OrderModel>();
   RxString qrCode = ''.obs;
 
-  void onQRViewCreated(QRViewController controller) {
+  void onQRViewCreated(QRViewController controller) async {
     qrViewController = controller;
+
     controller.scannedDataStream.listen(
       (scanData) async {
         if (scanData.code != null &&
@@ -98,51 +100,65 @@ class ConfirmOrderController extends GetxController {
       if (result.netData != null) {
         order.value = result.netData;
 
-        switch (initialTransactionMethod) {
-          case AppPaymentMethod.cash:
+        if (initialTransactionMethod == AppPaymentMethod.cash ||
+            order.value?.finalPrice == 0) {
+          Get.offNamedUntil(
+            Routes.orderDetail,
+            (route) {
+              return route.settings.name == Routes.bottomNav;
+            },
+            arguments: order.value!.id,
+          );
+        } else if (initialTransactionMethod == AppPaymentMethod.zalopay) {
+          FlutterZaloPayStatus zaloPayStatus = await FlutterZaloPaySdk.payOrder(
+            zpToken: order
+                .value!.latestTransaction!.externalPaymentInfo!.zpTransToken,
+          );
+
+          if (zaloPayStatus == FlutterZaloPayStatus.success ||
+              zaloPayStatus == FlutterZaloPayStatus.processing) {
             Get.offNamedUntil(
               Routes.orderDetail,
               (route) {
-                return route.settings.name == Routes.home;
+                return route.settings.name == Routes.bottomNav;
               },
               arguments: order.value!.id,
             );
-            break;
-          case AppPaymentMethod.zalopay:
-            FlutterZaloPayStatus zaloPayStatus =
-                await FlutterZaloPaySdk.payOrder(
-              zpToken: order
-                  .value!.latestTransaction!.externalPaymentInfo!.zpTransToken,
-            );
-
-            if (zaloPayStatus == FlutterZaloPayStatus.success ||
-                zaloPayStatus == FlutterZaloPayStatus.processing) {
-              Get.offNamedUntil(
-                Routes.orderDetail,
-                (route) {
-                  return route.settings.name == Routes.home;
-                },
-                arguments: order.value!.id,
-              );
-            } else {
-              AppDefaultDialogWidget()
-                  .setTitle(R.strings.paymentFailed)
-                  .setAppDialogType(AppDialogType.error)
-                  .setPositiveText(R.strings.confirm)
-                  .setOnPositive(() {
-                    Get.offAllNamed(Routes.orderDetail,
-                        arguments: order.value!.id);
-                  })
-                  .buildDialog(Get.context!)
-                  .show();
-            }
-            break;
+          } else {
+            AppDefaultDialogWidget()
+                .setTitle(R.strings.paymentFailed)
+                .setAppDialogType(AppDialogType.error)
+                .setPositiveText(R.strings.confirm)
+                .setOnPositive(() {
+                  Get.offAllNamed(Routes.orderDetail,
+                      arguments: order.value!.id);
+                })
+                .buildDialog(Get.context!)
+                .show();
+          }
         }
       }
 
       AppLoadingOverlayWidget.dismiss();
     } on AppException catch (e) {
       AppLoadingOverlayWidget.dismiss();
+
+      if (e.message == AppMessage.qrCodeNotFound ||
+          e.message == AppMessage.storeIsUnavailableNow ||
+          e.message == AppMessage.qrCodeDoesNotBelongToThisStore) {
+        AppDefaultDialogWidget()
+            .setTitle(AppMessage.getErrorMessage(e.message))
+            .setAppDialogType(AppDialogType.error)
+            .setPositiveText(R.strings.close)
+            .setOnPositive(() {
+              qrViewController?.resumeCamera();
+            })
+            .buildDialog(Get.context!)
+            .show();
+
+        return;
+      }
+
       AppExceptionExt(appException: e).detected();
     }
   }

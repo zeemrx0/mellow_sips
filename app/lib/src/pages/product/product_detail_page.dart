@@ -25,113 +25,121 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
             imageData: controller.product.value?.coverImageData,
           ),
         ),
-        ExtendedNestedScrollView(
-          onlyOneScrollInBody: true,
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        CustomScrollView(
+          slivers: [
             SliverLayoutBuilder(
               builder: (context, constraints) =>
                   _sliverAppBar(context, constraints),
             ),
-          ],
-          body: Container(
-            decoration: BoxDecoration(
-              color: AppColors.of.whiteColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(
-                  AppThemeExt.of.majorScale(6),
+            SliverFillRemaining(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.of.whiteColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(
+                      AppThemeExt.of.majorScale(6),
+                    ),
+                    topRight: Radius.circular(
+                      AppThemeExt.of.majorScale(6),
+                    ),
+                  ),
                 ),
-                topRight: Radius.circular(
-                  AppThemeExt.of.majorScale(6),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppThemeExt.of.majorPaddingScale(4),
+                  vertical: AppThemeExt.of.majorPaddingScale(5),
                 ),
-              ),
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: AppThemeExt.of.majorPaddingScale(4),
-              vertical: AppThemeExt.of.majorPaddingScale(5),
-            ),
-            child: SingleChildScrollView(
-              child: FormBuilder(
-                onChanged: () {
-                  controller.formKey.value.currentState?.save();
-                  controller.calculatePrice();
-                },
-                key: controller.formKey.value,
-                initialValue: controller.formInitialValue.value,
-                child: Obx(
-                  () => Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _generalInfo(context),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(3),
-                      ),
-                      ...(controller.product.value?.productOptionSections!.map(
-                            (section) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Row(
+                child: SingleChildScrollView(
+                  child: FormBuilder(
+                    onChanged: () {
+                      controller.formKey.value.currentState?.save();
+                      controller.calculatePrice();
+                    },
+                    key: controller.formKey.value,
+                    initialValue: controller.formInitialValue.value,
+                    child: Obx(
+                      () => Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          _generalInfo(context),
+                          SizedBox(
+                            height: AppThemeExt.of.majorScale(3),
+                          ),
+                          ...(controller.product.value?.productOptionSections!
+                                  .map(
+                                (section) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
                                     children: [
-                                      AppTextHeading6Widget()
-                                          .setText(section.name)
-                                          .setColor(AppColors.of.primaryColor)
-                                          .setTextAlign(TextAlign.left)
-                                          .build(context),
-                                      SizedBox(
-                                        width: AppThemeExt.of.majorScale(2),
+                                      Row(
+                                        children: [
+                                          AppTextHeading6Widget()
+                                              .setText(section.name)
+                                              .setColor(
+                                                  AppColors.of.primaryColor)
+                                              .setTextAlign(TextAlign.left)
+                                              .build(context),
+                                          SizedBox(
+                                            width: AppThemeExt.of.majorScale(2),
+                                          ),
+                                          _productOptionSectionHelpText(
+                                            context,
+                                            section,
+                                          ),
+                                        ],
                                       ),
-                                      _productOptionSectionHelpText(
-                                        context,
-                                        section,
+                                      SizedBox(
+                                        height: AppThemeExt.of.majorScale(2),
+                                      ),
+                                      if (section.productAddons != null &&
+                                          section.maxAllowedChoices > 1)
+                                        CheckboxButtonGroupWidget(
+                                          fieldKey: section.id,
+                                          addons: section.productAddons!,
+                                          initialValue: controller
+                                              .formInitialValue
+                                              .value[section.id],
+                                          maxAllowedChoices:
+                                              section.maxAllowedChoices,
+                                          onChanged: () {
+                                            controller
+                                                .formKey.value.currentState
+                                                ?.save();
+                                          },
+                                        ),
+                                      if (section.productAddons != null &&
+                                          section.maxAllowedChoices <= 1)
+                                        RadioButtonGroupWidget(
+                                          fieldKey: section.id,
+                                          addons: section.productAddons!,
+                                          initialValue: controller
+                                              .formInitialValue
+                                              .value[section.id],
+                                          onChanged: () {
+                                            controller
+                                                .formKey.value.currentState
+                                                ?.save();
+                                          },
+                                        ),
+                                      SizedBox(
+                                        height: AppThemeExt.of.majorScale(6),
                                       ),
                                     ],
-                                  ),
-                                  SizedBox(
-                                    height: AppThemeExt.of.majorScale(2),
-                                  ),
-                                  if (section.productAddons != null &&
-                                      section.maxAllowedChoices > 1)
-                                    CheckboxButtonGroupWidget(
-                                      fieldKey: section.id,
-                                      addons: section.productAddons!,
-                                      initialValue: controller
-                                          .formInitialValue.value[section.id],
-                                      maxAllowedChoices:
-                                          section.maxAllowedChoices,
-                                      onChanged: () {
-                                        controller.formKey.value.currentState
-                                            ?.save();
-                                      },
-                                    ),
-                                  if (section.productAddons != null &&
-                                      section.maxAllowedChoices <= 1)
-                                    RadioButtonGroupWidget(
-                                      fieldKey: section.id,
-                                      addons: section.productAddons!,
-                                      initialValue: controller
-                                          .formInitialValue.value[section.id],
-                                      onChanged: () {
-                                        controller.formKey.value.currentState
-                                            ?.save();
-                                      },
-                                    ),
-                                  SizedBox(
-                                    height: AppThemeExt.of.majorScale(6),
-                                  ),
-                                ],
-                              );
-                            },
-                          ).toList() ??
-                          []),
-                      SizedBox(
-                        height: AppThemeExt.of.majorScale(14),
+                                  );
+                                },
+                              ).toList() ??
+                              []),
+                          SizedBox(
+                            height: AppThemeExt.of.majorScale(14),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -287,33 +295,6 @@ class ProductDetailPage extends GetWidget<ProductDetailController> {
           ],
         ),
       ),
-      actions: [
-        AppIconButtonWidget()
-            .setPrefixIcon(
-              R.svgs.icHeartOutline.svg(
-                width: AppThemeExt.of.majorScale(5),
-                height: AppThemeExt.of.majorScale(5),
-                colorFilter: ColorFilter.mode(
-                  AppColors.of.whiteColor,
-                  BlendMode.srcIn,
-                ),
-              ),
-            )
-            .setPadding(
-              EdgeInsets.all(
-                AppThemeExt.of.majorPaddingScale(6 / 4),
-              ),
-            )
-            .setBackgroundColor(const Color.fromRGBO(106, 106, 105, 0.7))
-            .setOnPressed(
-          () {
-            // TODO: Like
-          },
-        ).build(context),
-        SizedBox(
-          width: AppThemeExt.of.majorScale(4),
-        )
-      ],
     );
   }
 

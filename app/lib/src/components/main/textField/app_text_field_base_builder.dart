@@ -90,7 +90,7 @@ abstract class AppTextFieldBaseBuilder {
     return this;
   }
 
-  AppTextFieldBaseBuilder setPrefixIcon(Widget? suffixIcon) {
+  AppTextFieldBaseBuilder setPrefixIcon(Widget? prefixIcon) {
     return this;
   }
 

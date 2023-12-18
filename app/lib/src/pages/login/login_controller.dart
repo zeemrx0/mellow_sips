@@ -81,7 +81,7 @@ class LoginController extends GetxController {
         AppLoadingOverlayWidget.dismiss();
 
         if (result.netData != null) {
-          Get.offAllNamed(Routes.home);
+          Get.offAllNamed(Routes.bottomNav);
         }
       }
     } on AppException catch (e) {

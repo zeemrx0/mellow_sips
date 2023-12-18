@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:resources/resources.dart';
+import 'package:utilities/utilities.dart';
 
 part './store_detail_page.dart';
 part './store_detail_binding.dart';
@@ -25,6 +26,7 @@ class StoreDetailController extends GetxController {
   final GetStoreDetailUseCase _getStoreDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
   final GetAllCartUseCase _getAllCartUseCase;
+  final GetTokensUseCase _getTokensUseCase;
 
   // final ScrollController scrollController = ScrollController();
 
@@ -35,12 +37,14 @@ class StoreDetailController extends GetxController {
   Rxn<MenuModel> menu = Rxn<MenuModel>();
   Rx<int> numberOfCartItems = 0.obs;
   Rxn<String> cartId = Rxn<String>();
+  Rx<bool> isLoggedIn = Rx<bool>(false);
 
   StoreDetailController(
     this._getStoreMenuUseCase,
     this._getStoreDetailUseCase,
     this._getDocumentUseCase,
     this._getAllCartUseCase,
+    this._getTokensUseCase,
   );
 
   Future<void> getStoreDetail(
@@ -130,9 +134,26 @@ class StoreDetailController extends GetxController {
     }
   }
 
+  Future<void> checkIsLoggedIn() async {
+    try {
+      final result = await _getTokensUseCase.executeObject();
+
+      if (result.netData?.accessToken != null &&
+          result.netData!.accessToken.isNotEmpty) {
+        isLoggedIn.value = true;
+        getNumberOfCartItems();
+      }
+    } on AppException catch (e) {
+      AppLoadingOverlayWidget.dismiss();
+      AppExceptionExt(appException: e).detected();
+    }
+  }
+
   Future<void> getNumberOfCartItems() async {
     try {
       AppLoadingOverlayWidget.show();
+      numberOfCartItems.value = 0;
+      cartId.value = null;
       final result = await _getAllCartUseCase.executeList();
 
       if (result.netData != null) {
@@ -150,5 +171,21 @@ class StoreDetailController extends GetxController {
       AppLoadingOverlayWidget.dismiss();
       AppExceptionExt(appException: e).detected();
     }
+  }
+
+  String voucherText(VoucherModel voucher) {
+    String text = '';
+    if (voucher.discountType == AppConstants.cash) {
+      text = '${R.strings.discount} ${NumberExt.vndDisplay(voucher.value)}';
+    } else {
+      text = '${R.strings.discount} ${voucher.value}%';
+    }
+
+    if (voucher.maxDiscountAmount != null && voucher.maxDiscountAmount! > 0) {
+      text +=
+          ' ${R.strings.maximum} ${NumberExt.vndDisplay(voucher.maxDiscountAmount!)}';
+    }
+
+    return text;
   }
 }

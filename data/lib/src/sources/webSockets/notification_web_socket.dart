@@ -16,48 +16,62 @@ class NotificationWebSocket {
     Function? onReceiveGlobalNotification,
     Function? onReceiveUserNotification,
   }) async {
-    // bool isInitialized = false;
+    final tokens = await _authLocalDataSource.getTokens();
 
-    // while (!isInitialized) {
-    try {
-      if (_stompClient != null) return;
+    Map<String, String>? headers;
 
-      final tokens = await _authLocalDataSource.getTokens();
-
-      Map<String, String>? header;
-
-      if (tokens.netData?.accessToken != null) {
-        header = {
-          'Authorization': tokens.netData!.accessToken,
-        };
-      }
+    if (tokens.netData?.accessToken != null &&
+        tokens.netData!.accessToken.isNotEmpty) {
+      headers = {
+        'Authorization': tokens.netData!.accessToken,
+      };
 
       _stompClient = StompClient(
-        config: StompConfig.sockJS(
+        config: StompConfig(
+          useSockJS: true,
           url: '${BuildConfig.apiDomain}/ws',
-          stompConnectHeaders: header,
-          webSocketConnectHeaders: header,
+          stompConnectHeaders: headers,
+          webSocketConnectHeaders: headers,
           onConnect: (p0) {
-            onConnectHandler(
+            _onConnectHandler(
               p0,
               onReceiveGlobalNotification: onReceiveGlobalNotification,
               onReceiveUserNotification: onReceiveUserNotification,
             );
           },
           onStompError: (p0) {
-            // throw Exception(p0);
+            throw Exception(p0);
           },
           onWebSocketError: (p0) {
-            // throw Exception(p0);
+            throw Exception(p0);
           },
         ),
       );
 
-      // isInitialized = true;
-    } catch (e) {
-      print('Notification web socket error: $e');
+      print('sub auth');
+    } else {
+      _stompClient = StompClient(
+        config: StompConfig(
+          useSockJS: true,
+          url: '${BuildConfig.apiDomain}/ws',
+          onConnect: (p0) {
+            _onConnectHandler(
+              p0,
+              onReceiveGlobalNotification: onReceiveGlobalNotification,
+              onReceiveUserNotification: onReceiveUserNotification,
+            );
+          },
+          onStompError: (p0) {
+            throw Exception(p0);
+          },
+          onWebSocketError: (p0) {
+            throw Exception(p0);
+          },
+        ),
+      );
+
+      print('sub no auth');
     }
-    // }
   }
 
   Future<AppObjectResultRaw<EmptyRaw>> connect({
@@ -79,6 +93,7 @@ class NotificationWebSocket {
 
   Future<AppObjectResultRaw<EmptyRaw>> disconnect() async {
     _stompClient?.deactivate();
+    _stompClient = null;
 
     return Future.value(
       AppObjectResultRaw(
@@ -87,7 +102,7 @@ class NotificationWebSocket {
     );
   }
 
-  void onConnectHandler(
+  void _onConnectHandler(
     StompFrame frame, {
     Function? onReceiveGlobalNotification,
     Function? onReceiveUserNotification,

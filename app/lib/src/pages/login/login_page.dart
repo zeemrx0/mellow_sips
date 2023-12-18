@@ -3,10 +3,6 @@ part of 'login_controller.dart';
 class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
 
-  static void open() {
-    Get.toNamed(Routes.login);
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppMainPageWidget()

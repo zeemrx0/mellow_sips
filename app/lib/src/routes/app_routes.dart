@@ -7,6 +7,8 @@ class Routes {
   static const intro = '/intro';
   static const welcome = '/welcome';
 
+  static const bottomNav = '/bottomNav';
+
   // Home
   static const home = '/home';
   static const coffeeStores = '/coffee-stores';
@@ -15,6 +17,8 @@ class Routes {
   static const promotingStores = '/promoting-stores';  
 
   static const appNavMenu = '/appNavMenu';
+  static const updateProfile = '/updateProfile';
+  static const changePassword = '/changePassword';
   static const qrScan = '/qrScan';
 
   static const login = '/login';
@@ -28,6 +32,7 @@ class Routes {
   static const products = '/products';
   static const productDetail = '/product-detail';
 
+  static const carts = '/carts';
   static const cart = '/cart';
   static const checkout = '/checkout';
   static const vouchers = '/vouchers';

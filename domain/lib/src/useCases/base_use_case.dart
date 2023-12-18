@@ -10,6 +10,7 @@ part './auth/verify_registration_use_case.dart';
 part './auth/request_otp_use_case.dart';
 part './auth/logout_use_case.dart';
 part './auth/get_tokens_use_case.dart';
+part './auth/change_password_use_case.dart';
 
 part './document/get_document_use_case.dart';
 
@@ -52,6 +53,7 @@ part './home/get_qualified_store_list_use_case.dart';
 part './home/get_best_selling_products_use_case.dart';
 
 part './profile/get_profile_use_case.dart';
+part './profile/update_profile_use_case.dart';
 
 abstract class BaseUseCase<In extends BaseParam, Out extends BaseModel> {
   Future<AppObjectResultModel<Out>> executeObject({In? param}) {

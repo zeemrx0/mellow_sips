@@ -5,7 +5,7 @@ part of '../base_param.dart';
 class CreateStoreReviewParam extends BaseParam {
   final String orderId;
   final int point;
-  final String comment;
+  final String? comment;
 
   CreateStoreReviewParam({
     required this.orderId,

@@ -11,6 +11,7 @@ part './auth/login_param.dart';
 part './auth/register_param.dart';
 part './auth/verify_registration_param.dart';
 part './auth/request_otp_param.dart';
+part './auth/change_password_param.dart';
 
 part './store/get_store_list_param.dart';
 part './store/search_stores_param.dart';
@@ -46,5 +47,7 @@ part './home/get_coffee_store_list_param.dart';
 part './home/get_promoting_store_list_param.dart';
 part './home/get_qualified_store_list_param.dart';
 part './home/get_best_selling_products_param.dart';
+
+part './profile/update_profile_param.dart';
 
 abstract class BaseParam {}

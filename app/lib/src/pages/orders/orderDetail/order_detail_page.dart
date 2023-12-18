@@ -10,6 +10,7 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
     return AppMainPageWidget()
         .setAppBar(_appBar(context))
         .setBody(_body(context))
+        .setResizeToAvoidBottomInset(true)
         .setBackgroundColor(AppColors.of.whiteColor)
         .build(context);
   }
@@ -21,7 +22,7 @@ class OrderDetailPage extends GetWidget<OrderDetailController> {
       onRefresh: () async {
         controller.getOrderDetail();
       },
-      child: Padding(
+      child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: AppThemeExt.of.majorScale(4),
         ),

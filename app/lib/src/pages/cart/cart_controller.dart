@@ -18,7 +18,6 @@ part 'cart_binding.dart';
 part 'cart_page.dart';
 
 class CartController extends GetxController {
-  // final GetAllCartUseCase _getAllCartUseCase;
   final GetCartDetailUseCase _getCartDetailUseCase;
   final GetDocumentUseCase _getDocumentUseCase;
   final DeleteCartUseCase _deleteCartUseCase;
@@ -32,46 +31,6 @@ class CartController extends GetxController {
   );
 
   Rxn<CartModel> cart = Rxn<CartModel>();
-
-  // Future<void> getAllCart() async {
-  //   try {
-  //     AppLoadingOverlayWidget.show();
-
-  //     final result = await _getAllCartUseCase.executeList();
-
-  //     if (result.netData != null) {
-  //       carts.value = <CartModel>[];
-
-  //       for (var cart in result.netData!) {
-  //         final cartResult = await _getCartDetailUseCase.executeObject(
-  //           param: GetCartDetailParam(cartId: cart.id),
-  //         );
-
-  //         if (cartResult.netData != null) {
-  //           final cartData = cartResult.netData as CartModel;
-
-  //           carts.add(cartData);
-  //         }
-  //       }
-  //     }
-
-  //     AppLoadingOverlayWidget.dismiss();
-
-  //     for (var cart in carts) {
-  //       for (var cartItem in cart.cartItems) {
-  //         cartItem.product.coverImageData = await AppImageExt.getImage(
-  //           _getDocumentUseCase,
-  //           cartItem.product.coverImage,
-  //         );
-  //       }
-
-  //       carts.refresh();
-  //     }
-  //   } on AppException catch (e) {
-  //     AppLoadingOverlayWidget.dismiss();
-  //     AppExceptionExt(appException: e).detected();
-  //   }
-  // }
 
   Future<void> getCart(String cartId) async {
     try {
@@ -117,7 +76,7 @@ class CartController extends GetxController {
       ),
     );
 
-    await getCart(cartId);
+    Get.back();
   }
 
   Future<void> deleteCartItem(String cartItemId) async {

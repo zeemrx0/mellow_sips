@@ -171,22 +171,4 @@ class StoreItemWidget extends StatelessWidget {
       ],
     );
   }
-
-  // Widget _distance(BuildContext context) {
-  //   /// TODO: Implement distance calculation
-  //   return AppTextCaption1Widget().build(context);
-  // }
-
-  // Widget _categories(BuildContext context) {
-  //   print(store.categories);
-  //   String categories = store.categories.join(', ');
-
-  //   return AppTextCaption1Widget()
-  //       .setText(categories)
-  //       .setMaxLines(1)
-  //       .setTextOverFlow(
-  //         TextOverflow.ellipsis,
-  //       )
-  //       .build(context);
-  // }
 }

@@ -28,8 +28,9 @@ class QrScanController extends GetxController {
   Rxn<OrderModel> order = Rxn<OrderModel>();
   RxString qrCode = ''.obs;
 
-  void onQRViewCreated(QRViewController controller) {
+  void onQRViewCreated(QRViewController controller) async {
     qrViewController = controller;
+
     controller.scannedDataStream.listen(
       (scanData) async {
         if (scanData.code != null &&

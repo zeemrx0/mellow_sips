@@ -34,7 +34,7 @@ class AppExceptionExt {
         case HttpStatus.internalServerError:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.serverError)
-              .setContent(getMessage(appException?.message))
+              .setContent(AppMessage.getErrorMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.logOut)
               .setOnPositive(() async {
@@ -49,7 +49,7 @@ class AppExceptionExt {
         case HttpStatus.badRequest:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)
-              .setContent(getMessage(appException?.message))
+              .setContent(AppMessage.getErrorMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
@@ -58,7 +58,7 @@ class AppExceptionExt {
         case HttpStatus.gone:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)
-              .setContent(getMessage(appException?.message))
+              .setContent(AppMessage.getErrorMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
@@ -67,7 +67,7 @@ class AppExceptionExt {
         case HttpStatus.serviceUnavailable:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)
-              .setContent(getMessage(appException?.message))
+              .setContent(AppMessage.getErrorMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
@@ -77,7 +77,7 @@ class AppExceptionExt {
         case HttpStatus.badGateway:
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)
-              .setContent(getMessage(appException?.message))
+              .setContent(AppMessage.getErrorMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
@@ -91,7 +91,7 @@ class AppExceptionExt {
 
           return AppDefaultDialogWidget()
               .setTitle(R.strings.error)
-              .setContent(getMessage(appException?.message))
+              .setContent(AppMessage.getErrorMessage(appException?.message))
               .setAppDialogType(AppDialogType.error)
               .setPositiveText(R.strings.confirm)
               .setNegativeText(R.strings.close)
@@ -110,30 +110,9 @@ class AppExceptionExt {
     try {
       final forceLogOutUseCase = Get.find<LogoutUseCase>();
       await forceLogOutUseCase.executeObject();
-      Get.offNamedUntil(
-        Routes.welcome,
-        (route) {
-          return route.settings.name == Routes.home;
-        },
-      );
+      Get.toNamed(Routes.welcome);
     } on LocalException catch (e) {
       AppExceptionExt(appException: e).detected();
-    }
-  }
-
-  String getMessage(String? message) {
-    switch (message) {
-      case AppMessage.exceededMaxAllowedItemsInCart:
-        return R.strings.pleaseAddMax10Items;
-
-      case AppMessage.qrCodeNotFound:
-        return R.strings.qrCodeInvalid;
-
-      case AppMessage.storeIsUnavailableNow:
-        return R.strings.storeIsNotWorkingPleaseComebackLater;
-
-      default:
-        return R.strings.systemIsCurrentlyErrorPleaseTryAgainLater;
     }
   }
 }

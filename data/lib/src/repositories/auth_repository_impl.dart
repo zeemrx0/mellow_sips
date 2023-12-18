@@ -100,4 +100,19 @@ class AuthRepositoryImpl extends AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<AppObjectResultModel<EmptyModel>> changePassword({
+    required Map<String, dynamic> params,
+  }) async {
+    try {
+      final remoteData = await _remoteDataSource.changePassword(
+        params: params,
+      );
+
+      return remoteData.toAppObjectResultModel();
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
 }
